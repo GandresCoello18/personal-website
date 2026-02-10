@@ -10,6 +10,13 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
+    imagen: "novacomp.jpeg",
+    title: "Software Engineer ||",
+    company: "Novacomp",
+    period: "2026 - Presente",
+    description: "Analizar y planificar las mejoras y sostenibilidad de la aplicación actual para soporte a gran escala con nivel horizontal y agregar gamaficacion estratégica en base a data lake y en la toma de desiciones con la recolección de datos",
+  },
+  {
     image: "meniuz.jpeg",
     title: "CTO / Tech Lead / SRE",
     company: "Meniuz",
