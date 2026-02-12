@@ -56,7 +56,7 @@ export function Hero() {
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </a>
               <a
-                href="/pdf/Andres-Coello-Goyes-Full-Stack-Developer-CV-2025.pdf"
+                href="/pdf/Andres-Coello-Goyes-Full-Stack-Developer-CV-2026.pdf"
                 download
                 className="px-6 py-3 bg-accent text-white rounded-lg font-medium hover:bg-accent/90 transition-colors flex items-center justify-center gap-2"
               >

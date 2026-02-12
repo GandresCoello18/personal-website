@@ -10,7 +10,7 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
-    imagen: "novacomp.jpeg",
+    image: "novacomp_logo.png",
     title: "Software Engineer ||",
     company: "Novacomp",
     period: "2026 - Presente",
