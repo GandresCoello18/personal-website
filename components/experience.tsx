@@ -14,7 +14,7 @@ const experiences: ExperienceItem[] = [
     title: "Software Engineer ||",
     company: "Novacomp",
     period: "2026 - Presente",
-    description: "Analizar y planificar las mejoras y sostenibilidad de la aplicación actual para soporte a gran escala con nivel horizontal y agregar gamaficacion estratégica en base a data lake y en la toma de desiciones con la recolección de datos",
+    description: "Impulso la interacción de usuarios en aplicaciones bancarias mediante una plataforma de gamificación basada en datos. Permito la creación de campañas altamente segmentadas utilizando audiencias construidas desde un Data Lake. Desarrollo sistemas que conectan promociones con recompensas personalizadas (cashback y beneficios), mejorando la retención y experiencia del usuario. Contribuyo a la escalabilidad y eficiencia de la plataforma mediante diseño de servicios robustos y reglas de negocio avanzadas. Trabajo con arquitecturas escalables (GraphQL/APIs, microservicios) y procesamiento de datos para personalización en tiempo real.",
   },
   {
     image: "meniuz.jpeg",

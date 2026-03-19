@@ -113,6 +113,18 @@ const classesData = [
     description: 'En esta charla comparto mi experiencia como entre a trabajar como desarrollador en el mundo del Esport, explicando lo que tuve que hacer para poder entrar al mercado de trabajo.',
     image: 'andres-coello-live-platzi.png',
   },
+  {
+    id: 14,
+    title: 'Presentacion de IA Generativa',
+    description: 'En esta presentacion comparto mi experiencia como desarrollador y como use IA para crear productos y proyectos digitales para ayudar a los estudiantes a usarlo.',
+    image: 'crack-the-code-002.png',
+  },
+  {
+    id: 15,
+    title: 'Conociendo a los estudiantes de 10 grado',
+    description: 'En esta clase conoci a los estudiantes de 10 grado y les explique como era el proceso de como entrar al mundo del desarrollo web y como era el proceso de como entrar al mundo del desarrollo web.',
+    image: 'crack-the-code-001.png',
+  },
 ]
 
 export function ClassesGallery() {
