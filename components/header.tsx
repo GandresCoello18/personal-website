@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -11,6 +12,7 @@ export function Header() {
     { name: "Sobre mí", href: "#about" },
     { name: "Experiencia", href: "#experience" },
     { name: "Proyectos", href: "#projects" },
+    { name: "Charlas", href: "#talks" },
     { name: "Servicios", href: "#services" },
     { name: "Contacto", href: "#contact" },
   ]
@@ -20,12 +22,16 @@ export function Header() {
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
           <div className="w-10 h-10 rounded-lg flex items-center justify-center text-primary-foreground font-bold text-lg">
-            <img src="/me.jpg" alt="Andres Coello" className="w-full h-full rounded-full object-cover" />
+            <img
+              src="/1764558900283.png"
+              alt="Andres Coello"
+              className="size-full rounded-full object-cover object-center"
+            />
           </div>
           <span className="hidden sm:inline font-bold text-foreground text-lg">Andres Coello</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -38,15 +44,19 @@ export function Header() {
           <a href="#contact" className="btn-primary">
             Contactar
           </a>
+          <ThemeToggle />
         </div>
 
-        <button
-          className="md:hidden p-2 hover:bg-muted rounded-lg transition-colors"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-1 md:hidden">
+          <ThemeToggle />
+          <button
+            className="p-2 hover:bg-muted rounded-lg transition-colors text-foreground"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Abrir o cerrar menú"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
 
         {isOpen && (
           <div className="absolute top-full left-0 right-0 bg-background border-b border-border md:hidden">

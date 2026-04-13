@@ -6,36 +6,6 @@ import Image from 'next/image'
 
 const classesData = [
   {
-    id: 16,
-    title: 'Staff y Speakers / DevFest Ecuador 2025',
-    description: 'El DevFest 2025 fue una experiencia increible, me encanto poder ser parte de este evento y poder compartir mis conocimientos con la comunidad.',
-    image: '1764597984863.jpg',
-  },
-  {
-    id: 17,
-    title: 'Conferencia en Quito Cumbaya / DevFest Ecuador 2025',
-    description: 'En este espacio compartie mi experiencia como desarrollador en el mundo deportivo electronico y como estar abierto a nuevas herramientas como tecnologias y frameworks.',
-    image: '1764597973595.jpg',
-  },
-  {
-    id: 18,
-    title: 'Conferencia en Quito Cumbaya / DevFest Ecuador 2023',
-    description: 'DevTools es mas que usar la consola de Chrome, hay mas herramientas que podemos usar para mejorar nuestro desarrollo.',
-    image: 'conf-quito-cumbaya.jpg',
-  },
-  {
-    id: 14,
-    title: 'Conferencia en Quito Cumbaya / DevFest Ecuador 2023',
-    description: 'DevTools es mas que usar la consola de Chrome, hay mas herramientas que podemos usar para mejorar nuestro desarrollo.',
-    image: 'conf-quito-cumbaya.jpg',
-  },
-  {
-    id: 15,
-    title: 'Conferencia en Quito Cumbaya / DevFest Ecuador 2023',
-    description: 'DevTools es mas que usar la consola de Chrome, hay mas herramientas que podemos usar para mejorar nuestro desarrollo.',
-    image: 'conf-quito-cumbaya-2.jpeg',
-  },
-  {
     id: 1,
     title: 'Explorando y primeros pasos en Reat Native / Santiago 🇩🇴',
     description: 'Aplicativo móbil para emergencias, y botón de pánico. Ligado a un servidor de Express y MySQL',
@@ -106,12 +76,6 @@ const classesData = [
     title: 'Haciendo debuger con Nest js + cron',
     description: 'Felipe necesita enviar una notificación por correo cuando ciertos usuarios se acercan a una fecha específica. Como está usando un ORM + PostgreSql tenemos un error de relación entre tablas.',
     image: '1756346816810.jpg',
-  },
-  {
-    id: 13,
-    title: 'Live de Platzi',
-    description: 'En esta charla comparto mi experiencia como entre a trabajar como desarrollador en el mundo del Esport, explicando lo que tuve que hacer para poder entrar al mercado de trabajo.',
-    image: 'andres-coello-live-platzi.png',
   },
   {
     id: 14,

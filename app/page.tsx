@@ -2,6 +2,7 @@ import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
 import { Experience } from "@/components/experience"
 import { Projects } from "@/components/projects"
+import { TalksSection } from "@/components/talks-section"
 import { Services } from "@/components/services"
 import { ClassgapSection } from "@/components/classgap-section"
 import { Testimonials } from "@/components/testimonials"
@@ -17,6 +18,7 @@ export default function Home() {
       <Hero />
       <Experience />
       <Projects />
+      <TalksSection />
       <Services />
       <ClassesGallery />
       <ClassgapSection />

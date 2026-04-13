@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
@@ -15,7 +16,7 @@ const jsonLd = {
   name: "Andres Coello",
   jobTitle: "Software Developer, Mentor y Tutor",
   url: siteUrl,
-  image: `${siteUrl}/profile.jpg`,
+  image: `${siteUrl}/1764558900283.png`,
   sameAs: [
     "https://www.linkedin.com/in/andrescoellogoyes/",
     "https://github.com/GandresCoello18",
@@ -87,10 +88,11 @@ export const metadata: Metadata = {
     siteName: "Andres Coello",
     images: [
       {
-        url: `${siteUrl}/profile.jpeg`,
+        url: "/1764558900283.png",
         width: 1200,
-        height: 630,
-        alt: "Vista previa del portafolio y servicios de Andres Coello",
+        height: 1200,
+        type: "image/png",
+        alt: "Andres Coello en DevFest — Software Developer, mentor y tutor",
       },
     ],
   },
@@ -100,7 +102,7 @@ export const metadata: Metadata = {
     description:
       "Mentorías, tutorías y desarrollo de software a medida con Andres Coello.",
     creator: "@acoellogoyes",
-    images: [],
+    images: ["/1764558900283.png"],
   },
   robots: {
     index: true,
@@ -108,11 +110,9 @@ export const metadata: Metadata = {
     googleBot: "index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large",
   },
   icons: {
-    icon: [
-      { url: "/me.svg", type: "image/svg+xml" },
-    ],
-    apple: "/profile.jpeg",
-    shortcut: "/profile.jpeg",
+    icon: [{ url: "/1764558900283.png", type: "image/png", sizes: "32x32" }],
+    apple: [{ url: "/1764558900283.png", sizes: "180x180", type: "image/png" }],
+    shortcut: "/1764558900283.png",
   },
   manifest: "/site.webmanifest",
   themeColor: "#1c4e5a",
@@ -128,7 +128,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -139,9 +139,11 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`font-sans antialiased`}>
-        {children}
-        <Analytics />
+      <body className="font-sans antialiased">
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
+          {children}
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   )

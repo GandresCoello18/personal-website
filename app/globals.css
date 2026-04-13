@@ -187,4 +187,55 @@
   .btn-secondary {
     @apply px-6 py-3 bg-secondary text-secondary-foreground rounded-lg font-medium hover:bg-secondary/90 transition-colors;
   }
+
+  @keyframes testimonial-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .testimonial-marquee-track {
+    display: flex;
+    width: max-content;
+    gap: 1.5rem;
+    animation: testimonial-marquee 50s linear infinite;
+    will-change: transform;
+  }
+
+  @media (min-width: 768px) {
+    .testimonial-marquee-track {
+      gap: 2rem;
+    }
+  }
+
+  .testimonial-marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  .testimonial-marquee-mask {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 4%,
+      black 96%,
+      transparent
+    );
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .testimonial-marquee-mask {
+      mask-image: none;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      padding-inline: 1rem;
+    }
+
+    .testimonial-marquee-track {
+      animation: none !important;
+      padding-bottom: 0.5rem;
+    }
+  }
 }

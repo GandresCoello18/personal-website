@@ -58,7 +58,7 @@ export function Hero() {
               <a
                 href="/pdf/Andres-Coello-Goyes-Full-Stack-Developer-CV-2026.pdf"
                 download
-                className="px-6 py-3 bg-accent text-white rounded-lg font-medium hover:bg-accent/90 transition-colors flex items-center justify-center gap-2"
+                className="px-6 py-3 bg-accent text-accent-foreground rounded-lg font-medium hover:bg-accent/90 transition-colors flex items-center justify-center gap-2"
               >
                 Descargar CV
                 <Download size={20} />

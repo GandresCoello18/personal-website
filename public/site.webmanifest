@@ -9,14 +9,16 @@
   "lang": "es",
   "icons": [
     {
-      "src": "/me.jpg",
+      "src": "/1764558900283.png",
       "type": "image/png",
-      "sizes": "32x32"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
-      "src": "/me.jpg",
+      "src": "/1764558900283.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ]
 }

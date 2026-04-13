@@ -24,10 +24,10 @@ const services: Service[] = [
       "Ayuda en proyectos reales",
       "Acceso a recursos exclusivos",
     ],
-    price: "$11.99",
+    price: "$7.99",
     duration: "por sesión",
   },
-  {
+  /*{
     icon: <BookOpen className="w-8 h-8" />,
     title: "Cursos Intensivos",
     description: "Bootcamps especializados en tecnologías modernas. Aprende haciendo con proyectos reales.",
@@ -39,7 +39,7 @@ const services: Service[] = [
     ],
     price: "$199-$299",
     duration: "por curso",
-  },
+  },*/
   {
     icon: <Zap className="w-8 h-8" />,
     title: "Consultoría Técnica",
@@ -50,7 +50,7 @@ const services: Service[] = [
       "Optimización de performance",
       "Estrategia tecnológica",
     ],
-    price: "Desde $11.99",
+    price: "Desde $9.99",
     duration: "por sesión",
   },
   {

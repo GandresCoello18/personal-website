@@ -1,4 +1,4 @@
-import { Star } from "lucide-react"
+import { Quote } from "lucide-react"
 
 interface Testimonial {
   name: string
@@ -67,53 +67,67 @@ const stats = [
   { value: "5+", label: "Años de Experiencia" },
 ]
 
-export function Testimonials() {
+function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-muted/30">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+    <article
+      className="flex h-full w-[min(100vw-2rem,22rem)] shrink-0 flex-col rounded-xl border border-border bg-card p-6 shadow-md sm:w-[24rem] sm:p-8 md:w-[26rem]"
+      aria-label={`Testimonio de ${testimonial.name}`}
+    >
+      <Quote className="mb-4 size-9 text-foreground/90 sm:size-10" strokeWidth={1.25} aria-hidden />
+
+      <blockquote className="mb-6 flex-1 text-base italic leading-relaxed text-foreground sm:text-lg">
+        &ldquo;{testimonial.text}&rdquo;
+      </blockquote>
+
+      <footer className="flex items-center gap-3 border-t border-border pt-5">
+        <div className="size-11 shrink-0 overflow-hidden rounded-full ring-2 ring-border/80">
+          <img
+            src={testimonial.image || "/me.svg"}
+            alt=""
+            className="size-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div className="min-w-0">
+          <p className="truncate font-bold text-foreground">{testimonial.name}</p>
+          <p className="text-sm text-muted-foreground">
+            {testimonial.role} · {testimonial.company}
+          </p>
+        </div>
+      </footer>
+    </article>
+  )
+}
+
+export function Testimonials() {
+  const loop = [...testimonials, ...testimonials]
+
+  return (
+    <section className="bg-muted/30 py-20 md:py-32">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-14 grid grid-cols-2 gap-6 md:mb-16 md:grid-cols-4">
           {stats.map((stat, idx) => (
             <div key={idx} className="text-center">
-              <p className="text-3xl md:text-4xl font-bold text-accent mb-2">{stat.value}</p>
-              <p className="text-muted-foreground text-sm">{stat.label}</p>
+              <p className="mb-2 text-3xl font-bold text-accent md:text-4xl">{stat.value}</p>
+              <p className="text-sm text-muted-foreground">{stat.label}</p>
             </div>
           ))}
         </div>
 
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="section-title">Qué Dicen los Estudiantes</h2>
-          <p className="section-subtitle max-w-2xl mx-auto">
+        <div className="mb-12 space-y-3 text-center md:mb-14">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Testimonios</p>
+          <h2 className="section-title">Qué dicen</h2>
+          <p className="section-subtitle mx-auto max-w-2xl">
             Historias de desarrolladores que transformaron su carrera gracias a mentoría y educación de calidad
           </p>
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, idx) => (
-            <div key={idx} className="card-elevated p-6 md:p-8 flex flex-col h-full">
-              <div className="flex gap-1 mb-4">
-                {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <Star key={i} size={18} className="fill-accent text-accent" />
-                ))}
-              </div>
-
-              <p className="text-muted-foreground italic mb-6 flex-1 leading-relaxed">"{testimonial.text}"</p>
-
-              <div className="flex items-center gap-3 pt-6 border-t border-border">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent overflow-hidden flex-shrink-0">
-                  <img
-                    src={testimonial.image || "/placeholder.svg"}
-                    alt={testimonial.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <p className="font-bold text-foreground text-sm">{testimonial.name}</p>
-                  <p className="text-xs text-muted-foreground">
-                    {testimonial.role} en {testimonial.company}
-                  </p>
-                </div>
-              </div>
-            </div>
+      <div className="testimonial-marquee-mask relative w-full overflow-hidden py-2">
+        <div className="testimonial-marquee-track">
+          {loop.map((testimonial, idx) => (
+            <TestimonialCard key={`${testimonial.name}-${idx}`} testimonial={testimonial} />
           ))}
         </div>
       </div>
