@@ -1,5 +1,6 @@
 import { Send, Calendar, MessageSquare } from "lucide-react"
 import { ContactForm } from "./contact-form"
+import { CalendlyBadge } from "@/components/calendly-badge"
 
 export function CTA() {
   return (
@@ -50,6 +51,7 @@ export function CTA() {
 
         <ContactForm />
       </div>
+      <CalendlyBadge />
     </section>
   )
 }
