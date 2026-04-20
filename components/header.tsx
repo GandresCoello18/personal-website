@@ -9,12 +9,13 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
   const navItems = [
-    { name: "Sobre mí", href: "#about" },
-    { name: "Experiencia", href: "#experience" },
-    { name: "Proyectos", href: "#projects" },
-    { name: "Charlas", href: "#talks" },
-    { name: "Servicios", href: "#services" },
-    { name: "Contacto", href: "#contact" },
+    { name: "Sobre mí", href: "/#about" },
+    { name: "Experiencia", href: "/#experience" },
+    { name: "Proyectos", href: "/#projects" },
+    { name: "Charlas", href: "/#talks" },
+    { name: "Servicios", href: "/#services" },
+    { name: "Blog", href: "/blog" },
+    { name: "Contacto", href: "/#contact" },
   ]
 
   return (

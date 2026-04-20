@@ -38,6 +38,10 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  /* Código MDX: estilo editorial tipo Medium */
+  --blog-code-bg: oklch(0.96 0.005 250);
+  --blog-code-inline-bg: oklch(0.93 0.01 250);
+  --blog-code-figure-bg: oklch(0.99 0 0);
 }
 
 .dark {
@@ -73,6 +77,9 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+  --blog-code-bg: oklch(0.2 0.02 250);
+  --blog-code-inline-bg: oklch(0.26 0.02 250);
+  --blog-code-figure-bg: oklch(0.16 0.01 250);
 }
 
 @theme inline {
@@ -213,6 +220,18 @@
 
   .testimonial-marquee-track:hover {
     animation-play-state: paused;
+  }
+
+  [data-rehype-pretty-code-title] {
+    @apply border-b border-border px-4 py-2.5 text-left text-xs font-medium tracking-wide text-muted-foreground;
+  }
+
+  .blog-code-figure pre.shiki {
+    @apply m-0 overflow-x-auto rounded-none border-0 p-0 text-[13px] leading-6;
+  }
+
+  .blog-code-figure pre.shiki code {
+    @apply block min-w-0 bg-transparent p-5 font-mono;
   }
 
   .testimonial-marquee-mask {

@@ -34,7 +34,7 @@ export function Footer() {
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 rounded-lg flex items-center justify-center text-primary-foreground font-bold">
-                <img src="/me.jpg" alt="Andres Coello" className="w-full h-full rounded-full object-cover" />
+                <img src="/1764558900283.png" alt="Andres Coello" className="w-full h-full rounded-full object-cover" />
               </div>
               <span className="font-bold text-foreground">Andres Coello</span>
             </Link>
