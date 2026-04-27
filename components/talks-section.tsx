@@ -20,6 +20,17 @@ export interface Talk {
 const talks: Talk[] = [
   {
     id: "1",
+    title: "¿Como entiende la IA lo que le preguntas?",
+    subtitle: "Taller para entender como funciona la IA usando Qdrant y embeddings. Entender la multi dimensión para las coincidencias.",
+    location: "Universidad de San Francisco de Quito · Cumbaya",
+    attendees: "80+ asistentes",
+    images: ["/build-with-ia-2026.jpeg"],
+    tags: ["IA", "Qdrant", "Embeddings"],
+    badges: ["Taller", "Qdrant", "Embeddings"],
+    url: "https://www.linkedin.com/in/andrescoellogoyes/",
+  },
+  {
+    id: "2",
     title: "Introducción a la programacion web",
     subtitle: "Historia de la web y como se desarrollo hasta llegar a lo que es hoy en dia, consejos para proximos proyectos y conseguir tu primer trabajo en el mundo TECH.",
     location: "ESPOL · Guayaquil, Ecuador",
@@ -30,17 +41,17 @@ const talks: Talk[] = [
     url: "https://www.linkedin.com/in/andrescoellogoyes/",
   },
   {
-    id: "2",
+    id: "3",
     title: "¿Que es, como funciona y cuando usar Meteor js?",
     subtitle: "Meteor js es un framework para desarrollar aplicaciones web y móviles, es un framework full stack que permite desarrollar aplicaciones web y móviles de manera rapida y sencilla.",
     location: "Quito Cumbayá · DevFest 2025 Ecuador",
-    attendees: "120+ asistentes",
+    attendees: "55+ asistentes",
     images: ["/1764597973595.jpg"],
     tags: ["Meteor js", "Framework", "Full Stack", "Web"],
     badges: ["Charla", "Ecuador", "DevFest 2025"],
   },
   {
-    id: "3",
+    id: "4",
     title: "DevTools más allá de la consola",
     subtitle: "Herramientas para depurar y perfilar en el navegador con sentido, deja de usar console.logp para todo y haz debugger como un profesional.",
     location: "Quito Cumbayá · DevFest 2023 Ecuador",
@@ -50,7 +61,7 @@ const talks: Talk[] = [
     badges: ["Workshop", "Ecuador", "DevFest 2023"],
   },
   {
-    id: "4",
+    id: "5",
     title: "Comunidad GDG Ecuador 2026",
     subtitle: "Comunidad GDG Ecuador 2023, charlas, talleres, proyectos, y mas, una comunidad que busca crecer juntos y aprender mas de la tecnologia.",
     location: "Quito Cumbayá · GDG Ecuador 2023",
@@ -60,7 +71,7 @@ const talks: Talk[] = [
     badges: ["Charla", "Ecuador", "GDG Ecuador 2025"],
   },
   {
-    id: "5",
+    id: "6",
     title: "JavaScript es Rock pero TypeScript es Jazz",
     subtitle: "TypeScript es un super poder que te permite programar con mas seguridad y confianza, ademas de que es mas facil de entender y leer para otros desarrolladores.",
     location: "Santo Domingo de los Tsachilas · GDG Ecuador 2025",
@@ -70,7 +81,7 @@ const talks: Talk[] = [
     badges: ["Charla", "Ecuador", "Santo Domingo de los Tsachilas"],
   },
   {
-    id: "6",
+    id: "7",
     title: "Aprender React js y no morir en el intento",
     subtitle: "Aprender React js y no morir en el intento, consejos para empezar a programar y no desistir. Ademas de agregar SSR a tu proyecto con Next.js.",
     location: "Codings Academy · Guayaquil, Ecuador",
@@ -80,7 +91,7 @@ const talks: Talk[] = [
     badges: ["Charla", "Ecuador", "Codings Academy"],
   },
   {
-    id: "7",
+    id: "8",
     title: "Live en Platzi",
     subtitle: "Como es trabajar para la industria de la tecnologia y en lo Sports para el continente europeo",
     location: "Bogotá · Platzi",
