@@ -10,26 +10,18 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
-    image: "novacomp_logo.png",
-    title: "Software Engineer ||",
-    company: "Novacomp",
-    period: "2026 - Presente",
-    description: "Impulso la interacción de usuarios en aplicaciones bancarias mediante una plataforma de gamificación basada en datos. Permito la creación de campañas altamente segmentadas utilizando audiencias construidas desde un Data Lake. Desarrollo sistemas que conectan promociones con recompensas personalizadas (cashback y beneficios), mejorando la retención y experiencia del usuario. Contribuyo a la escalabilidad y eficiencia de la plataforma mediante diseño de servicios robustos y reglas de negocio avanzadas. Trabajo con arquitecturas escalables (GraphQL/APIs, microservicios) y procesamiento de datos para personalización en tiempo real.",
+    image: "crack_the_code_per_logo.jpg",
+    title: "Docente de IA & Programación Web",
+    company: "Crack The Code",
+    period: "03/2026 - Presente",
+    description: "Guia y enseñar sobre IA junto con el ciclo del desarrollo de software en la practica, escoger un emprendimiento local y transformarlo en un producto digital de alto impacto, pasando por la planeación, diseño, construcción, pruebas, despliegue y mejoras continuas en base a feedback real de usuario o posibles clientes. Llevo de la mano a cada grupo y uso ejemplos interactivos de como lo hacen las empresas reconocidas.",
   },
   {
     image: "meniuz.jpeg",
-    title: "CTO / Tech Lead / SRE",
+    title: "CTO / Backend Systems Architect / SRE",
     company: "Meniuz",
     period: "2021 - Presente",
-    description: "Crear infraestructura escalable para gestionar miles de restaurantes, cafeterías, heladerías y licorerías del Ecuador, ayudando al turista en la decisión gastronómica del lugar, esto incluye precio, ambiente, servicio en general y menú. Implementé pipelines de CI/CD use Docker, Redis y Qdrant, para obtener una busqueda avanzada por coincidencias mediante vectores y respuestas rapdias optimizadas. Mi rol de CTO me ayuda a liderar el equipo de desarrollo y en la toma de decisiones para la empresa con respecto a herramientas y tecnologias.",
-  },
-  {
-    image: "mims_tech_corp_logo.jpg",
-    title: "Semi-Senior Backend Developer",
-    company: "MIMS Tech Corp",
-    period: "2025 - 2025",
-    description:
-      "Lideré el desarrollo de un SDK orientado a facilitar la integración de múltiples servicios y funcionalidades mediante paquetes npm. Mi rol incluye la definición de la arquitectura, diseño de APIs internas, aseguramiento de calidad del código y aplicación de estándares de seguridad, incluyendo Row-Level Security (RLS) para el control granular de acceso a los datos. Además, colaboro estrechamente con equipos de producto y QA para garantizar la escalabilidad, mantenibilidad y cumplimiento de las mejores prácticas de desarrollo seguro en entornos modernos de distribución de software.",
+    description: "Crear infraestructura escalable para gestionar miles de restaurantes, cafeterías, heladerías y licorerías del Ecuador, ayudando al turista en la decisión gastronómica del lugar, esto incluye precio, ambiente, servicio en general y menú. Implementé pipelines de CI/CD use Docker, Redis y Qdrant, para obtener una busqueda avanzada por coincidencias mediante vectores y respuestas rapdias optimizadas. Mi rol de CTO me ayuda a liderar el equipo de desarrollo y en la toma de decisiones para la empresa con respecto a herramientas y tecnologias. Tengo a cargo la modernización arquitectónica y la estrategia de migración a la nube (AWS) para preparar la plataforma frente a su próxima fase de escalabilidad masiva, garantizando alta disponibilidad y eficiencia operativa.",
   },
   {
     image: "classgap_logo.jpg",
@@ -37,7 +29,21 @@ const experiences: ExperienceItem[] = [
     company: "Classgap",
     period: "2023 - Presente",
     description:
-      "Guíe a estudiantes en la implementación de proyectos reales, fomentando buenas prácticas de programación, optimización de código y resolución de problemas. Impartí más de 150 clases (pagadas) personalizadas de desarrollo web y móvil a estudiantes de diversos niveles, adaptando los contenidos a sus necesidades y objetivos específicos.",
+      "Como Consultor Técnico y Mentor, he capacitado a desarrolladores a nivel internacional, guiándolos en la construcción de productos web y móviles reales. Mi enfoque va más allá de escribir código: formo a los profesionales para que piensen como ingenieros de software senior y resuelvan problemas complejos de forma escalable. Guíe a estudiantes en la implementación de proyectos reales, fomentando buenas prácticas de programación, optimización de código y resolución de problemas. Tomer requerimientos por parte de cada estudiantes y crear un plan de accion diferente para ellos, con esto pudieron mejorar sus habilidades de codificacion como tambien mejorar su presencia en internet o redes, mejorar sus proyectos personales o portafolios."
+  },
+  {
+    image: "novacomp_logo.png",
+    title: "Software Engineer Ss",
+    company: "Novacomp",
+    period: "01/2026 - 04/2026",
+    description: "Diseñé y escalé el motor tecnológico de una plataforma de gamificación y fidelización para el sector bancario. Transformé el procesamiento masivo de datos en estrategias de retención en tiempo real, garantizando la estabilidad bajo la estricta exigencia transaccional del entorno financiero. Impacto y Soluciones de Arquitectura:Ingeniería de Fidelización y Retención (FinTech): Desarrollé el núcleo del sistema que orquesta campañas promocionales complejas con la entrega de recompensas financieras personalizadas (cashback). Esto impactó directamente en la retención, el engagement y la experiencia final del usuario bancario.",
+  },
+  {
+    image: "mims_tech_corp_logo.jpg",
+    title: "Semi-Senior Backend Developer",
+    company: "MIMS Tech Corp",
+    period: "2025 - 2025",
+    description: "Dirigí el diseño arquitectónico y el desarrollo de un SDK comercial para el sector LegalTech. Lideré a un equipo de ingeniería en la creación de soluciones de software distribuido, priorizando la seguridad extrema de los datos y la escalabilidad de las integraciones para clientes B2B. Seguridad de Grado Empresarial (Zero-Trust): En una industria donde la privacidad legal es crítica, implementé una arquitectura Multi-tenant segura desde el diseño. Apliqué políticas de Row-Level Security (RLS) para garantizar el control de acceso granular y el aislamiento total de la información confidencial de cada cliente. Distribución de Software y Estandarización: Aceleré la integración de múltiples servicios desarrollando paquetes NPM y diseñando APIs internas robustas. Para soportar esta escalabilidad, impulsé la migración estratégica hacia una arquitectura de monorepo, mejorando radicalmente la mantenibilidad del código base."
   },
   {
     image: "codingsweb_logo.jpg",
@@ -52,7 +58,7 @@ const experiences: ExperienceItem[] = [
     company: "GGTech Entertainment",
     period: "2022 - 2025",
     description:
-      "Desarrollé y optimicé múltiples formatos de competición en la plataforma, mejorando la experiencia de usuario y aumentando la tasa de participación en un 30%, además de crear scripts para migración y actualización de bases de datos.  Analicé y optimicé el rendimiento de las aplicaciones, logrando una reducción del tiempo de carga en un 35% mediante mejoras en el manejo de sockets y optimización de consultas a la base de datos, implementando mejoras que resultaron en una reducción del tiempo de carga y una experiencia de usuario más fluida. Analicé y optimicé el rendimiento de las aplicaciones, implementando mejoras que resultaron en una reducción del tiempo de carga y una experiencia de usuario más fluida.",
+      "Desarrollé y optimicé múltiples formatos de competición en la plataforma, mejorando la experiencia de usuario y aumentando la tasa de participación en un 30%, además de crear scripts para migración y actualización de bases de datos. Analicé y optimicé el rendimiento de las aplicaciones, logrando una reducción del tiempo de carga en un 35% mediante mejoras en el manejo de sockets y optimización de consultas a la base de datos, implementando mejoras que resultaron en una reducción del tiempo de carga y una experiencia de usuario más fluida",
   },
   {
     image: "logo-dgd-quito.png",
