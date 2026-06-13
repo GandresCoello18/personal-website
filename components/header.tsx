@@ -15,6 +15,7 @@ export function Header() {
     { name: "Charlas", href: "/#talks" },
     { name: "Servicios", href: "/#services" },
     { name: "Blog", href: "/blog" },
+    { name: "Videos", href: "/videos" },
     { name: "Contacto", href: "/#contact" },
   ]
 
@@ -42,7 +43,7 @@ export function Header() {
               {item.name}
             </Link>
           ))}
-          <a href="#contact" className="btn-primary">
+          <a href="/#contact" className="btn-primary">
             Contactar
           </a>
           <ThemeToggle />
@@ -72,7 +73,7 @@ export function Header() {
                   {item.name}
                 </Link>
               ))}
-              <a href="#contact" className="block btn-primary text-center">
+              <a href="/#contact" className="block btn-primary text-center">
                 Contactar
               </a>
             </div>

@@ -4,6 +4,7 @@ import { Experience } from "@/components/experience"
 import { Projects } from "@/components/projects"
 import { TalksSection } from "@/components/talks-section"
 import { BlogSection } from "@/components/blog-section"
+import { VideosSection } from "@/components/videos-section"
 import { Services } from "@/components/services"
 import { ClassgapSection } from "@/components/classgap-section"
 import { Testimonials } from "@/components/testimonials"
@@ -21,6 +22,7 @@ export default function Home() {
       <Projects />
       <TalksSection />
       <BlogSection />
+      <VideosSection />
       <Services />
       <ClassesGallery />
       <ClassgapSection />
