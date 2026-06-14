@@ -51,14 +51,14 @@ export function Hero() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <a href="#projects" className="btn-primary flex items-center justify-center gap-2 group">
+              <a href="#projects" className="btn-primary flex items-center justify-center gap-1 group">
                 Ver Proyectos
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </a>
               <a
-                href="/pdf/Andres_Coello_Goyes_harvard_frt_full_stack_developer_2026.pdf"
+                href="/pdf/Andres_Coello_Goyes_full_stack_developer_2026.pdf"
                 download
-                className="px-6 py-3 bg-accent text-accent-foreground rounded-lg font-medium hover:bg-accent/90 transition-colors flex items-center justify-center gap-2"
+                className="px-6 py-3 bg-accent text-accent-foreground rounded-lg font-medium hover:bg-accent/90 transition-colors flex items-center justify-center gap-1"
               >
                 Descargar CV
                 <Download size={20} />

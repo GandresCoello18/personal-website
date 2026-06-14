@@ -32,7 +32,7 @@ const jsonLd = {
     "Docker",
     "Git",
     "GitLab CI/CD",
-    "GitLab CI/CD",
+    "Graphql",
     "Mentoría tecnológica",
     "Tutorías personalizadas",
   ],
