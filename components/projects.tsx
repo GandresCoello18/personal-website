@@ -113,6 +113,26 @@ const projects: Project[] = [
     ],
   },
   {
+    id: "222",
+    title: "Bob's Corn",
+    description:
+      "API REST desarrollada con TypeScript y Node.js que permite a los clientes realizar compras de maíz. El sistema implementa control de rate limiting para gestionar el tráfico de solicitudes, registra las transacciones exitosas y de rate limit en base de datos y proporciona endpoints para consultar el historial de compras. Incluye validación de datos, manejo centralizado de errores y logging estructurado para facilitar el monitoreo y debugging del sistema.",
+    images: [
+      "/proyectos/bob-s-corn/client.png",
+      "/proyectos/bob-s-corn/diagram.jpeg",
+    ],
+    tags: ["TypeScript", "Node.js", "API", "Rate Limiting", "Database", "Error Handling", "Logging", "Ioredis + Redis Commands"],
+    link: "https://github.com/GandresCoello18/Bob-s-Corn-API",
+    github: "https://github.com/GandresCoello18/Bob-s-Corn-API",
+    isPrivate: false,
+    featured: true,
+    stats: [
+      { label: "Transacciones", value: "100+" },
+      { label: "Validaciones", value: "+6" },
+      { label: "Rate Limit", value: "100+" },
+    ],
+  },
+  {
     id: "2",
     title: "Chimborazo cerca del sol",
     description:
@@ -127,7 +147,7 @@ const projects: Project[] = [
     link: "https://chimborazo-near-the-sun.vercel.app",
     github: "https://github.com/GandresCoello18/Chimborazo-near-the-sun",
     isPrivate: false,
-    featured: true,
+    featured: false,
     stats: [
       { label: "Volcan", value: "1" },
       { label: "Imagenes", value: "6" },
