@@ -26,10 +26,11 @@ const projects: Project[] = [
     description:
       "Meniuz es una aplicación móvil y web que permite a los usuarios encontrar y descubrir la castronomia de las dintintas ciudades del Ecuador, entran categorias como: restaurantes, cafeterias, heladerias y licorerias.",
     images: [
-      "/meniuz-home-app.png",
-      "/meniuz-list-cities.png",
-      "/meniuz-menu-business.png",
-      "/meniuz-login.png",
+      "/proyectos/meniuz/apps-native.jpg",
+      "/proyectos/meniuz/AWS-architecture-diagram-showing-the-final-cloud-image-1.png",
+      "/proyectos/meniuz/list-business-app.png",
+      "/proyectos/meniuz/landing.png",
+      "/proyectos/meniuz/meniuz-list-cities.png",
     ],
     tags: ["Next.js", "TypeScript", "GraphQL", "Express.js", "CI/CD", "Redis", "Kotlin", "Swift", "Stripe", "MySQL", "TailwindCSS"],
     link: "https://onelink.to/meniuz",
@@ -48,10 +49,10 @@ const projects: Project[] = [
     description:
       "Este proyecto muestra de manera educativa por que a pesar de que el volcan Chimborazo ubicado en el Ecuador, no es el mas grande pero si el mas cercano al sol.",
     images: [
-      "/chimborazo-01.png",
-      "/chimborazo-02.png",
-      "/chimborazo-03.png",
-      "/chimborazo-04.png",
+      "/proyectos/chimborazo-cerca-del-sol/chimborazo-01.png",
+      "/proyectos/chimborazo-cerca-del-sol/chimborazo-02.png",
+      "/proyectos/chimborazo-cerca-del-sol/chimborazo-03.png",
+      "/proyectos/chimborazo-cerca-del-sol/chimborazo-04.png",
     ],
     tags: ["Svelte", "3D CSS", "HTML", "TypeScript", "Vercel"],
     link: "https://chimborazo-near-the-sun.vercel.app",
@@ -66,29 +67,11 @@ const projects: Project[] = [
   },
   {
     id: "3",
-    title: "Collage Unsplash con Astro",
-    description: "Collage de imagenes de Unsplash con Astro, permite a los usuarios ver las imagenes de Unsplash y agregarlas a un collage para luego descargarlo en el equipo local y almacenarlo en el navegador para su futura consulta.",
-    images: [
-      "/explore-collage-astro.png",
-      "/generate-collage-astro.png",
-      "/gallery-collage-astro.png",
-    ],
-    tags: ["Astro", "Island", "Vercel", "TypeScript", "Unsplash API"],
-    link: "https://unsplash-collage-astro.vercel.app",
-    github: "https://github.com/GandresCoello18/unsplash-collage-astro",
-    isPrivate: false,
-    featured: true,
-    stats: [
-      { label: "Api Unsplash", value: "1" },
-      { label: "Imagenes", value: "4" },
-    ],
-  },
-  {
-    id: "4",
     title: "Image Intelligence Platform",
     description: "Plataforma de procesamiento de imagenes, permite a los usuarios subir imagenes y procesarlas o extraier informacion de ellas para luego almacenarlas en el sistema para su futura consulta.",
     images: [
-      "/image-process-inteligent.png",
+      "/proyectos/image-intelligence-platform/image-process-inteligent.png",
+      "/proyectos/image-intelligence-platform/diagram.png",
     ],
     tags: ["Nx Workspace", "Redis", "Queue", "TypeScript", "docker", "MongoDB", "Minio"],
     link: "https://github.com/GandresCoello18/image-intelligence-job",
@@ -101,15 +84,48 @@ const projects: Project[] = [
     ],
   },
   {
+    id: "7",
+    title: "Spotify Clone",
+    description:
+      "Spotify Clone App es una aplicación web que permite a los usuarios escuchar musica, crear playlists, conocer artistas y sus albunes, puedes agregar o quitar de tus favoritos y se vera reflejado en tu perfil origial de Spotify.",
+    images: [
+      "/proyectos/spotify-clone/spotify-clone-app.png",
+      "/proyectos/spotify-clone/1756679537331.jpg",
+    ],
+    tags: ["Next.js", "TypeScript", "TailwindCSS", "Api", "Spotify API"],
+    link: "https://andres-coello-full-stack.vercel.app/",
+    github: "https://github.com/GandresCoello18/spotify-clone",
+    featured: true,
+  },
+  {
+    id: "4",
+    title: "Collage Unsplash con Astro",
+    description: "Collage de imagenes de Unsplash con Astro, permite a los usuarios ver las imagenes de Unsplash y agregarlas a un collage para luego descargarlo en el equipo local y almacenarlo en el navegador para su futura consulta.",
+    images: [
+      "/proyectos/unsplash-collage-astro/explore-collage-astro.png",
+      "/proyectos/unsplash-collage-astro/generate-collage-astro.png",
+      "/proyectos/unsplash-collage-astro/gallery-collage-astro.png",
+    ],
+    tags: ["Astro", "Island", "Vercel", "TypeScript", "Unsplash API"],
+    link: "https://unsplash-collage-astro.vercel.app",
+    github: "https://github.com/GandresCoello18/unsplash-collage-astro",
+    isPrivate: false,
+    featured: false,
+    stats: [
+      { label: "Api Unsplash", value: "1" },
+      { label: "Imagenes", value: "4" },
+    ],
+  },
+  {
     id: "5",
     title: "GG Tech panel publico",
     description:
       "Torneo de League of Legends organizado por GG Tech, permite a los usuarios ver el historial de partidos, estadisticas de los jugadores, y mas, ademas de poder inscribirte en los torneos como jugador individual o por equipo.",
     images: [
-      "/ggtech-info-match.png",
-      "/ggtech-bracket.png",
-      "/ggtech-info-round.png",
-      "ggtech-info-tournament.png"
+      "/proyectos/ggtech-panel-publico/ggtech-info-match.png",
+      "/proyectos/ggtech-panel-publico/ggtech-bracket.png",
+      "/proyectos/ggtech-panel-publico/ggtech-info-round.png",
+      "/proyectos/ggtech-panel-publico/ggtech-info-tournament.png",
     ],
     tags: ["Meteor.js", "Blade", "Socket.io", "Api", "OAuth2", "MongoDB", "Redis"],
     link: "https://universityesportsna.riotgames.com/competition/tournament/clol-fall-warmup/stage/shurima-group-stage?group=651b79b996fd110d91b12460",
@@ -120,25 +136,13 @@ const projects: Project[] = [
     title: "GG Tech panel admin",
     description: "Panel admin de GG Tech, gestiona los torneos, etapas, grupos, rondas y partidos ademas de los equipos, los jugadores, y mas.",
     images: [
-      "/admin-ggtech-02.png",
-      "/admin-ggtech-01.png",
+      "/proyectos/ggtech-panel-admin/admin-ggtech-02.png",
+      "/proyectos/ggtech-panel-admin/admin-ggtech-01.png",
+      "/proyectos/ggtech-panel-admin/ggtech-admin-bracket.png",
+      "/proyectos/ggtech-panel-admin/ggtech-admin-suizo.png",
     ],
     tags: ["Meteor.js", "Socket.io", "Api", "OAuth2", "MongoDB", "Redis"],
     link: "https://ggtech.gg/",
-    featured: false,
-  },
-  {
-    id: "7",
-    title: "Spotify Clone",
-    description:
-      "Spotify Clone App es una aplicación web que permite a los usuarios escuchar musica, crear playlists, conocer artistas y sus albunes, puedes agregar o quitar de tus favoritos y se vera reflejado en tu perfil origial de Spotify.",
-    images: [
-      "/spotify-clone-app.png",
-      "/1756679537331.jpg",
-    ],
-    tags: ["Next.js", "TypeScript", "TailwindCSS", "Api", "Spotify API"],
-    link: "https://andres-coello-full-stack.vercel.app/",
-    github: "https://github.com/GandresCoello18/spotify-clone",
     featured: false,
   },
   {
@@ -147,11 +151,11 @@ const projects: Project[] = [
     description:
       "Dashboard interactivo para el seguimiento de partidos de padel, permite a los usuarios ver el historial de partidos, estadisticas de los jugadores, y mas, ademas de poder crear partidos jugadores y coach.",
     images: [
-      "/videos-cuestionario.jpeg",
-      "/padeltrack-public.png",
-      "/unnamed (1).webp",
-      "/unnamed (2).webp",
-      "/unnamed (3).webp",
+      "/proyectos/padel-track/videos-cuestionario.jpeg",
+      "/proyectos/padel-track/padeltrack-public.png",
+      "/proyectos/padel-track/unnamed (1).webp",
+      "/proyectos/padel-track/unnamed (2).webp",
+      "/proyectos/padel-track/unnamed (3).webp",
     ],
     tags: ["React", "Socket.io", "Express.js", "CI/CD", "MongoDB", "Chart.js", "Vimeo", "Monolito", "Arquitectura Modular"],
     link: "https://admin.padeltrack.app/",

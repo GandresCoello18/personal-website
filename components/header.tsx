@@ -44,13 +44,12 @@ export function Header() {
           <a href="/#contact" className="btn-primary">
             Contactar
           </a>
-          <ThemeToggle />
         </div>
 
-        <div className="flex items-center gap-1 md:hidden">
+        <div className="flex items-center gap-1">
           <ThemeToggle />
           <button
-            className="p-2 hover:bg-muted rounded-lg transition-colors text-foreground"
+            className="p-2 hover:bg-muted rounded-lg transition-colors text-foreground md:hidden"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Abrir o cerrar menú"
           >

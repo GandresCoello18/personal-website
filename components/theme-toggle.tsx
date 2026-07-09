@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 
 export function ThemeToggle() {
-  const { resolvedTheme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -15,22 +15,37 @@ export function ThemeToggle() {
   }, [])
 
   if (!mounted) {
-    return <div className="size-9 shrink-0 rounded-lg" aria-hidden />
+    return (
+      <Button
+        type="button"
+        variant="ghost"
+        size="icon"
+        className="size-9 shrink-0 rounded-lg"
+        disabled
+        aria-hidden
+      >
+        <span className="size-5" />
+      </Button>
+    )
   }
 
-  const isDark = resolvedTheme === "dark"
+  const isDark = theme === "dark"
+
+  function toggleTheme() {
+    setTheme(isDark ? "light" : "dark")
+  }
 
   return (
     <Button
       type="button"
       variant="ghost"
       size="icon"
-      className="rounded-lg text-muted-foreground hover:text-foreground shrink-0"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
+      className="shrink-0 rounded-lg text-muted-foreground hover:text-foreground"
+      onClick={toggleTheme}
       aria-label={isDark ? "Cambiar a tema claro" : "Cambiar a tema oscuro"}
       title={isDark ? "Tema claro" : "Tema oscuro"}
     >
-      {isDark ? <Sun className="size-5" /> : <Moon className="size-5" />}
+      {isDark ? <Sun className="size-5" aria-hidden /> : <Moon className="size-5" aria-hidden />}
     </Button>
   )
 }

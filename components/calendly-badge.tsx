@@ -2,7 +2,7 @@
 
 import Script from "next/script"
 import { useTheme } from "next-themes"
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 declare global {
   interface Window {
@@ -22,6 +22,11 @@ const CALENDLY_URL = "https://calendly.com/goyeselcoca/30min"
 const CALENDLY_CSS = "https://assets.calendly.com/assets/external/widget.css"
 const CALENDLY_JS = "https://assets.calendly.com/assets/external/widget.js"
 
+const BADGE_COLORS = {
+  light: { color: "#92baee", textColor: "#ffffff" },
+  dark: { color: "#1c4e5a", textColor: "#ffffff" },
+} as const
+
 function ensureCalendlyCss() {
   if (typeof document === "undefined") return
   const id = "calendly-widget-css"
@@ -33,62 +38,74 @@ function ensureCalendlyCss() {
   document.head.appendChild(link)
 }
 
-function cleanupCalendlyBadge() {
+function updateBadgeColors(color: string, textColor: string) {
+  if (typeof document === "undefined") return
+
+  document.querySelectorAll<HTMLElement>(".calendly-badge-content").forEach((el) => {
+    el.style.background = color
+    el.style.color = textColor
+  })
+}
+
+function removeCalendlyBadge() {
   if (typeof document === "undefined") return
   document.querySelectorAll(".calendly-badge-widget").forEach((el) => el.remove())
-  document.querySelectorAll("iframe[src*=\"calendly.com\"]").forEach((el) => {
-    const parent = el.parentElement
-    const looksLikeBadge =
-      parent?.classList.contains("calendly-overlay") ||
-      parent?.classList.contains("calendly-badge-widget") ||
-      el.getAttribute("title")?.toLowerCase().includes("calendly")
-    if (looksLikeBadge) el.remove()
-  })
 }
 
 export function CalendlyBadge() {
   const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
   const [scriptReady, setScriptReady] = useState(false)
+  const initializedRef = useRef(false)
 
-  const badgeColors = useMemo(() => {
+  const getColors = useCallback(() => {
     const isDark = resolvedTheme === "dark"
-    return {
-      color: isDark ? "#1c4e5a" : "#92baee",
-      textColor: "#ffffff",
-    }
+    return isDark ? BADGE_COLORS.dark : BADGE_COLORS.light
   }, [resolvedTheme])
 
-  const init = useCallback(() => {
-    if (typeof window === "undefined") return
-    if (!window.Calendly?.initBadgeWidget) return
-
-    cleanupCalendlyBadge()
-    window.Calendly.initBadgeWidget({
-      url: CALENDLY_URL,
-      text: "Programe una reunión conmigo",
-      color: badgeColors.color,
-      textColor: badgeColors.textColor,
-      branding: true,
-    })
-  }, [badgeColors.color, badgeColors.textColor])
-
   useEffect(() => {
+    setMounted(true)
     ensureCalendlyCss()
   }, [])
 
   useEffect(() => {
-    if (!scriptReady) return
-    init()
-  }, [init, scriptReady])
+    if (!mounted || !scriptReady || !resolvedTheme) return
+
+    const colors = getColors()
+
+    if (!initializedRef.current) {
+      if (!window.Calendly?.initBadgeWidget) return
+
+      try {
+        window.Calendly.initBadgeWidget({
+          url: CALENDLY_URL,
+          text: "Programe una reunión conmigo",
+          color: colors.color,
+          textColor: colors.textColor,
+          branding: true,
+        })
+        initializedRef.current = true
+      } catch (error) {
+        console.error("Calendly badge init failed:", error)
+      }
+      return
+    }
+
+    updateBadgeColors(colors.color, colors.textColor)
+  }, [mounted, scriptReady, resolvedTheme, getColors])
+
+  useEffect(() => {
+    return () => {
+      removeCalendlyBadge()
+      initializedRef.current = false
+    }
+  }, [])
 
   return (
     <Script
       src={CALENDLY_JS}
       strategy="afterInteractive"
-      onLoad={() => {
-        setScriptReady(true)
-      }}
+      onLoad={() => setScriptReady(true)}
     />
   )
 }
-

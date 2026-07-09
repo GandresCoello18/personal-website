@@ -1,209 +1,556 @@
-import Image from 'next/image';
+import { ExperienceCard, type ExperienceItem } from "@/components/experience-card"
 
-interface ExperienceItem {
-  title: string
-  company: string
-  period: string
-  description: string
-  image: string
-}
+
 
 const experiences: ExperienceItem[] = [
+
   {
-    image: "crack_the_code_per_logo.jpg",
-    title: "Docente de IA & Programación Web",
+
+    id: "crack-the-code",
+
+    logo: "/experiencia/crack-the-code/crack_the_code_per_logo.jpg",
+
+    role: "Docente de IA & Programación Web",
+
     company: "Crack The Code",
-    period: "03/2026 - Presente",
-    description: "Guia y enseñar sobre IA junto con el ciclo del desarrollo de software en la practica, escoger un emprendimiento local y transformarlo en un producto digital de alto impacto, pasando por la planeación, diseño, construcción, pruebas, despliegue y mejoras continuas en base a feedback real de usuario o posibles clientes. Llevo de la mano a cada grupo y uso ejemplos interactivos de como lo hacen las empresas reconocidas.",
-  },
-  {
-    image: "meniuz.jpeg",
-    title: "CTO / Backend Systems Architect / SRE",
-    company: "Meniuz",
-    period: "2021 - Presente",
-    description: "Crear infraestructura escalable para gestionar miles de restaurantes, cafeterías, heladerías y licorerías del Ecuador, ayudando al turista en la decisión gastronómica del lugar, esto incluye precio, ambiente, servicio en general y menú. Implementé pipelines de CI/CD use Docker, Redis y Qdrant, para obtener una busqueda avanzada por coincidencias mediante vectores y respuestas rapdias optimizadas. Mi rol de CTO me ayuda a liderar el equipo de desarrollo y en la toma de decisiones para la empresa con respecto a herramientas y tecnologias. Tengo a cargo la modernización arquitectónica y la estrategia de migración a la nube (AWS) para preparar la plataforma frente a su próxima fase de escalabilidad masiva, garantizando alta disponibilidad y eficiencia operativa.",
-  },
-  {
-    image: "classgap_logo.jpg",
-    title: "Profesor de clases particulares / Programación",
-    company: "Classgap",
-    period: "2023 - Presente",
+
+    period: "03/2026 - 07/2026",
+
+    featured: false,
+
     description:
-      "Como Consultor Técnico y Mentor, he capacitado a desarrolladores a nivel internacional, guiándolos en la construcción de productos web y móviles reales. Mi enfoque va más allá de escribir código: formo a los profesionales para que piensen como ingenieros de software senior y resuelvan problemas complejos de forma escalable. Guíe a estudiantes en la implementación de proyectos reales, fomentando buenas prácticas de programación, optimización de código y resolución de problemas. Tomer requerimientos por parte de cada estudiantes y crear un plan de accion diferente para ellos, con esto pudieron mejorar sus habilidades de codificacion como tambien mejorar su presencia en internet o redes, mejorar sus proyectos personales o portafolios."
+
+      "Guío el ciclo completo de desarrollo de software en la práctica: los equipos eligen un emprendimiento local y lo transforman en un producto digital de alto impacto, desde planeación y diseño hasta construcción, pruebas, despliegue y mejoras continuas con feedback real de usuarios. Uso ejemplos de empresas reconocidas para enseñar IA aplicada, arquitectura y entrega iterativa con estándares profesionales.",
+
+    images: [
+
+      "/experiencia/crack-the-code/crack-the-code-001.png",
+
+      "/experiencia/crack-the-code/crack-the-code-002.png",
+      "/experiencia/crack-the-code/crack-the-code-003.png",
+
+    ],
+
   },
+
   {
-    image: "novacomp_logo.png",
-    title: "Software Engineer Ss",
+
+    id: "novacomp",
+
+    logo: "/experiencia/novacomp/novacomp_logo.png",
+
+    role: "Software Engineer Ss",
+
     company: "Novacomp",
+    featured: false,
+
     period: "01/2026 - 04/2026",
-    description: "Diseñé y escalé el motor tecnológico de una plataforma de gamificación y fidelización para el sector bancario. Transformé el procesamiento masivo de datos en estrategias de retención en tiempo real, garantizando la estabilidad bajo la estricta exigencia transaccional del entorno financiero. Impacto y Soluciones de Arquitectura:Ingeniería de Fidelización y Retención (FinTech): Desarrollé el núcleo del sistema que orquesta campañas promocionales complejas con la entrega de recompensas financieras personalizadas (cashback). Esto impactó directamente en la retención, el engagement y la experiencia final del usuario bancario.",
-  },
-  {
-    image: "mims_tech_corp_logo.jpg",
-    title: "Semi-Senior Backend Developer",
-    company: "MIMS Tech Corp",
-    period: "2025 - 2025",
-    description: "Dirigí el diseño arquitectónico y el desarrollo de un SDK comercial para el sector LegalTech. Lideré a un equipo de ingeniería en la creación de soluciones de software distribuido, priorizando la seguridad extrema de los datos y la escalabilidad de las integraciones para clientes B2B. Seguridad de Grado Empresarial (Zero-Trust): En una industria donde la privacidad legal es crítica, implementé una arquitectura Multi-tenant segura desde el diseño. Apliqué políticas de Row-Level Security (RLS) para garantizar el control de acceso granular y el aislamiento total de la información confidencial de cada cliente. Distribución de Software y Estandarización: Aceleré la integración de múltiples servicios desarrollando paquetes NPM y diseñando APIs internas robustas. Para soportar esta escalabilidad, impulsé la migración estratégica hacia una arquitectura de monorepo, mejorando radicalmente la mantenibilidad del código base."
-  },
-  {
-    image: "codingsweb_logo.jpg",
-    title: "Maestro de Frontend Developer / React / Bootcamp",
-    company: "Codings Academy",
-    period: "2025-06 - 2022-09",
-    description: "Entablé una relación directa entre tutor y estudiantes para guiarlos en el camino del front-end developer, no solo tratando temas de programación sino también, de diseño, rendimiento, tiempo de respuestas, resolviendo sus dudas en el transcurso de la clase, dejando tareas y pequeños proyectos para reforzar lo aprendido. Finalmente, realizamos deploy en vercel del proyecto ecomerce que con Front-end (JS React) y Api Rest (Python Flask)",
-  },
-  {
-    image: "ggtech.jpeg",
-    title: "Full Stack Developer",
-    company: "GGTech Entertainment",
-    period: "2022 - 2025",
+
     description:
-      "Desarrollé y optimicé múltiples formatos de competición en la plataforma, mejorando la experiencia de usuario y aumentando la tasa de participación en un 30%, además de crear scripts para migración y actualización de bases de datos. Analicé y optimicé el rendimiento de las aplicaciones, logrando una reducción del tiempo de carga en un 35% mediante mejoras en el manejo de sockets y optimización de consultas a la base de datos, implementando mejoras que resultaron en una reducción del tiempo de carga y una experiencia de usuario más fluida",
+
+      "Diseñé y escalé el motor tecnológico de una plataforma de gamificación y fidelización para el sector bancario. Transformé el procesamiento masivo de datos en estrategias de retención en tiempo real, garantizando estabilidad bajo exigencia transaccional. Desarrollé el núcleo que orquesta campañas promocionales complejas con entrega de recompensas financieras personalizadas (cashback), impactando retención, engagement y experiencia del usuario bancario.",
+
+    images: [
+      "/experiencia/novacomp/app_web_zigi.png",
+      "/experiencia/novacomp/REFACTOR-lambda.jpg",
+    ],
+
+  },
+
+  {
+
+    id: "meniuz",
+
+    logo: "/experiencia/meniuz/meniuz.jpeg",
+
+    role: "CTO / Backend Systems Architect / SRE",
+
+    company: "Meniuz",
+
+    period: "2021 - 2026 (Autonomo)",
+
+    featured: false,
+
+    description:
+
+      "Lidero la plataforma que conecta miles de restaurantes, cafeterías, heladerías y licorerías en Ecuador con decisiones gastronómicas informadas (precio, ambiente, servicio y menú). Implementé pipelines CI/CD, Docker, Redis y Qdrant para búsqueda vectorial y respuestas optimizadas. Como CTO dirijo al equipo de desarrollo, defino la estrategia tecnológica y lidero la modernización arquitectónica con migración a AWS para escalar con alta disponibilidad y eficiencia operativa.",
+
+    images: [
+
+      "/experiencia/meniuz/meniuz-equipo-almuerzo.png",
+
+      "/experiencia/meniuz/meniuz-casa-abierta-armadas.png",
+
+      "/experiencia/meniuz/meniuz-gdg-quito-cumbaya-2025.png",
+
+      "/experiencia/meniuz/meniuz-emprelatam.png",
+
+    ],
+
+  },
+
+  {
+
+    id: "classgap",
+
+    logo: "/experiencia/classgap/classgap_logo.jpg",
+
+    role: "Profesor de clases particulares / Programación",
+
+    company: "Classgap",
+
+    period: "2023 - 2026 (Autonomo)",
+    featured: false,
+
+    description:
+
+      "Como consultor técnico y mentor, capacito a desarrolladores internacionalmente en productos web y móviles reales. Mi enfoque va más allá del código: formo criterio de ingeniería senior, buenas prácticas, optimización y resolución de problemas escalables. Diseño planes de acción personalizados según el nivel y objetivos de cada estudiante.",
+
+    images: [
+
+      "/experiencia/classgap/mentoria-react-js-espana.png",
+
+      "/experiencia/classgap/mentoria-react-native-firebase-rd.png",
+
+      "/experiencia/classgap/1743796086423.jpg",
+
+      "/experiencia/classgap/1747074307592.jpg",
+
+      "/experiencia/classgap/1750623706368.jpg",
+
+      "/experiencia/classgap/1756346816810.jpg",
+
+      "/experiencia/classgap/1759533960547.jpg",
+
+    ],
+
   },
   {
-    image: "logo-dgd-quito.png",
-    title: "Mentor / Ponente / Charlas / Talleres",
+
+    id: "mims",
+
+    logo: "/experiencia/mims/mims_tech_corp_logo.jpg",
+
+    role: "Semi-Senior Backend Developer",
+
+    company: "MIMS Tech Corp",
+
+    period: "2025 - 2025",
+
+    description:
+
+      "Dirigí el diseño arquitectónico y el desarrollo de un SDK comercial para LegalTech, liderando ingeniería en software distribuido con seguridad extrema y escalabilidad B2B. Implementé arquitectura multi-tenant con Row-Level Security (RLS) para aislamiento de datos confidenciales. Aceleré integraciones con paquetes NPM y APIs internas, impulsando migración a monorepo para mejorar mantenibilidad del código base.",
+
+    images: [],
+
+  },
+
+  {
+
+    id: "codings",
+
+    logo: "/experiencia/codings-academy/codingsweb_logo.jpg",
+
+    role: "Maestro de Frontend Developer / React / Bootcamp",
+
+    company: "Codings Academy",
+
+    period: "2022-09 - 2025-06",
+    featured: false,
+
+    description:
+
+      "Guié a estudiantes en el camino del frontend developer: programación, diseño, rendimiento y tiempos de respuesta. Resolví dudas en vivo, asigné proyectos prácticos y cerramos con deploy en Vercel de un e-commerce con React y API REST en Python Flask.",
+
+    images: [
+
+      "/experiencia/codings-academy/clases-nocturnas-api-debug.png",
+
+      "/experiencia/codings-academy/clases-nocturnas-react-debug.png",
+
+      "/experiencia/codings-academy/1750369336004.jpg",
+
+      "/experiencia/codings-academy/1750477519988.jpg",
+
+      "/experiencia/codings-academy/1752774909609.jpg",
+
+      "/experiencia/codings-academy/1753638148472.jpg",
+
+      "/experiencia/codings-academy/1754780006264.jpg",
+
+      "/experiencia/codings-academy/1754780080756.jpg",
+
+    ],
+
+  },
+
+  {
+
+    id: "dev lokos",
+
+    logo: "/experiencia/devlokos/devlocos_logo.jpg",
+
+    role: "Full Stack (Freelance)",
+
+    company: "Dev Lokos",
+
+    period: "2023-09 - 2026 (Autonomo)",
+    featured: false,
+
+    description:
+
+      "Desarrollo de aplicaciones web y móviles a la medida, con enfoque en la creación de soluciones tecnológicas personalizadas para satisfacer las necesidades específicas de cada cliente. Monitoreo y mantenimiento de aplicaciones web y móviles como parte de garantia de calidad y atención.",
+
+    images: [
+
+      "/experiencia/devlokos/botca.jpg",
+      "/experiencia/devlokos/padeltrack.jpg",
+    ],
+
+  },
+
+  {
+
+    id: "gdg-quito",
+
+    logo: "/experiencia/gdg-quito/logo-dgd-quito.png",
+
+    role: "Mentor / Ponente / Charlas / Talleres",
+
     company: "Google Developer Group Quito",
+
     period: "2023 - 2025",
-    description: "Como mentor, brindé orientación y apoyo técnico a estudiantes y desarrolladores interesados en tecnología. Como ponente, compartí mis conocimientos y experiencias en charlas y talleres, y como charlista, participé en eventos y comunidades tecnológicas para compartir mis conocimientos y experiencias. Me gusta conocer mas de cerca a la proxima generación de desarrolladores para ayudarlos a crecer en su carrera y en su vida personal.",
+    featured: false,
+
+    description:
+
+      "Mentoría técnica, charlas y talleres para la comunidad. Comparto experiencia en productos reales, arquitectura y buenas prácticas, acompañando a la próxima generación de desarrolladores en eventos y espacios de la comunidad tech.",
+
+    images: [
+
+      "/experiencia/gdg-quito/conf-quito-cumbaya-2.jpeg",
+
+      "/experiencia/gdg-quito/1764597984863.jpg",
+
+      "/experiencia/gdg-quito/build-with-ia-2026.jpeg",
+
+    ],
+
   },
+
   {
-    image: "ativar.jpeg",
-    title: "Full Stack Developer",
+
+    id: "ggtech",
+
+    logo: "/experiencia/ggtech/ggtech.jpeg",
+
+    role: "Full Stack Developer",
+
+    company: "GGTech Entertainment",
+    featured: false,
+
+    period: "2022 - 2025",
+
+    description:
+
+      "Desarrollé y optimicé formatos de competición en la plataforma, mejorando la experiencia de usuario y aumentando la participación en un 30%. Creé scripts de migración y actualización de bases de datos. Optimicé rendimiento con sockets y consultas, reduciendo tiempos de carga en un 35%.",
+
+    images: ["/experiencia/ggtech/ggtech-equipo-reunion.png"],
+
+  },
+
+  {
+
+    id: "ativar",
+
+    logo: "/experiencia/ativar/ativar.jpeg",
+
+    role: "Full Stack Developer",
+
     company: "Ativar",
+
     period: "2021 - 2022",
-    description: "Consultoría en desarrollo de aplicaciones web y móviles multiplataforma, incluyendo la interacción directa con clientes para la recopilación de requerimientos y especificaciones técnicas. Administración y subida de Aplicaciones móviles a tiendas como Play Store, Apple Store y AppGallery",
+    featured: false,
+
+    description:
+
+      "Consultoría en aplicaciones web y móviles multiplataforma, recopilación de requerimientos con clientes y publicación en Play Store, App Store y AppGallery. Implementación de pruebas automatizadas para asegurar la calidad del software.",
+
+    images: [
+      "/experiencia/ativar/meet.jpg",
+      "/experiencia/ativar/app-store.jpg",
+    ],
+
   },
+
   {
-    image: "good-better.jpeg",
-    title: "Full Stack Developer",
-    company: "Good Better Best",
-    period: "2020 - 2021",
-    description: "Conectar y manejar API de YouTube para abstraer información de canales, perfiles, videos y meta datos de videos. Esto con el fin de verificar los pasos que se requiere en el modelo de negocio, como menciones, etiquetas o links en la descripción del video.",
+
+    id: "cooproclem",
+
+    logo: "/experiencia/cooproclem/cooploclem.jpeg",
+
+    role: "Mobile Developer (Practicas)",
+
+    company: "cooproclem",
+
+    period: "2021 - 2022",
+    featured: false,
+
+    description:
+
+      "Desarrollo de una apicación móvil multiplataforma para la gestión de parte diario, procesos y tareas repetitivas de cultivos en fincas de banana, de manera offline se toman notas y reportes, en oficina con internet se descargan estos reportes.",
+
+    images: [
+      "/experiencia/cooproclem/dev-app-pd.jpg",
+      "/experiencia/cooproclem/1682013285766.jpg",
+    ],
+
   },
+
+  {
+
+    id: "gbb",
+
+    logo: "/experiencia/good-better-best/good-better.jpeg",
+
+    role: "Full Stack Developer",
+
+    company: "Good Better Best",
+
+    period: "2020 - 2021",
+
+    description:
+
+      "Integré la API de YouTube para extraer información de canales, perfiles y videos, validando menciones, etiquetas y enlaces según el modelo de negocio del producto, plataforma web monetizada para vender el tiempo o menciones de yotubers mexicanos reconocidos",
+
+    images: [],
+
+  },
+
+  {
+
+    id: "frelance andres",
+
+    logo: "/experiencia/freelancer/me.jpg",
+
+    role: "Full Stack Developer (Frelance)",
+    featured: false,
+
+    company: "Servicios independientes",
+
+    period: "2018 - 2020",
+
+    description:
+
+      "Integré la API de YouTube para extraer información de canales, perfiles y videos, validando menciones, etiquetas y enlaces según el modelo de negocio del producto.",
+
+    images: [
+      "/experiencia/freelancer/mi-primer-setup.jpg",
+      "/experiencia/freelancer/libro-negro-programador.png",
+      "/experiencia/freelancer/dom-js.jpg",
+      "/experiencia/freelancer/repaso-stack.jpg",
+    ],
+
+  },
+
 ]
+
+
 
 const educations: ExperienceItem[] = [
+
   {
-    image: "platzi.jpeg",
-    title: "Software Engineer (educación online)",
+
+    id: "platzi",
+
+    logo: "/experiencia/educacion/platzi/platzi.jpeg",
+
+    role: "Software Engineer (educación online)",
+
     company: "Platzi",
+
     period: "2018 - 2025",
-    description: "Realicé cursos y carreras en el area de programación, diseño web, marketing digital, SEO, entre otros, para mejorar mis habilidades y conocimientos, y poder aplicarlos en mis proyectos y en la vida cotidiana.",
+
+    description:
+
+      "Carreras y cursos en programación, diseño web, marketing digital y SEO aplicados a proyectos reales y crecimiento profesional continuo.",
+
+    images: [],
+
   },
+
   {
-    image: "ISTB-02-3.png",
-    title: "Tecnologo en Desarrollo de Software",
+
+    id: "istb",
+
+    logo: "/experiencia/educacion/istb/ISTB-02-3.png",
+
+    role: "Tecnólogo en Desarrollo de Software",
+
     company: "ISTB Babahoyo",
+
     period: "2018 - 2021",
-    description: "Tecnologo en Desarrollo de Software, con especialización en Desarrollo de Aplicaciones Móviles y Desarrollo de Aplicaciones Web. Realicé cursos en programación, diseño web, marketing digital, SEO, entre otros, para mejorar mis habilidades y conocimientos, y poder aplicarlos en mis proyectos y en la vida cotidiana.",
+
+    description:
+
+      "Formación en desarrollo de software con especialización en aplicaciones móviles y web, complementada con práctica en proyectos y fundamentos de ingeniería.",
+
+    images: [],
+
   },
+
 ]
 
+
+
 export function Experience() {
+
   return (
-    <section id="experience" className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-muted/30">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center space-y-4 mb-16">
+
+    <section id="experience" className="bg-muted/30 px-4 py-20 sm:px-6 md:py-32 lg:px-8">
+
+      <div className="mx-auto max-w-6xl">
+
+        <div className="mb-16 space-y-4 text-center">
+
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Trayectoria</p>
+
           <h2 className="section-title">Experiencia</h2>
-          <p className="section-subtitle max-w-2xl mx-auto">
-            Recorrido profesional combinando años de desarrollo y mentoría de talento
+
+          <p className="section-subtitle mx-auto max-w-2xl">
+
+            Impacto técnico, liderazgo de producto y evolución profesional en empresas y proyectos reales
+
           </p>
+
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-          {experiences.map((exp, idx) => (
-            <div key={idx} className="card-elevated p-6 md:p-8 border-l-4 border-l-accent">
-              <div className="flex gap-4">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent">
-                    <Image src={exp.image} alt={exp.title} width={48} height={48} />
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
-                    <div>
-                      <h3 className="text-lg md:text-xl font-bold text-foreground">{exp.title}</h3>
-                      <p className="text-accent font-medium">{exp.company}</p>
-                    </div>
-                    <span className="text-sm font-medium text-muted-foreground whitespace-nowrap">{exp.period}</span>
-                  </div>
-                  <p className="text-muted-foreground mt-3 leading-relaxed">{exp.description}</p>
-                </div>
-              </div>
-            </div>
+
+
+        <div className="grid grid-cols-1 items-start gap-6 md:gap-8 lg:grid-cols-2">
+
+          {experiences.map((exp) => (
+
+            <ExperienceCard key={exp.id} item={exp} />
+
           ))}
+
         </div>
 
-        <div className="text-center space-y-4 my-16">
-          <h2 className="section-title">Educación</h2>
-          <p className="section-subtitle max-w-2xl mx-auto">
-            Recorrido educatico en linea y presencial
-          </p>
+
+
+        <div className="my-16 space-y-4 text-center">
+
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Formación</p>
+
+          <h2 className="text-2xl font-bold text-foreground md:text-3xl">Educación</h2>
+
+          <p className="section-subtitle mx-auto max-w-2xl">Recorrido educativo en línea y presencial</p>
+
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-          {educations.map((exp, idx) => (
-            <div key={idx} className="card-elevated p-6 md:p-8 border-l-4 border-l-accent">
-              <div className="flex gap-4">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent">
-                    <Image src={exp.image} alt={exp.title} width={48} height={48} />
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
-                    <div>
-                      <h3 className="text-lg md:text-xl font-bold text-foreground">{exp.title}</h3>
-                      <p className="text-accent font-medium">{exp.company}</p>
-                    </div>
-                    <span className="text-sm font-medium text-muted-foreground whitespace-nowrap">{exp.period}</span>
-                  </div>
-                  <p className="text-muted-foreground mt-3 leading-relaxed">{exp.description}</p>
-                </div>
-              </div>
-            </div>
+
+
+        <div className="grid grid-cols-1 items-start gap-6 md:gap-8 lg:grid-cols-2">
+
+          {educations.map((exp) => (
+
+            <ExperienceCard key={exp.id} item={exp} showGallery={false} />
+
           ))}
+
         </div>
 
-        <div className="mt-16 pt-16 border-t border-border">
-          <h3 className="text-2xl font-bold mb-8 text-foreground">Habilidades Técnicas</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="card-elevated p-6">
-              <h4 className="font-bold text-lg mb-4 text-primary">Frontend</h4>
-              <div className="flex flex-wrap gap-2">
-                {["React", "Next.js", "Redux", "Angular", "Svelte", "Blade", "Meteor.js", "TypeScript", "Tailwind CSS", "Vue.js", "Framer Motion"].map((skill) => (
-                  <span key={skill} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
+
+
+        <div className="mt-16 border-t border-border pt-16">
+
+          <h3 className="mb-8 text-2xl font-bold text-foreground">Habilidades Técnicas</h3>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
 
             <div className="card-elevated p-6">
-              <h4 className="font-bold text-lg mb-4 text-accent">Backend</h4>
+
+              <h4 className="mb-4 text-lg font-bold text-primary">Frontend</h4>
+
               <div className="flex flex-wrap gap-2">
-                {["Node.js", "Metero.js", "Fastify", "GraphQl", "Express", "Python", "PostgreSQL", "MySQL", "MongoDB", "Firebase"].map((skill) => (
-                  <span key={skill} className="px-3 py-1 bg-accent/10 text-accent rounded-full text-sm">
-                    {skill}
-                  </span>
-                ))}
+
+                {["React", "Next.js", "Redux", "Angular", "Svelte", "TypeScript", "Tailwind CSS", "Vue.js"].map(
+
+                  (skill) => (
+
+                    <span key={skill} className="rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">
+
+                      {skill}
+
+                    </span>
+
+                  ),
+
+                )}
+
               </div>
+
             </div>
 
+
+
             <div className="card-elevated p-6">
-              <h4 className="font-bold text-lg mb-4 text-secondary">DevOps & Cloud</h4>
+
+              <h4 className="mb-4 text-lg font-bold text-accent">Backend</h4>
+
               <div className="flex flex-wrap gap-2">
-                {["AWS", "Docker", "Digital Ocean", "Railway", "Render", "Monolito", "Microservicios", "Git", "CI/CD", "Vercel", "Firebase"].map((skill) => (
-                  <span key={skill} className="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-sm">
-                    {skill}
-                  </span>
-                ))}
+
+                {["Node.js", "GraphQL", "Express", "Python", "PostgreSQL", "MySQL", "MongoDB", "Redis"].map(
+
+                  (skill) => (
+
+                    <span key={skill} className="rounded-full bg-accent/10 px-3 py-1 text-sm text-accent">
+
+                      {skill}
+
+                    </span>
+
+                  ),
+
+                )}
+
               </div>
+
             </div>
+
+
+
+            <div className="card-elevated p-6">
+
+              <h4 className="mb-4 text-lg font-bold text-secondary">DevOps & Cloud</h4>
+
+              <div className="flex flex-wrap gap-2">
+
+                {["AWS", "Docker", "CI/CD", "Vercel", "Git", "Microservicios", "Monorepo"].map((skill) => (
+
+                  <span key={skill} className="rounded-full bg-secondary/10 px-3 py-1 text-sm text-secondary">
+
+                    {skill}
+
+                  </span>
+
+                ))}
+
+              </div>
+
+            </div>
+
           </div>
+
         </div>
+
       </div>
+
     </section>
+
   )
+
 }
+
+

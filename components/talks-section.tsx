@@ -24,7 +24,7 @@ const talks: Talk[] = [
     subtitle: "Como emprendedor puedes tomar control de tus alimentos con tecnología, usando la inteligencia artificial para analizar tus alimentos y tomar decisiones informadas.",
     location: "UNEMI · Milagro, Ecuador",
     attendees: "150+ asistentes",
-    images: ["/unemi-milagro-alimentos.jpg"],
+    images: ["/charlas/tomando-control-alimentos-tecnologia/unemi-milagro-alimentos.jpg"],
     tags: ["Alimentos", "Emprendimiento", "Tecnología", "IA"],
     badges: ["Charla", "Alimentos", "Emprendimiento", "Tecnología"],
     url: "https://www.linkedin.com/school/unemiecuador/posts/?feedView=all",
@@ -35,7 +35,7 @@ const talks: Talk[] = [
     subtitle: "Taller para entender como funciona la IA usando Qdrant y embeddings. Entender la multi dimensión para las coincidencias.",
     location: "Universidad de San Francisco de Quito · Cumbaya",
     attendees: "80+ asistentes",
-    images: ["/build-with-ia-2026.jpeg"],
+    images: ["/charlas/como-entiende-la-ia/build-with-ia-2026.jpeg"],
     tags: ["IA", "Qdrant", "Embeddings"],
     badges: ["Taller", "Qdrant", "Embeddings"],
     url: "https://sessionize.com/s/andres-coello/como-entienden-las-aplicacion-lo-que-quieres-busca/169908",
@@ -46,7 +46,7 @@ const talks: Talk[] = [
     subtitle: "Historia de la web y como se desarrollo hasta llegar a lo que es hoy en dia, consejos para proximos proyectos y conseguir tu primer trabajo en el mundo TECH.",
     location: "ESPOL · Guayaquil, Ecuador",
     attendees: "Comunidad",
-    images: ["/charla-espol.jpg"],
+    images: ["/charlas/introduccion-programacion-web-espol/charla-espol.jpg"],
     tags: ["Web", "Programacion", "Historia", "Trabajo Remoto"],
     badges: ["Charla", "Ecuador"],
     url: "https://www.linkedin.com/company/ieee-espol/posts/?feedView=all",
@@ -57,7 +57,7 @@ const talks: Talk[] = [
     subtitle: "Meteor js es un framework para desarrollar aplicaciones web y móviles, es un framework full stack que permite desarrollar aplicaciones web y móviles de manera rapida y sencilla.",
     location: "Quito Cumbayá · DevFest 2025 Ecuador",
     attendees: "55+ asistentes",
-    images: ["/1764597973595.jpg"],
+    images: ["/charlas/meteor-js-devfest-2025/1764597973595.jpg"],
     tags: ["Meteor js", "Framework", "Full Stack", "Web"],
     badges: ["Charla", "Ecuador", "DevFest 2025"],
     url: "https://sessionize.com/s/andres-coello/aprender-adaptarse-y-crecer-taller-de-meteor.js-y-/149061"
@@ -68,7 +68,7 @@ const talks: Talk[] = [
     subtitle: "Herramientas para depurar y perfilar en el navegador con sentido, deja de usar console.logp para todo y haz debugger como un profesional.",
     location: "Quito Cumbayá · DevFest 2023 Ecuador",
     attendees: "60 asistentes",
-    images: ["/conf-quito-cumbaya.jpg"],
+    images: ["/charlas/devtools-devfest-2023/conf-quito-cumbaya.jpg"],
     tags: ["Chrome", "DevTools", "Web"],
     badges: ["Workshop", "Ecuador", "DevFest 2023"],
     url: "https://sessionize.com/s/andres-coello/devtools-mas-que-solo-console-log/80690"
@@ -79,7 +79,7 @@ const talks: Talk[] = [
     subtitle: "Comunidad GDG Ecuador 2023, charlas, talleres, proyectos, y mas, una comunidad que busca crecer juntos y aprender mas de la tecnologia.",
     location: "Quito Cumbayá · GDG Ecuador 2023",
     attendees: "Comunidad",
-    images: ["/1764597984863.jpg"],
+    images: ["/charlas/comunidad-gdg-ecuador/1764597984863.jpg"],
     tags: ["GDG", "Comunidad", "Ecuador"],
     badges: ["Charla", "Ecuador", "GDG Ecuador 2025"],
     url: "https://www.linkedin.com/company/gdg-quito/posts/?feedView=all"
@@ -90,7 +90,7 @@ const talks: Talk[] = [
     subtitle: "TypeScript es un super poder que te permite programar con mas seguridad y confianza, ademas de que es mas facil de entender y leer para otros desarrolladores.",
     location: "Santo Domingo de los Tsachilas · GDG Ecuador 2025",
     attendees: "Comunidad",
-    images: ["/1748913774221.jpg"],
+    images: ["/charlas/javascript-typescript-gdg/1748913774221.jpg"],
     tags: ["GDG", "Comunidad", "Ecuador"],
     badges: ["Charla", "Ecuador", "Santo Domingo de los Tsachilas"],
     url: "https://www.linkedin.com/company/gdgtsachilas/posts/?feedView=all"
@@ -101,7 +101,7 @@ const talks: Talk[] = [
     subtitle: "Aprender React js y no morir en el intento, consejos para empezar a programar y no desistir. Ademas de agregar SSR a tu proyecto con Next.js.",
     location: "Codings Academy · Guayaquil, Ecuador",
     attendees: "Comunidad",
-    images: ["/charla-codings.jpg"],
+    images: ["/charlas/aprender-react-js-codings/charla-codings.jpg"],
     tags: ["React js", "Next.js", "SSR"],
     badges: ["Charla", "Ecuador", "Codings Academy"],
     url: "https://www.linkedin.com/company/codingsacademy/posts/?feedView=all"
@@ -112,7 +112,7 @@ const talks: Talk[] = [
     subtitle: "Como es trabajar para la industria de la tecnologia y en lo Sports para el continente europeo",
     location: "Bogotá · Platzi",
     attendees: "En vivo",
-    images: ["/andres-coello-live-platzi.png"],
+    images: ["/charlas/live-platzi/andres-coello-live-platzi.png"],
     tags: ["Platzi", "Live", "Ecuador"],
     badges: ["Live", "Ecuador", "Platzi"],
     url: "https://platzi.com/p/programandres/"
@@ -122,7 +122,7 @@ const talks: Talk[] = [
 function TalkCard({ talk }: { talk: Talk }) {
   const [index, setIndex] = useState(0)
   const [transition, setTransition] = useState(false)
-  const slides = talk.images.length ? talk.images : ["/crack-the-code-001.png"]
+  const slides = talk.images.length ? talk.images : ["/experiencia/crack-the-code/crack-the-code-001.png"]
 
   useEffect(() => {
     if (slides.length <= 1) return

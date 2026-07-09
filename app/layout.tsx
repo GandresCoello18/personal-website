@@ -140,7 +140,13 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+          storageKey="andres-coello-theme"
+          disableTransitionOnChange
+        >
           {children}
           <Analytics />
         </ThemeProvider>
