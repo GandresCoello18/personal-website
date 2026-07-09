@@ -12,24 +12,33 @@ import { CTA } from "@/components/cta"
 import { PaymentMethods } from "@/components/payment-methods"
 import { Footer } from "@/components/footer"
 import { ClassesGallery } from "@/components/classes-gallery"
+import { getWebSiteJsonLd } from "@/lib/json-ld"
 
 export default function Home() {
+  const webSiteJsonLd = getWebSiteJsonLd()
+
   return (
-    <main className="min-h-screen bg-background">
-      <Header />
-      <Hero />
-      <Experience />
-      <Projects />
-      <TalksSection />
-      <BlogSection />
-      <VideosSection />
-      <Services />
-      <ClassesGallery />
-      <ClassgapSection />
-      <Testimonials />
-      <PaymentMethods />
-      <CTA />
-      <Footer />
-    </main>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
+      />
+      <main className="min-h-screen bg-background">
+        <Header />
+        <Hero />
+        <Experience />
+        <Projects />
+        <TalksSection />
+        <BlogSection />
+        <VideosSection />
+        <Services />
+        <ClassesGallery />
+        <ClassgapSection />
+        <Testimonials />
+        <PaymentMethods />
+        <CTA />
+        <Footer />
+      </main>
+    </>
   )
 }

@@ -26,11 +26,11 @@ export function Hero() {
 
             <div className="space-y-4">
               <h1 className="section-title">
-                Creacion de productos digitales con
-                <span className="text-accent"> Impacto</span>
+                Andres Coello — productos digitales con
+                <span className="text-accent"> impacto</span>
               </h1>
               <p className="section-subtitle">
-                Software Enginner, SRE, Mentor y Tutor especializado en crear soluciones web escalables mientras enseño a
+                Software Engineer, SRE, Mentor y Tutor especializado en crear soluciones web escalables mientras enseño a
                 la próxima generación de desarrolladores.
               </p>
             </div>
@@ -95,7 +95,7 @@ export function Hero() {
             </div>
 
             <div className="bg-white/90 dark:bg-slate-950/90 backdrop-blur rounded-full px-6 py-3 shadow-lg">
-              <p className="text-sm font-semibold text-foreground">💻 Software Engineer Dev + 🎓 Mentor</p>
+              <p className="text-sm font-semibold text-foreground">Software Engineer · Mentor</p>
             </div>
           </div>
         </div>

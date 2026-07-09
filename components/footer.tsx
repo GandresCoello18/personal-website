@@ -10,13 +10,9 @@ export function Footer() {
       { label: "Sobre Classgap", href: "https://classgap.com/about/" },
     ],
     recursos: [
-      { label: "Documentación", href: "#" },
-      { label: "Guías", href: "#" },
-      { label: "Tutoriales", href: "#" },
-    ],
-    legal: [
-      { label: "Privacidad", href: "#" },
-      { label: "Términos", href: "#" },
+      { label: "Blog", href: "/blog" },
+      { label: "Videos", href: "/videos" },
+      { label: "Servicios", href: "/#services" },
     ],
   }
 
@@ -30,7 +26,7 @@ export function Footer() {
   return (
     <footer className="bg-card border-t border-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 rounded-lg flex items-center justify-center text-primary-foreground font-bold">
@@ -81,19 +77,6 @@ export function Footer() {
             <h4 className="font-bold text-foreground mb-4">Recursos</h4>
             <ul className="space-y-3">
               {links.recursos.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-sm text-muted-foreground hover:text-accent transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-bold text-foreground mb-4">Legal</h4>
-            <ul className="space-y-3">
-              {links.legal.map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="text-sm text-muted-foreground hover:text-accent transition-colors">
                     {link.label}

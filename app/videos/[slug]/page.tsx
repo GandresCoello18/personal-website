@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { VideoLayout } from "@/components/VideoLayout"
+import { getBreadcrumbJsonLd } from "@/lib/json-ld"
+import { absoluteUrl, getSiteUrl } from "@/lib/site"
 import { getAllVideoSlugs, getVideoBySlug } from "@/lib/videos"
-import { getSiteUrl } from "@/lib/site"
 
 type PageProps = {
   params: Promise<{ slug: string }>
@@ -23,11 +24,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const url = `${siteUrl}/videos/${meta.slug}`
   const ogImage = meta.thumbnailUrl.startsWith("http")
     ? meta.thumbnailUrl
-    : `${siteUrl}${meta.thumbnailUrl}`
+    : absoluteUrl(meta.thumbnailUrl)
 
   return {
     title: meta.title,
     description: meta.description,
+    keywords: meta.tags,
     alternates: { canonical: `/videos/${meta.slug}` },
     openGraph: {
       title: meta.title,
@@ -51,6 +53,10 @@ export default async function VideoDetailPage({ params }: PageProps) {
   if (!video) notFound()
 
   const { meta, content } = video
+  const videoUrl = `${siteUrl}/videos/${meta.slug}`
+  const thumbnailUrl = meta.thumbnailUrl.startsWith("http")
+    ? meta.thumbnailUrl
+    : absoluteUrl(meta.thumbnailUrl)
 
   const videoJsonLd = {
     "@context": "https://schema.org",
@@ -58,12 +64,11 @@ export default async function VideoDetailPage({ params }: PageProps) {
     name: meta.title,
     description: meta.description,
     uploadDate: meta.date,
-    thumbnailUrl: meta.thumbnailUrl.startsWith("http")
-      ? meta.thumbnailUrl
-      : `${siteUrl}${meta.thumbnailUrl}`,
+    thumbnailUrl,
     embedUrl: `https://www.youtube-nocookie.com/embed/${meta.youtubeId}${
       meta.youtubeStart ? `?start=${meta.youtubeStart}` : ""
     }`,
+    url: videoUrl,
     author: {
       "@type": "Person",
       name: "Andres Coello",
@@ -71,9 +76,16 @@ export default async function VideoDetailPage({ params }: PageProps) {
     },
   }
 
+  const breadcrumbJsonLd = getBreadcrumbJsonLd([
+    { name: "Inicio", path: "/" },
+    { name: "Videos", path: "/videos" },
+    { name: meta.title, path: `/videos/${meta.slug}` },
+  ])
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <main className="py-12 sm:py-16">
         <VideoLayout meta={meta}>{content}</VideoLayout>
       </main>

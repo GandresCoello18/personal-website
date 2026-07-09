@@ -44,28 +44,6 @@ const projects: Project[] = [
     ],
   },
   {
-    id: "2",
-    title: "Chimborazo cerca del sol",
-    description:
-      "Este proyecto muestra de manera educativa por que a pesar de que el volcan Chimborazo ubicado en el Ecuador, no es el mas grande pero si el mas cercano al sol.",
-    images: [
-      "/proyectos/chimborazo-cerca-del-sol/chimborazo-01.png",
-      "/proyectos/chimborazo-cerca-del-sol/chimborazo-02.png",
-      "/proyectos/chimborazo-cerca-del-sol/chimborazo-03.png",
-      "/proyectos/chimborazo-cerca-del-sol/chimborazo-04.png",
-    ],
-    tags: ["Svelte", "3D CSS", "HTML", "TypeScript", "Vercel"],
-    link: "https://chimborazo-near-the-sun.vercel.app",
-    github: "https://github.com/GandresCoello18/Chimborazo-near-the-sun",
-    isPrivate: false,
-    featured: true,
-    stats: [
-      { label: "Volcan", value: "1" },
-      { label: "Imagenes", value: "6" },
-      { label: "Videos", value: "6" },
-    ],
-  },
-  {
     id: "3",
     title: "Image Intelligence Platform",
     description: "Plataforma de procesamiento de imagenes, permite a los usuarios subir imagenes y procesarlas o extraier informacion de ellas para luego almacenarlas en el sistema para su futura consulta.",
@@ -96,6 +74,65 @@ const projects: Project[] = [
     link: "https://andres-coello-full-stack.vercel.app/",
     github: "https://github.com/GandresCoello18/spotify-clone",
     featured: true,
+  },
+  {
+    id: "14",
+    title: "Expense balancer CLI",
+    description: "Calculadora de gastos compartidos que divide equitativamente los gastos de viaje entre los miembros de un grupo.",
+    images: [
+      "/proyectos/expense-balancer-cli/result-cli.png",
+      "/proyectos/expense-balancer-cli/test-cli.png",
+    ],
+    tags: ["TypeScript", "CLI", "Node.js"],
+    link: "https://github.com/GandresCoello18/expense-balancer-cli",
+    github: "https://github.com/GandresCoello18/expense-balancer-cli",
+    isPrivate: false,
+    featured: true,
+    stats: [
+      { label: "Calculos", value: "+5" },
+      { label: "Imagenes", value: "4" },
+    ],
+  },
+  {
+    id: "112",
+    title: "Order Lifecycle Platform",
+    description:
+      "Plataforma backend de microservicios con arquitectura orientada a eventos usando NestJS, NX Monorepo, Redis + BullMQ y PostgreSQL.",
+    images: [
+      "/proyectos/order-lifecycle-platform/diagram.png",
+    ],
+    tags: ["Nx Workspace", "Redis", "Gateway", "Queue", "TypeScript", "docker", "MongoDB", "Minio"],
+    link: "https://chimborazo-near-the-sun.vercel.app",
+    github: "https://github.com/GandresCoello18/Chimborazo-near-the-sun",
+    isPrivate: false,
+    featured: true,
+    stats: [
+      { label: "Volcan", value: "1" },
+      { label: "Imagenes", value: "6" },
+      { label: "Videos", value: "6" },
+    ],
+  },
+  {
+    id: "2",
+    title: "Chimborazo cerca del sol",
+    description:
+      "Este proyecto muestra de manera educativa por que a pesar de que el volcan Chimborazo ubicado en el Ecuador, no es el mas grande pero si el mas cercano al sol.",
+    images: [
+      "/proyectos/chimborazo-cerca-del-sol/chimborazo-01.png",
+      "/proyectos/chimborazo-cerca-del-sol/chimborazo-02.png",
+      "/proyectos/chimborazo-cerca-del-sol/chimborazo-03.png",
+      "/proyectos/chimborazo-cerca-del-sol/chimborazo-04.png",
+    ],
+    tags: ["Svelte", "3D CSS", "HTML", "TypeScript", "Vercel"],
+    link: "https://chimborazo-near-the-sun.vercel.app",
+    github: "https://github.com/GandresCoello18/Chimborazo-near-the-sun",
+    isPrivate: false,
+    featured: true,
+    stats: [
+      { label: "Volcan", value: "1" },
+      { label: "Imagenes", value: "6" },
+      { label: "Videos", value: "6" },
+    ],
   },
   {
     id: "4",

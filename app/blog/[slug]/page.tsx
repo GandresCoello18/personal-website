@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { BlogLayout } from "@/components/BlogLayout"
+import { getBreadcrumbJsonLd } from "@/lib/json-ld"
 import { getAllSlugs, getPostBySlug } from "@/lib/mdx"
-import { getSiteUrl } from "@/lib/site"
+import { absoluteUrl, getSiteUrl } from "@/lib/site"
 
 type PageProps = {
   params: Promise<{ slug: string }>
@@ -23,15 +24,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const { meta } = post
   const url = `${siteUrl}/blog/${meta.slug}`
-  const ogImage = meta.coverImage
-    ? meta.coverImage.startsWith("http")
-      ? meta.coverImage
-      : `${siteUrl}${meta.coverImage}`
-    : `${siteUrl}/1764558900283.png`
+  const ogImage = meta.coverImage ? absoluteUrl(meta.coverImage) : absoluteUrl("/1764558900283.png")
 
   return {
     title: meta.title,
     description: meta.description,
+    keywords: meta.tags,
     alternates: { canonical: `/blog/${meta.slug}` },
     openGraph: {
       title: meta.title,
@@ -56,6 +54,8 @@ export default async function BlogPostPage({ params }: PageProps) {
   if (!post) notFound()
 
   const { meta, headings, content } = post
+  const postUrl = `${siteUrl}/blog/${meta.slug}`
+  const coverImage = meta.coverImage ? absoluteUrl(meta.coverImage) : absoluteUrl("/1764558900283.png")
 
   const articleJsonLd = {
     "@context": "https://schema.org",
@@ -63,6 +63,9 @@ export default async function BlogPostPage({ params }: PageProps) {
     headline: meta.title,
     description: meta.description,
     datePublished: meta.date,
+    dateModified: meta.date,
+    articleSection: meta.tags[0],
+    keywords: meta.tags.join(", "),
     author: {
       "@type": "Person",
       name: "Andres Coello",
@@ -71,24 +74,25 @@ export default async function BlogPostPage({ params }: PageProps) {
     publisher: {
       "@type": "Person",
       name: "Andres Coello",
+      "@id": `${siteUrl}/#person`,
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${siteUrl}/blog/${meta.slug}`,
+      "@id": postUrl,
     },
-    image: meta.coverImage
-      ? meta.coverImage.startsWith("http")
-        ? meta.coverImage
-        : `${siteUrl}${meta.coverImage}`
-      : `${siteUrl}/1764558900283.png`,
+    image: coverImage,
   }
+
+  const breadcrumbJsonLd = getBreadcrumbJsonLd([
+    { name: "Inicio", path: "/" },
+    { name: "Blog", path: "/blog" },
+    { name: meta.title, path: `/blog/${meta.slug}` },
+  ])
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <main className="py-12 sm:py-16">
         <BlogLayout meta={meta} headings={headings}>
           {content}

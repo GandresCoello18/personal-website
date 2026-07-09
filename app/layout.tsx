@@ -1,60 +1,25 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
+import { getPersonJsonLd } from "@/lib/json-ld"
+import { getSiteUrl, getSiteUrlObject } from "@/lib/site"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://andres-coello-goyes.vercel.app"
+const siteUrl = getSiteUrl()
+const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Andres Coello",
-  jobTitle: "Software Developer, Mentor y Tutor",
-  url: siteUrl,
-  image: `${siteUrl}/1764558900283.png`,
-  sameAs: [
-    "https://www.linkedin.com/in/andrescoellogoyes/",
-    "https://github.com/GandresCoello18",
-  ],
-  description:
-    "Mentorías y tutorías personalizadas en desarrollo web, programación moderna y buenas prácticas de software.",
-  knowsAbout: [
-    "Desarrollo Full Stack",
-    "Next.js",
-    "React",
-    "Node.js",
-    "Python",
-    "Docker",
-    "Git",
-    "GitLab CI/CD",
-    "Graphql",
-    "Mentoría tecnológica",
-    "Tutorías personalizadas",
-  ],
-  areaServed: "Global",
-  offers: [
-    {
-      "@type": "Offer",
-      name: "Mentoría personalizada en desarrollo web",
-      availability: "https://schema.org/InStock",
-      url: `${siteUrl}#services`,
-    },
-    {
-      "@type": "Offer",
-      name: "Tutorías 1:1 para desarrolladores",
-      availability: "https://schema.org/InStock",
-      url: `${siteUrl}#services`,
-    },
-  ],
+export const viewport: Viewport = {
+  themeColor: "#1c4e5a",
+  colorScheme: "light dark",
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: getSiteUrlObject(),
   title: {
     default: "Andres Coello - Software Developer, Mentor & Tutor",
     template: "%s | Andres Coello",
@@ -69,7 +34,6 @@ export const metadata: Metadata = {
     "consultoría tecnológica",
     "desarrollo web",
   ],
-  generator: "v0.app",
   applicationName: "Andres Coello Portfolio",
   category: "technology",
   creator: "Andres Coello",
@@ -115,10 +79,7 @@ export const metadata: Metadata = {
     shortcut: "/1764558900283.png",
   },
   manifest: "/site.webmanifest",
-  themeColor: "#1c4e5a",
-  verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
-  },
+  ...(googleVerification ? { verification: { google: googleVerification } } : {}),
   referrer: "strict-origin-when-cross-origin",
 }
 
@@ -127,6 +88,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const personJsonLd = getPersonJsonLd()
+
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
@@ -135,7 +98,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd),
+            __html: JSON.stringify(personJsonLd),
           }}
         />
       </head>

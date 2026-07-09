@@ -1,5 +1,8 @@
+import { absoluteUrl } from "@/lib/site"
+
 export function getUserConfirmationTemplate(nombre: string, asunto: string, mensaje: string) {
   const formattedMessage = mensaje.replace(/\n/g, "<br />")
+  const profileImageUrl = absoluteUrl("/me.jpg")
   
   return `
 <!DOCTYPE html>
@@ -22,7 +25,7 @@ export function getUserConfirmationTemplate(nombre: string, asunto: string, mens
                 <tr>
                   <td align="center">
                     <img 
-                      src="https://andres-coello-goyes.vercel.app/me.jpg" 
+                      src="${profileImageUrl}" 
                       alt="Andres Coello" 
                       style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255,255,255,0.3); margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;"
                     />
