@@ -44,6 +44,25 @@ const projects: Project[] = [
     ],
   },
   {
+    id: "234",
+    title: "Monitor de AI para comunidades",
+    description: "Transformar fuentes de video provenientes de cámaras en información útil para una comunidad, barrio o zona determinada. El sistema está orientado a detectar patrones, identificar eventos relevantes y apoyar la toma de decisiones, sin realizar reconocimiento facial ni vigilancia invasiva.",
+    images: [
+      "/proyectos/community-ai-monitor/monitor-park.png",
+      "/proyectos/community-ai-monitor/diagram-fluj.png",
+    ],
+    tags: ["Python", "FastAPI", "Docker", "PostgreSQL", "Ollama", "Worker", "Camara IP", "Yolo"],
+    link: "https://github.com/GandresCoello18/community-ai-monitor/tree/master",
+    github: "https://github.com/GandresCoello18/community-ai-monitor/tree/master",
+    isPrivate: false,
+    featured: true,
+    stats: [
+      { label: "Cámaras", value: "10+" },
+      { label: "Eventos", value: "10+" },
+      { label: "Decisiones", value: "10+" },
+    ],
+  },
+  {
     id: "3",
     title: "Image Intelligence Platform",
     description: "Plataforma de procesamiento de imagenes, permite a los usuarios subir imagenes y procesarlas o extraier informacion de ellas para luego almacenarlas en el sistema para su futura consulta.",
@@ -74,24 +93,6 @@ const projects: Project[] = [
     link: "https://andres-coello-full-stack.vercel.app/",
     github: "https://github.com/GandresCoello18/spotify-clone",
     featured: true,
-  },
-  {
-    id: "14",
-    title: "Expense balancer CLI",
-    description: "Calculadora de gastos compartidos que divide equitativamente los gastos de viaje entre los miembros de un grupo.",
-    images: [
-      "/proyectos/expense-balancer-cli/result-cli.png",
-      "/proyectos/expense-balancer-cli/test-cli.png",
-    ],
-    tags: ["TypeScript", "CLI", "Node.js"],
-    link: "https://github.com/GandresCoello18/expense-balancer-cli",
-    github: "https://github.com/GandresCoello18/expense-balancer-cli",
-    isPrivate: false,
-    featured: true,
-    stats: [
-      { label: "Calculos", value: "+5" },
-      { label: "Imagenes", value: "4" },
-    ],
   },
   {
     id: "112",
@@ -130,6 +131,24 @@ const projects: Project[] = [
       { label: "Transacciones", value: "100+" },
       { label: "Validaciones", value: "+6" },
       { label: "Rate Limit", value: "100+" },
+    ],
+  },
+  {
+    id: "14",
+    title: "Expense balancer CLI",
+    description: "Calculadora de gastos compartidos que divide equitativamente los gastos de viaje entre los miembros de un grupo.",
+    images: [
+      "/proyectos/expense-balancer-cli/result-cli.png",
+      "/proyectos/expense-balancer-cli/test-cli.png",
+    ],
+    tags: ["TypeScript", "CLI", "Node.js"],
+    link: "https://github.com/GandresCoello18/expense-balancer-cli",
+    github: "https://github.com/GandresCoello18/expense-balancer-cli",
+    isPrivate: false,
+    featured: false,
+    stats: [
+      { label: "Calculos", value: "+5" },
+      { label: "Imagenes", value: "4" },
     ],
   },
   {
