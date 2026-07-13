@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
+import { UmamiAnalytics } from "@/components/umami-analytics"
 import { getPersonJsonLd } from "@/lib/json-ld"
 import { getSiteUrl, getSiteUrlObject } from "@/lib/site"
 import "./globals.css"
@@ -111,6 +112,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <UmamiAnalytics />
           <Analytics />
         </ThemeProvider>
       </body>

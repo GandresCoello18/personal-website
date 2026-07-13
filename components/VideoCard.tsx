@@ -1,11 +1,14 @@
+"use client"
+
 import Image from "next/image"
-import Link from "next/link"
 import { format } from "date-fns"
 import { es } from "date-fns/locale"
 import { Play } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { TrackedLink } from "@/components/tracked-link"
 import type { VideoMeta } from "@/lib/videos"
+import { UmamiEvents } from "@/lib/umami"
 
 type VideoCardProps = {
   video: VideoMeta
@@ -15,7 +18,12 @@ export function VideoCard({ video }: VideoCardProps) {
   const dateLabel = format(new Date(video.date), "d MMM yyyy", { locale: es })
 
   return (
-    <Link href={`/videos/${video.slug}`} className="group block h-full">
+    <TrackedLink
+      href={`/videos/${video.slug}`}
+      event={UmamiEvents.videoClick}
+      eventData={{ slug: video.slug }}
+      className="group block h-full"
+    >
       <Card className="flex h-full flex-col gap-0 overflow-hidden p-0 transition-shadow hover:shadow-md">
         <div className="relative aspect-video w-full shrink-0 overflow-hidden bg-muted">
           <Image
@@ -64,6 +72,6 @@ export function VideoCard({ video }: VideoCardProps) {
           ) : null}
         </CardHeader>
       </Card>
-    </Link>
+    </TrackedLink>
   )
 }

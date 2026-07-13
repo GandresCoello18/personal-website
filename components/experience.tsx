@@ -23,9 +23,6 @@ const experiences: ExperienceItem[] = [
       "Guío el ciclo completo de desarrollo de software en la práctica: los equipos eligen un emprendimiento local y lo transforman en un producto digital de alto impacto, desde planeación y diseño hasta construcción, pruebas, despliegue y mejoras continuas con feedback real de usuarios. Uso ejemplos de empresas reconocidas para enseñar IA aplicada, arquitectura y entrega iterativa con estándares profesionales.",
 
     images: [
-
-      "/experiencia/crack-the-code/crack-the-code-001.png",
-
       "/experiencia/crack-the-code/crack-the-code-002.png",
       "/experiencia/crack-the-code/crack-the-code-003.png",
 
@@ -39,7 +36,7 @@ const experiences: ExperienceItem[] = [
 
     logo: "/experiencia/novacomp/novacomp_logo.png",
 
-    role: "Software Engineer Ss",
+    role: "Software Engineer Semi-Senior",
 
     company: "Novacomp",
     featured: false,
@@ -63,7 +60,7 @@ const experiences: ExperienceItem[] = [
 
     logo: "/experiencia/meniuz/meniuz.jpeg",
 
-    role: "CTO / Backend Systems Architect / SRE",
+    role: "Backend Systems Architect / SRE",
 
     company: "Meniuz",
 
@@ -95,7 +92,7 @@ const experiences: ExperienceItem[] = [
 
     logo: "/experiencia/classgap/classgap_logo.jpg",
 
-    role: "Profesor de clases particulares / Programación",
+    role: "Clases particulares / Programación",
 
     company: "Classgap",
 
@@ -190,9 +187,9 @@ const experiences: ExperienceItem[] = [
 
     logo: "/experiencia/devlokos/devlocos_logo.jpg",
 
-    role: "Full Stack (Freelance)",
+    role: "Full Stack Developer",
 
-    company: "Dev Lokos",
+    company: "DevLokos",
 
     period: "2023-09 - 2026 (Autonomo)",
     featured: false,

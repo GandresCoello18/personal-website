@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react"
 import { ExternalLink, MapPin, Users } from "lucide-react"
 
+import { TrackedAnchor } from "@/components/tracked-link"
+import { UmamiEvents } from "@/lib/umami"
 import { cn } from "@/lib/utils"
 
 export interface Talk {
@@ -148,10 +150,12 @@ function TalkCard({ talk }: { talk: Talk }) {
   return (
     <article className={cardClass} aria-labelledby={`talk-title-${talk.id}`}>
       {talk.url ? (
-        <a
+        <TrackedAnchor
           href={talk.url}
           target="_blank"
           rel="noopener noreferrer"
+          event={UmamiEvents.talkClick}
+          eventData={{ talk: talk.title }}
           className="absolute inset-0 z-[1] rounded-[inherit]"
           aria-label={`${talk.title}: abrir enlace en nueva pestaña`}
         />

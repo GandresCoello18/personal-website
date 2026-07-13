@@ -1,4 +1,8 @@
+"use client"
+
 import { ArrowRight, Github, Linkedin, Youtube, Mail, Download } from "lucide-react"
+import { TrackedAnchor } from "@/components/tracked-link"
+import { UmamiEvents } from "@/lib/umami"
 
 export function Hero() {
   return (
@@ -51,33 +55,64 @@ export function Hero() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <a href="#projects" className="btn-primary flex items-center justify-center gap-1 group">
+              <TrackedAnchor
+                href="#projects"
+                event={UmamiEvents.viewProjects}
+                eventData={{ source: "hero" }}
+                className="btn-primary flex items-center justify-center gap-1 group"
+              >
                 Ver Proyectos
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
+              </TrackedAnchor>
+              <TrackedAnchor
                 href="/pdf/Andres_Coello_Goyes_full_stack_developer_2026.pdf"
                 download
+                event={UmamiEvents.downloadCv}
+                eventData={{ source: "hero" }}
                 className="px-6 py-3 bg-accent text-accent-foreground rounded-lg font-medium hover:bg-accent/90 transition-colors flex items-center justify-center gap-1"
               >
                 Descargar CV
                 <Download size={20} />
-              </a>
+              </TrackedAnchor>
             </div>
 
             <div className="flex gap-4 pt-4">
-              <a href="https://github.com/GandresCoello18" className="p-3 hover:bg-muted rounded-lg transition-colors" title="GitHub">
+              <TrackedAnchor
+                href="https://github.com/GandresCoello18"
+                event={UmamiEvents.socialClick}
+                eventData={{ network: "github", source: "hero" }}
+                className="p-3 hover:bg-muted rounded-lg transition-colors"
+                title="GitHub"
+              >
                 <Github size={20} className="text-muted-foreground hover:text-foreground" />
-              </a>
-              <a href="https://www.linkedin.com/in/andrescoellogoyes/" className="p-3 hover:bg-muted rounded-lg transition-colors" title="LinkedIn">
+              </TrackedAnchor>
+              <TrackedAnchor
+                href="https://www.linkedin.com/in/andrescoellogoyes/"
+                event={UmamiEvents.socialClick}
+                eventData={{ network: "linkedin", source: "hero" }}
+                className="p-3 hover:bg-muted rounded-lg transition-colors"
+                title="LinkedIn"
+              >
                 <Linkedin size={20} className="text-muted-foreground hover:text-foreground" />
-              </a>
-              <a href="mailto:goyeselcoca@gmail.com" className="p-3 hover:bg-muted rounded-lg transition-colors" title="Email">
+              </TrackedAnchor>
+              <TrackedAnchor
+                href="mailto:goyeselcoca@gmail.com"
+                event={UmamiEvents.contactEmail}
+                eventData={{ source: "hero" }}
+                className="p-3 hover:bg-muted rounded-lg transition-colors"
+                title="Email"
+              >
                 <Mail size={20} className="text-muted-foreground hover:text-foreground" />
-              </a>
-              <a href="https://www.youtube.com/@andrescoellogoyes" className="p-3 hover:bg-muted rounded-lg transition-colors" title="Youtube">
+              </TrackedAnchor>
+              <TrackedAnchor
+                href="https://www.youtube.com/@andrescoellogoyes"
+                event={UmamiEvents.socialClick}
+                eventData={{ network: "youtube", source: "hero" }}
+                className="p-3 hover:bg-muted rounded-lg transition-colors"
+                title="Youtube"
+              >
                 <Youtube size={20} className="text-muted-foreground hover:text-foreground" />
-              </a>
+              </TrackedAnchor>
             </div>
           </div>
 

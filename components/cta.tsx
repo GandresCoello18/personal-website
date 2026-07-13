@@ -1,6 +1,10 @@
+"use client"
+
 import { Send, Calendar, MessageSquare } from "lucide-react"
 import { ContactForm } from "./contact-form"
 import { CalendlyBadge } from "@/components/calendly-badge"
+import { TrackedAnchor } from "@/components/tracked-link"
+import { UmamiEvents } from "@/lib/umami"
 
 export function CTA() {
   return (
@@ -15,8 +19,10 @@ export function CTA() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <a
+          <TrackedAnchor
             href="mailto:goyeselcoca@gmail.com"
+            event={UmamiEvents.contactEmail}
+            eventData={{ source: "contact" }}
             className="card-elevated p-6 text-center hover:border-accent/50 transition-colors group"
           >
             <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
@@ -24,10 +30,12 @@ export function CTA() {
             </div>
             <h3 className="font-bold mb-2 text-foreground">Email</h3>
             <p className="text-sm text-muted-foreground">goyeselcoca@gmail.com</p>
-          </a>
+          </TrackedAnchor>
 
-          <a
+          <TrackedAnchor
             href="https://calendly.com/goyeselcoca/30min"
+            event={UmamiEvents.contactCalendly}
+            eventData={{ source: "contact" }}
             className="card-elevated p-6 text-center hover:border-accent/50 transition-colors group"
           >
             <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center text-accent mx-auto mb-4 group-hover:bg-accent/20 transition-colors">
@@ -35,10 +43,12 @@ export function CTA() {
             </div>
             <h3 className="font-bold mb-2 text-foreground">Agendar Llamada</h3>
             <p className="text-sm text-muted-foreground">Consulta gratuita de 30 min</p>
-          </a>
+          </TrackedAnchor>
 
-          <a
+          <TrackedAnchor
             href="https://www.linkedin.com/in/andrescoellogoyes/"
+            event={UmamiEvents.contactLinkedin}
+            eventData={{ source: "contact" }}
             className="card-elevated p-6 text-center hover:border-accent/50 transition-colors group"
           >
             <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary mx-auto mb-4 group-hover:bg-secondary/20 transition-colors">
@@ -46,7 +56,7 @@ export function CTA() {
             </div>
             <h3 className="font-bold mb-2 text-foreground">LinkedIn</h3>
             <p className="text-sm text-muted-foreground">Respuesta en poco tiempo</p>
-          </a>
+          </TrackedAnchor>
         </div>
 
         <ContactForm />

@@ -4,6 +4,8 @@ import { useState } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { TrackedAnchor } from "@/components/tracked-link"
+import { UmamiEvents } from "@/lib/umami"
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -41,9 +43,14 @@ export function Header() {
               {item.name}
             </Link>
           ))}
-          <a href="/#contact" className="btn-primary">
+          <TrackedAnchor
+            href="/#contact"
+            event={UmamiEvents.contactNav}
+            eventData={{ source: "header-desktop" }}
+            className="btn-primary"
+          >
             Contactar
-          </a>
+          </TrackedAnchor>
         </div>
 
         <div className="flex items-center gap-1">
@@ -70,9 +77,15 @@ export function Header() {
                   {item.name}
                 </Link>
               ))}
-              <a href="/#contact" className="block btn-primary text-center">
+              <TrackedAnchor
+                href="/#contact"
+                event={UmamiEvents.contactNav}
+                eventData={{ source: "header-mobile" }}
+                className="block btn-primary text-center"
+                onClick={() => setIsOpen(false)}
+              >
                 Contactar
-              </a>
+              </TrackedAnchor>
             </div>
           </div>
         )}

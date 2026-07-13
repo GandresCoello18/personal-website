@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { ExternalLink, Github, Lock, Code2 } from "lucide-react"
+import { TrackedAnchor } from "@/components/tracked-link"
+import { trackEvent, UmamiEvents } from "@/lib/umami"
 
 interface Project {
   id: string
@@ -252,6 +254,7 @@ export function Projects() {
   const otherProjects = projects.filter((p) => !p.featured)
 
   const handleShowAll = () => {
+    trackEvent(UmamiEvents.showAllProjects)
     setShowAll(true)
     setTimeout(() => {
       const projectsSection = document.getElementById("projects")
@@ -400,25 +403,29 @@ function ProjectCard({ project, featured }: { project: Project; featured?: boole
         </div>
 
         <div className="flex gap-3 pt-4 border-t border-border">
-          <a
+          <TrackedAnchor
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
+            event={UmamiEvents.projectDemo}
+            eventData={{ project: project.title }}
             className="flex-1 flex items-center justify-center gap-2 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium"
           >
             Ver Demo
             <ExternalLink size={16} />
-          </a>
+          </TrackedAnchor>
           {project.github && (
-            <a
+            <TrackedAnchor
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
+              event={UmamiEvents.projectGithub}
+              eventData={{ project: project.title }}
               className="flex-1 flex items-center justify-center gap-2 py-2 border border-border rounded-lg hover:bg-muted transition-colors text-sm font-medium"
             >
               Código
               <Github size={16} />
-            </a>
+            </TrackedAnchor>
           )}
           {project.isPrivate && (
             <span className="flex-1 flex items-center justify-center gap-2 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium">

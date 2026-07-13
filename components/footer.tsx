@@ -1,5 +1,9 @@
+"use client"
+
 import { Github, Linkedin, Youtube, Mail, ExternalLink } from "lucide-react"
 import Link from "next/link"
+import { TrackedAnchor, TrackedLink } from "@/components/tracked-link"
+import { UmamiEvents } from "@/lib/umami"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -17,10 +21,10 @@ export function Footer() {
   }
 
   const social = [
-    { icon: Github, href: "https://github.com/GandresCoello18", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com/in/andrescoellogoyes/", label: "LinkedIn" },
-    { icon: Mail, href: "mailto:goyeselcoca@gmail.com", label: "Email" },
-    { icon: Youtube, href: "https://www.youtube.com/@andrescoellogoyes", label: "Youtube" },
+    { icon: Github, href: "https://github.com/GandresCoello18", label: "GitHub", network: "github" },
+    { icon: Linkedin, href: "https://linkedin.com/in/andrescoellogoyes/", label: "LinkedIn", network: "linkedin" },
+    { icon: Mail, href: "mailto:goyeselcoca@gmail.com", label: "Email", network: "email" },
+    { icon: Youtube, href: "https://www.youtube.com/@andrescoellogoyes", label: "Youtube", network: "youtube" },
   ]
 
   return (
@@ -40,15 +44,19 @@ export function Footer() {
             <div className="flex gap-3">
               {social.map((item) => {
                 const Icon = item.icon
+                const event =
+                  item.network === "email" ? UmamiEvents.contactEmail : UmamiEvents.socialClick
                 return (
-                  <a
+                  <TrackedAnchor
                     key={item.label}
                     href={item.href}
+                    event={event}
+                    eventData={{ network: item.network, source: "footer" }}
                     className="w-10 h-10 rounded-lg border border-border hover:border-accent hover:bg-accent/10 flex items-center justify-center text-muted-foreground hover:text-accent transition-colors"
                     title={item.label}
                   >
                     <Icon size={18} />
-                  </a>
+                  </TrackedAnchor>
                 )
               })}
             </div>
@@ -59,15 +67,17 @@ export function Footer() {
             <ul className="space-y-3">
               {links.producto.map((link) => (
                 <li key={link.label}>
-                  <Link
+                  <TrackedLink
                     href={link.href}
+                    event={UmamiEvents.socialClick}
+                    eventData={{ network: link.label, source: "footer" }}
                     className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-center gap-2 group"
                   >
                     {link.label}
                     {link.href.startsWith("http") && (
                       <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                     )}
-                  </Link>
+                  </TrackedLink>
                 </li>
               ))}
             </ul>
@@ -78,9 +88,20 @@ export function Footer() {
             <ul className="space-y-3">
               {links.recursos.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-sm text-muted-foreground hover:text-accent transition-colors">
+                  <TrackedLink
+                    href={link.href}
+                    event={
+                      link.href.includes("blog")
+                        ? UmamiEvents.blogCta
+                        : link.href.includes("videos")
+                          ? UmamiEvents.videosCta
+                          : UmamiEvents.navServices
+                    }
+                    eventData={{ source: "footer" }}
+                    className="text-sm text-muted-foreground hover:text-accent transition-colors"
+                  >
                     {link.label}
-                  </Link>
+                  </TrackedLink>
                 </li>
               ))}
             </ul>

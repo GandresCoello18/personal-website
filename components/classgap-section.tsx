@@ -1,7 +1,8 @@
 "use client"
 
 import { Star, Award, Users, Clock } from "lucide-react"
-import Link from "next/link"
+import { TrackedLink } from "@/components/tracked-link"
+import { UmamiEvents } from "@/lib/umami"
 
 export function ClassgapSection() {
   return (
@@ -108,14 +109,15 @@ export function ClassgapSection() {
                 </li>
               ))}
             </ul>
-            <Link
+            <TrackedLink
               href="https://www.classgap.com/me/andres-coello-web-tech"
               target="_blank"
               rel="noopener noreferrer"
+              event={UmamiEvents.classgapProfile}
               className="w-full inline-block text-center px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-lg transition-colors"
             >
               Ver Perfil en Classgap →
-            </Link>
+            </TrackedLink>
           </div>
         </div>
       </div>

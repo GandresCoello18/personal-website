@@ -1,7 +1,8 @@
-import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { VideoCard } from "@/components/VideoCard"
+import { TrackedLink } from "@/components/tracked-link"
 import { getAllVideos } from "@/lib/videos"
+import { UmamiEvents } from "@/lib/umami"
 
 /** Home preview: latest 2 video summaries (same cards as `/videos`). */
 export function VideosSection() {
@@ -34,10 +35,15 @@ export function VideosSection() {
         </ul>
 
         <div className="mt-12 flex justify-center">
-          <Link href="/videos" className="btn-primary inline-flex items-center gap-2">
+          <TrackedLink
+            href="/videos"
+            event={UmamiEvents.videosCta}
+            eventData={{ source: "home" }}
+            className="btn-primary inline-flex items-center gap-2"
+          >
             Ver más videos
             <ArrowRight className="size-4 shrink-0" aria-hidden />
-          </Link>
+          </TrackedLink>
         </div>
       </div>
     </section>

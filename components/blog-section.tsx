@@ -1,7 +1,8 @@
-import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { BlogCard } from "@/components/BlogCard"
+import { TrackedLink } from "@/components/tracked-link"
 import { getAllPosts } from "@/lib/mdx"
+import { UmamiEvents } from "@/lib/umami"
 
 /** Vista previa en inicio: los 2 posts más recientes (mismo orden y cards que `/blog`). */
 export function BlogSection() {
@@ -35,10 +36,15 @@ export function BlogSection() {
         </ul>
 
         <div className="mt-12 flex justify-center">
-          <Link href="/blog" className="btn-primary inline-flex items-center gap-2">
+          <TrackedLink
+            href="/blog"
+            event={UmamiEvents.blogCta}
+            eventData={{ source: "home" }}
+            className="btn-primary inline-flex items-center gap-2"
+          >
             Ver más artículos
             <ArrowRight className="size-4 shrink-0" aria-hidden />
-          </Link>
+          </TrackedLink>
         </div>
       </div>
     </section>

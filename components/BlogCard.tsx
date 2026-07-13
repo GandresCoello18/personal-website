@@ -1,10 +1,13 @@
+"use client"
+
 import Image from "next/image"
-import Link from "next/link"
 import { format } from "date-fns"
 import { es } from "date-fns/locale"
 import { FileText } from "lucide-react"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { TrackedLink } from "@/components/tracked-link"
 import type { BlogPostMeta } from "@/lib/mdx"
+import { UmamiEvents } from "@/lib/umami"
 
 type BlogCardProps = {
   post: BlogPostMeta
@@ -14,7 +17,12 @@ export function BlogCard({ post }: BlogCardProps) {
   const dateLabel = format(new Date(post.date), "d MMM yyyy", { locale: es })
 
   return (
-    <Link href={`/blog/${post.slug}`} className="group block h-full">
+    <TrackedLink
+      href={`/blog/${post.slug}`}
+      event={UmamiEvents.blogPostClick}
+      eventData={{ slug: post.slug }}
+      className="group block h-full"
+    >
       <Card className="flex h-full flex-col gap-0 overflow-hidden p-0 transition-shadow hover:shadow-md">
         <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-muted">
           {post.coverImage ? (
@@ -42,6 +50,6 @@ export function BlogCard({ post }: BlogCardProps) {
           <CardDescription className="line-clamp-3 text-base">{post.description}</CardDescription>
         </CardHeader>
       </Card>
-    </Link>
+    </TrackedLink>
   )
 }

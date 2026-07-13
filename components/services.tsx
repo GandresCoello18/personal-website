@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { Users, BookOpen, Zap, Video, Globe, Smartphone, Monitor } from "lucide-react"
+import { trackEvent, UmamiEvents } from "@/lib/umami"
 
 interface Service {
   icon: React.ReactNode
@@ -125,19 +126,20 @@ const services: Service[] = [
 
 export function Services() {
   const handleServiceRequest = (serviceTitle: string, serviceDescription: string) => {
+    trackEvent(UmamiEvents.serviceRequest, { service: serviceTitle })
+
     const params = new URLSearchParams({
       service: serviceTitle,
       description: serviceDescription,
     })
-    
-    // Actualizar la URL con los query params y luego hacer scroll al formulario
+
     const newUrl = `${window.location.pathname}?${params.toString()}#contact`
     window.history.pushState({}, "", newUrl)
-    
-    // Disparar evento personalizado para que ContactForm detecte el cambio
-    window.dispatchEvent(new CustomEvent("urlChanged", { detail: { service: serviceTitle, description: serviceDescription } }))
-    
-    // Hacer scroll al formulario de contacto
+
+    window.dispatchEvent(
+      new CustomEvent("urlChanged", { detail: { service: serviceTitle, description: serviceDescription } }),
+    )
+
     const contactSection = document.getElementById("contact")
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: "smooth", block: "start" })

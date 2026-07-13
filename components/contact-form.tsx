@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { Send, Loader } from "lucide-react"
+import { trackEvent, UmamiEvents } from "@/lib/umami"
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -101,6 +102,7 @@ export function ContactForm() {
     }
 
     setLoading(true)
+    trackEvent(UmamiEvents.contactFormSubmit, { subject: formData.asunto.slice(0, 80) })
 
     try {
       const response = await fetch("/api/send-email", {
@@ -117,13 +119,13 @@ export function ContactForm() {
         throw new Error(data.error || "Error al enviar el email")
       }
 
-      // Reset form and show success
+      trackEvent(UmamiEvents.contactFormSuccess)
       setFormData({ nombre: "", email: "", asunto: "", mensaje: "" })
       setSubmitted(true)
 
-      // Hide success message after 5 seconds
       setTimeout(() => setSubmitted(false), 5000)
     } catch (err) {
+      trackEvent(UmamiEvents.contactFormError)
       setError(err instanceof Error ? err.message : "Ocurrió un error al enviar el mensaje. Intenta de nuevo.")
     } finally {
       setLoading(false)

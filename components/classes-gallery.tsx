@@ -93,14 +93,7 @@ const classesData = [
     description:
       'En esta presentacion comparto mi experiencia como desarrollador y como use IA para crear productos y proyectos digitales para ayudar a los estudiantes a usarlo.',
     image: '/experiencia/crack-the-code/crack-the-code-002.png',
-  },
-  {
-    id: 15,
-    title: 'Conociendo a los estudiantes de 10 grado',
-    description:
-      'En esta clase conoci a los estudiantes de 10 grado y les explique como era el proceso de como entrar al mundo del desarrollo web y como era el proceso de como entrar al mundo del desarrollo web.',
-    image: '/experiencia/crack-the-code/crack-the-code-001.png',
-  },
+  }
 ]
 
 export function ClassesGallery() {
