@@ -30,8 +30,8 @@ export function Hero() {
 
             <div className="space-y-4">
               <h1 className="section-title">
-                Andres Coello — productos digitales con
-                <span className="text-accent"> impacto</span>
+                Andres Coello <br/> software escalables y
+                <span className="text-accent"> mantenibles</span>
               </h1>
               <p className="section-subtitle">
                 Software Engineer, SRE, Mentor y Tutor especializado en crear soluciones web escalables mientras enseño a
@@ -41,7 +41,7 @@ export function Hero() {
 
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary">7+</div>
+                <div className="text-3xl font-bold text-primary">8+</div>
                 <p className="text-sm text-muted-foreground">Años Experiencia</p>
               </div>
               <div className="text-center">
