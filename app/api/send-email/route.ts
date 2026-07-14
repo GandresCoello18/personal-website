@@ -1,8 +1,8 @@
-import nodemailer from "nodemailer"
 import type { NextRequest } from "next/server"
 import { NextResponse } from "next/server"
-import { getUserConfirmationTemplate } from "./templates/user-confirmation"
 import { getAdminNotificationTemplate } from "./templates/admin-notification"
+import { getUserConfirmationTemplate } from "./templates/user-confirmation"
+import { createMailTransporter, getMailFrom } from "@/services/mail/transporter"
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,29 +16,22 @@ export async function POST(request: NextRequest) {
       console.error("GMAIL_RECIPIENT:", process.env.GMAIL_RECIPIENT ? "✓ Configurado" : "✗ Faltante")
       return NextResponse.json(
         { error: "Configuración de email no disponible. Contacta al administrador." },
-        { status: 500 }
+        { status: 500 },
       )
     }
 
-    // const isDevelopment = process.env.NODE_ENV !== "production"
-
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD,
-      },
-    })
+    const transporter = createMailTransporter()
+    const from = getMailFrom()
 
     const mailOptionsUser = {
-      from: process.env.GMAIL_USER,
+      from,
       to: email,
       subject: `Confirmación: ${asunto}`,
       html: getUserConfirmationTemplate(nombre, asunto, mensaje),
     }
 
     const mailOptionsAdmin = {
-      from: process.env.GMAIL_USER,
+      from,
       to: process.env.GMAIL_RECIPIENT,
       subject: `Nuevo Contacto: ${asunto}`,
       html: getAdminNotificationTemplate(nombre, email, asunto, mensaje),
@@ -50,17 +43,16 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true, message: "Email enviado exitosamente" })
   } catch (error) {
     console.error("[v0] Error al enviar email:", error)
-    
+
     const errorMessage = error instanceof Error ? error.message : "Error desconocido"
     console.error("Detalles del error:", errorMessage)
 
     return NextResponse.json(
-      { 
+      {
         error: "Error al enviar el email. Por favor intenta de nuevo.",
-        details: process.env.NODE_ENV === "development" ? errorMessage : undefined
+        details: process.env.NODE_ENV === "development" ? errorMessage : undefined,
       },
-      { status: 500 }
+      { status: 500 },
     )
   }
 }
-
