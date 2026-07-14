@@ -1,7 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useMemo, useState } from "react"
-import type { AnalyzeResult } from "@/services/apply/analyze"
+import type { AnalyzeResult } from "@/services/apply/result"
 import type { CvKey } from "@/lib/apply/cv"
 import { CV_FILES } from "@/lib/apply/cv"
 import type { JobCategory, JobExtract, EmailDraft } from "@/lib/apply/types"

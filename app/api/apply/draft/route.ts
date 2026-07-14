@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server"
 import { requestHasApplyUnlock } from "@/lib/apply/auth"
 import { isValidCvKey } from "@/lib/apply/cv"
 import { jobCategorySchema, jobExtractSchema } from "@/lib/apply/types"
-import { draftFromExtract } from "@/services/apply/analyze"
+import { draftFromExtract } from "@/services/apply/draft"
 
 export async function POST(request: NextRequest) {
   try {

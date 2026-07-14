@@ -1,6 +1,6 @@
 import { CV_FILES } from "@/lib/apply/cv"
 import { applyProfile } from "@/lib/apply/profile"
-import { readCvBuffer } from "@/lib/apply/pdf-text"
+import { readCvBuffer } from "@/lib/apply/cv-text"
 import type { SendApplicationPayload } from "@/lib/apply/types"
 import { getApplicationEmailTemplate } from "@/app/api/apply/templates/application-email"
 import { createMailTransporter, getMailFrom } from "@/services/mail/transporter"
