@@ -34,7 +34,8 @@ export function ApplyApp() {
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Privado</p>
         <h1 className="section-title">Asistente de postulaciones</h1>
         <p className="section-subtitle">
-          Analiza una vacante, genera el correo con tu CV y revisa todo antes de enviar.
+          1) Analiza la vacante · 2) Genera el correo · 3) Revisa y envía. Cada paso es una llamada a
+          Gemini para ahorrar tokens.
         </p>
       </header>
 
@@ -56,9 +57,9 @@ export function ApplyApp() {
         onManualCvChange={flow.setManualCv}
       />
 
-      {flow.result && !flow.result.draft && flow.result.needsManualCv ? (
+      {flow.result && flow.result.needsManualCv ? (
         <p className="rounded-lg border border-border bg-muted/40 p-4 text-sm text-muted-foreground">
-          Confirma categoría y CV, luego pulsa <strong>Analizar</strong> otra vez para generar el borrador.
+          Confirma categoría y CV en la vista previa, luego pulsa <strong>Generar correo</strong>.
         </p>
       ) : null}
 
@@ -68,6 +69,10 @@ export function ApplyApp() {
           onChange={flow.setPreview}
           emailMissing={Boolean(flow.result?.emailMissing)}
           canSend={flow.canSend}
+          canDraft={flow.canDraft}
+          drafting={flow.drafting}
+          draftError={flow.draftError}
+          onGenerateDraft={flow.generateDraft}
           sending={flow.sending}
           sendError={flow.sendError}
           sendSuccess={flow.sendSuccess}

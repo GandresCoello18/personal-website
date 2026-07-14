@@ -2,11 +2,12 @@ import fs from "fs"
 import { PDFParse } from "pdf-parse"
 import { getCvAbsolutePath } from "@/lib/apply/cv"
 
-const MAX_CV_CHARS = 12_000
+const MAX_CV_CHARS = 4_000
 const textCache = new Map<string, string>()
 
 export async function extractCvText(filename: string): Promise<string> {
-  const cached = textCache.get(filename)
+  const cacheKey = `${filename}:${MAX_CV_CHARS}`
+  const cached = textCache.get(cacheKey)
   if (cached) return cached
 
   const absolutePath = getCvAbsolutePath(filename)
@@ -26,7 +27,7 @@ export async function extractCvText(filename: string): Promise<string> {
   const truncated =
     text.length > MAX_CV_CHARS ? `${text.slice(0, MAX_CV_CHARS)}\n…` : text
 
-  textCache.set(filename, truncated)
+  textCache.set(cacheKey, truncated)
   return truncated
 }
 

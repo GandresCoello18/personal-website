@@ -15,17 +15,19 @@ import {
   type JobExtract,
 } from "@/lib/apply/types"
 
-/**
- * Docs: https://ai.google.dev/gemini-api/docs/get-started
- * Primary matches get-started (gemini-3.5-flash). Fallback when 503 high demand.
- */
-const PRIMARY_MODEL = process.env.GEMINI_MODEL || "gemini-3.5-flash"
-const FALLBACK_MODELS = (process.env.GEMINI_FALLBACK_MODELS || "gemini-3.1-flash-lite")
+/** Free-tier friendly default. Override with GEMINI_MODEL. */
+const PRIMARY_MODEL = process.env.GEMINI_MODEL || "gemini-3.1-flash-lite"
+const FALLBACK_MODELS = (process.env.GEMINI_FALLBACK_MODELS || "")
   .split(",")
   .map((m) => m.trim())
   .filter(Boolean)
 
 const MODEL_CHAIN = [PRIMARY_MODEL, ...FALLBACK_MODELS.filter((m) => m !== PRIMARY_MODEL)]
+
+/** Single attempt only — avoids burning free-tier tokens on retries. */
+const MAX_ATTEMPTS = 1
+const REQUEST_TIMEOUT_MS = Number(process.env.GEMINI_TIMEOUT_MS || 55_000)
+const MAX_JOB_TEXT_CHARS = 8_000
 
 function getClient() {
   const apiKey = process.env.GEMINI_API_KEY
@@ -48,13 +50,26 @@ function isRetryableError(error: unknown): boolean {
     message.includes("[503") ||
     message.includes("[429") ||
     message.includes("high demand") ||
-    message.includes("Resource exhausted") ||
-    message.includes("try again")
+    message.includes("Resource exhausted")
   )
 }
 
-function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
+async function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined
+  const timeout = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => {
+      reject(
+        new Error(
+          `Timeout: Gemini no respondió en ${Math.round(ms / 1000)}s. Intenta de nuevo o usa Flash-Lite.`,
+        ),
+      )
+    }, ms)
+  })
+  try {
+    return await Promise.race([promise, timeout])
+  } finally {
+    if (timer) clearTimeout(timer)
+  }
 }
 
 type GenerateFn = (model: GenerativeModel) => Promise<string>
@@ -77,30 +92,38 @@ async function generateJsonText(
       },
     })
 
-    for (let attempt = 0; attempt < 3; attempt++) {
+    for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
       try {
-        return await run(model)
+        return await withTimeout(run(model), REQUEST_TIMEOUT_MS)
       } catch (error) {
         lastError = error
-        if (!isRetryableError(error)) break
-        await sleep(800 * (attempt + 1))
+        // No sleep / no retry by default (MAX_ATTEMPTS = 1)
+        if (!isRetryableError(error) || attempt >= MAX_ATTEMPTS - 1) break
       }
     }
   }
 
   const detail = lastError instanceof Error ? lastError.message : String(lastError)
+  if (detail.includes("Timeout:")) {
+    throw lastError instanceof Error ? lastError : new Error(detail)
+  }
   if (isRetryableError(lastError)) {
     throw new Error(
-      `Gemini está saturado (alta demanda). Espera unos segundos y vuelve a intentar. Detalle: ${detail}`,
+      `Gemini está saturado (alta demanda). Espera un momento e intenta de nuevo. Detalle: ${detail}`,
     )
   }
   throw lastError instanceof Error ? lastError : new Error(detail)
 }
 
 export async function extractJobFromText(jobText: string): Promise<JobExtract> {
+  const truncated =
+    jobText.length > MAX_JOB_TEXT_CHARS
+      ? `${jobText.slice(0, MAX_JOB_TEXT_CHARS)}\n…`
+      : jobText
+
   const raw = await generateJsonText(EXTRACT_JOB_SYSTEM_PROMPT, 0.2, async (model) => {
     const result = await model.generateContent(
-      `${EXTRACT_JOB_TEXT_USER_PREFIX}\n\n${jobText}`,
+      `${EXTRACT_JOB_TEXT_USER_PREFIX}\n\n${truncated}`,
     )
     return result.response.text()
   })

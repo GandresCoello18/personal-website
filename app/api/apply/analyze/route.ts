@@ -80,9 +80,10 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("[apply/analyze]", error)
     const message = error instanceof Error ? error.message : "Error al analizar"
-    const userFacing = message.includes("saturado")
-      ? message
-      : "No se pudo analizar la vacante."
+    const userFacing =
+      message.includes("saturado") || message.includes("Timeout")
+        ? message
+        : "No se pudo analizar la vacante."
     return NextResponse.json(
       {
         error: userFacing,

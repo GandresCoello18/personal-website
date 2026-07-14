@@ -45,7 +45,9 @@ export function SourceForm({
     <section className="space-y-6 rounded-xl border border-border bg-card p-6 md:p-8">
       <div>
         <h2 className="text-lg font-bold text-foreground">1. Fuente</h2>
-        <p className="text-sm text-muted-foreground">Pega el texto de la vacante o sube una captura.</p>
+        <p className="text-sm text-muted-foreground">
+          Pega el texto de la vacante o sube una captura. Analizar = 1 llamada (sin redactar el correo).
+        </p>
       </div>
 
       <div className="flex flex-wrap gap-4">

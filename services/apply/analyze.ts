@@ -8,6 +8,7 @@ import { extractCvText } from "@/lib/apply/pdf-text"
 import {
   CONFIDENCE_THRESHOLD,
   jobCategorySchema,
+  jobExtractSchema,
   type EmailDraft,
   type JobCategory,
   type JobExtract,
@@ -33,24 +34,68 @@ export type AnalyzeResult = {
   error?: string
 }
 
+function applyOverrides(
+  extract: JobExtract,
+  categoryOverride?: JobCategory,
+  manualCv?: CvKey | null,
+): {
+  extract: JobExtract
+  cvFilename: string | null
+  needsCategoryConfirm: boolean
+  needsManualCv: boolean
+  emailMissing: boolean
+} {
+  let next = extract
+  if (categoryOverride) {
+    const parsed = jobCategorySchema.safeParse(categoryOverride)
+    if (parsed.success) {
+      next = { ...next, category: parsed.data, confidence: Math.max(next.confidence, 0.85) }
+    }
+  }
+
+  const emailMissing = !next.email
+  const needsCategoryConfirm = next.confidence < CONFIDENCE_THRESHOLD
+  const needsManualCv = next.category === "unknown" && !manualCv
+  const cvFilename = resolveCvFilename(next.category, manualCv ?? null)
+
+  return { extract: next, cvFilename, needsCategoryConfirm, needsManualCv, emailMissing }
+}
+
+/** Only extracts job data (1 Gemini call). Does not write the email. */
 export async function analyzeJobPosting(input: AnalyzeInput): Promise<AnalyzeResult> {
-  let extract =
+  const extracted =
     input.mode === "text"
       ? await extractJobFromText(input.text)
       : await extractJobFromImage(input.mimeType, input.base64)
 
-  if (input.categoryOverride) {
-    const parsed = jobCategorySchema.safeParse(input.categoryOverride)
-    if (parsed.success) {
-      extract = { ...extract, category: parsed.data, confidence: Math.max(extract.confidence, 0.85) }
-    }
+  const { extract, cvFilename, needsCategoryConfirm, needsManualCv, emailMissing } =
+    applyOverrides(extracted, input.categoryOverride, input.manualCv ?? null)
+
+  return {
+    extract,
+    draft: null,
+    cvFilename,
+    needsCategoryConfirm,
+    needsManualCv: extract.category === "unknown" && !input.manualCv,
+    emailMissing,
+    error:
+      extract.category === "unknown" && !input.manualCv
+        ? "Categoría desconocida: selecciona el CV y luego genera el correo."
+        : undefined,
   }
+}
 
-  const emailMissing = !extract.email
-  const needsCategoryConfirm = extract.confidence < CONFIDENCE_THRESHOLD
-  const needsManualCv = extract.category === "unknown" && !input.manualCv
+export type DraftInput = {
+  extract: JobExtract
+  categoryOverride?: JobCategory
+  manualCv?: CvKey
+}
 
-  const cvFilename = resolveCvFilename(extract.category, input.manualCv ?? null)
+/** Second step: 1 Gemini call using CV text + extract. */
+export async function draftFromExtract(input: DraftInput): Promise<AnalyzeResult> {
+  const parsedExtract = jobExtractSchema.parse(input.extract)
+  const { extract, cvFilename, needsCategoryConfirm, needsManualCv, emailMissing } =
+    applyOverrides(parsedExtract, input.categoryOverride, input.manualCv ?? null)
 
   if (needsManualCv || !cvFilename) {
     return {
@@ -58,12 +103,9 @@ export async function analyzeJobPosting(input: AnalyzeInput): Promise<AnalyzeRes
       draft: null,
       cvFilename: null,
       needsCategoryConfirm,
-      needsManualCv: extract.category === "unknown",
+      needsManualCv: true,
       emailMissing,
-      error:
-        extract.category === "unknown"
-          ? "Categoría desconocida: selecciona el CV manualmente y vuelve a generar."
-          : undefined,
+      error: "Selecciona categoría/CV antes de generar el correo.",
     }
   }
 

@@ -10,6 +10,10 @@ type PreviewPanelProps = {
   onChange: (next: PreviewState) => void
   emailMissing: boolean
   canSend: boolean
+  canDraft: boolean
+  drafting: boolean
+  draftError: string
+  onGenerateDraft: () => void
   sending: boolean
   sendError: string
   sendSuccess: boolean
@@ -21,6 +25,10 @@ export function PreviewPanel({
   onChange,
   emailMissing,
   canSend,
+  canDraft,
+  drafting,
+  draftError,
+  onGenerateDraft,
   sending,
   sendError,
   sendSuccess,
@@ -30,12 +38,14 @@ export function PreviewPanel({
     onChange({ ...preview, [key]: value })
   }
 
+  const hasDraft = Boolean(preview.subject.trim() && preview.body.trim())
+
   return (
     <section className="space-y-6 rounded-xl border border-border bg-card p-6 md:p-8">
       <div>
         <h2 className="text-lg font-bold text-foreground">2. Vista previa</h2>
         <p className="text-sm text-muted-foreground">
-          Revisa y edita todo antes de enviar. Nada se envía automáticamente.
+          Confirma los datos, genera el correo (2ª llamada a Gemini) y revisa antes de enviar.
         </p>
       </div>
 
@@ -102,6 +112,27 @@ export function PreviewPanel({
         </label>
       </div>
 
+      <div className="flex flex-wrap gap-3">
+        <button
+          type="button"
+          onClick={onGenerateDraft}
+          disabled={!canDraft || drafting}
+          className="btn-primary disabled:opacity-50"
+        >
+          {drafting ? (
+            <span className="inline-flex items-center gap-2">
+              <Loader2 className="size-4 animate-spin" />
+              Generando correo…
+            </span>
+          ) : hasDraft ? (
+            "Regenerar correo"
+          ) : (
+            "Generar correo"
+          )}
+        </button>
+      </div>
+      {draftError ? <p className="text-sm text-red-600 dark:text-red-400">{draftError}</p> : null}
+
       <Field label="Asunto" value={preview.subject} onChange={(v) => patch("subject", v)} />
 
       <label className="block space-y-2 text-sm">
@@ -110,6 +141,7 @@ export function PreviewPanel({
           rows={10}
           value={preview.body}
           onChange={(e) => patch("body", e.target.value)}
+          placeholder="Pulsa «Generar correo» para crear el borrador con Gemini."
           className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
         />
       </label>
