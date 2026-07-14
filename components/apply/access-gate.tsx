@@ -25,7 +25,7 @@ export function AccessGate({
         </div>
         <div>
           <h1 className="text-xl font-bold text-foreground">Acceso restringido</h1>
-          <p className="text-sm text-muted-foreground">Herramienta privada de postulaciones</p>
+          <p className="text-sm text-muted-foreground">Herramienta privada</p>
         </div>
       </div>
       <form

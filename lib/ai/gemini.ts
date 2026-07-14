@@ -9,11 +9,19 @@ import {
   buildWriteEmailUserPrompt,
 } from "@/lib/ai/prompts/write-email"
 import {
+  INTERVIEW_ANSWER_SYSTEM_PROMPT,
+  buildInterviewAnswerUserPrompt,
+} from "@/lib/ai/prompts/interview-answer"
+import {
   emailDraftSchema,
   jobExtractSchema,
   type EmailDraft,
   type JobExtract,
 } from "@/lib/apply/types"
+import {
+  interviewAnswersSchema,
+  type InterviewAnswers,
+} from "@/lib/interview/types"
 
 /** Free-tier friendly default. Override with GEMINI_MODEL. */
 const PRIMARY_MODEL = process.env.GEMINI_MODEL || "gemini-3.1-flash-lite"
@@ -158,4 +166,17 @@ export async function writeApplicationEmail(
     return result.response.text()
   })
   return emailDraftSchema.parse(parseJsonPayload(raw))
+}
+
+export async function answerInterviewQuestions(
+  questionsText: string,
+  context: string,
+): Promise<InterviewAnswers> {
+  const raw = await generateJsonText(INTERVIEW_ANSWER_SYSTEM_PROMPT, 0.3, async (model) => {
+    const result = await model.generateContent(
+      buildInterviewAnswerUserPrompt(questionsText, context),
+    )
+    return result.response.text()
+  })
+  return interviewAnswersSchema.parse(parseJsonPayload(raw))
 }
