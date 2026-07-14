@@ -1,102 +1,155 @@
-ANDRES ROBERTO COELLO GOYES
-Full Stack - Software Enginner
-goyeselcoca@gmail.com • +593993698358 • Ecuador • https://www.linkedin.com/in/andrescoellogoyes/ •
-https://github.com/GandresCoello18
-RESUMEN
-Ingeniero de software con +8 años de experiencia creando aplicaciones web, móviles con alto rendimiento, arquitecturas
-escalables y mantenibles con buenas practicas de solid. Optimización de rendimiento cloud y diseño, APIs Graphql,
-Socket, Microservicios, Monolito, WebHooks, Architectura de eventos, Worker, Escalamiento horizontal y colas de
-trabajo asincrono. Experiencia liderando proyectos como pequeños grupos de desarrolladores, creando SDKs e
-involucrandome en todos las fases del ciclo de vida del software. Docente y mentor de software
-EXPERIENCIA
-Full Stack - Software Engineer Semi senior Enero 01-2026 - Abril 04-2026
-Novacomp · Remoto San Jose - Costa Rica
-Incrementar la retención de usuarios bancarios hasta en un 30% mediante el desarrollo de una plataforma de gamificación y
-recompensas personalizadas (cashback y otros premios por fidelización). Resolver problemas críticos de rendimiento e
-infraestructura mediante el rediseño del motor avanzado de segmentación en tiempo real, optimizando consultas SQL dinámicas
-hacia un Data Lake en Amazon Athena para procesar reglas de audiencia altamente complejas sin latencia. Desarrollar
-interfaces intuitivas (UI/UX) para la configuración de campañas promocionales y respaldar su operación con arquitecturas
-robustas en NestJS, escalables y basadas en microservicios, API REST y AWS Lambda. Implementar soluciones utilizando:
-TypeScript, React (SPA), React Query con estrategias de caché, Tailwind CSS, Prisma para migraciones, Amazon EventBridge
-para orquestación de eventos, Amazon CloudWatch para monitoreo, Amazon Cognito con JWT para autenticación y
-autorización basada en roles (RBAC), GitHub Copilot para acelerar el desarrollo, Git para control de versiones y variables de
-entorno para desacoplar configuraciones dinámicas, incluyendo la programación de cron jobs.
-Principal Backend Semi Senior Agosto 08-2025 - Noviembre 11-2025
-MIMS TECH · Remoto Miami - USA
-Liderar un equipo de cuatro desarrolladores en la creación de un SDK comercial publicado en NPM para una plataforma de
-notarización online. Diseñar una arquitectura multi-tenant altamente segura, implementando Row-Level Security (RLS) en
-PostgreSQL para garantizar el aislamiento granular de datos. Impulsar la estabilidad y escalabilidad del proyecto mediante un
-refactor progresivo y la migración a una arquitectura de microservicios y monorepo usando NX, sin interrumpir la entrega de
-nuevas funcionalidades. Implementar soluciones utilizando NestJS, React, TypeScript, Prisma, PostgreSQL, NATS, Docker y
-Docker Compose, AWS API Gateway, AWS Lambda, Amazon EC2, Amazon S3, Stripe, NPM para la distribución del SDK,
-Cursor y GitHub Copilot para acelerar el desarrollo y la revisión, así como estrategias de monitoreo, buenas prácticas de
-arquitectura, microservicios y desarrollo multi-tenant.
-Full Stack Software Enginner Enero 01-2025 - Autónomo
-DevLokos · Remoto Quito - Ecuador
-Colaborar con clientes en el levantamiento de requerimientos, definición de soluciones técnicas y desarrollo de productos
-digitales de extremo a extremo. Liderar el desarrollo de un e-commerce integrado con Odoo para la comercialización de
-repuestos automotrices, construyendo una aplicación móvil para clientes y administradores que optimiza la búsqueda de
-productos, gestión de favoritos, solicitudes de acceso y generación de cotizaciones. Diseñar e implementar un asistente
-inteligente basado en LLM que guía a los usuarios durante el proceso de compra, responde consultas sobre productos y genera
-cotizaciones directamente desde la conversación, transformando el chat en un embudo de ventas. Además, desarrollar una
-plataforma de entrenamiento para pádel basada en suscripciones, permitiendo el acceso controlado a contenido de video,
-seguimiento del aprendizaje y una experiencia personalizada para los deportistas. Utilizar: TypeScript, React Native, Expo,
-Next.js, Prisma, TypeORM, MongoDB, Redis, Odoo, Render, Railway, DigitalOcean, Vimeo, LLMs (Gemini, Ollama y
-ChatGPT), RAG, Cursor AI, Xcode, Android Studio, Git, GitHub, integración de APIs, Cloud y arquitectura para MVPs.
-Senior Backend Enginner Abril 04-2022 - Autónomo
-Meniuz (Proyecto Personal) Quito - Ecuador
+DOCENTE & MENTOR - SOFTWARE ENGINEER
+Andrés coello goyes | Linkedin
+Habilidades técnicas
+Uso de herramientas dinamicas para
+captar mejor el problema a resolver,
+ayuda visual con diagramas animadas.
+Diseño de software: construcción de
+sistemas bien estructurados, escalables y
+fáciles de mantener, siguiendo buenas
+prácticas de arquitectura.
+Seguridad en aplicaciones:
+implementación de sistemas de
+autenticación, control de accesos y
+manejo seguro de información en
+aplicaciones web y móviles.
+Habilidades Blandas
+Pensamiento abstracto y dividir
+problemas grandes para resolver.
+Aplicar soluciones en la vida real.
+Liderazgo y mentoría: capacidad para
+guiar equipos y estudiantes,
+combinando enfoque técnico con
+acompañamiento humano y
+motivacional.
+Comunicación y enseñanza: experiencia
+como speaker en eventos tecnológicos y
+mentor de estudiantes a nivel local e
+internacional.
+Ingeniero de software con más de 8 años de
+experiencia en desarrollo de aplicaciones web
+y móviles de alto rendimiento, con enfoque en
+arquitecturas escalables, diseño de APIs y
+optimización de sistemas. Experiencia
+liderando proyectos, creando SDKs y aplicando
+buenas prácticas de desarrollo. Docente y
+mentor de programación para niños y
+adolescentes (8 a 18 años) y adultos jóvenes
+(20 a 35 años), en clases individuales y
+grupales, adaptando la enseñanza según el
+nivel del estudiante.
+Resumen 	Experiencia laboral
+Novacomp· Remoto (San Jose - Costa Rica)
+Software Engineer 2 | 01/2026 - 04/2026
+Aumenté la retención de usuarios bancarios hasta un 20%
+desarrollando una plataforma de gamificación y recompensas
+personalizadas (cashback, Premio al completar loyalty o Premio
+por cada nivel).
+Resolví problemas críticos de performance e infraestructura
+rediseñando el motor de segmentación en tiempo real: optimicé
+consultas SQL dinámicas hacia un Data Lake en AWS, logrando
+procesar reglas de audiencia altamente complejas sin latencia.
+Construí interfaces intuitivas (UI/UX) para configurar estas
+campañas promocionales, soportando toda la operación con
+arquitecturas robustas y escalables basadas en microservicios,
+GraphQL y AWS Lambda.
+Codings Academy · Remoto (Quito / Ecuador)
+Maestro de Frontend Developer / Bootcamp | 06/2025 - 08/2025
+Como mentor de Front-end, capacité a grupos de hasta 42
+estudiantes, guiándolos desde los fundamentos de JavaScript
+hasta el dominio avanzado de React. Implementé una
+metodología 100% práctica enfocada en construir portafolios,
+resolver problemas en vivo y potenciar el código con IA.
+Culminamos el programa desarrollando y desplegando en
+Vercel un e-commerce funcional, conectando interfaces
+optimizadas en React con una API REST en Python (Flask).
+Crack The Code. Remoto (Peru - Colombia)
+Docente IA & Programación Web| 01/2026 - 07/2026
+Guío y enseño sobre IA junto con el ciclo de vida del desarrollo
+de software en la practica, escoger un emprendimiento local y
+transformarlo en un producto digital de alto impacto, pasando
+por la planeación, diseño, construcción, pruebas, despliegue y
+mejoras continuas en base a feedback real de usuario o
+posibles clientes. Llevo de la mano a cada grupo y uso ejemplos
+interactivos de como lo hacen las empresas reconocidas.
+Me enfoco en que entiendan una de las partes mas importante
+de crear un producto digital con impacto y es la buena
+planeación y planificación, esas bases bien definidas nos
+permiten tener claro el camino que vamos a recorrer como
+tambien documentar todos nuestros avances.
+ClassGap · Remoto (Madrid/ España)
+Docente / Mentor / Software developer | 04/2023 - actualidad
 -- 1 of 2 --
-Dirigir, como Co-founder, la evolución tecnológica de un MVP hacia un SaaS para la industria gastronómica que procesa las
-operaciones de más de 500 establecimientos activos. Diseñar una arquitectura multi-tenant, basada en un monolito modular
-preparado para evolucionar a microservicios, optimizando la escalabilidad, mantenibilidad y velocidad de entrega. Implementar
-nuevas funcionalidades y servicios para ventas, comandas digitales, pagos, inventario y un motor de inteligencia artificial para
-recomendaciones gastronómicas, logrando reducir los tiempos de despliegue en un 60% y optimizar los costos de
-infraestructura en un 25%. Desarrollar soluciones utilizando TypeScript, Next.js (SSR), React, Express, GraphQL (Playground),
-Sequelize con MySQL, Redis, Docker y Docker Compose, WebSockets, JWT, AWS (EC2, S3, SES, Lambda, EventBridge y
-CloudWatch), Firebase (Authentication, Analytics, Storage y Remote Config), Sentry, Docker Hub con flujos de CI/CD,
-Playwright, Jest y Supertest para pruebas automatizadas, Qdrant como base de datos vectorial, Gemini AI para embeddings y
-generación de respuestas, Google Cloud Vision OCR para extracción de información desde documentos PDF, workers para
-procesamiento asíncrono, estrategias de Rate Limiting y procesos de scraping para carga e inicialización de datos.
-Full Stack Developer Abril 04/2022 - Febrero 02/2025
-GGTech Entertainment · Remoto Madrid - España
-Impulsar la escalabilidad global de una plataforma de esports con usuarios en América, Europa y Asia, incrementando la
-participación en un 30%. Desarrollar motores de ranking dinámicos y cuatro formatos complejos de competición, incluyendo
-sistemas Suizo y Round Robin, utilizando Meteor.js tanto en frontend como en backend. Optimizar el rendimiento de torneos
-masivos mediante la mejora de consultas a bases de datos, la implementación de scripts de migración seguros y la
-sincronización en tiempo real con WebSockets, reduciendo las incidencias operativas en más del 25% y garantizando una
-experiencia fluida y de baja latencia. Implementar soluciones utilizando Meteor.js, MongoDB, Redis, WebSockets, Blade como
-motor de plantillas, Figma, DevTools del navegador, stores persistentes para la gestión de grandes volúmenes de datos en el
-frontend, autenticación multifactor (MFA), estrategias de Rate Limiting y TTL para reforzar la seguridad, Supertest para
-pruebas de integración, servicios de AWS y herramientas de monitoreo para asegurar la disponibilidad y estabilidad de la
-plataforma.
-Full Stack Developer Mayo 05-2021 - Marzo 04-2022
-ATIVAR · Remoto Merida - Mexico
-Interactué directamente con clientes para recopilar requerimientos funcionales y técnicos, participando en sesiones de
-levantamiento, análisis y definición de alcance, lo que redujo en un 25% los cambios posteriores durante el desarrollo.
-Desarrollé y mantuve aplicaciones web y móviles utilizando JavaScript, TypeScript, Meteor.js, Next.js, Apollo y MongoDB,
-implementando autenticación basada en JWT y Refresh Tokens, documentación de servicios con Swagger y buenas prácticas de
-integración. Optimicé aplicaciones para SEO y posicionamiento en buscadores, gestioné el control de versiones con Git y
-GitHub, realicé pruebas end-to-end con Cypress y desarrollé, compilé y publiqué aplicaciones móviles utilizando React Native,
-Xcode y Android Studio, distribuyéndolas en Google Play Store, Apple App Store y Huawei AppGallery.
-EDUCACIÓN
-Platzi Enero 2018 - Presente
-Software Enginner Remoto
-+ de 500 cursos y 4 escuelas de software completados con certificaciones.
-Tecnológico Superior Babahoyo Marzo 2017 - Diciembre 2020
-Tecnólogo en desarrollo de Software Babahoyo
-HABILIDADES
-Habilidades Técnicas: TypeScript, Node.js, React, Next.js, Nest.js, React Native, Meteor.js, Blaze, i18n, Bash, Redux,
-Scraping, Git, Firebase, SupaBase, Vue, PostgreSQL (RLS), multi-tenant, Google auth, MongoDB, ORM, Redis, Docker
-Compose, AWS, Lambda, Prisma, GraphQL, Microservicios, Socket.io, Python, Flask, jest, playwright, e2e, Cypress, CI/CD,
-GitHub Actions, Embeddings, OCR, Athena, GPT, Ollama, Gemini IA, Qdrant
-Idiomas: Español (nativo), Ingles B2
-Habilidades Adicionales: Liderazgo técnico y mentoría, pensamiento orientado al producto, comunicación efectiva con
-equipos y stakeholders, resolución de problemas y pensamiento analítico, gestión del tiempo y priorización de tareas, trabajo en
-equipo y colaboración multidisciplinaria, adaptabilidad y aprendizaje continuo, proactividad y sentido de ownership, empatía e
-inteligencia emocional, orientación a resultados y mejora continua.
-CERTIFICACIONES
-• Pensamiento Critico para IA Platzi 2026
-• Prompt Engineer Platzi 2026
-• TypeScript Avanzado Platzi 2022
-• Curso de Geminis Platzi 2026
+Educación
+Instituto Tecnológico Superior Babahoyo - ISTB Los
+Ríos, Ecuador - Graduado como Tecnólogo en
+desarrollo de Software
+Estudios: 03/2017 - 12/2020
+Platzi - Escuela de tecnología de Latinoamérica
+- Cursos y Carreras en Ingeniería de Software
+Estudios: 01/2019 - 12/2024
+Certificaciones
+Curso de Geminis - Platzi 2026
+Full Stack Developer con JavaScript - Platzi
+TypeScript Avanzado - Platzi 2024
+Pensamiento Critico para IA- Platzi 2026
+Prompt Engineer - Platzi 2026
+Referencia
+Adrian José Becerra Romo
+Rol: Head of Web and Product Manager
+Email: adrianbecerraromo@gmail.com
+Kevin Morales
+Rol: Ingeniero Senior de iOS
+Email: kfmorales94@gmail.com
+Voluntariado
+Platzi Live - ¿Cómo trabajar de Fullstack
+Developer en videojuegos?
+Orador en el DevFest - Google
+Developer Groups - ¡DevTools es más
+que solo consola! / Crecer y adaptarse,
+Taller con Meteor.js
+Taller & Charla en Build With IA - ¿Como
+entienden la IA lo que preguntas? Uso de
+embeddings y bases de datos de vectorial
+Hobbies
+Futbol
+Música
+Leer
+Cocinar
+Platicar
+Enseñar
+Explorar
+Tech Stack Principal
+Python, Flask, TypeScript, Node.js, React, Next.js, Nest.js, React
+Native, Meteor.js, Blaze, i18n, Bash, Redux, Scraping, Git,
+Firebase, SupaBase, Vue, PostgreSQL (RLS), multi-tenant, Google
+auth, MongoDB, ORM, Redis, Docker, AWS, Lambda, Prisma,
+GraphQL, Microservicios, Socket.io, jest, e2e, Cypress, CI/CD,
+GitHub Actions, Embeddings, OCR, Athena, Geminis IA, Rag.
+(+593) 993698358
+goyeselcoca@gmail.com
+Ambato, Ecuador
+Portafolio en GitHub
+Web Personal
+Diseñé la arquitectura multitenant y la migración a AWS,
+optimizando costos en un 25%. Implementé microservicios
+independientes para ventas, comandas digitales y un motor de
+IA para recomendaciones gastronómicas usando Node.js,
+Docker y Redis, reduciendo los tiempos de despliegue de
+nuevas funcionalidades en un 60%.
+Meniuz · Remoto (Quito - Ecuador)
+Lider Tecnico - SRE - CTO | 02/2022 - Autónomo
+Como Co-founder y CTO, lideré la evolución tecnológica de un
+MVP (Next.js/Firebase) hacia un SaaS robusto (sistema
+operativo para restaurantes) que hoy procesa operaciones de
++600 establecimientos activos.
+Como Consultor Técnico y Mentor, he capacitado a
+desarrolladores a nivel internacional, guiándolos en la
+construcción de productos web y móviles reales. Mi enfoque
+va más allá de escribir código: formo a los profesionales para
+que piensen como ingenieros de software senior y resuelvan
+problemas complejos de forma escalable.
+Guíe a estudiantes en la implementación de proyectos reales,
+fomentando buenas prácticas de programación, optimización
+de código y resolución de problemas enfocando la practica.
 -- 2 of 2 --
