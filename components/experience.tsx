@@ -64,7 +64,7 @@ const experiences: ExperienceItem[] = [
 
     company: "Meniuz",
 
-    period: "2021 - 2026 (Autonomo)",
+    period: "2021 - 2026",
 
     featured: false,
 
@@ -96,7 +96,7 @@ const experiences: ExperienceItem[] = [
 
     company: "Classgap",
 
-    period: "2023 - 2026 (Autonomo)",
+    period: "2023 - 2026",
     featured: false,
 
     description:
@@ -132,13 +132,38 @@ const experiences: ExperienceItem[] = [
 
     company: "MIMS Tech Corp",
 
-    period: "2025 - 2025",
+    period: "2025-08 - 2025-12",
 
     description:
 
       "Dirigí el diseño arquitectónico y el desarrollo de un SDK comercial para LegalTech, liderando ingeniería en software distribuido con seguridad extrema y escalabilidad B2B. Implementé arquitectura multi-tenant con Row-Level Security (RLS) para aislamiento de datos confidenciales. Aceleré integraciones con paquetes NPM y APIs internas, impulsando migración a monorepo para mejorar mantenibilidad del código base.",
 
     images: [],
+
+  },
+
+  {
+
+    id: "dev lokos",
+
+    logo: "/experiencia/devlokos/devlocos_logo.jpg",
+
+    role: "Full Stack Developer",
+
+    company: "DevLokos",
+
+    period: "2025-02 - 2026",
+    featured: false,
+
+    description:
+
+      "Desarrollo de aplicaciones web y móviles a la medida, con enfoque en la creación de soluciones tecnológicas personalizadas para satisfacer las necesidades específicas de cada cliente. Monitoreo y mantenimiento de aplicaciones web y móviles como parte de garantia de calidad y atención.",
+
+    images: [
+      "/experiencia/devlokos/odoo-app.png",
+      "/experiencia/devlokos/botca.jpg",
+      "/experiencia/devlokos/padeltrack.jpg",
+    ],
 
   },
 
@@ -152,7 +177,7 @@ const experiences: ExperienceItem[] = [
 
     company: "Codings Academy",
 
-    period: "2022-09 - 2025-06",
+    period: "2025-06 - 2025-10",
     featured: false,
 
     description:
@@ -180,32 +205,6 @@ const experiences: ExperienceItem[] = [
     ],
 
   },
-
-  {
-
-    id: "dev lokos",
-
-    logo: "/experiencia/devlokos/devlocos_logo.jpg",
-
-    role: "Full Stack Developer",
-
-    company: "DevLokos",
-
-    period: "2023-09 - 2026 (Autonomo)",
-    featured: false,
-
-    description:
-
-      "Desarrollo de aplicaciones web y móviles a la medida, con enfoque en la creación de soluciones tecnológicas personalizadas para satisfacer las necesidades específicas de cada cliente. Monitoreo y mantenimiento de aplicaciones web y móviles como parte de garantia de calidad y atención.",
-
-    images: [
-
-      "/experiencia/devlokos/botca.jpg",
-      "/experiencia/devlokos/padeltrack.jpg",
-    ],
-
-  },
-
   {
 
     id: "gdg-quito",
@@ -216,7 +215,7 @@ const experiences: ExperienceItem[] = [
 
     company: "Google Developer Group Quito",
 
-    period: "2023 - 2025",
+    period: "2023 - 2026",
     featured: false,
 
     description:

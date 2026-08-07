@@ -46,6 +46,20 @@ const projects: Project[] = [
     ],
   },
   {
+    id: "75",
+    title: "Tayos App",
+    description:
+      "Tayos es la app B2B de la distribuidora de partes más grande del Ecuador. Accede a más de 30.000 productos, repuestos de las mejores marcas y soluciones para los vehículos más comerciales del país. Diseñada exclusivamente para clientes B2B, Tayos facilita la compra de repuestos automotrices desde una plataforma rápida, práctica, segura y facil de usar. Con nuestra app puedes consultar productos, revisar disponibilidad, acceder a un amplio catálogo de partes",
+    images: [
+      "/proyectos/odoo-app/odoo-app.png",
+      "/proyectos/odoo-app/odoo-app-02.png",
+    ],
+    tags: ["React Native", "Expo Go", "Android Studio", "IOS - Xcode", "Node.js", "Odoo API", "Whatsapp Messaging"],
+    link: "https://apps.apple.com/ec/app/tayos/id6776895287",
+    isPrivate: true,
+    featured: true,
+  },
+  {
     id: "234",
     title: "Monitor de AI para comunidades",
     description: "Transformar fuentes de video provenientes de cámaras en información útil para una comunidad, barrio o zona determinada. El sistema está orientado a detectar patrones, identificar eventos relevantes y apoyar la toma de decisiones, sin realizar reconocimiento facial ni vigilancia invasiva.",
@@ -81,20 +95,6 @@ const projects: Project[] = [
       { label: "Procesamiento de imagenes", value: "1" },
       { label: "Imagenes procesadas", value: "10+" },
     ],
-  },
-  {
-    id: "7",
-    title: "Spotify Clone",
-    description:
-      "Spotify Clone App es una aplicación web que permite a los usuarios escuchar musica, crear playlists, conocer artistas y sus albunes, puedes agregar o quitar de tus favoritos y se vera reflejado en tu perfil origial de Spotify.",
-    images: [
-      "/proyectos/spotify-clone/spotify-clone-app.png",
-      "/proyectos/spotify-clone/1756679537331.jpg",
-    ],
-    tags: ["Next.js", "TypeScript", "TailwindCSS", "Api", "Spotify API"],
-    link: "https://andres-coello-full-stack.vercel.app/",
-    github: "https://github.com/GandresCoello18/spotify-clone",
-    featured: true,
   },
   {
     id: "112",
@@ -134,6 +134,20 @@ const projects: Project[] = [
       { label: "Validaciones", value: "+6" },
       { label: "Rate Limit", value: "100+" },
     ],
+  },
+  {
+    id: "7",
+    title: "Spotify Clone",
+    description:
+      "Spotify Clone App es una aplicación web que permite a los usuarios escuchar musica, crear playlists, conocer artistas y sus albunes, puedes agregar o quitar de tus favoritos y se vera reflejado en tu perfil origial de Spotify.",
+    images: [
+      "/proyectos/spotify-clone/spotify-clone-app.png",
+      "/proyectos/spotify-clone/1756679537331.jpg",
+    ],
+    tags: ["Next.js", "TypeScript", "TailwindCSS", "Api", "Spotify API"],
+    link: "https://andres-coello-full-stack.vercel.app/",
+    github: "https://github.com/GandresCoello18/spotify-clone",
+    featured: false,
   },
   {
     id: "14",
