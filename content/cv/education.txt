@@ -1,155 +1,53 @@
 DOCENTE & MENTOR - SOFTWARE ENGINEER
-Andrés coello goyes | Linkedin
-Habilidades técnicas
-Uso de herramientas dinamicas para
-captar mejor el problema a resolver,
-ayuda visual con diagramas animadas.
-Diseño de software: construcción de
-sistemas bien estructurados, escalables y
-fáciles de mantener, siguiendo buenas
-prácticas de arquitectura.
-Seguridad en aplicaciones:
-implementación de sistemas de
-autenticación, control de accesos y
-manejo seguro de información en
-aplicaciones web y móviles.
-Habilidades Blandas
-Pensamiento abstracto y dividir
-problemas grandes para resolver.
-Aplicar soluciones en la vida real.
-Liderazgo y mentoría: capacidad para
-guiar equipos y estudiantes,
-combinando enfoque técnico con
-acompañamiento humano y
-motivacional.
-Comunicación y enseñanza: experiencia
-como speaker en eventos tecnológicos y
-mentor de estudiantes a nivel local e
-internacional.
-Ingeniero de software con más de 8 años de
-experiencia en desarrollo de aplicaciones web
-y móviles de alto rendimiento, con enfoque en
-arquitecturas escalables, diseño de APIs y
-optimización de sistemas. Experiencia
-liderando proyectos, creando SDKs y aplicando
-buenas prácticas de desarrollo. Docente y
-mentor de programación para niños y
-adolescentes (8 a 18 años) y adultos jóvenes
-(20 a 35 años), en clases individuales y
-grupales, adaptando la enseñanza según el
-nivel del estudiante.
-Resumen 	Experiencia laboral
-Novacomp· Remoto (San Jose - Costa Rica)
-Software Engineer 2 | 01/2026 - 04/2026
-Aumenté la retención de usuarios bancarios hasta un 20%
-desarrollando una plataforma de gamificación y recompensas
-personalizadas (cashback, Premio al completar loyalty o Premio
-por cada nivel).
-Resolví problemas críticos de performance e infraestructura
-rediseñando el motor de segmentación en tiempo real: optimicé
-consultas SQL dinámicas hacia un Data Lake en AWS, logrando
-procesar reglas de audiencia altamente complejas sin latencia.
-Construí interfaces intuitivas (UI/UX) para configurar estas
-campañas promocionales, soportando toda la operación con
-arquitecturas robustas y escalables basadas en microservicios,
-GraphQL y AWS Lambda.
-Codings Academy · Remoto (Quito / Ecuador)
+Andrés Coello Goyes | LinkedIn
+(+593) 993698358 · goyeselcoca@gmail.com · Ambato, Ecuador
+Portafolio en GitHub · Web personal
+
+RESUMEN
+Ingeniero de software con más de 8 años de experiencia en desarrollo de aplicaciones web y móviles de alto rendimiento, con enfoque en arquitecturas escalables, diseño de APIs y optimización de sistemas. Experiencia liderando proyectos, creando SDKs y aplicando buenas prácticas de desarrollo. Docente y mentor de programación para niños y adolescentes (8 a 18 años) y adultos jóvenes (20 a 35 años), en clases individuales y grupales, adaptando la enseñanza según el nivel del estudiante.
+
+HABILIDADES TÉCNICAS
+Uso de herramientas dinámicas para captar mejor el problema a resolver; ayuda visual con diagramas animados. Diseño de software: construcción de sistemas bien estructurados, escalables y fáciles de mantener, siguiendo buenas prácticas de arquitectura. Seguridad en aplicaciones: implementación de autenticación, control de accesos y manejo seguro de información en aplicaciones web y móviles.
+
+HABILIDADES BLANDAS
+Pensamiento abstracto y división de problemas grandes para resolverlos; aplicar soluciones en la vida real. Liderazgo y mentoría: guiar equipos y estudiantes combinando enfoque técnico con acompañamiento humano y motivacional. Comunicación y enseñanza: experiencia como speaker en eventos tecnológicos y mentor de estudiantes a nivel local e internacional.
+
+EXPERIENCIA LABORAL
+
+Codings Academy · Remoto (Quito, Ecuador)
 Maestro de Frontend Developer / Bootcamp | 06/2025 - 08/2025
-Como mentor de Front-end, capacité a grupos de hasta 42
-estudiantes, guiándolos desde los fundamentos de JavaScript
-hasta el dominio avanzado de React. Implementé una
-metodología 100% práctica enfocada en construir portafolios,
-resolver problemas en vivo y potenciar el código con IA.
-Culminamos el programa desarrollando y desplegando en
-Vercel un e-commerce funcional, conectando interfaces
-optimizadas en React con una API REST en Python (Flask).
-Crack The Code. Remoto (Peru - Colombia)
-Docente IA & Programación Web| 01/2026 - 07/2026
-Guío y enseño sobre IA junto con el ciclo de vida del desarrollo
-de software en la practica, escoger un emprendimiento local y
-transformarlo en un producto digital de alto impacto, pasando
-por la planeación, diseño, construcción, pruebas, despliegue y
-mejoras continuas en base a feedback real de usuario o
-posibles clientes. Llevo de la mano a cada grupo y uso ejemplos
-interactivos de como lo hacen las empresas reconocidas.
-Me enfoco en que entiendan una de las partes mas importante
-de crear un producto digital con impacto y es la buena
-planeación y planificación, esas bases bien definidas nos
-permiten tener claro el camino que vamos a recorrer como
-tambien documentar todos nuestros avances.
-ClassGap · Remoto (Madrid/ España)
-Docente / Mentor / Software developer | 04/2023 - actualidad
--- 1 of 2 --
-Educación
-Instituto Tecnológico Superior Babahoyo - ISTB Los
-Ríos, Ecuador - Graduado como Tecnólogo en
-desarrollo de Software
-Estudios: 03/2017 - 12/2020
+Me desempeño como docente y mentor de Front-end, impartiendo clases grupales a más de 40 estudiantes y guiándolos desde los fundamentos de JavaScript hasta el desarrollo avanzado con React. Implemento una metodología 100% práctica enfocada en la construcción de portafolios, la resolución de problemas en vivo y el uso de herramientas de IA para potenciar la productividad. Formo a los estudiantes en HTML, CSS, JavaScript moderno (ES6+), asincronía, algoritmos, Virtual DOM, consumo e integración de API REST, optimización de rendimiento, estrategias de carga de scripts, buenas prácticas de maquetación y uso de librerías de componentes. Además, introduzco conceptos de desarrollo backend con Python y Flask, diseño y documentación de API REST con Swagger, autenticación, control de versiones con Git y despliegue en Vercel. Como proyecto final, acompaño el desarrollo y despliegue de un e-commerce funcional construido con React y conectado a una API REST desarrollada en Flask.
+
+Crack The Code · Remoto (Perú - Colombia)
+Docente IA & Programación Web | 01/2026 - 07/2026
+Guío y enseño sobre IA junto con el ciclo de vida del desarrollo de software en la práctica: escoger un emprendimiento local y transformarlo en un producto digital de alto impacto, pasando por la planeación, diseño, construcción, pruebas, despliegue y mejoras continuas con base en feedback real de usuarios o posibles clientes. Llevo de la mano a cada grupo y uso ejemplos interactivos de cómo lo hacen empresas reconocidas. Me enfoco en que entiendan una de las partes más importantes de crear un producto digital con impacto: la buena planeación y planificación; esas bases bien definidas permiten tener claro el camino a recorrer y documentar todos los avances. Dedico tiempo a participar en charlas y talleres técnicos de ingeniería de software + AI y a mostrar con el ejemplo conceptos como: embeddings, context window, Cursor, agentes, LLM, RAG, prompts, bases de datos vectoriales con Qdrant y más.
+
+Google Developer Groups · Presencial (Quito, Ecuador)
+Charla / Mentor / Software Engineer | 11/2023 - Autónomo
+Participación continua como speaker y mentor en la comunidad GDG, compartiendo conocimiento técnico y acompañando a desarrolladores.
+
+ClassGap · Remoto (Madrid, España)
+Docente / Mentor / Software developer | 04/2023 - Actualidad
+Como consultor técnico y mentor, he capacitado a desarrolladores a nivel internacional, guiándolos en la construcción de productos web y móviles reales. Mi enfoque va más allá de escribir código: formo a los profesionales para que piensen como ingenieros de software senior y resuelvan problemas complejos de forma escalable. Guío a estudiantes en la implementación de proyectos reales, fomentando buenas prácticas de programación, optimización de código y resolución de problemas con enfoque práctico.
+
+EDUCACIÓN
+Instituto Tecnológico Superior Babahoyo - ISTB · Los Ríos, Ecuador
+Tecnólogo en desarrollo de Software | 03/2017 - 12/2020
+
 Platzi - Escuela de tecnología de Latinoamérica
-- Cursos y Carreras en Ingeniería de Software
-Estudios: 01/2019 - 12/2024
-Certificaciones
-Curso de Geminis - Platzi 2026
-Full Stack Developer con JavaScript - Platzi
-TypeScript Avanzado - Platzi 2024
-Pensamiento Critico para IA- Platzi 2026
-Prompt Engineer - Platzi 2026
-Referencia
-Adrian José Becerra Romo
-Rol: Head of Web and Product Manager
-Email: adrianbecerraromo@gmail.com
-Kevin Morales
-Rol: Ingeniero Senior de iOS
-Email: kfmorales94@gmail.com
-Voluntariado
-Platzi Live - ¿Cómo trabajar de Fullstack
-Developer en videojuegos?
-Orador en el DevFest - Google
-Developer Groups - ¡DevTools es más
-que solo consola! / Crecer y adaptarse,
-Taller con Meteor.js
-Taller & Charla en Build With IA - ¿Como
-entienden la IA lo que preguntas? Uso de
-embeddings y bases de datos de vectorial
-Hobbies
-Futbol
-Música
-Leer
-Cocinar
-Platicar
-Enseñar
-Explorar
-Tech Stack Principal
-Python, Flask, TypeScript, Node.js, React, Next.js, Nest.js, React
-Native, Meteor.js, Blaze, i18n, Bash, Redux, Scraping, Git,
-Firebase, SupaBase, Vue, PostgreSQL (RLS), multi-tenant, Google
-auth, MongoDB, ORM, Redis, Docker, AWS, Lambda, Prisma,
-GraphQL, Microservicios, Socket.io, jest, e2e, Cypress, CI/CD,
-GitHub Actions, Embeddings, OCR, Athena, Geminis IA, Rag.
-(+593) 993698358
-goyeselcoca@gmail.com
-Ambato, Ecuador
-Portafolio en GitHub
-Web Personal
-Diseñé la arquitectura multitenant y la migración a AWS,
-optimizando costos en un 25%. Implementé microservicios
-independientes para ventas, comandas digitales y un motor de
-IA para recomendaciones gastronómicas usando Node.js,
-Docker y Redis, reduciendo los tiempos de despliegue de
-nuevas funcionalidades en un 60%.
-Meniuz · Remoto (Quito - Ecuador)
-Lider Tecnico - SRE - CTO | 02/2022 - Autónomo
-Como Co-founder y CTO, lideré la evolución tecnológica de un
-MVP (Next.js/Firebase) hacia un SaaS robusto (sistema
-operativo para restaurantes) que hoy procesa operaciones de
-+600 establecimientos activos.
-Como Consultor Técnico y Mentor, he capacitado a
-desarrolladores a nivel internacional, guiándolos en la
-construcción de productos web y móviles reales. Mi enfoque
-va más allá de escribir código: formo a los profesionales para
-que piensen como ingenieros de software senior y resuelvan
-problemas complejos de forma escalable.
-Guíe a estudiantes en la implementación de proyectos reales,
-fomentando buenas prácticas de programación, optimización
-de código y resolución de problemas enfocando la practica.
--- 2 of 2 --
+Cursos y carreras en Ingeniería de Software | 01/2019 - 12/2024
+
+CERTIFICACIONES
+• Curso de Gemini — Platzi 2026
+• Full Stack Developer con JavaScript — Platzi
+• TypeScript Avanzado — Platzi 2024
+• Pensamiento Crítico para IA — Platzi 2026
+• Prompt Engineer — Platzi 2026
+
+VOLUNTARIADO / SPEAKING
+• Platzi Live — ¿Cómo trabajar de Full Stack Developer en videojuegos?
+• Orador en DevFest (Google Developer Groups) — ¡DevTools es más que solo consola! / Crecer y adaptarse; taller con Meteor.js
+• Taller & charla en Build With AI — ¿Cómo entienden la IA lo que preguntas? Uso de embeddings y bases de datos vectoriales
+
+TECH STACK PRINCIPAL
+Python, Flask, TypeScript, Node.js, React, Next.js, NestJS, React Native, Meteor.js, Blaze, i18n, Bash, Redux, scraping, Git, Firebase, Supabase, Vue, PostgreSQL (RLS), multi-tenant, Google Auth, MongoDB, ORM, Redis, Docker, AWS, Lambda, Prisma, GraphQL, microservicios, Socket.io, Jest, e2e, Cypress, CI/CD, GitHub Actions, embeddings, OCR, Athena, Gemini AI, RAG.

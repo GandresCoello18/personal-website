@@ -9,6 +9,7 @@ Usar solo cuando aporte evidencia concreta a una vacante o pregunta. No inventar
 - Ayuda en la toma de decisiones gastronómicas en ciudades de Ecuador.
 - Recopila una gran base de datos de menús de restaurantes, cafeterías, heladerías y licorerías reconocidas en distintas ciudades.
 - Analiza puntos destacados de cada establecimiento y recomienda lugares mediante lenguaje natural interpretado con IA.
+- SaaS multi-tenant que procesa operaciones de más de 1000 establecimientos activos (evolución de MVP a producto).
 - Forma parte de las startups que necesitan impulso: mentorías personalizadas para hacerse más conocidas, conseguir primeros clientes, y crecer con sostenibilidad tecnológica.
 
 ### Padel Track
