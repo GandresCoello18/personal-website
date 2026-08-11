@@ -9,6 +9,7 @@ type PreviewPanelProps = {
   preview: PreviewState
   onChange: (next: PreviewState) => void
   emailMissing: boolean
+  lowMatch?: boolean
   canSend: boolean
   canDraft: boolean
   drafting: boolean
@@ -24,6 +25,7 @@ export function PreviewPanel({
   preview,
   onChange,
   emailMissing,
+  lowMatch,
   canSend,
   canDraft,
   drafting,
@@ -49,6 +51,13 @@ export function PreviewPanel({
         </p>
       </div>
 
+      {lowMatch ? (
+        <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-200">
+          El match con tu perfil es bajo. Puedes enviar igual, pero revisa gaps y personaliza el
+          correo con cuidado.
+        </div>
+      ) : null}
+
       {emailMissing && !preview.email.trim() ? (
         <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-200">
           No se encontró un correo en la publicación. Puedes pegarlo aquí cuando lo tengas; el envío
@@ -64,6 +73,12 @@ export function PreviewPanel({
       <div className="grid gap-4 md:grid-cols-2">
         <Field label="Empresa" value={preview.company} onChange={(v) => patch("company", v)} />
         <Field label="Cargo" value={preview.position} onChange={(v) => patch("position", v)} />
+        <Field
+          label="Nombre del reclutador (opcional)"
+          value={preview.recruiterName}
+          onChange={(v) => patch("recruiterName", v)}
+          placeholder="María Vélez"
+        />
         <Field
           label="Email destinatario (opcional hasta enviar)"
           value={preview.email}

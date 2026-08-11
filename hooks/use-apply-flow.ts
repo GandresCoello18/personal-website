@@ -12,6 +12,7 @@ export type PreviewState = {
   company: string
   position: string
   email: string
+  recruiterName: string
   category: JobCategory
   confidence: number
   cvFilename: string
@@ -28,6 +29,7 @@ export function useApplyFlow() {
 
   const [mode, setMode] = useState<SourceMode>("text")
   const [text, setText] = useState("")
+  const [recruiterProfileText, setRecruiterProfileText] = useState("")
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [analyzing, setAnalyzing] = useState(false)
   const [drafting, setDrafting] = useState(false)
@@ -67,6 +69,7 @@ export function useApplyFlow() {
         company: extract.company,
         position: extract.position,
         email: extract.email ?? prev?.email ?? "",
+        recruiterName: extract.recruiterName || prev?.recruiterName || "",
         category: extract.category,
         confidence: extract.confidence,
         cvFilename: cvFilename ?? prev?.cvFilename ?? "",
@@ -151,10 +154,7 @@ export function useApplyFlow() {
     setDrafting(true)
     setDraftError("")
     try {
-      const category =
-        categoryOverride ||
-        preview?.category ||
-        result.extract.category
+      const category = categoryOverride || preview?.category || result.extract.category
       const cvKey: CvKey | "" =
         manualCv ||
         (preview?.cvFilename === CV_FILES.software
@@ -162,6 +162,13 @@ export function useApplyFlow() {
           : preview?.cvFilename === CV_FILES.education
             ? "education"
             : "")
+
+      const recruiterName = preview?.recruiterName ?? result.extract.recruiterName
+      const recruiterConfidence =
+        recruiterName.trim() &&
+        (result.extract.recruiterConfidence === "none" || !result.extract.recruiterConfidence)
+          ? "medium"
+          : result.extract.recruiterConfidence
 
       const res = await fetch("/api/apply/draft", {
         method: "POST",
@@ -172,10 +179,13 @@ export function useApplyFlow() {
             company: preview?.company ?? result.extract.company,
             position: preview?.position ?? result.extract.position,
             email: preview?.email || result.extract.email,
+            recruiterName,
+            recruiterConfidence,
             category,
           },
           categoryOverride: category || undefined,
           manualCv: cvKey || undefined,
+          recruiterProfileText: recruiterProfileText.trim() || undefined,
         }),
       })
       const data = await res.json()
@@ -185,14 +195,17 @@ export function useApplyFlow() {
       }
 
       const drafted = data as AnalyzeResult
-      setResult(drafted)
+      setResult({
+        ...drafted,
+        match: drafted.match ?? result.match,
+      })
       hydratePreview(drafted.extract, drafted.draft, drafted.cvFilename)
     } catch {
       setDraftError("Error de red al generar el correo")
     } finally {
       setDrafting(false)
     }
-  }, [result, categoryOverride, manualCv, preview, hydratePreview])
+  }, [result, categoryOverride, manualCv, preview, recruiterProfileText, hydratePreview])
 
   const canSend = useMemo(() => {
     if (!preview) return false
@@ -245,6 +258,39 @@ export function useApplyFlow() {
     }
   }, [preview, canSend])
 
+  const clear = useCallback(() => {
+    const hasContent =
+      Boolean(text.trim()) ||
+      Boolean(recruiterProfileText.trim()) ||
+      Boolean(imageFile) ||
+      Boolean(result) ||
+      Boolean(preview) ||
+      Boolean(sendSuccess)
+
+    if (hasContent && typeof window !== "undefined") {
+      const ok = window.confirm(
+        "¿Limpiar esta postulación? Se borrarán la vacante, el análisis, el correo y los resultados.",
+      )
+      if (!ok) return
+    }
+
+    setMode("text")
+    setText("")
+    setRecruiterProfileText("")
+    setImageFile(null)
+    setAnalyzing(false)
+    setDrafting(false)
+    setAnalyzeError("")
+    setDraftError("")
+    setResult(null)
+    setCategoryOverride("")
+    setManualCv("")
+    setPreview(null)
+    setSending(false)
+    setSendError("")
+    setSendSuccess(false)
+  }, [text, recruiterProfileText, imageFile, result, preview, sendSuccess])
+
   return {
     unlocked,
     checkingSession,
@@ -257,6 +303,8 @@ export function useApplyFlow() {
     setMode,
     text,
     setText,
+    recruiterProfileText,
+    setRecruiterProfileText,
     imageFile,
     setImageFile,
     analyzing,
@@ -278,5 +326,6 @@ export function useApplyFlow() {
     sendError,
     sendSuccess,
     send,
+    clear,
   }
 }

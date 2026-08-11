@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { Copy, Loader2 } from "lucide-react"
 import { AccessGate } from "@/components/apply/access-gate"
 import { useInterviewFlow } from "@/hooks/use-interview-flow"
@@ -29,13 +30,32 @@ export function InterviewApp() {
 
   return (
     <div className="mx-auto max-w-3xl space-y-8">
-      <header className="space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Privado</p>
-        <h1 className="section-title">Respuestas a entrevistas</h1>
-        <p className="section-subtitle">
-          Pega las preguntas del reclutador. Respuestas cortas y profesionales basadas en tus CVs y
-          career facts (experiencia desde 2018).
-        </p>
+      <header className="space-y-3">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="space-y-2">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Privado</p>
+            <h1 className="section-title">Respuestas a entrevistas</h1>
+            <p className="section-subtitle">
+              Pega las preguntas del reclutador. Respuestas cortas y profesionales basadas en tus CVs
+              y career facts (experiencia desde 2018).
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href="/apply"
+              className="rounded-lg border border-border px-3 py-2 text-sm text-foreground hover:bg-muted"
+            >
+              Aplicar
+            </Link>
+            <button
+              type="button"
+              onClick={flow.clear}
+              className="rounded-lg border border-border px-3 py-2 text-sm text-foreground hover:bg-muted"
+            >
+              Limpiar
+            </button>
+          </div>
+        </div>
       </header>
 
       <section className="space-y-4 rounded-xl border border-border bg-card p-6 md:p-8">
@@ -52,21 +72,30 @@ export function InterviewApp() {
 
         {flow.error ? <p className="text-sm text-red-600 dark:text-red-400">{flow.error}</p> : null}
 
-        <button
-          type="button"
-          onClick={flow.submit}
-          disabled={flow.loading || !flow.questions.trim()}
-          className="btn-primary disabled:opacity-50"
-        >
-          {flow.loading ? (
-            <span className="inline-flex items-center gap-2">
-              <Loader2 className="size-4 animate-spin" />
-              Generando…
-            </span>
-          ) : (
-            "Responder"
-          )}
-        </button>
+        <div className="flex flex-wrap gap-3">
+          <button
+            type="button"
+            onClick={flow.submit}
+            disabled={flow.loading || !flow.questions.trim()}
+            className="btn-primary disabled:opacity-50"
+          >
+            {flow.loading ? (
+              <span className="inline-flex items-center gap-2">
+                <Loader2 className="size-4 animate-spin" />
+                Generando…
+              </span>
+            ) : (
+              "Responder"
+            )}
+          </button>
+          <button
+            type="button"
+            onClick={flow.clear}
+            className="rounded-lg border border-border px-4 py-2 text-sm hover:bg-muted"
+          >
+            Limpiar
+          </button>
+        </div>
       </section>
 
       {flow.answers.length > 0 ? (

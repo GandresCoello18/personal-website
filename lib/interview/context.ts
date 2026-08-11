@@ -4,11 +4,13 @@ import matter from "gray-matter"
 
 const CV_DIR = path.join(process.cwd(), "content", "cv")
 const FACTS_PATH = path.join(process.cwd(), "content", "profile", "career-facts.md")
+const PROJECTS_PATH = path.join(process.cwd(), "content", "profile", "projects-and-speaking.md")
 const BLOG_DIR = path.join(process.cwd(), "content", "blog")
 const VIDEOS_DIR = path.join(process.cwd(), "content", "videos")
 
 const MAX_CV_CHARS = 3_500
 const MAX_FACTS_CHARS = 3_000
+const MAX_PROJECTS_CHARS = 3_000
 const MAX_CHUNK_CHARS = 700
 const TOP_CHUNKS = 5
 const MAX_CONTEXT_CHARS = 12_000
@@ -123,11 +125,17 @@ function readFacts(): string {
   return truncate(fs.readFileSync(FACTS_PATH, "utf8"), MAX_FACTS_CHARS)
 }
 
+function readProjects(): string {
+  if (!fs.existsSync(PROJECTS_PATH)) return ""
+  return truncate(fs.readFileSync(PROJECTS_PATH, "utf8"), MAX_PROJECTS_CHARS)
+}
+
 /** Build RAG-lite context for interview Q&A. */
 export function buildInterviewContext(questionsText: string): string {
   const facts = readFacts()
   const software = readCv("software")
   const education = readCv("education")
+  const projects = readProjects()
   const queryTokens = tokenize(questionsText)
 
   const scored = buildChunkIndex()
@@ -146,6 +154,9 @@ export function buildInterviewContext(questionsText: string): string {
   }
   if (education) {
     parts.push("## CV EDUCATION / MENTORÍA\n" + education)
+  }
+  if (projects) {
+    parts.push("## PROJECTS & SPEAKING\n" + projects)
   }
   if (scored.length) {
     parts.push(

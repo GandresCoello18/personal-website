@@ -3,6 +3,9 @@ import { z } from "zod"
 export const jobCategorySchema = z.enum(["software", "education", "unknown"])
 export type JobCategory = z.infer<typeof jobCategorySchema>
 
+export const recruiterConfidenceSchema = z.enum(["high", "medium", "low", "none"])
+export type RecruiterConfidence = z.infer<typeof recruiterConfidenceSchema>
+
 export const jobExtractSchema = z.object({
   company: z.string().catch(""),
   position: z.string().catch(""),
@@ -11,6 +14,9 @@ export const jobExtractSchema = z.object({
     if (typeof val === "string" && val.includes("@")) return val.trim()
     return null
   }, z.string().email().nullable()),
+  recruiterName: z.string().catch(""),
+  recruiterTitle: z.string().catch(""),
+  recruiterConfidence: recruiterConfidenceSchema.catch("none"),
   category: jobCategorySchema,
   confidence: z.coerce.number().min(0).max(1),
   requirements: z.array(z.string()).max(12).catch([]),
@@ -28,6 +34,20 @@ export const emailDraftSchema = z.object({
 })
 
 export type EmailDraft = z.infer<typeof emailDraftSchema>
+
+export const matchRecommendationSchema = z.enum(["strong", "good", "partial", "low"])
+export type MatchRecommendation = z.infer<typeof matchRecommendationSchema>
+
+export const jobMatchSchema = z.object({
+  score: z.coerce.number().min(0).max(100),
+  summary: z.string().min(1),
+  strengths: z.array(z.string()).max(8).catch([]),
+  gaps: z.array(z.string()).max(8).catch([]),
+  niceToHave: z.array(z.string()).max(8).catch([]),
+  recommendation: matchRecommendationSchema,
+})
+
+export type JobMatch = z.infer<typeof jobMatchSchema>
 
 export const sendApplicationSchema = z.object({
   company: z.string(),

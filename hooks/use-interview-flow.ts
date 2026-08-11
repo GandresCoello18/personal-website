@@ -108,6 +108,21 @@ export function useInterviewFlow() {
     }
   }, [])
 
+  const clear = useCallback(() => {
+    const hasContent = Boolean(questions.trim()) || answers.length > 0
+    if (hasContent && typeof window !== "undefined") {
+      const ok = window.confirm(
+        "¿Limpiar preguntas y respuestas? Se perderá el contenido actual.",
+      )
+      if (!ok) return
+    }
+    setQuestions("")
+    setAnswers([])
+    setError("")
+    setCopyStatus("")
+    setLoading(false)
+  }, [questions, answers.length])
+
   return {
     unlocked,
     checkingSession,
@@ -126,5 +141,6 @@ export function useInterviewFlow() {
     copyAll,
     copyOne,
     copyStatus,
+    clear,
   }
 }

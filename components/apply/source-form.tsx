@@ -11,6 +11,8 @@ type SourceFormProps = {
   onModeChange: (mode: SourceMode) => void
   text: string
   onTextChange: (value: string) => void
+  recruiterProfileText: string
+  onRecruiterProfileTextChange: (value: string) => void
   imageFile: File | null
   onImageChange: (file: File | null) => void
   analyzing: boolean
@@ -29,6 +31,8 @@ export function SourceForm({
   onModeChange,
   text,
   onTextChange,
+  recruiterProfileText,
+  onRecruiterProfileTextChange,
   imageFile,
   onImageChange,
   analyzing,
@@ -94,6 +98,23 @@ export function SourceForm({
           ) : null}
         </div>
       )}
+
+      <label className="block space-y-2 text-sm">
+        <span className="font-medium text-foreground">
+          Perfil del reclutador <span className="font-normal text-muted-foreground">(opcional)</span>
+        </span>
+        <p className="text-xs text-muted-foreground">
+          Pega About, experiencia o notas de su LinkedIn. Se usa al generar el correo para conectar
+          persona + puesto solo si hay overlap real con tu perfil — sin inventar.
+        </p>
+        <textarea
+          value={recruiterProfileText}
+          onChange={(e) => onRecruiterProfileTextChange(e.target.value)}
+          rows={6}
+          placeholder={`Ejemplo:\nTalent Partner en Acme · interesa IA aplicada, comunidades tech, mentorship…\nAbout: …`}
+          className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+        />
+      </label>
 
       {(needsCategoryConfirm || needsManualCv) && (
         <div className="grid gap-4 rounded-lg border border-amber-200 bg-amber-50 p-4 dark:border-amber-900 dark:bg-amber-950/30 md:grid-cols-2">

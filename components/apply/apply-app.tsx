@@ -1,6 +1,8 @@
 "use client"
 
+import Link from "next/link"
 import { AccessGate } from "@/components/apply/access-gate"
+import { MatchPanel } from "@/components/apply/match-panel"
 import { PreviewPanel } from "@/components/apply/preview-panel"
 import { SourceForm } from "@/components/apply/source-form"
 import { useApplyFlow } from "@/hooks/use-apply-flow"
@@ -30,13 +32,31 @@ export function ApplyApp() {
 
   return (
     <div className="mx-auto max-w-3xl space-y-8">
-      <header className="space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Privado</p>
-        <h1 className="section-title">Asistente de postulaciones</h1>
-        <p className="section-subtitle">
-          1) Analiza la vacante · 2) Genera el correo · 3) Revisa y envía. Cada paso es una llamada a
-          Gemini para ahorrar tokens.
-        </p>
+      <header className="space-y-3">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="space-y-2">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Privado</p>
+            <h1 className="section-title">Asistente de postulaciones</h1>
+            <p className="section-subtitle">
+              1) Analiza la vacante y el match · 2) Genera el correo · 3) Revisa y envía.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href="/interview"
+              className="rounded-lg border border-border px-3 py-2 text-sm text-foreground hover:bg-muted"
+            >
+              Responder preguntas
+            </Link>
+            <button
+              type="button"
+              onClick={flow.clear}
+              className="rounded-lg border border-border px-3 py-2 text-sm text-foreground hover:bg-muted"
+            >
+              Limpiar
+            </button>
+          </div>
+        </div>
       </header>
 
       <SourceForm
@@ -44,6 +64,8 @@ export function ApplyApp() {
         onModeChange={flow.setMode}
         text={flow.text}
         onTextChange={flow.setText}
+        recruiterProfileText={flow.recruiterProfileText}
+        onRecruiterProfileTextChange={flow.setRecruiterProfileText}
         imageFile={flow.imageFile}
         onImageChange={flow.setImageFile}
         analyzing={flow.analyzing}
@@ -57,6 +79,8 @@ export function ApplyApp() {
         onManualCvChange={flow.setManualCv}
       />
 
+      {flow.result?.match ? <MatchPanel match={flow.result.match} /> : null}
+
       {flow.result && flow.result.needsManualCv ? (
         <p className="rounded-lg border border-border bg-muted/40 p-4 text-sm text-muted-foreground">
           Confirma categoría y CV en la vista previa, luego pulsa <strong>Generar correo</strong>.
@@ -68,6 +92,7 @@ export function ApplyApp() {
           preview={flow.preview}
           onChange={flow.setPreview}
           emailMissing={Boolean(flow.result?.emailMissing)}
+          lowMatch={flow.result?.match?.recommendation === "low"}
           canSend={flow.canSend}
           canDraft={flow.canDraft}
           drafting={flow.drafting}
@@ -84,6 +109,15 @@ export function ApplyApp() {
         <aside className="rounded-xl border border-border bg-muted/30 p-4 text-sm text-muted-foreground">
           <p className="mb-2 font-medium text-foreground">Resumen detectado</p>
           <p>{flow.result.extract.summary || "—"}</p>
+          {flow.result.extract.recruiterName ? (
+            <p className="mt-2">
+              Contacto: {flow.result.extract.recruiterName}
+              {flow.result.extract.recruiterTitle
+                ? ` (${flow.result.extract.recruiterTitle})`
+                : ""}{" "}
+              · confianza: {flow.result.extract.recruiterConfidence}
+            </p>
+          ) : null}
           {flow.result.extract.requirements.length > 0 ? (
             <ul className="mt-3 list-inside list-disc">
               {flow.result.extract.requirements.map((req) => (

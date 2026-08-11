@@ -23,11 +23,14 @@ export async function POST(request: NextRequest) {
         : undefined
     const manualCv =
       typeof body?.manualCv === "string" && isValidCvKey(body.manualCv) ? body.manualCv : undefined
+    const recruiterProfileText =
+      typeof body?.recruiterProfileText === "string" ? body.recruiterProfileText : undefined
 
     const result = await draftFromExtract({
       extract: extractParsed.data,
       categoryOverride,
       manualCv,
+      recruiterProfileText,
     })
 
     if (result.error && !result.draft) {

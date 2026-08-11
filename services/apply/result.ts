@@ -1,15 +1,18 @@
 import { resolveCvFilename, type CvKey } from "@/lib/apply/cv"
+import { mergeRecruiterContact } from "@/lib/apply/recruiter"
 import {
   CONFIDENCE_THRESHOLD,
   jobCategorySchema,
   type EmailDraft,
   type JobCategory,
   type JobExtract,
+  type JobMatch,
 } from "@/lib/apply/types"
 
 export type AnalyzeResult = {
   extract: JobExtract
   draft: EmailDraft | null
+  match: JobMatch | null
   cvFilename: string | null
   needsCategoryConfirm: boolean
   needsManualCv: boolean
@@ -28,7 +31,7 @@ export function applyJobOverrides(
   needsManualCv: boolean
   emailMissing: boolean
 } {
-  let next = extract
+  let next = mergeRecruiterContact(extract)
   if (categoryOverride) {
     const parsed = jobCategorySchema.safeParse(categoryOverride)
     if (parsed.success) {

@@ -9,14 +9,20 @@ import {
   buildWriteEmailUserPrompt,
 } from "@/lib/ai/prompts/write-email"
 import {
+  MATCH_JOB_SYSTEM_PROMPT,
+  buildMatchJobUserPrompt,
+} from "@/lib/ai/prompts/match-job"
+import {
   INTERVIEW_ANSWER_SYSTEM_PROMPT,
   buildInterviewAnswerUserPrompt,
 } from "@/lib/ai/prompts/interview-answer"
 import {
   emailDraftSchema,
   jobExtractSchema,
+  jobMatchSchema,
   type EmailDraft,
   type JobExtract,
+  type JobMatch,
 } from "@/lib/apply/types"
 import {
   interviewAnswersSchema,
@@ -160,12 +166,34 @@ export async function extractJobFromImage(
 export async function writeApplicationEmail(
   job: JobExtract,
   cvText: string,
+  projectsContext = "",
+  recruiterProfileText = "",
 ): Promise<EmailDraft> {
   const raw = await generateJsonText(WRITE_EMAIL_SYSTEM_PROMPT, 0.4, async (model) => {
-    const result = await model.generateContent(buildWriteEmailUserPrompt(job, cvText))
+    const result = await model.generateContent(
+      buildWriteEmailUserPrompt(job, cvText, projectsContext, recruiterProfileText),
+    )
     return result.response.text()
   })
   return emailDraftSchema.parse(parseJsonPayload(raw))
+}
+
+export async function matchJobToProfile(
+  jobText: string,
+  profileContext: string,
+): Promise<JobMatch> {
+  const truncatedJob =
+    jobText.length > MAX_JOB_TEXT_CHARS
+      ? `${jobText.slice(0, MAX_JOB_TEXT_CHARS)}\n…`
+      : jobText
+
+  const raw = await generateJsonText(MATCH_JOB_SYSTEM_PROMPT, 0.2, async (model) => {
+    const result = await model.generateContent(
+      buildMatchJobUserPrompt(truncatedJob, profileContext),
+    )
+    return result.response.text()
+  })
+  return jobMatchSchema.parse(parseJsonPayload(raw))
 }
 
 export async function answerInterviewQuestions(

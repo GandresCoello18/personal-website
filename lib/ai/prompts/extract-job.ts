@@ -15,12 +15,25 @@ Reglas estrictas:
 7. "company", "position", "location": strings; usa "" si no se puede leer.
 8. Detecta el idioma principal de la vacante y expónlo en "language" como "es" o "en" (u otro código ISO corto si claro; default "es" si ambiguo en español latino).
 9. Ignora UI de la red social (likes, menús, ads). Enfócate en el anuncio de empleo.
+10. Contacto / reclutador — NUNCA inventes nombres:
+   - "recruiterName": nombre de persona SOLO si aparece de forma explícita (firma, "Contacto:", "Recruiter:", saludo firmado, encabezado). Si no → "".
+   - "recruiterTitle": cargo del contacto SOLO si aparece explícito (Talent Partner, HR, Hiring Manager…). Si no → "".
+   - "recruiterConfidence":
+     - "high": nombre completo o claro y explícito en el texto/imagen.
+     - "medium": nombre parcial o contexto fuerte pero no 100% inequívoco.
+     - "low": solo indicios débiles (no uses esto para afirmar un nombre; preferible "").
+     - "none": no hay información de persona.
+   - NO derives el nombre solo desde el email en este paso (eso lo hace el sistema aparte).
+   - NO uses nombres de empresas, roles genéricos ("Equipo de RRHH") ni inventados como recruiterName.
 
 Schema de salida:
 {
   "company": "",
   "position": "",
   "email": null,
+  "recruiterName": "",
+  "recruiterTitle": "",
+  "recruiterConfidence": "none",
   "category": "software",
   "confidence": 0.0,
   "requirements": [],

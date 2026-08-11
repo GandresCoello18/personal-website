@@ -1,6 +1,7 @@
 import { extractJobFromImage, extractJobFromText } from "@/lib/ai/gemini"
 import type { CvKey } from "@/lib/apply/cv"
 import type { JobCategory } from "@/lib/apply/types"
+import { matchJobPosting } from "@/services/apply/match"
 import { applyJobOverrides, type AnalyzeResult } from "@/services/apply/result"
 
 export type AnalyzeInput =
@@ -13,7 +14,7 @@ export type AnalyzeInput =
       manualCv?: CvKey
     }
 
-/** Only extracts job data (1 Gemini call). No CV text / no PDF deps. */
+/** Extracts job data + match score (separate Gemini calls). No email draft. */
 export async function analyzeJobPosting(input: AnalyzeInput): Promise<AnalyzeResult> {
   const extracted =
     input.mode === "text"
@@ -26,9 +27,15 @@ export async function analyzeJobPosting(input: AnalyzeInput): Promise<AnalyzeRes
     input.manualCv ?? null,
   )
 
+  const match = await matchJobPosting({
+    jobText: input.mode === "text" ? input.text : undefined,
+    extract,
+  })
+
   return {
     extract,
     draft: null,
+    match,
     cvFilename,
     needsCategoryConfirm,
     needsManualCv: extract.category === "unknown" && !input.manualCv,

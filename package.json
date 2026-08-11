@@ -12,7 +12,8 @@
     "dev": "next dev --webpack",
     "dev:turbo": "next dev --turbopack",
     "lint": "eslint .",
-    "start": "next start"
+    "start": "next start",
+    "test:unit": "node --experimental-strip-types --test lib/apply/recruiter.test.ts"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
