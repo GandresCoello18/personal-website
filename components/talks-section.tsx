@@ -1,11 +1,13 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { ExternalLink, MapPin, Users } from "lucide-react"
+import { ExternalLink, MapPin, Mic2, Users } from "lucide-react"
 
 import { TrackedAnchor } from "@/components/tracked-link"
-import { UmamiEvents } from "@/lib/umami"
+import { trackEvent, UmamiEvents } from "@/lib/umami"
 import { cn } from "@/lib/utils"
+
+const INITIAL_TALKS_COUNT = 6
 
 export interface Talk {
   id: string
@@ -20,6 +22,18 @@ export interface Talk {
 }
 
 const talks: Talk[] = [
+  {
+    id: "10",
+    title: "TsáchiTalk #21: Embeddings y búsqueda semántica con LLMs y Qdrant",
+    subtitle:
+      "Descubre cómo funcionan los embeddings y cómo utilizarlos junto con LLMs y Qdrant para construir sistemas de búsqueda semántica más inteligentes, precisos y capaces de comprender el significado de la información.",
+    location: "GDG Santo Domingo de los Tsáchilas · Santo Domingo, Ecuador",
+    attendees: "Comunidad",
+    images: ["/charlas/embedding-llm-qdrant-gdg-tsachilas/1788311836308.jpg"],
+    tags: ["IA", "Embeddings", "Qdrant", "LLM", "RAG"],
+    badges: ["Charla", "Ecuador", "TsáchiTalk", "GDG"],
+    url: "https://gdg.community.dev/events/details/google-gdg-santo-domingo-de-los-tsachilas-presents-tsachitalk-21-embeddings-y-busqueda-semantica-con-llms-y-qdrant/",
+  },
   {
     id: "1",
     title: "Tomando control de tus alimentos con tecnología",
@@ -267,6 +281,20 @@ function TalkCard({ talk }: { talk: Talk }) {
 }
 
 export function TalksSection() {
+  const [showAll, setShowAll] = useState(false)
+  const initialTalks = talks.slice(0, INITIAL_TALKS_COUNT)
+  const remainingTalks = talks.slice(INITIAL_TALKS_COUNT)
+
+  const handleShowAll = () => {
+    trackEvent(UmamiEvents.showAllTalks)
+    setShowAll(true)
+    setTimeout(() => {
+      const talksSection = document.getElementById("talks")
+      const additional = talksSection?.querySelector("[data-additional-talks]")
+      additional?.scrollIntoView({ behavior: "smooth", block: "start" })
+    }, 100)
+  }
+
   return (
     <section
       id="talks"
@@ -287,10 +315,39 @@ export function TalksSection() {
         </div>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {talks.map((talk) => (
+          {initialTalks.map((talk) => (
             <TalkCard key={talk.id} talk={talk} />
           ))}
         </div>
+
+        {!showAll && remainingTalks.length > 0 ? (
+          <div className="mt-16 text-center">
+            <button
+              type="button"
+              onClick={handleShowAll}
+              className="btn-primary inline-flex items-center gap-2"
+            >
+              Ver todas las charlas
+              <Mic2 size={20} aria-hidden />
+            </button>
+          </div>
+        ) : null}
+
+        {showAll && remainingTalks.length > 0 ? (
+          <div data-additional-talks className="mt-16 space-y-8">
+            <div className="mb-12 text-center">
+              <h3 className="mb-4 text-2xl font-bold text-foreground md:text-3xl">Más charlas</h3>
+              <p className="mx-auto max-w-2xl text-muted-foreground">
+                Otras conferencias y meetups en los que he participado
+              </p>
+            </div>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {remainingTalks.map((talk) => (
+                <TalkCard key={talk.id} talk={talk} />
+              ))}
+            </div>
+          </div>
+        ) : null}
       </div>
     </section>
   )

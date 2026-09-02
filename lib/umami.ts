@@ -31,6 +31,7 @@ export const UmamiEvents = {
   videoClick: "video-click",
   navServices: "nav-services",
   talkClick: "talk-click",
+  showAllTalks: "show-all-talks",
 } as const
 
 /** Fire a custom Umami event (no-op until the script is ready). */
