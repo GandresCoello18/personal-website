@@ -26,12 +26,12 @@ const talks: Talk[] = [
     id: "10",
     title: "TsáchiTalk #21: Embeddings y búsqueda semántica con LLMs y Qdrant",
     subtitle:
-      "Descubre cómo funcionan los embeddings y cómo utilizarlos junto con LLMs y Qdrant para construir sistemas de búsqueda semántica más inteligentes, precisos y capaces de comprender el significado de la información.",
-    location: "GDG Santo Domingo de los Tsáchilas · Santo Domingo, Ecuador",
+      "Charla online (~1 h) en GDG Tsáchilas: embeddings, operaciones matemáticas, cercanía semántica, LLMs y Qdrant como base vectorial — cómo las apps entienden la intención de lo que preguntamos.",
+    location: "GDG Santo Domingo de los Tsáchilas · Online",
     attendees: "Comunidad",
     images: ["/charlas/embedding-llm-qdrant-gdg-tsachilas/1788311836308.jpg"],
     tags: ["IA", "Embeddings", "Qdrant", "LLM", "RAG"],
-    badges: ["Charla", "Ecuador", "TsáchiTalk", "GDG"],
+    badges: ["Charla", "Online", "TsáchiTalk", "GDG"],
     url: "https://gdg.community.dev/events/details/google-gdg-santo-domingo-de-los-tsachilas-presents-tsachitalk-21-embeddings-y-busqueda-semantica-con-llms-y-qdrant/",
   },
   {
