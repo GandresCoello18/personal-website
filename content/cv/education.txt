@@ -45,7 +45,7 @@ CERTIFICACIONES
 • Prompt Engineer — Platzi 2026
 
 VOLUNTARIADO / SPEAKING
-• TsáchiTalk #21 — GDG Santo Domingo de los Tsáchilas (2026, online ~1 h): Embeddings, LLMs y Qdrant; significado/intención de consultas; matemáticas de embeddings; DB vectorial vs bases mixtas
+• TsáchiTalk #21 — GDG Santo Domingo de los Tsáchilas (2026, online ~1 h): Embeddings, LLMs y Qdrant → RAG; representación vectorial; búsqueda tradicional vs semántica (complementarias); asistente automotriz grounded. Video: https://www.youtube.com/watch?v=-ma95I0r7XI
 • Platzi Live — ¿Cómo trabajar de Full Stack Developer en videojuegos?
 • Orador en DevFest (Google Developer Groups) — ¡DevTools es más que solo consola! / Crecer y adaptarse; taller con Meteor.js
 • Taller & charla en Build With AI — ¿Cómo entienden la IA lo que preguntas? Uso de embeddings y bases de datos vectoriales

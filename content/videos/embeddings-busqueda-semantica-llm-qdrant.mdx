@@ -1,0 +1,55 @@
+---
+title: "Embeddings y búsqueda semántica con LLMs y Qdrant"
+description: "Charla en TsáchilTalks #021 (GDG Tsáchilas): embeddings, significado vs keywords, Qdrant como base vectorial y cómo armar un RAG — con un caso real de asistente automotriz."
+date: "2026-09-10"
+tags: ["IA", "Embeddings", "LLM", "Qdrant", "RAG", "Búsqueda semántica", "Charla"]
+youtubeId: "-ma95I0r7XI"
+duration: "Charla"
+---
+
+## De qué hablamos
+
+En esta charla de **TsáchilTalks #021** (GDG Tsáchilas) explico cómo **embeddings + LLMs + Qdrant** se unen para construir un **RAG**: un sistema que no solo “busca texto”, sino que entiende **significado e intención**.
+
+La pregunta de fondo es simple: **¿cómo hacemos que una aplicación entienda lo que realmente queremos decir?**
+
+## Representación vectorial: por qué importa
+
+Los embeddings transforman texto en **vectores**: puntos en un espacio donde la **cercanía** significa similitud semántica.
+
+- Dos frases con palabras distintas pueden estar cerca si hablan de lo mismo.
+- Una consulta informal puede acercarse a un párrafo técnico del manual.
+- La matemática (distancias, similitud) deja de ser abstracta: es el motor de la búsqueda por significado.
+
+Verlo en 2D ayuda a intuirlo: palabras y conceptos “cerca” unos de otros, no por coincidencia de strings, sino por **contexto**.
+
+## Búsqueda tradicional vs búsqueda por significado
+
+No son rivales. Son **herramientas para situaciones distintas**:
+
+| Enfoque | Brilla cuando… | Se queda corto cuando… |
+|---------|----------------|------------------------|
+| **Tradicional (keywords / SQL / full-text)** | Sabes el término exacto, códigos, SKUs, filtros rígidos | El usuario pregunta “como habla” |
+| **Semántica (embeddings)** | Hay intención, sinónimos, lenguaje natural | Necesitas exactitud literal o filtros duros |
+
+Lo poderoso es **combinarlas**: exactitud donde hace falta, significado donde el humano no escribe como la base de datos.
+
+## Qdrant: base vectorial de verdad
+
+**Qdrant** está pensada para búsqueda vectorial de punta a punta. No es lo mismo que una base mixta que “también guarda vectores”: el diseño, el índice y las operaciones están orientados a similitud semántica a escala.
+
+Ahí indexamos fragmentos de conocimiento (manuales, fichas, FAQs) para recuperar contexto relevante **antes** de que el LLM responda.
+
+## De stack a asistente: el caso automotriz
+
+Juntando embeddings + Qdrant + LLM tienes un **RAG**. En la práctica lo usamos para un **asistente inteligente automotriz**: personas que necesitan saber qué comprar, cómo se usa o cómo instalar — sin depender siempre de un humano atendiendo a decenas de consultas a la vez.
+
+El asistente responde **desde el contexto indexado** (no inventa, no “adivina” en internet): grounding real sobre documentación técnica.
+
+Si quieres el producto detrás de esa idea, está documentado en la experiencia de **Tayos** (RAG sobre manuales de repuestos).
+
+## Para quién es
+
+Developers, estudiantes y equipos de producto que quieren pasar de “probar un LLM” a **sistemas que entienden intención** — y comunidades GDG que construyen IA aplicada a problemas reales.
+
+Ver también la ficha del evento en [TsáchiTalk #21](https://gdg.community.dev/events/details/google-gdg-santo-domingo-de-los-tsachilas-presents-tsachitalk-21-embeddings-y-busqueda-semantica-con-llms-y-qdrant/) y el [artículo del blog](/blog/embeddings-busqueda-semantica-llm-qdrant).

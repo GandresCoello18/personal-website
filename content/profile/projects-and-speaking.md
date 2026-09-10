@@ -14,6 +14,11 @@ Cada proyecto implica **industria + aprendizajes técnicos** reutilizables al re
   - App móvil **React Native + Expo**
   - Web **Next.js**
 - **MongoDB** para características y flujos que Odoo no cubre de forma nativa, sin romper la integridad de Odoo.
+- **Integración event-driven con webhooks de Odoo** (además de REST):
+  - Odoo notifica a nuestra API **qué cambió y cuándo** (p.ej. órdenes de venta).
+  - El BFF ejecuta lógica de negocio y **notifica a clientes** en web y apps móviles.
+  - Evita **polling** continuo a Odoo: más óptimo, escalable y mantenible.
+  - Refuerza el BFF como capa de orquestación entre ERP y canales de cliente.
 - **Asistentes de IA** con **Gemini** (LLM de pago, modelo compacto para razonar) sobre manuales y documentación técnica de productos automotrices.
 - **Arquitectura RAG**:
   - Subida de documentos: Markdown, PDF, Word, Excel.
@@ -22,7 +27,7 @@ Cada proyecto implica **industria + aprendizajes técnicos** reutilizables al re
   - Si el PDF trae imágenes, diagramas o ilustraciones: intervención de LLM para **describir y razonar** el contenido visual (no se “responde con la imagen”; se extrae el conocimiento técnico).
   - El chat responde **solo desde el corpus RAG** (no inventa, no busca en internet).
 - Ejemplo de consulta real: medida de rosca de un filtro de aceite para un Aveo Family 2015.
-- **Aprendizajes / señales de industria:** aftermarket automotriz, integración ERP (Odoo), BFF, mobile (Expo), RAG productivo, embeddings, Qdrant, workers, grounding de LLM.
+- **Aprendizajes / señales de industria:** aftermarket automotriz, integración ERP (Odoo), BFF, webhooks event-driven vs polling, mobile (Expo), RAG productivo, embeddings, Qdrant, workers, grounding de LLM.
 
 ### TechLocos — e-commerce modular (MVP) · 2026
 - Cliente/empresa: **TechLocos**.
@@ -64,15 +69,18 @@ Cada proyecto implica **industria + aprendizajes técnicos** reutilizables al re
 
 ### TsáchiTalk #21 — GDG Santo Domingo de los Tsáchilas (2026) · online · ~1 h
 - Invitado por **Google Developer Groups (GDG) Tsáchilas** (Santo Domingo), modalidad **online**.
-- Charla educativa (~1 hora): **Embeddings, LLMs y Qdrant** — cómo las aplicaciones entienden el **significado / la intención** de lo que preguntamos (no solo palabras exactas).
+- Charla educativa (~1 hora): **Embeddings, LLMs y Qdrant** — cómo las aplicaciones entienden el **significado / la intención** de lo que preguntamos (no solo palabras exactas). Uniendo estos tres pilares se construye un **RAG**.
 - Contenido abordado:
-  - Operaciones matemáticas detrás de los embeddings.
-  - Representación en espacio (p.ej. visión bidimensional): cercanía entre palabras/conceptos.
-  - De la teoría a la práctica: integrar embeddings + LLM.
-  - **Qdrant** como base de datos **100% vectorial** vs bases mixtas que “pueden guardar vectores” pero no están diseñadas igual para búsqueda semántica.
-  - Búsqueda semántica, intención del usuario y puente hacia sistemas tipo RAG.
+  - Representación vectorial: por qué importa y operaciones matemáticas detrás de los embeddings.
+  - Visión espacial (p.ej. 2D): cercanía entre palabras/conceptos.
+  - **Búsqueda tradicional vs búsqueda por significado**: no son rivales; se usan en situaciones distintas (exactitud vs intención).
+  - **Qdrant** como base de datos **100% vectorial** vs bases mixtas que pueden guardar vectores pero no están diseñadas igual para semántica.
+  - Caso práctico: **asistente inteligente automotriz** (qué comprar, cómo usar/instalar) respondiendo desde contexto RAG, sin inventar ni depender solo de un humano para cada consulta.
+- Video (YouTube): [Embeddings y Búsqueda Semántica con LLMs y Qdrant | TsáchilTalks #021](https://www.youtube.com/watch?v=-ma95I0r7XI)
+- Resumen en el sitio: [`/videos/embeddings-busqueda-semantica-llm-qdrant`](/videos/embeddings-busqueda-semantica-llm-qdrant)
+- Artículo: [`/blog/embeddings-busqueda-semantica-llm-qdrant`](/blog/embeddings-busqueda-semantica-llm-qdrant)
 - Evento: [TsáchiTalk #21](https://gdg.community.dev/events/details/google-gdg-santo-domingo-de-los-tsachilas-presents-tsachitalk-21-embeddings-y-busqueda-semantica-con-llms-y-qdrant/).
-- **Señal para apply/interview:** speaker comunitario en IA aplicada (embeddings, LLM, vector DB); capacidad de enseñar conceptos difíciles de forma práctica.
+- **Señal para apply/interview:** speaker comunitario en IA aplicada (embeddings, LLM, vector DB, RAG); enseña conceptos difíciles con caso de producto real (asistente automotriz / Tayos).
 ### Pitch Meniuz — sistema operativo de la gastronomía (2026)
 - Video pitch: qué hace Meniuz, cómo funciona y hacia dónde apunta.
 - Partners, establecimientos gastronómicos y público general para descubrir y fidelizarse.

@@ -54,14 +54,14 @@ const services: Service[] = [
     price: "Desde $9.99",
     duration: "por sesión",
   },
-  {
+  /*{
     icon: <Video className="w-8 h-8" />,
     title: "Workshops Grupales",
     description: "Sesiones de grupo sobre temas específicos. Perfecto para equipos y comunidades.",
     features: ["Sesiones interactivas", "10-30 participantes", "Q&A en tiempo real", "Materiales descargables"],
     price: "Contactar",
     duration: "flexible",
-  },
+  },*/
   {
     icon: <Globe className="w-8 h-8" />,
     title: "Desarrollo Web",
@@ -88,7 +88,7 @@ const services: Service[] = [
     price: "Contactar",
     duration: "proyecto",
   },
-  {
+  /*{
     icon: <Smartphone className="w-8 h-8" />,
     title: "Desarrollo Móvil Nativo",
     description: "Aplicaciones nativas para iOS (Swift) y Android (Kotlin). Máximo rendimiento y experiencia de usuario.",
@@ -101,7 +101,7 @@ const services: Service[] = [
     price: "Contactar",
     duration: "proyecto",
   },
-  /*{
+  {
     icon: <Code2 className="w-8 h-8" />,
     title: "Code Review Profundo",
     description: "Revisión detallada de tu código con recomendaciones específicas y mejoras implementadas.",

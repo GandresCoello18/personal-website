@@ -32,7 +32,7 @@ const talks: Talk[] = [
     images: ["/charlas/embedding-llm-qdrant-gdg-tsachilas/1788311836308.jpg"],
     tags: ["IA", "Embeddings", "Qdrant", "LLM", "RAG"],
     badges: ["Charla", "Online", "TsáchiTalk", "GDG"],
-    url: "https://gdg.community.dev/events/details/google-gdg-santo-domingo-de-los-tsachilas-presents-tsachitalk-21-embeddings-y-busqueda-semantica-con-llms-y-qdrant/",
+    url: "https://www.youtube.com/watch?v=-ma95I0r7XI",
   },
   {
     id: "1",

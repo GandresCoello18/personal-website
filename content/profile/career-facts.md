@@ -21,7 +21,7 @@ Solo afirmar industria si el CV o `projects-and-speaking.md` lo respaldan. Cada 
 
 | Industria / dominio | Evidencia | Señales útiles |
 |---------------------|-----------|----------------|
-| Automotriz / aftermarket (repuestos) | Tayos / DevLokos | Odoo, BFF, Expo, RAG sobre manuales técnicos |
+| Automotriz / aftermarket (repuestos) | Tayos / DevLokos | Odoo, BFF, webhooks, Expo, RAG sobre manuales técnicos |
 | Automotriz / turbos (comercio) | La Casa del Turbo / TechLocos | Sistema a medida, Excel→app, SRI, roles |
 | E-commerce / retail digital | E-commerce modular / TechLocos | NestJS hexagonal, Next.js SEO, React admin, Payphone, Cloudflare, Railway |
 | Gastronomía / foodtech | Meniuz | Multi-tenant, recomendaciones IA, operaciones de locales |
@@ -44,7 +44,7 @@ Estas anclas evitan inventar cifras. Si el CV muestra uso fuerte y proyectos fro
 | React Native / Expo | Ver ATIVAR + Tayos | Apps móviles; Expo en Tayos |
 | NestJS | Ver roles MIMS, Novacomp, e-commerce modular | Microservicios, multi-tenant, SDK, APIs, hexagonal |
 | Nx / monorepo | Ver MIMS TECH y proyectos con NX | Arquitectura monorepo + microservicios |
-| Odoo + BFF / Fastify | Tayos ~2025+ | ERP como source of truth + capa BFF |
+| Odoo + BFF / Fastify + webhooks | Tayos ~2025+ | ERP source of truth; REST + webhooks event-driven (sin polling) |
 | NestJS hexagonal / monolito modular | TechLocos e-commerce ~2026 | Ports/adapters, listo para migrar de cloud |
 | Railway + Cloudflare + Payphone | TechLocos e-commerce | Deploy backend, media, pagos Ecuador |
 | Spec-Driven + Cursor (PRD/specs/tests/agentes) | TechLocos e-commerce | Entrega asistida por IA con buenas prácticas |
@@ -69,7 +69,8 @@ El PDF no lista todo. Ante preguntas sobre tecnologías “ausentes” o poco me
 
 ### RAG / embeddings / Qdrant (refuerzo reciente)
 - Evidencia fuerte en **Tayos** (RAG productivo sobre manuales automotrices) y **Meniuz** (recomendaciones / embeddings).
-- Speaking reciente: **TsáchiTalk #21** (GDG Tsáchilas, 2026, online ~1 h): embeddings (matemática + espacio semántico), LLMs, Qdrant como DB vectorial vs bases mixtas, intención vs keyword matching.
+- Speaking reciente: **TsáchiTalk #21 / TsáchilTalks #021** (GDG Tsáchilas, 2026, online ~1 h): embeddings (matemática + espacio semántico), LLMs, Qdrant como DB vectorial vs bases mixtas, búsqueda tradicional vs semántica (complementarias), RAG y caso de **asistente automotriz**.
+- Video: https://www.youtube.com/watch?v=-ma95I0r7XI — también en `/videos/embeddings-busqueda-semantica-llm-qdrant` y `/blog/embeddings-busqueda-semantica-llm-qdrant`.
 - Posicionamiento: experiencia práctica construyendo pipelines (ingesta → worker → indexación → chat grounded) y capacidad de **enseñar** estos conceptos a comunidad.
 
 ### Arquitectura hexagonal / Spec-Driven (refuerzo reciente)
@@ -91,6 +92,6 @@ El PDF no lista todo. Ante preguntas sobre tecnologías “ausentes” o poco me
 - Técnicas secundarias / gaps: 2–4 frases constructivas (como el ejemplo Firestore).
 - Humanas/proceso: breve pero cálido.
 - Idioma: el de las preguntas del reclutador.
-- Al mencionar Tayos: enfatizar **industria automotriz + grounding** (respuesta desde documentos, sin inventar).
+- Al mencionar Tayos: enfatizar **industria automotriz + grounding** (respuesta desde documentos, sin inventar) y **BFF Odoo** con **webhooks** (event-driven vs polling) hacia web/móvil.
 - Al mencionar TechLocos e-commerce: enfatizar **hexagonal + NestJS + SEO (Next) + pagos Payphone + Spec-Driven**.
 - Al mencionar La Casa del Turbo: enfatizar **Excel → sistema**, **roles**, **SRI / facturación electrónica** y valor para PyMEs.
