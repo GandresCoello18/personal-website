@@ -49,6 +49,8 @@ Copia `.env.example` a `.env.local`. En Vercel (Production y Preview) hay que de
 
 Sin `APPLY_SESSION_SECRET` el desbloqueo de `/apply` falla cerrado. Tras rotar ese secreto hay que volver a entrar con la clave de acceso (la cookie anterior deja de valer).
 
+El rate limit de contacto y de unlock es en memoria (best-effort en cada isolate de Vercel) hasta que exista Upstash Redis.
+
 ## Calidad
 
 ```bash
@@ -60,7 +62,7 @@ pnpm test
 pnpm build
 ```
 
-El build de Next no necesita secretos reales. El rate limit de contacto y de unlock es en memoria (best-effort en Vercel) hasta que exista Upstash Redis.
+Requiere Node ≥ 22.6 (ver `.nvmrc`). El build no necesita secretos reales.
 
 ## 👨‍💻 Autores ✒️
 

@@ -46,8 +46,9 @@ export function ContactForm() {
   }
 
   useEffect(() => {
-    // Leer parámetros al montar el componente
-    readUrlParams()
+    const initial = window.setTimeout(() => {
+      readUrlParams()
+    }, 0)
 
     // Escuchar evento personalizado cuando se cambia la URL desde Services
     const handleUrlChanged = (event: Event) => {
@@ -76,6 +77,7 @@ export function ContactForm() {
     }, 300)
 
     return () => {
+      window.clearTimeout(initial)
       window.removeEventListener("urlChanged", handleUrlChanged as EventListener)
       window.removeEventListener("popstate", handlePopState)
       clearInterval(interval)

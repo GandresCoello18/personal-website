@@ -3,6 +3,7 @@
 import Script from "next/script"
 import { useTheme } from "next-themes"
 import { useCallback, useEffect, useRef, useState } from "react"
+import { useIsClient } from "@/hooks/use-is-client"
 
 declare global {
   interface Window {
@@ -54,7 +55,7 @@ function removeCalendlyBadge() {
 
 export function CalendlyBadge() {
   const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
+  const mounted = useIsClient()
   const [scriptReady, setScriptReady] = useState(false)
   const initializedRef = useRef(false)
 
@@ -64,9 +65,9 @@ export function CalendlyBadge() {
   }, [resolvedTheme])
 
   useEffect(() => {
-    setMounted(true)
+    if (!mounted) return
     ensureCalendlyCss()
-  }, [])
+  }, [mounted])
 
   useEffect(() => {
     if (!mounted || !scriptReady || !resolvedTheme) return
