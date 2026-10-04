@@ -4,7 +4,11 @@ import { sanitizeHeaderValue } from "../security/headers.ts"
 export const HONEYPOT_FIELD = "website"
 
 export const contactFormSchema = z.object({
-  nombre: z.string().trim().min(1, "El nombre es obligatorio").max(100, "El nombre es demasiado largo"),
+  nombre: z
+    .string()
+    .trim()
+    .min(1, "El nombre es obligatorio")
+    .max(100, "El nombre es demasiado largo"),
   email: z.string().trim().email("Email inválido").max(254),
   asunto: z
     .string()
@@ -24,9 +28,7 @@ export const contactFormSchema = z.object({
 export type ContactFormInput = z.infer<typeof contactFormSchema>
 
 export type ContactEvaluation =
-  | { kind: "honeypot" }
-  | { kind: "invalid"; error: string }
-  | { kind: "ok"; data: ContactFormInput }
+  { kind: "honeypot" } | { kind: "invalid"; error: string } | { kind: "ok"; data: ContactFormInput }
 
 export function evaluateContactSubmission(body: unknown): ContactEvaluation {
   if (body && typeof body === "object") {

@@ -23,7 +23,10 @@ export type DraftDeps = {
   readProjects: () => string
 }
 
-export async function runDraftFromExtract(input: DraftInput, deps: DraftDeps): Promise<AnalyzeResult> {
+export async function runDraftFromExtract(
+  input: DraftInput,
+  deps: DraftDeps,
+): Promise<AnalyzeResult> {
   const parsedExtract = jobExtractSchema.parse(input.extract)
   const { extract, cvFilename, needsCategoryConfirm, needsManualCv, emailMissing } =
     applyJobOverrides(parsedExtract, input.categoryOverride, input.manualCv ?? null)
@@ -43,7 +46,9 @@ export async function runDraftFromExtract(input: DraftInput, deps: DraftDeps): P
 
   const cvText = deps.readCvText(cvFilename)
   const projectsContext = deps.readProjects()
-  const recruiterProfileText = (input.recruiterProfileText || "").trim().slice(0, MAX_RECRUITER_PROFILE_CHARS)
+  const recruiterProfileText = (input.recruiterProfileText || "")
+    .trim()
+    .slice(0, MAX_RECRUITER_PROFILE_CHARS)
   const draft = await deps.writeEmail(extract, cvText, projectsContext, recruiterProfileText)
 
   return {

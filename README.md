@@ -15,12 +15,14 @@ Este sitio web sirve como:
 ## Servicios Ofrecidos
 
 ### Mentoría y Educación
+
 - Mentoría 1-on-1 personalizada
 - Cursos intensivos y bootcamps
 - Consultoría técnica
 - Workshops grupales
 
 ### Desarrollo de Software
+
 - Aplicaciones web full-stack
 - Desarrollo móvil multiplataforma (React Native/Flutter)
 - Desarrollo móvil nativo (iOS/Android)
@@ -37,15 +39,15 @@ Este sitio web sirve como:
 
 Copia `.env.example` a `.env.local`. En Vercel (Production y Preview) hay que definir al menos:
 
-| Variable | Obligatoria | Cómo generarla / de dónde sale |
-|----------|-------------|--------------------------------|
-| `APPLY_ACCESS_SECRET` | Sí | Clave que escribes en `/apply`. `openssl rand -base64 32` |
-| `APPLY_SESSION_SECRET` | Sí (nueva) | Firma HMAC de la cookie de sesión. **Distinta** de la de acceso. `openssl rand -base64 32` |
-| `GMAIL_USER` | Sí | Cuenta Gmail que envía |
-| `GMAIL_APP_PASSWORD` | Sí | App Password de Google |
-| `GMAIL_RECIPIENT` | Sí | Buzón que recibe el formulario de contacto |
-| `GEMINI_API_KEY` | Sí (para `/apply`) | Google AI Studio |
-| `NEXT_PUBLIC_SITE_URL` | Recomendada | `https://andrescoellog.com` |
+| Variable               | Obligatoria        | Cómo generarla / de dónde sale                                                             |
+| ---------------------- | ------------------ | ------------------------------------------------------------------------------------------ |
+| `APPLY_ACCESS_SECRET`  | Sí                 | Clave que escribes en `/apply`. `openssl rand -base64 32`                                  |
+| `APPLY_SESSION_SECRET` | Sí (nueva)         | Firma HMAC de la cookie de sesión. **Distinta** de la de acceso. `openssl rand -base64 32` |
+| `GMAIL_USER`           | Sí                 | Cuenta Gmail que envía                                                                     |
+| `GMAIL_APP_PASSWORD`   | Sí                 | App Password de Google                                                                     |
+| `GMAIL_RECIPIENT`      | Sí                 | Buzón que recibe el formulario de contacto                                                 |
+| `GEMINI_API_KEY`       | Sí (para `/apply`) | Google AI Studio                                                                           |
+| `NEXT_PUBLIC_SITE_URL` | Recomendada        | `https://andrescoellog.com`                                                                |
 
 Sin `APPLY_SESSION_SECRET` el desbloqueo de `/apply` falla cerrado. Tras rotar ese secreto hay que volver a entrar con la clave de acceso (la cookie anterior deja de valer).
 

@@ -1,12 +1,17 @@
 import { escapeHtml, escapeHtmlWithBreaks } from "../../../../lib/security/html.ts"
 
-export function getAdminNotificationTemplate(nombre: string, email: string, asunto: string, mensaje: string) {
+export function getAdminNotificationTemplate(
+  nombre: string,
+  email: string,
+  asunto: string,
+  mensaje: string,
+) {
   const safeName = escapeHtml(nombre)
   const safeEmail = escapeHtml(email)
   const safeSubject = escapeHtml(asunto)
   const formattedMessage = escapeHtmlWithBreaks(mensaje)
   const replyHref = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(`Re: ${asunto}`)}`
-  
+
   return `
 <!DOCTYPE html>
 <html lang="es">
@@ -121,4 +126,3 @@ export function getAdminNotificationTemplate(nombre: string, email: string, asun
 </html>
   `.trim()
 }
-

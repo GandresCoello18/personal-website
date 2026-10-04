@@ -22,7 +22,10 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const extractParsed = jobExtractSchema.safeParse(body?.extract)
     if (!extractParsed.success) {
-      return NextResponse.json({ error: "Extract inválido. Analiza la vacante primero." }, { status: 400 })
+      return NextResponse.json(
+        { error: "Extract inválido. Analiza la vacante primero." },
+        { status: 400 },
+      )
     }
 
     const categoryOverride =

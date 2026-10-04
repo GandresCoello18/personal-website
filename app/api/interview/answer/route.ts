@@ -33,9 +33,7 @@ export async function POST(request: NextRequest) {
       message.includes("contexto") ||
       message.includes("questions")
     const userFacing =
-      message.includes("saturado") ||
-      message.includes("Timeout") ||
-      isClient
+      message.includes("saturado") || message.includes("Timeout") || isClient
         ? message
         : "No se pudieron generar las respuestas."
     return NextResponse.json(

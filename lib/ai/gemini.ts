@@ -4,14 +4,8 @@ import {
   EXTRACT_JOB_SYSTEM_PROMPT,
   EXTRACT_JOB_TEXT_USER_PREFIX,
 } from "@/lib/ai/prompts/extract-job"
-import {
-  WRITE_EMAIL_SYSTEM_PROMPT,
-  buildWriteEmailUserPrompt,
-} from "@/lib/ai/prompts/write-email"
-import {
-  MATCH_JOB_SYSTEM_PROMPT,
-  buildMatchJobUserPrompt,
-} from "@/lib/ai/prompts/match-job"
+import { WRITE_EMAIL_SYSTEM_PROMPT, buildWriteEmailUserPrompt } from "@/lib/ai/prompts/write-email"
+import { MATCH_JOB_SYSTEM_PROMPT, buildMatchJobUserPrompt } from "@/lib/ai/prompts/match-job"
 import {
   INTERVIEW_ANSWER_SYSTEM_PROMPT,
   buildInterviewAnswerUserPrompt,
@@ -24,10 +18,7 @@ import {
   type JobExtract,
   type JobMatch,
 } from "@/lib/apply/types"
-import {
-  interviewAnswersSchema,
-  type InterviewAnswers,
-} from "@/lib/interview/types"
+import { interviewAnswersSchema, type InterviewAnswers } from "@/lib/interview/types"
 
 /** Free-tier friendly default. Override with GEMINI_MODEL. */
 const PRIMARY_MODEL = process.env.GEMINI_MODEL || "gemini-3.1-flash-lite"
@@ -131,14 +122,10 @@ async function generateJsonText(
 
 export async function extractJobFromText(jobText: string): Promise<JobExtract> {
   const truncated =
-    jobText.length > MAX_JOB_TEXT_CHARS
-      ? `${jobText.slice(0, MAX_JOB_TEXT_CHARS)}\n…`
-      : jobText
+    jobText.length > MAX_JOB_TEXT_CHARS ? `${jobText.slice(0, MAX_JOB_TEXT_CHARS)}\n…` : jobText
 
   const raw = await generateJsonText(EXTRACT_JOB_SYSTEM_PROMPT, 0.2, async (model) => {
-    const result = await model.generateContent(
-      `${EXTRACT_JOB_TEXT_USER_PREFIX}\n\n${truncated}`,
-    )
+    const result = await model.generateContent(`${EXTRACT_JOB_TEXT_USER_PREFIX}\n\n${truncated}`)
     return result.response.text()
   })
   return jobExtractSchema.parse(parseJsonPayload(raw))
@@ -183,9 +170,7 @@ export async function matchJobToProfile(
   profileContext: string,
 ): Promise<JobMatch> {
   const truncatedJob =
-    jobText.length > MAX_JOB_TEXT_CHARS
-      ? `${jobText.slice(0, MAX_JOB_TEXT_CHARS)}\n…`
-      : jobText
+    jobText.length > MAX_JOB_TEXT_CHARS ? `${jobText.slice(0, MAX_JOB_TEXT_CHARS)}\n…` : jobText
 
   const raw = await generateJsonText(MATCH_JOB_SYSTEM_PROMPT, 0.2, async (model) => {
     const result = await model.generateContent(

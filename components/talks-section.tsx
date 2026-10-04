@@ -37,7 +37,8 @@ const talks: Talk[] = [
   {
     id: "1",
     title: "Tomando control de tus alimentos con tecnología",
-    subtitle: "Como emprendedor puedes tomar control de tus alimentos con tecnología, usando la inteligencia artificial para analizar tus alimentos y tomar decisiones informadas.",
+    subtitle:
+      "Como emprendedor puedes tomar control de tus alimentos con tecnología, usando la inteligencia artificial para analizar tus alimentos y tomar decisiones informadas.",
     location: "UNEMI · Milagro, Ecuador",
     attendees: "150+ asistentes",
     images: ["/charlas/tomando-control-alimentos-tecnologia/unemi-milagro-alimentos.jpg"],
@@ -48,7 +49,8 @@ const talks: Talk[] = [
   {
     id: "2",
     title: "¿Como entiende la IA lo que le preguntas?",
-    subtitle: "Taller para entender como funciona la IA usando Qdrant y embeddings. Entender la multi dimensión para las coincidencias.",
+    subtitle:
+      "Taller para entender como funciona la IA usando Qdrant y embeddings. Entender la multi dimensión para las coincidencias.",
     location: "Universidad de San Francisco de Quito · Cumbaya",
     attendees: "80+ asistentes",
     images: ["/charlas/como-entiende-la-ia/build-with-ia-2026.jpeg"],
@@ -59,7 +61,8 @@ const talks: Talk[] = [
   {
     id: "3",
     title: "Introducción a la programacion web",
-    subtitle: "Historia de la web y como se desarrollo hasta llegar a lo que es hoy en dia, consejos para proximos proyectos y conseguir tu primer trabajo en el mundo TECH.",
+    subtitle:
+      "Historia de la web y como se desarrollo hasta llegar a lo que es hoy en dia, consejos para proximos proyectos y conseguir tu primer trabajo en el mundo TECH.",
     location: "ESPOL · Guayaquil, Ecuador",
     attendees: "Comunidad",
     images: ["/charlas/introduccion-programacion-web-espol/charla-espol.jpg"],
@@ -70,75 +73,83 @@ const talks: Talk[] = [
   {
     id: "4",
     title: "¿Que es, como funciona y cuando usar Meteor js?",
-    subtitle: "Meteor js es un framework para desarrollar aplicaciones web y móviles, es un framework full stack que permite desarrollar aplicaciones web y móviles de manera rapida y sencilla.",
+    subtitle:
+      "Meteor js es un framework para desarrollar aplicaciones web y móviles, es un framework full stack que permite desarrollar aplicaciones web y móviles de manera rapida y sencilla.",
     location: "Quito Cumbayá · DevFest 2025 Ecuador",
     attendees: "55+ asistentes",
     images: ["/charlas/meteor-js-devfest-2025/1764597973595.jpg"],
     tags: ["Meteor js", "Framework", "Full Stack", "Web"],
     badges: ["Charla", "Ecuador", "DevFest 2025"],
-    url: "https://sessionize.com/s/andres-coello/aprender-adaptarse-y-crecer-taller-de-meteor.js-y-/149061"
+    url: "https://sessionize.com/s/andres-coello/aprender-adaptarse-y-crecer-taller-de-meteor.js-y-/149061",
   },
   {
     id: "5",
     title: "DevTools más allá de la consola",
-    subtitle: "Herramientas para depurar y perfilar en el navegador con sentido, deja de usar console.logp para todo y haz debugger como un profesional.",
+    subtitle:
+      "Herramientas para depurar y perfilar en el navegador con sentido, deja de usar console.logp para todo y haz debugger como un profesional.",
     location: "Quito Cumbayá · DevFest 2023 Ecuador",
     attendees: "60 asistentes",
     images: ["/charlas/devtools-devfest-2023/conf-quito-cumbaya.jpg"],
     tags: ["Chrome", "DevTools", "Web"],
     badges: ["Workshop", "Ecuador", "DevFest 2023"],
-    url: "https://sessionize.com/s/andres-coello/devtools-mas-que-solo-console-log/80690"
+    url: "https://sessionize.com/s/andres-coello/devtools-mas-que-solo-console-log/80690",
   },
   {
     id: "6",
     title: "Comunidad GDG Ecuador 2026",
-    subtitle: "Comunidad GDG Ecuador 2023, charlas, talleres, proyectos, y mas, una comunidad que busca crecer juntos y aprender mas de la tecnologia.",
+    subtitle:
+      "Comunidad GDG Ecuador 2023, charlas, talleres, proyectos, y mas, una comunidad que busca crecer juntos y aprender mas de la tecnologia.",
     location: "Quito Cumbayá · GDG Ecuador 2023",
     attendees: "Comunidad",
     images: ["/charlas/comunidad-gdg-ecuador/1764597984863.jpg"],
     tags: ["GDG", "Comunidad", "Ecuador"],
     badges: ["Charla", "Ecuador", "GDG Ecuador 2025"],
-    url: "https://www.linkedin.com/company/gdg-quito/posts/?feedView=all"
+    url: "https://www.linkedin.com/company/gdg-quito/posts/?feedView=all",
   },
   {
     id: "7",
     title: "JavaScript es Rock pero TypeScript es Jazz",
-    subtitle: "TypeScript es un super poder que te permite programar con mas seguridad y confianza, ademas de que es mas facil de entender y leer para otros desarrolladores.",
+    subtitle:
+      "TypeScript es un super poder que te permite programar con mas seguridad y confianza, ademas de que es mas facil de entender y leer para otros desarrolladores.",
     location: "Santo Domingo de los Tsachilas · GDG Ecuador 2025",
     attendees: "Comunidad",
     images: ["/charlas/javascript-typescript-gdg/1748913774221.jpg"],
     tags: ["GDG", "Comunidad", "Ecuador"],
     badges: ["Charla", "Ecuador", "Santo Domingo de los Tsachilas"],
-    url: "https://www.linkedin.com/company/gdgtsachilas/posts/?feedView=all"
+    url: "https://www.linkedin.com/company/gdgtsachilas/posts/?feedView=all",
   },
   {
     id: "8",
     title: "Aprender React js y no morir en el intento",
-    subtitle: "Aprender React js y no morir en el intento, consejos para empezar a programar y no desistir. Ademas de agregar SSR a tu proyecto con Next.js.",
+    subtitle:
+      "Aprender React js y no morir en el intento, consejos para empezar a programar y no desistir. Ademas de agregar SSR a tu proyecto con Next.js.",
     location: "Codings Academy · Guayaquil, Ecuador",
     attendees: "Comunidad",
     images: ["/charlas/aprender-react-js-codings/charla-codings.jpg"],
     tags: ["React js", "Next.js", "SSR"],
     badges: ["Charla", "Ecuador", "Codings Academy"],
-    url: "https://www.linkedin.com/company/codingsacademy/posts/?feedView=all"
+    url: "https://www.linkedin.com/company/codingsacademy/posts/?feedView=all",
   },
   {
     id: "9",
     title: "Live en Platzi",
-    subtitle: "Como es trabajar para la industria de la tecnologia y en lo Sports para el continente europeo",
+    subtitle:
+      "Como es trabajar para la industria de la tecnologia y en lo Sports para el continente europeo",
     location: "Bogotá · Platzi",
     attendees: "En vivo",
     images: ["/charlas/live-platzi/andres-coello-live-platzi.png"],
     tags: ["Platzi", "Live", "Ecuador"],
     badges: ["Live", "Ecuador", "Platzi"],
-    url: "https://platzi.com/p/programandres/"
-  }
+    url: "https://platzi.com/p/programandres/",
+  },
 ]
 
 function TalkCard({ talk }: { talk: Talk }) {
   const [index, setIndex] = useState(0)
   const [transition, setTransition] = useState(false)
-  const slides = talk.images.length ? talk.images : ["/experiencia/crack-the-code/crack-the-code-001.png"]
+  const slides = talk.images.length
+    ? talk.images
+    : ["/experiencia/crack-the-code/crack-the-code-001.png"]
 
   useEffect(() => {
     if (slides.length <= 1) return
@@ -248,7 +259,10 @@ function TalkCard({ talk }: { talk: Talk }) {
 
         <div className="flex flex-1 flex-col gap-3 p-5">
           <div>
-            <h3 id={`talk-title-${talk.id}`} className="text-lg font-bold leading-snug text-foreground">
+            <h3
+              id={`talk-title-${talk.id}`}
+              className="text-lg font-bold leading-snug text-foreground"
+            >
               {talk.title}
             </h3>
             <p className="mt-1 text-sm font-medium text-accent">{talk.subtitle}</p>
@@ -308,8 +322,8 @@ export function TalksSection() {
             Conferencias
           </h2>
           <p className="section-subtitle mx-auto max-w-2xl">
-            Charlas en conferencias y meetups centradas en desarrollo de Software, apps móviles, IA, herramientas modernas y en llevar
-            productos sólidos a producción.
+            Charlas en conferencias y meetups centradas en desarrollo de Software, apps móviles, IA,
+            herramientas modernas y en llevar productos sólidos a producción.
           </p>
           <p className="text-sm font-medium text-accent">{talks.length} charlas destacadas</p>
         </div>

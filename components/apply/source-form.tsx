@@ -50,7 +50,8 @@ export function SourceForm({
       <div>
         <h2 className="text-lg font-bold text-foreground">1. Fuente</h2>
         <p className="text-sm text-muted-foreground">
-          Pega el texto de la vacante o sube una captura. Analizar = 1 llamada (sin redactar el correo).
+          Pega el texto de la vacante o sube una captura. Analizar = 1 llamada (sin redactar el
+          correo).
         </p>
       </div>
 
@@ -101,7 +102,8 @@ export function SourceForm({
 
       <label className="block space-y-2 text-sm">
         <span className="font-medium text-foreground">
-          Perfil del reclutador <span className="font-normal text-muted-foreground">(opcional)</span>
+          Perfil del reclutador{" "}
+          <span className="font-normal text-muted-foreground">(opcional)</span>
         </span>
         <p className="text-xs text-muted-foreground">
           Pega About, experiencia o notas de su LinkedIn. Se usa al generar el correo para conectar
@@ -120,7 +122,9 @@ export function SourceForm({
         <div className="grid gap-4 rounded-lg border border-amber-200 bg-amber-50 p-4 dark:border-amber-900 dark:bg-amber-950/30 md:grid-cols-2">
           {needsCategoryConfirm ? (
             <label className="block space-y-2 text-sm">
-              <span className="font-medium text-foreground">Confirmar categoría (confianza baja)</span>
+              <span className="font-medium text-foreground">
+                Confirmar categoría (confianza baja)
+              </span>
               <select
                 value={categoryOverride}
                 onChange={(e) => onCategoryChange(e.target.value as JobCategory | "")}

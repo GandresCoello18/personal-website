@@ -21,10 +21,25 @@ export function Footer() {
   }
 
   const social = [
-    { icon: Github, href: "https://github.com/GandresCoello18", label: "GitHub", network: "github" },
-    { icon: Linkedin, href: "https://linkedin.com/in/andrescoellogoyes/", label: "LinkedIn", network: "linkedin" },
+    {
+      icon: Github,
+      href: "https://github.com/GandresCoello18",
+      label: "GitHub",
+      network: "github",
+    },
+    {
+      icon: Linkedin,
+      href: "https://linkedin.com/in/andrescoellogoyes/",
+      label: "LinkedIn",
+      network: "linkedin",
+    },
     { icon: Mail, href: "mailto:goyeselcoca@gmail.com", label: "Email", network: "email" },
-    { icon: Youtube, href: "https://www.youtube.com/@andrescoellogoyes", label: "Youtube", network: "youtube" },
+    {
+      icon: Youtube,
+      href: "https://www.youtube.com/@andrescoellogoyes",
+      label: "Youtube",
+      network: "youtube",
+    },
   ]
 
   return (
@@ -34,7 +49,11 @@ export function Footer() {
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 rounded-lg flex items-center justify-center text-primary-foreground font-bold">
-                <img src="/1764558900283.png" alt="Andres Coello" className="w-full h-full rounded-full object-cover" />
+                <img
+                  src="/1764558900283.png"
+                  alt="Andres Coello"
+                  className="w-full h-full rounded-full object-cover"
+                />
               </div>
               <span className="font-bold text-foreground">Andres Coello</span>
             </Link>
@@ -75,7 +94,10 @@ export function Footer() {
                   >
                     {link.label}
                     {link.href.startsWith("http") && (
-                      <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <ExternalLink
+                        size={14}
+                        className="opacity-0 group-hover:opacity-100 transition-opacity"
+                      />
                     )}
                   </TrackedLink>
                 </li>
@@ -110,9 +132,7 @@ export function Footer() {
 
         <div className="border-t border-border pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground">
-              © {currentYear} Andres Coello.
-            </p>
+            <p className="text-sm text-muted-foreground">© {currentYear} Andres Coello.</p>
             <p className="text-sm text-muted-foreground">
               Diseñado y desarrollado con
               <span className="text-accent mx-1">❤️</span>

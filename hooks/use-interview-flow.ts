@@ -86,9 +86,7 @@ export function useInterviewFlow() {
 
   const copyAll = useCallback(async () => {
     if (!answers.length) return
-    const text = answers
-      .map((a, i) => `${i + 1}. ${a.question}\n${a.answer}`)
-      .join("\n\n")
+    const text = answers.map((a, i) => `${i + 1}. ${a.question}\n${a.answer}`).join("\n\n")
     try {
       await navigator.clipboard.writeText(text)
       setCopyStatus("Copiado al portapapeles")
@@ -111,9 +109,7 @@ export function useInterviewFlow() {
   const clear = useCallback(() => {
     const hasContent = Boolean(questions.trim()) || answers.length > 0
     if (hasContent && typeof window !== "undefined") {
-      const ok = window.confirm(
-        "¿Limpiar preguntas y respuestas? Se perderá el contenido actual.",
-      )
+      const ok = window.confirm("¿Limpiar preguntas y respuestas? Se perderá el contenido actual.")
       if (!ok) return
     }
     setQuestions("")

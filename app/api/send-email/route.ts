@@ -32,7 +32,11 @@ export async function POST(request: NextRequest) {
       return tooManyRequests(hourLimit)
     }
 
-    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD || !process.env.GMAIL_RECIPIENT) {
+    if (
+      !process.env.GMAIL_USER ||
+      !process.env.GMAIL_APP_PASSWORD ||
+      !process.env.GMAIL_RECIPIENT
+    ) {
       console.error("[send-email] Configuración de correo incompleta")
       return NextResponse.json(
         { error: "Configuración de email no disponible. Contacta al administrador." },

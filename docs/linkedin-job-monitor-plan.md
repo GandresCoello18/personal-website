@@ -30,16 +30,16 @@ The site is a **Next.js App Router** project (TypeScript, Zod, Gemini, Nodemaile
 
 ### 2.1 Existing apply pipeline (do not redesign)
 
-| Layer | Path | Responsibility |
-|-------|------|----------------|
-| UI | `app/apply/page.tsx`, `components/apply/*`, `hooks/use-apply-flow.ts` | Manual paste/screenshot → preview → send |
-| Auth | `lib/apply/auth.ts` | Cookie `apply_unlock` + `APPLY_ACCESS_SECRET` |
-| Analyze | `services/apply/analyze.ts` → `analyzeJobPosting` | Gemini extract (`extractJobFromText` / `extractJobFromImage`) |
-| Draft | `services/apply/draft.ts` → `draftFromExtract` | CV text + `writeApplicationEmail` |
-| Send | `services/apply/send-application.ts` → `sendJobApplication` | HTML template + PDF + Nodemailer |
-| Types | `lib/apply/types.ts` | `JobExtract`, `EmailDraft`, `SendApplicationPayload`, `CONFIDENCE_THRESHOLD` |
-| AI | `lib/ai/gemini.ts`, `lib/ai/prompts/*` | Model calls |
-| Mail | `services/mail/transporter.ts` | SMTP |
+| Layer   | Path                                                                  | Responsibility                                                               |
+| ------- | --------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| UI      | `app/apply/page.tsx`, `components/apply/*`, `hooks/use-apply-flow.ts` | Manual paste/screenshot → preview → send                                     |
+| Auth    | `lib/apply/auth.ts`                                                   | Cookie `apply_unlock` + `APPLY_ACCESS_SECRET`                                |
+| Analyze | `services/apply/analyze.ts` → `analyzeJobPosting`                     | Gemini extract (`extractJobFromText` / `extractJobFromImage`)                |
+| Draft   | `services/apply/draft.ts` → `draftFromExtract`                        | CV text + `writeApplicationEmail`                                            |
+| Send    | `services/apply/send-application.ts` → `sendJobApplication`           | HTML template + PDF + Nodemailer                                             |
+| Types   | `lib/apply/types.ts`                                                  | `JobExtract`, `EmailDraft`, `SendApplicationPayload`, `CONFIDENCE_THRESHOLD` |
+| AI      | `lib/ai/gemini.ts`, `lib/ai/prompts/*`                                | Model calls                                                                  |
+| Mail    | `services/mail/transporter.ts`                                        | SMTP                                                                         |
 
 Manual flow today:
 
@@ -62,7 +62,7 @@ Therefore the monitor must run as a **separate long-lived (or machine-local) Nod
 
 - Serves a private status dashboard
 - Optionally exposes a protected “last run” JSON read API
-- Continues to own the apply *services* as shared library code
+- Continues to own the apply _services_ as shared library code
 
 ---
 
@@ -160,12 +160,12 @@ personal-website/
 
 ### 5.2 Persistent browser profile
 
-| Concern | Recommendation |
-|---------|----------------|
-| Mechanism | `chromium.launchPersistentContext(userDataDir, { headless: false|true })` |
-| Path | `data/linkedin-monitor/browser-profile/` (absolute path resolved at runtime) |
-| Git | **Must be gitignored** — cookies/session tokens live here |
-| Backup | Optional manual zip of the folder on the host machine; never commit |
+| Concern   | Recommendation                                                               |
+| --------- | ---------------------------------------------------------------------------- |
+| Mechanism | `chromium.launchPersistentContext(userDataDir, { headless: false             | true })` |
+| Path      | `data/linkedin-monitor/browser-profile/` (absolute path resolved at runtime) |
+| Git       | **Must be gitignored** — cookies/session tokens live here                    |
+| Backup    | Optional manual zip of the folder on the host machine; never commit          |
 
 ### 5.3 One-time login
 
@@ -191,11 +191,11 @@ For each card, extract a stable record:
 
 ```ts
 type LinkedInPost = {
-  id: string          // urn / data-urn / permalink id — best available stable key
+  id: string // urn / data-urn / permalink id — best available stable key
   url: string | null
   author: string | null
   text: string
-  scrapedAt: string   // ISO
+  scrapedAt: string // ISO
 }
 ```
 
@@ -219,12 +219,12 @@ Never re-LLM a processed id unless an explicit “reprocess” flag exists (out 
 
 ### 5.7 Where posts live
 
-| Data | Store |
-|------|--------|
+| Data                                  | Store                                                                                |
+| ------------------------------------- | ------------------------------------------------------------------------------------ |
 | Raw newly seen posts (optional debug) | `data/linkedin-monitor/raw-posts.jsonl` (optional; keep off by default to save disk) |
-| Processed ids | `processed-posts.json` |
-| Successful applications | `applications.json` |
-| Run summaries | `runs.json` (keep last ~50) |
+| Processed ids                         | `processed-posts.json`                                                               |
+| Successful applications               | `applications.json`                                                                  |
+| Run summaries                         | `runs.json` (keep last ~50)                                                          |
 
 ---
 
@@ -254,11 +254,11 @@ Java, Spring Boot, .NET, C#, Go, Golang, PHP, SAP, COBOL, QA Manual, Salesforce
 
 ### 6.4 Making lists configurable (recommended strategy)
 
-| Layer | Role |
-|-------|------|
-| `content/linkedin-monitor/keywords.json` | **Source of truth in git** — easy to edit/review in PRs |
-| `data/linkedin-monitor/config.json` | Local overrides (schedule, headless, maxPosts, autoSend) — not committed |
-| Env | Only secrets and paths (`LINKEDIN_MONITOR_PROFILE_DIR`, cron secret) |
+| Layer                                    | Role                                                                     |
+| ---------------------------------------- | ------------------------------------------------------------------------ |
+| `content/linkedin-monitor/keywords.json` | **Source of truth in git** — easy to edit/review in PRs                  |
+| `data/linkedin-monitor/config.json`      | Local overrides (schedule, headless, maxPosts, autoSend) — not committed |
+| Env                                      | Only secrets and paths (`LINKEDIN_MONITOR_PROFILE_DIR`, cron secret)     |
 
 `keywords.json` shape:
 
@@ -365,15 +365,15 @@ If using OS cron, weekdays/hours live in the crontab; the JSON still documents i
 
 Reuse the project’s **file-based** style. Do **not** introduce Postgres/Redis for v1.
 
-| Store | Format | Purpose |
-|-------|--------|---------|
-| `processed-posts.json` | JSON map/array | Dedupe |
-| `applications.json` | JSON array | Application / draft history |
-| `runs.json` | JSON array | Last execution summaries for dashboard |
-| `config.json` | JSON | Local runtime config |
-| `keywords.json` | JSON in `content/` | Versioned filters |
-| `browser-profile/` | Chromium dir | Session |
-| `cron.log` | text | Optional append-only logs |
+| Store                  | Format             | Purpose                                |
+| ---------------------- | ------------------ | -------------------------------------- |
+| `processed-posts.json` | JSON map/array     | Dedupe                                 |
+| `applications.json`    | JSON array         | Application / draft history            |
+| `runs.json`            | JSON array         | Last execution summaries for dashboard |
+| `config.json`          | JSON               | Local runtime config                   |
+| `keywords.json`        | JSON in `content/` | Versioned filters                      |
+| `browser-profile/`     | Chromium dir       | Session                                |
+| `cron.log`             | text               | Optional append-only logs              |
 
 Cap array sizes (e.g. keep last 500 processed ids metadata; last 50 runs) to avoid unbounded growth.
 
@@ -387,13 +387,13 @@ Private page: `/monitor` (same unlock gate as `/apply`).
 
 Show only:
 
-| Metric | Source |
-|--------|--------|
-| Last execution time | `runs.json[0].finishedAt` |
-| Posts analyzed (seen this run) | `runs.json[0].postsSeen` |
-| Matching jobs found | `runs.json[0].passedFilter` / `llmAccepted` |
-| Applications sent | `runs.json[0].sent` |
-| Errors | `runs.json[0].errors[]` (short messages) |
+| Metric                         | Source                                      |
+| ------------------------------ | ------------------------------------------- |
+| Last execution time            | `runs.json[0].finishedAt`                   |
+| Posts analyzed (seen this run) | `runs.json[0].postsSeen`                    |
+| Matching jobs found            | `runs.json[0].passedFilter` / `llmAccepted` |
+| Applications sent              | `runs.json[0].sent`                         |
+| Errors                         | `runs.json[0].errors[]` (short messages)    |
 
 Optional: last 5 runs as a simple list. No charts, no analytics suite.
 
@@ -403,26 +403,26 @@ API: `GET /api/monitor/status` → reads JSON via `services/linkedin-monitor/sta
 
 ## 11. Dependencies
 
-| Dependency | Verdict |
-|------------|---------|
-| `playwright` | **Add** — required for browser automation |
-| `tsx` (or `ts-node`) | **Add** (dev) — run TypeScript worker without a separate build |
-| `node-cron` | **Optional** — only if in-process scheduling is preferred over OS cron |
-| Database / queue / Bull / Redis | **Do not add** in v1 |
-| Puppeteer | **Do not add** — Playwright covers the need |
+| Dependency                      | Verdict                                                                |
+| ------------------------------- | ---------------------------------------------------------------------- |
+| `playwright`                    | **Add** — required for browser automation                              |
+| `tsx` (or `ts-node`)            | **Add** (dev) — run TypeScript worker without a separate build         |
+| `node-cron`                     | **Optional** — only if in-process scheduling is preferred over OS cron |
+| Database / queue / Bull / Redis | **Do not add** in v1                                                   |
+| Puppeteer                       | **Do not add** — Playwright covers the need                            |
 
 ---
 
 ## 12. Environment Variables
 
-| Variable | Purpose |
-|----------|---------|
-| Existing `GEMINI_*`, `GMAIL_*` | Reused by apply services |
-| Existing `APPLY_ACCESS_SECRET` | Dashboard gate |
-| `LINKEDIN_MONITOR_PROFILE_DIR` | Optional override of profile path |
-| `LINKEDIN_MONITOR_HEADED` | `1` for login recovery |
-| `LINKEDIN_MONITOR_DATA_DIR` | Optional override of `data/linkedin-monitor` |
-| `LINKEDIN_MONITOR_AUTO_SEND` | Override config autoSend |
+| Variable                       | Purpose                                      |
+| ------------------------------ | -------------------------------------------- |
+| Existing `GEMINI_*`, `GMAIL_*` | Reused by apply services                     |
+| Existing `APPLY_ACCESS_SECRET` | Dashboard gate                               |
+| `LINKEDIN_MONITOR_PROFILE_DIR` | Optional override of profile path            |
+| `LINKEDIN_MONITOR_HEADED`      | `1` for login recovery                       |
+| `LINKEDIN_MONITOR_DATA_DIR`    | Optional override of `data/linkedin-monitor` |
+| `LINKEDIN_MONITOR_AUTO_SEND`   | Override config autoSend                     |
 
 ---
 
@@ -540,17 +540,17 @@ Each phase ends in a **working increment**.
 
 ## 14. Risks & Mitigations
 
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| LinkedIn DOM changes | Scraper breaks | Isolate selectors in `feed.ts`; fail soft with screenshot dump to `data/`; version selectors; avoid brittle absolute XPaths |
-| Auth / session expiration | No posts collected | Detect login page; set run error `session_expired`; run headed recovery; never store password in env for v1 |
-| Duplicate detection weak | Double applications | Prefer URN/activity id; mark processed **before** send (or transactional: mark `sending` then `sent`); check `applications.json` by post id |
-| Rate limiting / bot detection | Temporary block | Limit scroll passes; randomize short delays; low daily frequency (2×/weekday); respect LinkedIn ToS; prefer personal use only |
-| LLM cost | Unnecessary spend | Strict pre-filter; max posts per run; reuse two-step analyze/draft; skip draft if extract fails gates |
-| Scheduler failures | Missed jobs | OS cron logs; `runs.json` “missed” detection on dashboard (last run > 36h); keep process simple |
-| Split deploy (Vercel vs worker host) | Dashboard empty on production | Document: status files are host-local in v1; or sync later via Blob |
-| Auto-send false positives | Bad emails | Default `autoSend: false`; require email + confidence + category; negative keyword list |
-| Legal / ToS | Account risk | Use sparingly; personal account; no parallel high-volume scraping |
+| Risk                                 | Impact                        | Mitigation                                                                                                                                  |
+| ------------------------------------ | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| LinkedIn DOM changes                 | Scraper breaks                | Isolate selectors in `feed.ts`; fail soft with screenshot dump to `data/`; version selectors; avoid brittle absolute XPaths                 |
+| Auth / session expiration            | No posts collected            | Detect login page; set run error `session_expired`; run headed recovery; never store password in env for v1                                 |
+| Duplicate detection weak             | Double applications           | Prefer URN/activity id; mark processed **before** send (or transactional: mark `sending` then `sent`); check `applications.json` by post id |
+| Rate limiting / bot detection        | Temporary block               | Limit scroll passes; randomize short delays; low daily frequency (2×/weekday); respect LinkedIn ToS; prefer personal use only               |
+| LLM cost                             | Unnecessary spend             | Strict pre-filter; max posts per run; reuse two-step analyze/draft; skip draft if extract fails gates                                       |
+| Scheduler failures                   | Missed jobs                   | OS cron logs; `runs.json` “missed” detection on dashboard (last run > 36h); keep process simple                                             |
+| Split deploy (Vercel vs worker host) | Dashboard empty on production | Document: status files are host-local in v1; or sync later via Blob                                                                         |
+| Auto-send false positives            | Bad emails                    | Default `autoSend: false`; require email + confidence + category; negative keyword list                                                     |
+| Legal / ToS                          | Account risk                  | Use sparingly; personal account; no parallel high-volume scraping                                                                           |
 
 ---
 
@@ -560,11 +560,11 @@ For each decision: alternatives considered → recommendation → why.
 
 ### 15.1 Where should the monitor live?
 
-| Option | Pros | Cons |
-|--------|------|------|
-| A. Next.js API route on Vercel | Same deploy | No persistent browser; Playwright unsuitable; cold starts |
-| B. Separate microservice/repo | Clean isolation | Extra repo/deploy overhead for a personal tool |
-| C. `scripts/linkedin-monitor` in this repo + shared `services/apply` | Reuses code; simple; matches monorepo reality | Worker must run off-Vercel |
+| Option                                                               | Pros                                          | Cons                                                      |
+| -------------------------------------------------------------------- | --------------------------------------------- | --------------------------------------------------------- |
+| A. Next.js API route on Vercel                                       | Same deploy                                   | No persistent browser; Playwright unsuitable; cold starts |
+| B. Separate microservice/repo                                        | Clean isolation                               | Extra repo/deploy overhead for a personal tool            |
+| C. `scripts/linkedin-monitor` in this repo + shared `services/apply` | Reuses code; simple; matches monorepo reality | Worker must run off-Vercel                                |
 
 **Decision: C.** Keeps apply services as the single source of truth and avoids a second codebase.
 
@@ -572,12 +572,12 @@ For each decision: alternatives considered → recommendation → why.
 
 ### 15.2 How should scheduling work?
 
-| Option | Pros | Cons |
-|--------|------|------|
-| A. Vercel Cron | Easy cloud schedule | Cannot run Playwright session |
-| B. GitHub Actions schedule | Free cron | Ephemeral runners; persistent profile painful; LinkedIn often blocks CI IPs |
-| C. OS cron / Task Scheduler calling `pnpm monitor:run` | Simplest; persistent disk; weekday/hour native | Requires a machine that is on |
-| D. `node-cron` long-running process | Config in JSON; one command | Needs always-on process |
+| Option                                                 | Pros                                           | Cons                                                                        |
+| ------------------------------------------------------ | ---------------------------------------------- | --------------------------------------------------------------------------- |
+| A. Vercel Cron                                         | Easy cloud schedule                            | Cannot run Playwright session                                               |
+| B. GitHub Actions schedule                             | Free cron                                      | Ephemeral runners; persistent profile painful; LinkedIn often blocks CI IPs |
+| C. OS cron / Task Scheduler calling `pnpm monitor:run` | Simplest; persistent disk; weekday/hour native | Requires a machine that is on                                               |
+| D. `node-cron` long-running process                    | Config in JSON; one command                    | Needs always-on process                                                     |
 
 **Decision: C as default; D optional on a VPS.** Avoid A/B for the scraper itself.
 
@@ -585,10 +585,10 @@ For each decision: alternatives considered → recommendation → why.
 
 ### 15.3 How to persist data?
 
-| Option | Pros | Cons |
-|--------|------|------|
-| A. Postgres / Neon | Queryable | Overkill; new infra; unused elsewhere |
-| B. Redis / Upstash | Fast dedupe | Extra service for tiny sets |
+| Option                      | Pros                                         | Cons                                           |
+| --------------------------- | -------------------------------------------- | ---------------------------------------------- |
+| A. Postgres / Neon          | Queryable                                    | Overkill; new infra; unused elsewhere          |
+| B. Redis / Upstash          | Fast dedupe                                  | Extra service for tiny sets                    |
 | C. JSON files under `data/` | Matches current file-based project; zero ops | Not shared across Vercel + laptop without sync |
 
 **Decision: C.** Minimum persistence; gitignore runtime data; version only `keywords.json`.
@@ -597,11 +597,11 @@ For each decision: alternatives considered → recommendation → why.
 
 ### 15.4 How to configure keyword lists?
 
-| Option | Pros | Cons |
-|--------|------|------|
-| A. Hardcoded in TS | Fast | Requires deploy/commit to tune |
-| B. Env vars (comma-separated) | Easy on host | Painful for long lists |
-| C. `content/.../keywords.json` in git + optional local override | Reviewable; editable; no UI needed | Two files to know about |
+| Option                                                          | Pros                               | Cons                           |
+| --------------------------------------------------------------- | ---------------------------------- | ------------------------------ |
+| A. Hardcoded in TS                                              | Fast                               | Requires deploy/commit to tune |
+| B. Env vars (comma-separated)                                   | Easy on host                       | Painful for long lists         |
+| C. `content/.../keywords.json` in git + optional local override | Reviewable; editable; no UI needed | Two files to know about        |
 
 **Decision: C.** Best balance of configurability and simplicity.
 
@@ -609,11 +609,11 @@ For each decision: alternatives considered → recommendation → why.
 
 ### 15.5 How to integrate with apply/email?
 
-| Option | Pros | Cons |
-|--------|------|------|
-| A. HTTP call to `/api/apply/*` | Uses public boundaries | Cookie auth awkward for cron; network hop |
-| B. Duplicate Gemini/mail code in scripts | Independent | Violates “no duplication”; drift risk |
-| C. Direct import of `analyzeJobPosting` / `draftFromExtract` / `sendJobApplication` | Zero duplication; same validation | Worker must run in repo with env loaded |
+| Option                                                                              | Pros                              | Cons                                      |
+| ----------------------------------------------------------------------------------- | --------------------------------- | ----------------------------------------- |
+| A. HTTP call to `/api/apply/*`                                                      | Uses public boundaries            | Cookie auth awkward for cron; network hop |
+| B. Duplicate Gemini/mail code in scripts                                            | Independent                       | Violates “no duplication”; drift risk     |
+| C. Direct import of `analyzeJobPosting` / `draftFromExtract` / `sendJobApplication` | Zero duplication; same validation | Worker must run in repo with env loaded   |
 
 **Decision: C.** Cleanest reuse of the working module.
 
@@ -621,11 +621,11 @@ For each decision: alternatives considered → recommendation → why.
 
 ### 15.6 Auto-send vs draft-only in v1?
 
-| Option | Pros | Cons |
-|--------|------|------|
-| A. Always auto-send | Full automation | High false-positive risk early |
-| B. Draft-only, manual send in `/apply` | Safest | Less automation |
-| C. Gated auto-send behind `autoSend` flag (default false) | Progressive; configurable | Slightly more config |
+| Option                                                    | Pros                      | Cons                           |
+| --------------------------------------------------------- | ------------------------- | ------------------------------ |
+| A. Always auto-send                                       | Full automation           | High false-positive risk early |
+| B. Draft-only, manual send in `/apply`                    | Safest                    | Less automation                |
+| C. Gated auto-send behind `autoSend` flag (default false) | Progressive; configurable | Slightly more config           |
 
 **Decision: C.** Enables Phase 3→4 progression without redesign.
 
@@ -633,11 +633,11 @@ For each decision: alternatives considered → recommendation → why.
 
 ### 15.7 Headless vs headed browser?
 
-| Option | Pros | Cons |
-|--------|------|------|
-| A. Always headed | Easier debugging / anti-bot | Needs display on server |
-| B. Always headless | Good for cron | Login/2FA and some blocks harder |
-| C. Headed for first login; headless for cron; env override | Practical | Two modes to document |
+| Option                                                     | Pros                        | Cons                             |
+| ---------------------------------------------------------- | --------------------------- | -------------------------------- |
+| A. Always headed                                           | Easier debugging / anti-bot | Needs display on server          |
+| B. Always headless                                         | Good for cron               | Login/2FA and some blocks harder |
+| C. Headed for first login; headless for cron; env override | Practical                   | Two modes to document            |
 
 **Decision: C.**
 
@@ -645,10 +645,10 @@ For each decision: alternatives considered → recommendation → why.
 
 ### 15.8 Dashboard scope?
 
-| Option | Pros | Cons |
-|--------|------|------|
-| A. Full analytics app | Nice charts | Over-engineered |
-| B. No UI, only logs | Simplest | Hard to glance status |
+| Option                               | Pros            | Cons                      |
+| ------------------------------------ | --------------- | ------------------------- |
+| A. Full analytics app                | Nice charts     | Over-engineered           |
+| B. No UI, only logs                  | Simplest        | Hard to glance status     |
 | C. Private `/monitor` with 5 metrics | Matches request | Needs same-host data (v1) |
 
 **Decision: C.**
@@ -702,4 +702,4 @@ The feature is complete when:
 
 ---
 
-*End of plan. No implementation performed in this document.*
+_End of plan. No implementation performed in this document._

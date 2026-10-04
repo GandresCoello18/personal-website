@@ -103,10 +103,6 @@ export function CalendlyBadge() {
   }, [])
 
   return (
-    <Script
-      src={CALENDLY_JS}
-      strategy="afterInteractive"
-      onLoad={() => setScriptReady(true)}
-    />
+    <Script src={CALENDLY_JS} strategy="afterInteractive" onLoad={() => setScriptReady(true)} />
   )
 }

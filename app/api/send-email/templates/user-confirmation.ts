@@ -6,7 +6,7 @@ export function getUserConfirmationTemplate(nombre: string, asunto: string, mens
   const safeSubject = escapeHtml(asunto)
   const formattedMessage = escapeHtmlWithBreaks(mensaje)
   const profileImageUrl = absoluteUrl("/me.jpg")
-  
+
   return `
 <!DOCTYPE html>
 <html lang="es">
@@ -109,4 +109,3 @@ export function getUserConfirmationTemplate(nombre: string, asunto: string, mens
 </html>
   `.trim()
 }
-

@@ -67,10 +67,7 @@ export async function POST(request: NextRequest) {
       }
 
       if (file.size > MAX_IMAGE_BYTES) {
-        return NextResponse.json(
-          { error: "La imagen supera el límite de 5 MB." },
-          { status: 400 },
-        )
+        return NextResponse.json({ error: "La imagen supera el límite de 5 MB." }, { status: 400 })
       }
 
       const buffer = Buffer.from(await file.arrayBuffer())

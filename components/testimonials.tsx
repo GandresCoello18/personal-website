@@ -14,7 +14,8 @@ const testimonials: Testimonial[] = [
     name: "Alberto Flores Conejo",
     role: "Estudiante de Desarrollo web",
     company: "España",
-    image: "https://dbwf8q1mv0cee.cloudfront.net/chi/api/user/dsp/eyjgt1ay3uiurvg0anwqtj6hrt6cwuq50.jpg/110x110cut/?v=1",
+    image:
+      "https://dbwf8q1mv0cee.cloudfront.net/chi/api/user/dsp/eyjgt1ay3uiurvg0anwqtj6hrt6cwuq50.jpg/110x110cut/?v=1",
     text: "Andrés es muy paciente y sabe lo que hace",
     rating: 5,
   },
@@ -24,7 +25,8 @@ const testimonials: Testimonial[] = [
     company: "España",
     text: "Andrés es un profesor mucho conocimiento y paciencia. Altamente recomendable! Gracias Andrés",
     rating: 5,
-    image: "https://dbwf8q1mv0cee.cloudfront.net/chi/api/user/dsp/tzzfxeev3ejk84takcrer6c1ll_nz4rw0.jpg/110x110cut/?v=1",
+    image:
+      "https://dbwf8q1mv0cee.cloudfront.net/chi/api/user/dsp/tzzfxeev3ejk84takcrer6c1ll_nz4rw0.jpg/110x110cut/?v=1",
   },
   {
     name: "Clara Foscaldi",
@@ -116,10 +118,13 @@ export function Testimonials() {
         </div>
 
         <div className="mb-12 space-y-3 text-center md:mb-14">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Testimonios</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+            Testimonios
+          </p>
           <h2 className="section-title">Qué dicen</h2>
           <p className="section-subtitle mx-auto max-w-2xl">
-            Historias de desarrolladores que transformaron su carrera gracias a mentoría y educación de calidad
+            Historias de desarrolladores que transformaron su carrera gracias a mentoría y educación
+            de calidad
           </p>
         </div>
       </div>

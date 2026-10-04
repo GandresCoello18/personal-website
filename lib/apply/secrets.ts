@@ -11,8 +11,7 @@ export function getApplySessionSecret(): string | undefined {
 }
 
 export function requireApplySecrets():
-  | { ok: true; accessSecret: string; sessionSecret: string }
-  | { ok: false } {
+  { ok: true; accessSecret: string; sessionSecret: string } | { ok: false } {
   const accessSecret = getApplyAccessSecret()
   const sessionSecret = getApplySessionSecret()
   if (!accessSecret || !sessionSecret) return { ok: false }

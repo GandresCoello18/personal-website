@@ -24,7 +24,9 @@ export function MatchPanel({ match }: MatchPanelProps) {
           </p>
         </div>
         <div className="text-right">
-          <p className="text-3xl font-bold tabular-nums text-foreground">{Math.round(match.score)}%</p>
+          <p className="text-3xl font-bold tabular-nums text-foreground">
+            {Math.round(match.score)}%
+          </p>
           <p className="text-sm font-medium text-accent">
             {RECOMMENDATION_LABEL[match.recommendation]}
           </p>
@@ -42,15 +44,7 @@ export function MatchPanel({ match }: MatchPanelProps) {
   )
 }
 
-function ListBlock({
-  title,
-  items,
-  empty,
-}: {
-  title: string
-  items: string[]
-  empty: string
-}) {
+function ListBlock({ title, items, empty }: { title: string; items: string[]; empty: string }) {
   return (
     <div className="space-y-2 rounded-lg border border-border bg-muted/30 p-4">
       <h3 className="text-sm font-semibold text-foreground">{title}</h3>

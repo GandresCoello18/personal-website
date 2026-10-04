@@ -1,11 +1,7 @@
 import assert from "node:assert/strict"
 import { describe, it } from "node:test"
 import type { JobExtract } from "./types.ts"
-import {
-  canPersonalizeGreeting,
-  inferNameFromEmail,
-  mergeRecruiterContact,
-} from "./recruiter.ts"
+import { canPersonalizeGreeting, inferNameFromEmail, mergeRecruiterContact } from "./recruiter.ts"
 
 function baseExtract(partial: Partial<JobExtract> = {}): JobExtract {
   return {

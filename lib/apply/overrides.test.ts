@@ -33,7 +33,9 @@ describe("applyJobOverrides", () => {
   })
 
   it("asks for a manual CV when category is unknown", () => {
-    const result = applyJobOverrides(baseExtract({ category: "unknown", confidence: 0.2, email: null }))
+    const result = applyJobOverrides(
+      baseExtract({ category: "unknown", confidence: 0.2, email: null }),
+    )
     assert.equal(result.needsManualCv, true)
     assert.equal(result.needsCategoryConfirm, true)
     assert.equal(result.emailMissing, true)
@@ -41,7 +43,10 @@ describe("applyJobOverrides", () => {
   })
 
   it("applies a category override and raises confidence", () => {
-    const result = applyJobOverrides(baseExtract({ category: "unknown", confidence: 0.4 }), "education")
+    const result = applyJobOverrides(
+      baseExtract({ category: "unknown", confidence: 0.4 }),
+      "education",
+    )
     assert.equal(result.extract.category, "education")
     assert.ok(result.extract.confidence >= 0.85)
     assert.equal(result.cvFilename, CV_FILES.education)

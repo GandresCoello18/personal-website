@@ -167,7 +167,9 @@ export function PreviewPanel({
 
       {sendError ? <p className="text-sm text-red-600 dark:text-red-400">{sendError}</p> : null}
       {sendSuccess ? (
-        <p className="text-sm text-green-700 dark:text-green-400">Postulación enviada correctamente.</p>
+        <p className="text-sm text-green-700 dark:text-green-400">
+          Postulación enviada correctamente.
+        </p>
       ) : null}
 
       <div className="flex flex-wrap gap-3">

@@ -71,7 +71,10 @@ export function ContactForm() {
 
     // También verificar periódicamente si hay parámetros nuevos (fallback)
     const interval = setInterval(() => {
-      if (window.location.search.includes("service=") || window.location.search.includes("description=")) {
+      if (
+        window.location.search.includes("service=") ||
+        window.location.search.includes("description=")
+      ) {
         readUrlParams()
       }
     }, 300)
@@ -93,7 +96,12 @@ export function ContactForm() {
     e.preventDefault()
     setError("")
 
-    if (!formData.nombre.trim() || !formData.email.trim() || !formData.asunto.trim() || !formData.mensaje.trim()) {
+    if (
+      !formData.nombre.trim() ||
+      !formData.email.trim() ||
+      !formData.asunto.trim() ||
+      !formData.mensaje.trim()
+    ) {
       setError("Por favor completa todos los campos")
       return
     }
@@ -129,7 +137,11 @@ export function ContactForm() {
       setTimeout(() => setSubmitted(false), 5000)
     } catch (err) {
       trackEvent(UmamiEvents.contactFormError)
-      setError(err instanceof Error ? err.message : "Ocurrió un error al enviar el mensaje. Intenta de nuevo.")
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Ocurrió un error al enviar el mensaje. Intenta de nuevo.",
+      )
     } finally {
       setLoading(false)
     }
