@@ -66,6 +66,12 @@ pnpm build
 
 Requiere Node ≥ 22.6 (ver `.nvmrc`). El build no necesita secretos reales.
 
+## Cursor (skills y reglas)
+
+- **Impeccable** (Paul Bakaus, Apache 2.0): `.cursor/skills/impeccable` — oficio de UI/UX. Cualquier cambio visual debe usarlo junto con `.cursor/rules/design-system.md` (si chocan, gana el design system del sitio).
+- **Vercel React Best Practices** (MIT): `.cursor/skills/vercel-react-best-practices` — rendimiento de React/Next.js.
+- Reglas: `.cursor/rules/ui-impeccable.mdc` (UI) y `.cursor/rules/quality-gate.mdc` (lint/format/typecheck/test).
+
 ## 👨‍💻 Autores ✒️
 
 - **Andrés Coello Goyes** - _SOFTWARE ENGINEER_ - [Andres Coello](https://linktr.ee/gandrescoello)

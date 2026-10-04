@@ -8,6 +8,7 @@ alwaysApply: true
 > **Alcance:** Cualquier cambio visual, de UX o de componentes en este repositorio debe respetar este documento.
 > **Audiencia objetivo del sitio:** recruiters de software engineering, founders, CTOs, CEOs y empresas que contratan desarrollo o consultoría técnica.
 > **Idioma de la interfaz:** español (`lang="es"`).
+> **Impeccable:** los cambios de UI/UX también deben usar el skill `.cursor/skills/impeccable` (ver `.cursor/rules/ui-impeccable.mdc`). Si Impeccable y este documento chocan, **gana este design system** (tokens teal/azul, Geist, shadcn new-york, español, audiencia de contratación). Impeccable aporta oficio visual; no reemplaza la marca del sitio.
 
 ---
 
@@ -28,7 +29,7 @@ alwaysApply: true
 | Formularios      | `react-hook-form`, `zod`, `@hookform/resolvers`                 | contacto y futuros forms                                  |
 | Blog             | `next-mdx-remote`, `gray-matter`, `rehype-pretty-code`, `shiki` | rutas `/blog`                                             |
 | Analytics        | `@vercel/analytics`                                             | en `app/layout.tsx`                                       |
-| Package manager  | Yarn                                                            | `yarn@1.22`                                               |
+| Package manager  | pnpm                                                            | `pnpm@10.33.3` (Node ≥ 22.6)                              |
 
 **No hay** `tailwind.config.js`. Los tokens viven en `app/globals.css` (`:root`, `.dark`, `@theme inline`).
 
@@ -419,7 +420,7 @@ public/        → assets estáticos
 
 ### Calidad de build
 
-- `typescript.ignoreBuildErrors: true` está activo — no empeorar deuda; tipar componentes nuevos correctamente
+- `pnpm typecheck` (`tsc --noEmit`) y `next build` deben pasar. No reactivar `typescript.ignoreBuildErrors`.
 
 ---
 
@@ -427,14 +428,15 @@ public/        → assets estáticos
 
 Antes de generar UI nueva:
 
-1. **Buscar componente similar** — ej. nueva sección tipo charlas → leer `talks-section.tsx`; blog → `BlogCard.tsx`
-2. **Reutilizar** — `section-title`, `card-elevated`, `btn-primary`, `Header`/`Footer`
-3. **Respetar tema** — solo tokens semánticos; probar mentalmente light + dark
-4. **No añadir librerías** (Motion, Chakra, MUI, etc.) sin justificación explícita
-5. **Server vs Client** — default Server; client solo si necesario
-6. **Scripts terceros** — patrón `next/script` como `calendly-badge.tsx`
-7. **Contenido** — español, tono profesional, orientado a contratación
-8. **Íconos** — solo `lucide-react`, tamaños `size-4` / `size-5` / `size={24}` según contexto
+1. **Leer el skill Impeccable** (`.cursor/skills/impeccable/SKILL.md`) y este design system. Marca y tokens: este documento. Oficio visual: Impeccable.
+2. **Buscar componente similar** — ej. nueva sección tipo charlas → leer `talks-section.tsx`; blog → `BlogCard.tsx`
+3. **Reutilizar** — `section-title`, `card-elevated`, `btn-primary`, `Header`/`Footer`
+4. **Respetar tema** — solo tokens semánticos; probar mentalmente light + dark
+5. **No añadir librerías** (Motion, Chakra, MUI, etc.) sin justificación explícita
+6. **Server vs Client** — default Server; client solo si necesario
+7. **Scripts terceros** — patrón `next/script` como `calendly-badge.tsx`
+8. **Contenido** — español, tono profesional, orientado a contratación
+9. **Íconos** — solo `lucide-react`, tamaños `size-4` / `size-5` / `size={24}` según contexto
 
 ### Checklist pre-merge visual
 

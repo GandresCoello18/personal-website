@@ -1,0 +1,16 @@
+---
+description: Todo cambio de código debe pasar lint, formato, typecheck y tests.
+alwaysApply: true
+---
+
+# Quality gate
+
+Antes de dar por cerrado un cambio en este repo:
+
+1. `pnpm lint` — sin errores (los warnings existentes de `<img>` o shadcn se pueden dejar).
+2. `pnpm format` o comprobar `pnpm format:check` (Prettier: `semi: false`, comillas dobles, `printWidth: 100`).
+3. `pnpm typecheck` (`tsc --noEmit`). No reactivar `typescript.ignoreBuildErrors`.
+4. `pnpm test` (runner nativo `node:test` + `--experimental-strip-types`). La lógica nueva testeable vive en `lib/` con imports relativos.
+5. `pnpm build` si el cambio toca App Router, `next.config` o el grafo de páginas. El build no debe exigir secretos reales.
+
+Gestor: **pnpm@10.33.3**. Node **≥ 22.6** (`.nvmrc`). No commitear secretos. Nuevas variables van a `.env.example` y al README.
