@@ -50,14 +50,19 @@ export const jobMatchSchema = z.object({
 export type JobMatch = z.infer<typeof jobMatchSchema>
 
 export const sendApplicationSchema = z.object({
-  company: z.string(),
-  position: z.string(),
-  email: z.string().email(),
+  company: z.string().trim().max(200),
+  position: z.string().trim().max(200),
+  email: z.string().trim().email().max(254),
   category: jobCategorySchema,
   confidence: z.number().min(0).max(1),
-  cvFilename: z.string().min(1),
-  subject: z.string().min(1),
-  body: z.string().min(1),
+  cvFilename: z.string().min(1).max(200),
+  subject: z
+    .string()
+    .trim()
+    .min(1)
+    .max(200)
+    .refine((value) => !/[\r\n]/.test(value), "El asunto no puede contener saltos de línea"),
+  body: z.string().min(1).max(20_000),
 })
 
 export type SendApplicationPayload = z.infer<typeof sendApplicationSchema>

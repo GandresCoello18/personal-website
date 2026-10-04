@@ -12,6 +12,7 @@ export function ContactForm() {
     email: "",
     asunto: "",
     mensaje: "",
+    website: "",
   })
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -120,7 +121,7 @@ export function ContactForm() {
       }
 
       trackEvent(UmamiEvents.contactFormSuccess)
-      setFormData({ nombre: "", email: "", asunto: "", mensaje: "" })
+      setFormData({ nombre: "", email: "", asunto: "", mensaje: "", website: "" })
       setSubmitted(true)
 
       setTimeout(() => setSubmitted(false), 5000)
@@ -151,6 +152,18 @@ export function ContactForm() {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
+        <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+          <label htmlFor="website">Sitio web</label>
+          <input
+            id="website"
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={formData.website}
+            onChange={handleChange}
+          />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <input
             type="text"

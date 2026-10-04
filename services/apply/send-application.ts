@@ -1,41 +1,21 @@
-import { CV_FILES } from "@/lib/apply/cv"
-import { applyProfile } from "@/lib/apply/profile"
+import { buildJobApplicationMail } from "@/lib/apply/application-mail"
 import { readCvBuffer } from "@/lib/apply/cv-text"
 import type { SendApplicationPayload } from "@/lib/apply/types"
-import { getApplicationEmailTemplate } from "@/app/api/apply/templates/application-email"
 import { createMailTransporter, getMailFrom } from "@/services/mail/transporter"
 
-function assertAllowedCv(filename: string) {
-  const allowed = Object.values(CV_FILES)
-  if (!allowed.includes(filename as (typeof allowed)[number])) {
-    throw new Error("CV no permitido")
-  }
-}
-
 export async function sendJobApplication(payload: SendApplicationPayload) {
-  assertAllowedCv(payload.cvFilename)
-
-  const pdfBuffer = readCvBuffer(payload.cvFilename)
-  const html = getApplicationEmailTemplate({
-    body: payload.body,
-    name: applyProfile.name,
-    phone: applyProfile.phone,
-    linkedin: applyProfile.linkedin,
-    github: applyProfile.github,
-    portfolio: applyProfile.portfolio,
-    title: applyProfile.title,
-  })
-
+  const mail = buildJobApplicationMail(payload)
+  const pdfBuffer = readCvBuffer(mail.cvFilename)
   const transporter = createMailTransporter()
 
   await transporter.sendMail({
     from: getMailFrom(),
-    to: payload.email,
-    subject: payload.subject,
-    html,
+    to: mail.to,
+    subject: mail.subject,
+    html: mail.html,
     attachments: [
       {
-        filename: payload.cvFilename,
+        filename: mail.cvFilename,
         content: pdfBuffer,
         contentType: "application/pdf",
       },

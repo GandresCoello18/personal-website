@@ -3,6 +3,9 @@ import type { NextRequest } from "next/server"
 import { requestHasApplyUnlock } from "@/lib/apply/auth"
 import { isValidCvKey } from "@/lib/apply/cv"
 import { jobCategorySchema } from "@/lib/apply/types"
+import { tooManyRequests } from "@/lib/http/rate-limit-response"
+import { getClientIp } from "@/lib/security/client-ip"
+import { applyAiLimiter } from "@/lib/security/limiters"
 import { analyzeJobPosting } from "@/services/apply/analyze"
 
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024
@@ -12,6 +15,11 @@ export async function POST(request: NextRequest) {
   try {
     if (!requestHasApplyUnlock(request)) {
       return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+    }
+
+    const limited = applyAiLimiter.check(getClientIp(request))
+    if (!limited.ok) {
+      return tooManyRequests(limited)
     }
 
     const form = await request.formData()

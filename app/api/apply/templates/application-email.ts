@@ -1,10 +1,4 @@
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-}
+import { escapeHtml } from "../../../../lib/security/html.ts"
 
 function formatBody(body: string): string {
   return escapeHtml(body).replace(/\n/g, "<br />")

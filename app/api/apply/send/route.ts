@@ -2,12 +2,20 @@ import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 import { requestHasApplyUnlock } from "@/lib/apply/auth"
 import { sendApplicationSchema } from "@/lib/apply/types"
+import { tooManyRequests } from "@/lib/http/rate-limit-response"
+import { getClientIp } from "@/lib/security/client-ip"
+import { applySendLimiter } from "@/lib/security/limiters"
 import { sendJobApplication } from "@/services/apply/send-application"
 
 export async function POST(request: NextRequest) {
   try {
     if (!requestHasApplyUnlock(request)) {
       return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+    }
+
+    const limited = applySendLimiter.check(getClientIp(request))
+    if (!limited.ok) {
+      return tooManyRequests(limited, "Demasiados envíos. Intenta más tarde.")
     }
 
     const body = await request.json()
