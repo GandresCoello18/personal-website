@@ -7,5 +7,7 @@ public
 content
 .next
 .cursor/skills
+.cursor/agents
+.cursor/hooks.json
 docs/radar-linkedin.md
 next-env.d.ts
