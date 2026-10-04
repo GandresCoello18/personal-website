@@ -1,5 +1,7 @@
 # LinkedIn Job Discovery Monitor — Implementation Plan
 
+> **Reemplazado** (4 oct 2026): este plan quedó superseded por [`docs/radar-linkedin.md`](./radar-linkedin.md). Se conserva como referencia histórica; no implementar desde aquí.
+>
 > **Status:** Planning only. No code in this document.  
 > **Constraint:** Do not redesign the existing `/apply` application/email module. Reuse it.
 
