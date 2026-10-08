@@ -68,6 +68,8 @@ export function ApplyApp() {
         onRecruiterProfileTextChange={flow.setRecruiterProfileText}
         imageFile={flow.imageFile}
         onImageChange={flow.setImageFile}
+        jobUrl={flow.jobUrl}
+        onJobUrlChange={flow.setJobUrl}
         analyzing={flow.analyzing}
         error={flow.analyzeError || flow.result?.error || ""}
         onAnalyze={flow.analyze}
@@ -77,6 +79,11 @@ export function ApplyApp() {
         onCategoryChange={flow.setCategoryOverride}
         manualCv={flow.manualCv}
         onManualCvChange={flow.setManualCv}
+        canRegister={flow.canRegister}
+        registering={flow.registering}
+        registerError={flow.registerError}
+        registerSuccess={flow.registerSuccess}
+        onRegister={flow.register}
       />
 
       {flow.result?.match ? <MatchPanel match={flow.result.match} /> : null}
@@ -102,6 +109,8 @@ export function ApplyApp() {
           sendError={flow.sendError}
           sendSuccess={flow.sendSuccess}
           onSend={flow.send}
+          history={flow.history}
+          historyLoading={flow.historyLoading}
         />
       ) : null}
 

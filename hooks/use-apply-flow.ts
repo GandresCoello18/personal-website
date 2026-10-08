@@ -1,9 +1,10 @@
 "use client"
 
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import type { AnalyzeResult } from "@/services/apply/result"
 import type { CvKey } from "@/lib/apply/cv"
 import { CV_FILES } from "@/lib/apply/cv"
+import type { ApplyCheckResult } from "@/lib/radar/types"
 import type { JobCategory, JobExtract, EmailDraft } from "@/lib/apply/types"
 
 export type SourceMode = "text" | "image"
@@ -41,9 +42,16 @@ export function useApplyFlow() {
   const [manualCv, setManualCv] = useState<CvKey | "">("")
 
   const [preview, setPreview] = useState<PreviewState | null>(null)
+  const [jobUrl, setJobUrl] = useState("")
+  const [history, setHistory] = useState<ApplyCheckResult | null>(null)
+  const [historyLoading, setHistoryLoading] = useState(false)
   const [sending, setSending] = useState(false)
   const [sendError, setSendError] = useState("")
   const [sendSuccess, setSendSuccess] = useState(false)
+  const [registering, setRegistering] = useState(false)
+  const [registerError, setRegisterError] = useState("")
+  const [registerSuccess, setRegisterSuccess] = useState(false)
+  const sendingLock = useRef(false)
 
   useEffect(() => {
     let cancelled = false
@@ -109,6 +117,9 @@ export function useApplyFlow() {
     setDraftError("")
     setSendSuccess(false)
     setSendError("")
+    setRegisterSuccess(false)
+    setRegisterError("")
+    setHistory(null)
     try {
       const form = new FormData()
       form.set("mode", mode)
@@ -225,8 +236,87 @@ export function useApplyFlow() {
     return false
   }, [result, analyzing, drafting, preview, categoryOverride, manualCv])
 
+  const canRegister = useMemo(() => {
+    if (registering || registerSuccess) return false
+    if (jobUrl.trim()) return true
+    if (preview?.company.trim() && preview?.position.trim()) return true
+    return false
+  }, [jobUrl, preview, registering, registerSuccess])
+
+  const checkHistory = useCallback(async () => {
+    const company = preview?.company ?? ""
+    const position = preview?.position ?? ""
+    const email = preview?.email ?? ""
+    if (!jobUrl.trim() && !company.trim() && !position.trim() && !email.trim()) {
+      setHistory(null)
+      return
+    }
+
+    setHistoryLoading(true)
+    try {
+      const res = await fetch("/api/apply/check", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          company,
+          position,
+          email: email || undefined,
+          url: jobUrl.trim() || undefined,
+        }),
+      })
+      const data = (await res.json()) as ApplyCheckResult
+      setHistory({
+        status: data.status ?? "unknown",
+        match: data.match ?? null,
+        record: data.record ?? null,
+        softWarnings: data.softWarnings ?? [],
+        identityWeak: Boolean(data.identityWeak),
+        historyUnavailable: Boolean(data.historyUnavailable) || !res.ok,
+      })
+    } catch {
+      setHistory({
+        status: "unknown",
+        match: null,
+        record: null,
+        softWarnings: [],
+        identityWeak: true,
+        historyUnavailable: true,
+      })
+    } finally {
+      setHistoryLoading(false)
+    }
+  }, [jobUrl, preview?.company, preview?.email, preview?.position])
+
+  useEffect(() => {
+    if (!unlocked) return
+    const handle = window.setTimeout(() => {
+      void checkHistory()
+    }, 400)
+    return () => window.clearTimeout(handle)
+  }, [unlocked, checkHistory])
+
+  const confirmIfNeeded = useCallback(() => {
+    if (history?.historyUnavailable) {
+      return window.confirm("El historial no está disponible. ¿Quieres continuar de todos modos?")
+    }
+    if (history?.status === "applied" && history.record) {
+      const when = history.record.appliedAt
+      return window.confirm(
+        `Ya hay un registro de esta vacante (${when}). ¿Continuar de todos modos?`,
+      )
+    }
+    if (history?.status === "in_progress") {
+      return window.confirm("Hay otro envío en curso. ¿Reintentar ahora?")
+    }
+    return true
+  }, [history])
+
   const send = useCallback(async () => {
     if (!preview || !canSend) return
+    if (sendingLock.current || sending) return
+    if (!confirmIfNeeded()) return
+
+    sendingLock.current = true
     setSending(true)
     setSendError("")
     setSendSuccess(false)
@@ -243,29 +333,75 @@ export function useApplyFlow() {
           cvFilename: preview.cvFilename,
           subject: preview.subject,
           body: preview.body,
+          url: jobUrl.trim() || undefined,
+          confirmDuplicate: history?.status === "applied" || Boolean(history?.historyUnavailable),
         }),
       })
       const data = await res.json()
       if (!res.ok) {
         setSendError(data.error || "Error al enviar")
+        if (data.record || data.code === "history_unavailable") {
+          void checkHistory()
+        }
         return
       }
       setSendSuccess(true)
+      void checkHistory()
     } catch {
       setSendError("Error de red al enviar")
     } finally {
+      sendingLock.current = false
       setSending(false)
     }
-  }, [preview, canSend])
+  }, [preview, canSend, sending, confirmIfNeeded, jobUrl, history, checkHistory])
+
+  const register = useCallback(async () => {
+    if (!canRegister || registering) return
+    const ok = window.confirm(
+      "¿Registrar esta vacante como ya aplicada, sin enviar correo? Úsalo si aplicaste en LinkedIn, Easy Apply u otro ATS.",
+    )
+    if (!ok) return
+    if (!confirmIfNeeded()) return
+
+    setRegistering(true)
+    setRegisterError("")
+    setRegisterSuccess(false)
+    try {
+      const res = await fetch("/api/apply/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          company: preview?.company ?? "",
+          position: preview?.position ?? "",
+          email: preview?.email || undefined,
+          url: jobUrl.trim() || undefined,
+          confirmDuplicate: history?.status === "applied",
+        }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setRegisterError(data.error || "Error al registrar")
+        return
+      }
+      setRegisterSuccess(true)
+      void checkHistory()
+    } catch {
+      setRegisterError("Error de red al registrar")
+    } finally {
+      setRegistering(false)
+    }
+  }, [canRegister, registering, confirmIfNeeded, preview, jobUrl, history, checkHistory])
 
   const clear = useCallback(() => {
     const hasContent =
       Boolean(text.trim()) ||
       Boolean(recruiterProfileText.trim()) ||
       Boolean(imageFile) ||
+      Boolean(jobUrl.trim()) ||
       Boolean(result) ||
       Boolean(preview) ||
-      Boolean(sendSuccess)
+      Boolean(sendSuccess) ||
+      Boolean(registerSuccess)
 
     if (hasContent && typeof window !== "undefined") {
       const ok = window.confirm(
@@ -278,6 +414,8 @@ export function useApplyFlow() {
     setText("")
     setRecruiterProfileText("")
     setImageFile(null)
+    setJobUrl("")
+    setHistory(null)
     setAnalyzing(false)
     setDrafting(false)
     setAnalyzeError("")
@@ -289,7 +427,10 @@ export function useApplyFlow() {
     setSending(false)
     setSendError("")
     setSendSuccess(false)
-  }, [text, recruiterProfileText, imageFile, result, preview, sendSuccess])
+    setRegistering(false)
+    setRegisterError("")
+    setRegisterSuccess(false)
+  }, [text, recruiterProfileText, imageFile, jobUrl, result, preview, sendSuccess, registerSuccess])
 
   return {
     unlocked,
@@ -307,6 +448,8 @@ export function useApplyFlow() {
     setRecruiterProfileText,
     imageFile,
     setImageFile,
+    jobUrl,
+    setJobUrl,
     analyzing,
     drafting,
     analyzeError,
@@ -321,11 +464,18 @@ export function useApplyFlow() {
     setManualCv,
     preview,
     setPreview,
+    history,
+    historyLoading,
     canSend,
     sending,
     sendError,
     sendSuccess,
     send,
+    canRegister,
+    registering,
+    registerError,
+    registerSuccess,
+    register,
     clear,
   }
 }

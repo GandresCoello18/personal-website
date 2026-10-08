@@ -20,6 +20,11 @@ yarn-error.log*
 .env*
 !.env.example
 
+# Radar local (Fase 3): secretos y perfil de Chrome dedicados
+scripts/radar/.env.local
+scripts/radar/**/profile/
+scripts/radar/debug/
+
 # vercel
 .vercel
 

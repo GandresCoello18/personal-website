@@ -1,9 +1,11 @@
 "use client"
 
-import { Loader2 } from "lucide-react"
+import { AlertTriangle, History, Loader2 } from "lucide-react"
 import type { PreviewState } from "@/hooks/use-apply-flow"
-import type { JobCategory } from "@/lib/apply/types"
 import { CV_FILES } from "@/lib/apply/cv"
+import { formatAppliedBanner, formatCompanyWarning, formatEmailWarning } from "@/lib/radar/dates"
+import type { ApplyCheckResult } from "@/lib/radar/types"
+import type { JobCategory } from "@/lib/apply/types"
 
 type PreviewPanelProps = {
   preview: PreviewState
@@ -19,6 +21,8 @@ type PreviewPanelProps = {
   sendError: string
   sendSuccess: boolean
   onSend: () => void
+  history: ApplyCheckResult | null
+  historyLoading: boolean
 }
 
 export function PreviewPanel({
@@ -35,6 +39,8 @@ export function PreviewPanel({
   sendError,
   sendSuccess,
   onSend,
+  history,
+  historyLoading,
 }: PreviewPanelProps) {
   const patch = <K extends keyof PreviewState>(key: K, value: PreviewState[K]) => {
     onChange({ ...preview, [key]: value })
@@ -50,6 +56,68 @@ export function PreviewPanel({
           Confirma los datos, genera el correo (2ª llamada a Gemini) y revisa antes de enviar.
         </p>
       </div>
+
+      {historyLoading ? (
+        <p className="flex items-center gap-2 text-sm text-muted-foreground">
+          <Loader2 className="size-4 animate-spin" />
+          Consultando historial…
+        </p>
+      ) : null}
+
+      {history?.historyUnavailable ? (
+        <div
+          role="status"
+          className="flex gap-3 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-200"
+        >
+          <AlertTriangle className="mt-0.5 size-4 shrink-0" aria-hidden />
+          <div className="space-y-1">
+            <p className="font-medium">Historial no disponible</p>
+            <p>
+              No se pudo consultar Redis. Puedes enviar, pero confirma que no hayas aplicado ya a
+              esta vacante.
+            </p>
+          </div>
+        </div>
+      ) : null}
+
+      {history?.status === "applied" && history.record ? (
+        <div
+          role="status"
+          className="flex gap-3 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-200"
+        >
+          <History className="mt-0.5 size-4 shrink-0" aria-hidden />
+          <div className="space-y-1">
+            <p className="font-medium">Ya hay una postulación registrada</p>
+            <p>{formatAppliedBanner(history.record)}</p>
+            <p>El servidor bloqueará un segundo envío salvo que confirmes el duplicado.</p>
+          </div>
+        </div>
+      ) : null}
+
+      {history?.status === "in_progress" ? (
+        <div
+          role="status"
+          className="flex gap-3 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-200"
+        >
+          <AlertTriangle className="mt-0.5 size-4 shrink-0" aria-hidden />
+          <p>Hay otro envío en curso para esta vacante. Espera un momento antes de reintentar.</p>
+        </div>
+      ) : null}
+
+      {history && !history.historyUnavailable
+        ? history.softWarnings.map((warning) => (
+            <div
+              key={`${warning.kind}-${warning.appliedAt}`}
+              role="status"
+              className="rounded-lg border border-border bg-muted/40 p-4 text-sm text-muted-foreground"
+            >
+              {warning.kind === "company"
+                ? formatCompanyWarning(warning)
+                : formatEmailWarning(warning)}
+              . No bloquea el envío.
+            </div>
+          ))
+        : null}
 
       {lowMatch ? (
         <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-200">
@@ -184,6 +252,8 @@ export function PreviewPanel({
               <Loader2 className="size-4 animate-spin" />
               Enviando…
             </span>
+          ) : history?.status === "applied" || history?.historyUnavailable ? (
+            "Enviar de todos modos"
           ) : (
             "Enviar"
           )}

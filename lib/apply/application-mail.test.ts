@@ -43,6 +43,20 @@ describe("sendApplicationSchema", () => {
     const parsed = sendApplicationSchema.safeParse({ ...valid, email: "not-an-email" })
     assert.equal(parsed.success, false)
   })
+
+  it("accepts optional url, findingId and confirmDuplicate", () => {
+    const parsed = sendApplicationSchema.safeParse({
+      ...valid,
+      url: "https://www.linkedin.com/jobs/view/4012345678/",
+      findingId: "f_01HZY8K3QG",
+      confirmDuplicate: true,
+    })
+    assert.equal(parsed.success, true)
+    if (parsed.success) {
+      assert.equal(parsed.data.url, "https://www.linkedin.com/jobs/view/4012345678/")
+      assert.equal(parsed.data.confirmDuplicate, true)
+    }
+  })
 })
 
 describe("buildJobApplicationMail", () => {

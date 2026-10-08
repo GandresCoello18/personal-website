@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 import { requestHasApplyUnlock } from "@/lib/apply/auth"
-import { sendApplicationSchema } from "@/lib/apply/types"
-import { dedupeFailureResponse } from "@/lib/http/dedupe-response"
+import { applyRegisterSchema } from "@/lib/radar/types"
 import { tooManyRequests } from "@/lib/http/rate-limit-response"
 import { getClientIp } from "@/lib/security/client-ip"
 import { applySendLimiter } from "@/lib/security/limiters"
-import { sendApplicationWithDedupe } from "@/services/radar/approve"
+import { dedupeFailureResponse } from "@/lib/http/dedupe-response"
+import { registerManualApplication } from "@/services/radar/approve"
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,32 +16,32 @@ export async function POST(request: NextRequest) {
 
     const limited = applySendLimiter.check(getClientIp(request))
     if (!limited.ok) {
-      return tooManyRequests(limited, "Demasiados envíos. Intenta más tarde.")
+      return tooManyRequests(limited, "Demasiados registros. Intenta más tarde.")
     }
 
     const body = await request.json()
-    const parsed = sendApplicationSchema.safeParse(body)
+    const parsed = applyRegisterSchema.safeParse(body)
     if (!parsed.success) {
       return NextResponse.json(
-        { error: "Datos de envío inválidos", details: parsed.error.flatten() },
+        { error: "Datos de registro inválidos", details: parsed.error.flatten() },
         { status: 400 },
       )
     }
 
-    const result = await sendApplicationWithDedupe(parsed.data)
+    const result = await registerManualApplication(parsed.data)
     if (!result.ok) return dedupeFailureResponse(result)
 
     return NextResponse.json({
       success: true,
-      message: "Postulación enviada",
+      message: "Vacante registrada como aplicada",
       record: result.record,
     })
   } catch (error) {
-    console.error("[apply/send]", error)
-    const message = error instanceof Error ? error.message : "Error al enviar"
+    console.error("[apply/register]", error)
+    const message = error instanceof Error ? error.message : "Error al registrar"
     return NextResponse.json(
       {
-        error: "No se pudo enviar la postulación.",
+        error: "No se pudo registrar la postulación.",
         details: process.env.NODE_ENV === "development" ? message : undefined,
       },
       { status: 500 },
