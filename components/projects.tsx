@@ -1,9 +1,18 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { ExternalLink, Github, Lock, Code2 } from "lucide-react"
 import { TrackedAnchor } from "@/components/tracked-link"
 import { trackEvent, UmamiEvents } from "@/lib/umami"
+import { cn } from "@/lib/utils"
+import {
+  getProjectImageAlt,
+  getProjectImageFit,
+  getProjectImagePosition,
+  getProjectImageSizes,
+  shouldEagerLoadProjectImage,
+  visibleProjectTags,
+} from "@/lib/project-media"
 
 interface Project {
   id: string
@@ -28,11 +37,11 @@ const projects: Project[] = [
     description:
       "Meniuz es una aplicación móvil y web que permite a los usuarios encontrar y descubrir la castronomia de las dintintas ciudades del Ecuador, entran categorias como: restaurantes, cafeterias, heladerias y licorerias.",
     images: [
+      "/proyectos/meniuz/landing.png",
+      "/proyectos/meniuz/list-business-app.png",
+      "/proyectos/meniuz/meniuz-list-cities.png",
       "/proyectos/meniuz/apps-native.jpg",
       "/proyectos/meniuz/AWS-architecture-diagram-showing-the-final-cloud-image-1.png",
-      "/proyectos/meniuz/list-business-app.png",
-      "/proyectos/meniuz/landing.png",
-      "/proyectos/meniuz/meniuz-list-cities.png",
     ],
     tags: [
       "Next.js",
@@ -269,8 +278,8 @@ const projects: Project[] = [
     description:
       "Dashboard interactivo para el seguimiento de partidos de padel, permite a los usuarios ver el historial de partidos, estadisticas de los jugadores, y mas, ademas de poder crear partidos jugadores y coach.",
     images: [
-      "/proyectos/padel-track/videos-cuestionario.jpeg",
       "/proyectos/padel-track/padeltrack-public.png",
+      "/proyectos/padel-track/videos-cuestionario.jpeg",
       "/proyectos/padel-track/unnamed (1).webp",
       "/proyectos/padel-track/unnamed (2).webp",
       "/proyectos/padel-track/unnamed (3).webp",
@@ -320,180 +329,185 @@ export function Projects() {
   }
 
   return (
-    <section id="projects" className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-background">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center space-y-4 mb-16">
+    <section id="projects" className="bg-background px-4 py-20 sm:px-6 md:py-32 lg:px-8">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-16 space-y-4 text-center">
           <h2 className="section-title">Proyectos Destacados</h2>
-          <p className="section-subtitle max-w-2xl mx-auto">
+          <p className="section-subtitle mx-auto max-w-2xl">
             Selección de proyectos en los que implementé soluciones innovadoras
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {featuredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} featured />
+        <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+          {featuredProjects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} featured projectIndex={index} />
           ))}
         </div>
 
-        {!showAll && otherProjects.length && (
-          <div className="text-center mt-16">
-            <button onClick={handleShowAll} className="btn-primary inline-flex items-center gap-2">
+        {!showAll && otherProjects.length > 0 ? (
+          <div className="mt-16 text-center">
+            <button
+              type="button"
+              onClick={handleShowAll}
+              className="btn-primary inline-flex min-h-11 items-center gap-2"
+            >
               Ver Todos los Proyectos
-              <Code2 size={20} />
+              <Code2 size={20} aria-hidden />
             </button>
           </div>
-        )}
+        ) : null}
 
-        {showAll && otherProjects.length && (
-          <div data-additional-projects className="mt-16 space-y-8">
-            <div className="text-center mb-12">
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+        {showAll && otherProjects.length > 0 ? (
+          <div data-additional-projects className="mt-16">
+            <div className="mb-12 text-center">
+              <h3 className="mb-4 text-2xl font-bold text-foreground md:text-3xl">
                 Otros Proyectos
               </h3>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
+              <p className="mx-auto max-w-2xl text-muted-foreground">
                 Más proyectos en los que he trabajado
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 space-y-4">
-              {otherProjects.map((project) => (
-                <div key={project.id} className="max-w-4xl mx-auto">
-                  <ProjectCard project={project} />
-                </div>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+              {otherProjects.map((project, index) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  projectIndex={featuredProjects.length + index}
+                />
               ))}
             </div>
           </div>
-        )}
+        ) : null}
       </div>
     </section>
   )
 }
 
-function ProjectCard({ project, featured }: { project: Project; featured?: boolean }) {
+function ProjectCard({
+  project,
+  featured = false,
+  projectIndex,
+}: {
+  project: Project
+  featured?: boolean
+  projectIndex: number
+}) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [isTransitioning, setIsTransitioning] = useState(false)
-
-  const images = project.images && project.images.length > 0 ? project.images : ["/placeholder.svg"]
-
-  useEffect(() => {
-    if (images.length <= 1) return
-
-    // Pre-cargar todas las imágenes
-    images.forEach((image) => {
-      const img = new Image()
-      img.src = image
-    })
-
-    const interval = setInterval(() => {
-      setIsTransitioning(true)
-
-      setTimeout(() => {
-        setCurrentImageIndex((prev) => (prev + 1) % images.length)
-        setTimeout(() => {
-          setIsTransitioning(false)
-        }, 50)
-      }, 400)
-    }, 3000)
-
-    return () => clearInterval(interval)
-  }, [images])
+  const images = project.images.length > 0 ? project.images : ["/placeholder.svg"]
+  const currentSrc = images[currentImageIndex] ?? images[0]
+  const fit = getProjectImageFit(currentSrc)
+  const position = getProjectImagePosition(currentSrc)
+  const { shown, extra } = visibleProjectTags(project.tags)
+  const eager = shouldEagerLoadProjectImage(projectIndex, currentImageIndex)
 
   return (
-    <div className="card-elevated overflow-hidden group hover:scale-105 transition-all duration-300 flex flex-col h-full">
-      <div className="relative h-48 md:h-64 overflow-hidden bg-muted">
-        <div className="relative w-full h-full">
-          {images.map((image, index) => {
-            const isActive = index === currentImageIndex
-            const isNext = index === (currentImageIndex + 1) % images.length
+    <article className="card-elevated flex h-full flex-col overflow-hidden motion-safe:transition-shadow">
+      <div className="relative aspect-[16/10] overflow-hidden bg-muted">
+        <img
+          src={currentSrc}
+          alt={getProjectImageAlt(project.title, currentSrc, currentImageIndex)}
+          width={1600}
+          height={1000}
+          sizes={getProjectImageSizes(featured)}
+          loading={eager ? "eager" : "lazy"}
+          decoding="async"
+          fetchPriority={eager ? "high" : "auto"}
+          className={cn(
+            "absolute inset-0 size-full",
+            fit === "contain" ? "object-contain p-4" : "object-cover",
+            position === "top" ? "object-top" : "object-center",
+          )}
+        />
 
-            return (
-              <img
-                key={`${project.id}-${index}`}
-                src={image || "/placeholder.svg"}
-                alt={`${project.title} - Imagen ${index + 1}`}
-                className={`absolute inset-0 w-full h-full object-cover ${
-                  isActive
-                    ? isTransitioning
-                      ? "opacity-100 blur-md scale-105"
-                      : "opacity-100 blur-0 scale-100"
-                    : isNext && isTransitioning
-                      ? "opacity-0 blur-md scale-105"
-                      : "opacity-0 blur-0 scale-100"
-                } group-hover:scale-110`}
-                style={{
-                  transition:
-                    "opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), filter 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1)",
-                  zIndex: isActive ? 10 : isNext ? 5 : 1,
-                }}
+        {images.length > 1 ? (
+          <div className="absolute inset-x-0 bottom-3 z-10 flex justify-center gap-1.5">
+            {images.map((image, index) => (
+              <button
+                key={`${project.id}-dot-${image}`}
+                type="button"
+                aria-label={`Ver captura ${index + 1} de ${project.title}`}
+                aria-current={index === currentImageIndex}
+                onClick={() => setCurrentImageIndex(index)}
+                className={cn(
+                  "size-3 rounded-full border border-background/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                  index === currentImageIndex
+                    ? "bg-primary"
+                    : "bg-background/70 hover:bg-background",
+                )}
               />
-            )
-          })}
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            ))}
+          </div>
+        ) : null}
       </div>
 
-      <div className="p-6 flex-1 flex flex-col">
-        <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground line-clamp-2">
+      <div className="flex flex-1 flex-col p-6 md:p-8">
+        <h3 className="text-lg font-bold text-balance text-foreground md:text-xl">
           {project.title}
         </h3>
-        <p className="text-muted-foreground text-sm md:text-base mb-4 line-clamp-3 flex-1">
+        <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-muted-foreground md:text-base">
           {project.description}
         </p>
 
-        {project.stats && (
-          <div className="grid grid-cols-3 gap-2 mb-4 pb-4 border-b border-border">
-            {project.stats.map((stat, idx) => (
-              <div key={idx} className="text-center">
-                <p className="text-sm font-bold text-accent">{stat.value}</p>
-                <p className="text-xs text-muted-foreground">{stat.label}</p>
+        {project.stats ? (
+          <dl className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm">
+            {project.stats.map((stat) => (
+              <div key={stat.label} className="flex items-baseline gap-1.5">
+                <dt className="text-muted-foreground">{stat.label}</dt>
+                <dd className="font-semibold text-foreground">{stat.value}</dd>
               </div>
             ))}
-          </div>
-        )}
+          </dl>
+        ) : null}
 
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map((tag) => (
+        <div className="mt-4 flex flex-wrap gap-2">
+          {shown.map((tag) => (
             <span
               key={tag}
-              className="px-2 py-1 bg-accent/10 text-accent text-xs rounded font-medium"
+              className="rounded bg-accent/10 px-2 py-1 text-xs font-medium text-accent"
             >
               {tag}
             </span>
           ))}
+          {extra > 0 ? (
+            <span className="rounded bg-muted px-2 py-1 text-xs font-medium text-muted-foreground">
+              +{extra}
+            </span>
+          ) : null}
         </div>
 
-        <div className="flex gap-3 pt-4 border-t border-border">
+        <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-border pt-4">
           <TrackedAnchor
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
             event={UmamiEvents.projectDemo}
             eventData={{ project: project.title }}
-            className="flex-1 flex items-center justify-center gap-2 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
-            Ver Demo
-            <ExternalLink size={16} />
+            Ver proyecto
+            <ExternalLink size={16} aria-hidden />
           </TrackedAnchor>
-          {project.github && (
+          {project.github ? (
             <TrackedAnchor
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
               event={UmamiEvents.projectGithub}
               eventData={{ project: project.title }}
-              className="flex-1 flex items-center justify-center gap-2 py-2 border border-border rounded-lg hover:bg-muted transition-colors text-sm font-medium"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-border px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               Código
-              <Github size={16} />
+              <Github size={16} aria-hidden />
             </TrackedAnchor>
-          )}
-          {project.isPrivate && (
-            <span className="flex-1 flex items-center justify-center gap-2 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium">
+          ) : null}
+          {project.isPrivate ? (
+            <span className="inline-flex min-h-11 items-center gap-2 px-2 text-sm text-muted-foreground">
+              <Lock size={16} aria-hidden />
               Privado
-              <Lock size={16} />
             </span>
-          )}
+          ) : null}
         </div>
       </div>
-    </div>
+    </article>
   )
 }
