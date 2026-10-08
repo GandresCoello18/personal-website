@@ -13,6 +13,7 @@ import { PaymentMethods } from "@/components/payment-methods"
 import { Footer } from "@/components/footer"
 import { ClassesGallery } from "@/components/classes-gallery"
 import { getWebSiteJsonLd } from "@/lib/json-ld"
+import { MAIN_CONTENT_ID } from "@/lib/nav"
 
 export default function Home() {
   const webSiteJsonLd = getWebSiteJsonLd()
@@ -23,8 +24,8 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
       />
-      <main className="min-h-screen bg-background">
-        <Header />
+      <Header />
+      <main id={MAIN_CONTENT_ID} className="min-h-screen bg-background">
         <Hero />
         <Experience />
         <Projects />
@@ -37,8 +38,8 @@ export default function Home() {
         <Testimonials />
         <PaymentMethods />
         <CTA />
-        <Footer />
       </main>
+      <Footer />
     </>
   )
 }

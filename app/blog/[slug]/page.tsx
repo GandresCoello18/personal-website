@@ -101,7 +101,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <main className="py-12 sm:py-16">
+      <main id="contenido-principal" className="py-12 sm:py-16">
         <BlogLayout meta={meta} headings={headings}>
           {content}
         </BlogLayout>
