@@ -25,7 +25,10 @@ export default function BlogIndexPage() {
   const posts = getAllPosts()
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <main
+      id="contenido-principal"
+      className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
+    >
       <header className="mb-12 max-w-2xl">
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Blog</h1>
         <p className="mt-4 text-lg text-muted-foreground">
