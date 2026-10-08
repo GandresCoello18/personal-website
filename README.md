@@ -39,19 +39,22 @@ Este sitio web sirve como:
 
 Copia `.env.example` a `.env.local`. En Vercel (Production y Preview) hay que definir al menos:
 
-| Variable               | Obligatoria        | Cómo generarla / de dónde sale                                                             |
-| ---------------------- | ------------------ | ------------------------------------------------------------------------------------------ |
-| `APPLY_ACCESS_SECRET`  | Sí                 | Clave que escribes en `/apply`. `openssl rand -base64 32`                                  |
-| `APPLY_SESSION_SECRET` | Sí (nueva)         | Firma HMAC de la cookie de sesión. **Distinta** de la de acceso. `openssl rand -base64 32` |
-| `GMAIL_USER`           | Sí                 | Cuenta Gmail que envía                                                                     |
-| `GMAIL_APP_PASSWORD`   | Sí                 | App Password de Google                                                                     |
-| `GMAIL_RECIPIENT`      | Sí                 | Buzón que recibe el formulario de contacto                                                 |
-| `GEMINI_API_KEY`       | Sí (para `/apply`) | Google AI Studio                                                                           |
-| `NEXT_PUBLIC_SITE_URL` | Recomendada        | `https://andrescoellog.com`                                                                |
+| Variable                                              | Obligatoria        | Cómo generarla / de dónde sale                                                                                         |
+| ----------------------------------------------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| `APPLY_ACCESS_SECRET`                                 | Sí                 | Clave que escribes en `/apply`. `openssl rand -base64 32`                                                              |
+| `APPLY_SESSION_SECRET`                                | Sí (nueva)         | Firma HMAC de la cookie de sesión. **Distinta** de la de acceso. `openssl rand -base64 32`                             |
+| `GMAIL_USER`                                          | Sí                 | Cuenta Gmail que envía                                                                                                 |
+| `GMAIL_APP_PASSWORD`                                  | Sí                 | App Password de Google                                                                                                 |
+| `GMAIL_RECIPIENT`                                     | Sí                 | Buzón que recibe el formulario de contacto                                                                             |
+| `GEMINI_API_KEY`                                      | Sí (para `/apply`) | Google AI Studio                                                                                                       |
+| `NEXT_PUBLIC_SITE_URL`                                | Recomendada        | `https://andrescoellog.com`                                                                                            |
+| `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | Sí (historial)     | Redis de Upstash creado a mano. Sin ellas `/apply` avisa «historial no disponible» y pide confirmación antes de enviar |
+| `KV_REST_API_URL` / `KV_REST_API_TOKEN`               | Respaldo           | Solo si Vercel Marketplace las inyecta. El código mira **UPSTASH primero**                                             |
+| `RADAR_TIMEZONE`                                      | Opcional           | Por defecto `America/Guayaquil`                                                                                        |
 
 Sin `APPLY_SESSION_SECRET` el desbloqueo de `/apply` falla cerrado. Tras rotar ese secreto hay que volver a entrar con la clave de acceso (la cookie anterior deja de valer).
 
-El rate limit de contacto y de unlock es en memoria (best-effort en cada isolate de Vercel) hasta que exista Upstash Redis.
+El rate limit de contacto y de unlock sigue en memoria (best-effort por isolate). El historial de postulaciones usa Redis.
 
 ## Calidad
 

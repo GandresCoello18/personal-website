@@ -1,6 +1,6 @@
 # Radar de LinkedIn + historial de postulaciones: documento de diseño
 
-> **Estado:** diseño y documentación. **No hay código implementado** con este documento.
+> **Estado:** diseño y documentación. Fase 0 mergeada. Fase 1 (historial/dedupe en `/apply`) en implementación. **El radar local, la puntuación, los crons y `/radar` aún no existen.**
 > **Fecha:** 4 de octubre de 2026 (hora de Ecuador, UTC-5).
 > **Repositorio analizado:** [`GandresCoello18/personal-website`](https://github.com/GandresCoello18/personal-website), commit `c5df5b8` (10 sep 2026), en producción en `https://andrescoellog.com` (`andres-coello-goyes.vercel.app` redirige ahí con un 308).
 > **Relación con documentos existentes:** este diseño **reemplaza en parte** a `docs/linkedin-job-monitor-plan.md` (ver [§2.8](#28-documentación-existente-y-el-plan-previo)). Sigue el estilo de `UI-AUDIT.md` (en español, tablas por hallazgo, prioridades) y respeta `.cursor/rules/design-system.md` para cualquier UI nueva.
@@ -841,7 +841,8 @@ Dependencias nuevas: `@upstash/redis` (runtime). `playwright` y `tsx` (dev, solo
 
 | Variable | Nueva | Origen | Uso |
 |----------|-------|--------|-----|
-| `KV_REST_API_URL`, `KV_REST_API_TOKEN` | ✅ | Las crea **automáticamente** la integración de Upstash (`Redis.fromEnv()` las reconoce; en una configuración manual serían `UPSTASH_REDIS_REST_URL` y `UPSTASH_REDIS_REST_TOKEN`) | Redis |
+| `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` | ✅ | Redis de Upstash **creado a mano**. El código las lee **primero** | Redis (preferidas) |
+| `KV_REST_API_URL`, `KV_REST_API_TOKEN` | ✅ respaldo | Las inyecta la integración de Vercel Marketplace (`Redis.fromEnv()`). Solo se usan si faltan las `UPSTASH_*` | Redis (respaldo) |
 | `TELEGRAM_BOT_TOKEN` | ✅ | BotFather | Enviar mensajes |
 | `TELEGRAM_CHAT_ID` | ✅ | `getUpdates` (§5.3) | Destino y lista de chats permitidos |
 | `TELEGRAM_WEBHOOK_SECRET` | ✅ | Lo generas tú (`openssl rand -hex 32`) | Verificar el webhook |
@@ -879,7 +880,7 @@ Se añadirá un `.env.example` con todas las variables (sin valores).
 1. Vercel → tu proyecto → pestaña **Storage** (o **Marketplace**) → **Upstash** → **Upstash for Redis** → *Install / Create*.
 2. Elige si Vercel gestiona la cuenta de Upstash o si la conectas a una existente. Plan **Free**. Región: la más cercana a la región de tus funciones (por defecto Vercel usa `iad1`, Washington D. C., así que `us-east-1`).
 3. **Connect project** → `personal-website`, entornos Production (y Preview si quieres una base aparte para pruebas).
-4. Comprueba en Settings → Environment Variables que aparecen `KV_REST_API_URL` y `KV_REST_API_TOKEN`.
+4. Comprueba en Settings → Environment Variables las claves. Si creaste Redis **a mano** en Upstash, usa `UPSTASH_REDIS_REST_URL` y `UPSTASH_REDIS_REST_TOKEN`. Si lo instalaste desde el Marketplace de Vercel, aparecerán `KV_REST_API_URL` y `KV_REST_API_TOKEN`. El sitio acepta ambos pares (UPSTASH primero).
 5. En local: `vercel env pull .env.local` (necesita la Vercel CLI enlazada con `vercel link`).
 6. **Redeploy**, porque las variables nuevas solo se aplican en un deploy nuevo.
 
@@ -1049,7 +1050,7 @@ Cada fase deja algo funcionando y se puede desplegar sola. Convención para toda
 11. **Horario de resúmenes:** ¿diario a las 19:30 y semanal el domingo a las 20:00 (hora de Ecuador)?
 12. **Retención:** ¿hallazgos 90 días y postulaciones para siempre (o 365 días)?
 13. **Gemini:** ¿free tier o de pago? Con free tier conviene `RADAR_MAX_LLM_PER_RUN` bajo.
-14. **Si Redis falla:** ¿`/apply` debe bloquear el envío o permitirlo con un aviso?
+14. **Si Redis falla:** ¿`/apply` debe bloquear el envío o permitirlo con un aviso? **Default aplicado (Fase 1):** falla abierto con aviso «historial no disponible» y pide confirmación antes de enviar.
 15. **Seguridad:** ¿apruebas empezar por la Fase 0 (cookie firmada y formulario de contacto) antes del radar?
 16. **Contenido (§3):** ¿qué fechas y títulos son los correctos en C6 (DevLokos, Meniuz, MIMS, ISTB)? ¿Cómo quieres presentar Terraform (aprendiendo o con un proyecto)? ¿Qué título principal quieres usar en el sitio y en la firma de los correos (C1, C12)?
 

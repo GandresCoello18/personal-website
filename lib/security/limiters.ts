@@ -34,3 +34,10 @@ export const applySendLimiter = createMemoryRateLimiter({
   max: 8,
   backoffMs: 30 * 60 * 1000,
 })
+
+/** History checks from /apply after a valid session. */
+export const applyCheckLimiter = createMemoryRateLimiter({
+  windowMs: 15 * 60 * 1000,
+  max: 40,
+  backoffMs: 2 * 60 * 1000,
+})

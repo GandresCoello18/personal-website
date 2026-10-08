@@ -15,6 +15,8 @@ type SourceFormProps = {
   onRecruiterProfileTextChange: (value: string) => void
   imageFile: File | null
   onImageChange: (file: File | null) => void
+  jobUrl: string
+  onJobUrlChange: (value: string) => void
   analyzing: boolean
   error: string
   onAnalyze: () => void
@@ -24,6 +26,11 @@ type SourceFormProps = {
   onCategoryChange: (value: JobCategory | "") => void
   manualCv: CvKey | ""
   onManualCvChange: (value: CvKey | "") => void
+  canRegister: boolean
+  registering: boolean
+  registerError: string
+  registerSuccess: boolean
+  onRegister: () => void
 }
 
 export function SourceForm({
@@ -35,6 +42,8 @@ export function SourceForm({
   onRecruiterProfileTextChange,
   imageFile,
   onImageChange,
+  jobUrl,
+  onJobUrlChange,
   analyzing,
   error,
   onAnalyze,
@@ -44,14 +53,19 @@ export function SourceForm({
   onCategoryChange,
   manualCv,
   onManualCvChange,
+  canRegister,
+  registering,
+  registerError,
+  registerSuccess,
+  onRegister,
 }: SourceFormProps) {
   return (
     <section className="space-y-6 rounded-xl border border-border bg-card p-6 md:p-8">
       <div>
         <h2 className="text-lg font-bold text-foreground">1. Fuente</h2>
         <p className="text-sm text-muted-foreground">
-          Pega el texto de la vacante o sube una captura. Analizar = 1 llamada (sin redactar el
-          correo).
+          Pega el texto de la vacante o sube una captura. La URL sirve para el historial y para no
+          postular dos veces. Analizar = 1 llamada (sin redactar el correo).
         </p>
       </div>
 
@@ -99,6 +113,25 @@ export function SourceForm({
           ) : null}
         </div>
       )}
+
+      <label className="block space-y-2 text-sm">
+        <span className="font-medium text-foreground">
+          URL de la vacante <span className="font-normal text-muted-foreground">(opcional)</span>
+        </span>
+        <p className="text-xs text-muted-foreground">
+          LinkedIn o el ATS. Se normaliza para detectar si ya aplicaste, también si lo hiciste por
+          Telegram o a mano.
+        </p>
+        <input
+          type="url"
+          inputMode="url"
+          autoComplete="off"
+          value={jobUrl}
+          onChange={(e) => onJobUrlChange(e.target.value)}
+          placeholder="https://www.linkedin.com/jobs/view/4012345678/"
+          className="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+        />
+      </label>
 
       <label className="block space-y-2 text-sm">
         <span className="font-medium text-foreground">
@@ -155,22 +188,51 @@ export function SourceForm({
       )}
 
       {error ? <p className="text-sm text-red-600 dark:text-red-400">{error}</p> : null}
+      {registerError ? (
+        <p className="text-sm text-red-600 dark:text-red-400">{registerError}</p>
+      ) : null}
+      {registerSuccess ? (
+        <p className="text-sm text-green-700 dark:text-green-400">
+          Registrada como aplicada. No se envió correo.
+        </p>
+      ) : null}
 
-      <button
-        type="button"
-        onClick={onAnalyze}
-        disabled={analyzing}
-        className="btn-primary disabled:opacity-50"
-      >
-        {analyzing ? (
-          <span className="inline-flex items-center gap-2">
-            <Loader2 className="size-4 animate-spin" />
-            Analizando…
-          </span>
-        ) : (
-          "Analizar"
-        )}
-      </button>
+      <div className="flex flex-wrap gap-3">
+        <button
+          type="button"
+          onClick={onAnalyze}
+          disabled={analyzing}
+          className="btn-primary disabled:opacity-50"
+        >
+          {analyzing ? (
+            <span className="inline-flex items-center gap-2">
+              <Loader2 className="size-4 animate-spin" />
+              Analizando…
+            </span>
+          ) : (
+            "Analizar"
+          )}
+        </button>
+        <button
+          type="button"
+          onClick={onRegister}
+          disabled={!canRegister || registering}
+          className="rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted disabled:opacity-50"
+        >
+          {registering ? (
+            <span className="inline-flex items-center gap-2">
+              <Loader2 className="size-4 animate-spin" />
+              Registrando…
+            </span>
+          ) : (
+            "Registrar como aplicada"
+          )}
+        </button>
+      </div>
+      <p className="text-xs text-muted-foreground">
+        «Registrar como aplicada» no envía correo. Úsalo si ya postulaste en Easy Apply u otro
+        formulario.
+      </p>
     </section>
   )
 }

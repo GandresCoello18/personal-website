@@ -49,6 +49,12 @@ export const jobMatchSchema = z.object({
 
 export type JobMatch = z.infer<typeof jobMatchSchema>
 
+const optionalUrl = z.preprocess((val) => {
+  if (val === null || val === undefined) return undefined
+  if (typeof val === "string" && val.trim() === "") return undefined
+  return typeof val === "string" ? val.trim() : val
+}, z.string().max(2000).optional())
+
 export const sendApplicationSchema = z.object({
   company: z.string().trim().max(200),
   position: z.string().trim().max(200),
@@ -63,6 +69,12 @@ export const sendApplicationSchema = z.object({
     .max(200)
     .refine((value) => !/[\r\n]/.test(value), "El asunto no puede contener saltos de línea"),
   body: z.string().min(1).max(20_000),
+  url: optionalUrl,
+  findingId: z.preprocess((val) => {
+    if (typeof val !== "string" || val.trim() === "") return undefined
+    return val.trim()
+  }, z.string().max(80).optional()),
+  confirmDuplicate: z.boolean().optional(),
 })
 
 export type SendApplicationPayload = z.infer<typeof sendApplicationSchema>
