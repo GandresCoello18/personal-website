@@ -1,21 +1,38 @@
 ---
-description: Todo cambio de UI/UX debe usar Impeccable y el design system del sitio.
+description: >
+  Pedir y aplicar esta regla en cualquier conversación sobre UI, UX, diseño,
+  interfaz, layout, navegación, menú, header, footer, responsive, móvil,
+  tablet, escritorio, breakpoints, tarjetas, cards, proyectos, imágenes,
+  recortes, object-fit, CLS, accesibilidad visual, contraste, foco, teclado,
+  dark mode, tema, tipografía, spacing, hover, polish, audit, rediseño o
+  Impeccable — aunque no haya archivos abiertos y aunque solo se planee o
+  audite sin editar todavía. Toda tarea de UI/UX empieza leyendo
+  .cursor/skills/impeccable/SKILL.md y .cursor/rules/design-system.md.
 globs:
   - app/**/*.tsx
   - app/**/*.css
-  - components/**/*.tsx
-  - components/**/*.css
-  - styles/**/*.css
-  - hooks/use-*.ts
+  - components/**/*.{ts,tsx,css}
+  - styles/**/*.{css,scss}
+  - hooks/use-*.{ts,tsx}
+  - tailwind.config.*
+  - postcss.config.*
+  - components.json
+  - public/**/*.{png,jpg,jpeg,webp,svg,gif,avif,ico}
+  - content/**/*.{png,jpg,jpeg,webp,svg,gif,avif}
+  - lib/**/ui*.{ts,tsx}
+  - lib/nav.ts
+  - lib/project-media.ts
 alwaysApply: false
 ---
 
 # UI/UX — Impeccable + design system
 
-Cualquier cambio que toque UI o UX (layout, estilos, componentes, copy visible, estados vacíos/error, responsive, dark mode, animación) debe:
+Cualquier cambio, plan o auditoría que toque UI o UX (layout, estilos, componentes, copy visible, estados vacíos/error, responsive, dark mode, animación, navegación, tarjetas, imágenes, accesibilidad visual) debe:
 
 1. **Usar el skill Impeccable** en `.cursor/skills/impeccable/SKILL.md` (Paul Bakaus, [impeccable.style](https://impeccable.style), Apache 2.0). Leer `reference/craft-floor.md` antes de editar UI. Comandos útiles: `/impeccable audit`, `polish`, `critique`, `harden`.
 2. **Seguir** `.cursor/rules/design-system.md` (tokens, tipografía Geist, shadcn new-york, español, audiencia recruiter/CTO).
+
+No uses `alwaysApply: true` en esta regla: el agente la pide por la `description` o por los globs. Así no se carga en tareas de API, servidor o lógica que no son de UI.
 
 ## Si hay conflicto
 
