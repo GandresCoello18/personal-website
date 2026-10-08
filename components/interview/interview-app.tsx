@@ -36,8 +36,8 @@ export function InterviewApp() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Privado</p>
             <h1 className="section-title">Respuestas a entrevistas</h1>
             <p className="section-subtitle">
-              Pega las preguntas del reclutador. Respuestas cortas y profesionales basadas en tus CVs
-              y career facts (experiencia desde 2018).
+              Pega las preguntas del reclutador. Respuestas cortas y profesionales basadas en tus
+              CVs y career facts (experiencia desde 2018).
             </p>
           </div>
           <div className="flex flex-wrap gap-2">

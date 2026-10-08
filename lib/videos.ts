@@ -45,7 +45,9 @@ function parseVideoFrontmatter(raw: string): { data: VideoFrontmatter; content: 
   const { data, content } = matter(raw)
   const fm = data as Partial<VideoFrontmatter>
   if (!fm.title || !fm.description || !fm.date || !fm.youtubeId || !Array.isArray(fm.tags)) {
-    throw new Error("Invalid video frontmatter: title, description, date, youtubeId, and tags are required.")
+    throw new Error(
+      "Invalid video frontmatter: title, description, date, youtubeId, and tags are required.",
+    )
   }
   return {
     data: {

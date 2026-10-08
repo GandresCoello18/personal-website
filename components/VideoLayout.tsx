@@ -24,7 +24,9 @@ export function VideoLayout({ meta, children }: VideoLayoutProps) {
             </Badge>
           ))}
         </div>
-        <h1 className="text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{meta.title}</h1>
+        <h1 className="text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          {meta.title}
+        </h1>
         <p className="mt-4 text-pretty text-lg text-muted-foreground">{meta.description}</p>
         <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
           <time dateTime={meta.date}>Publicado el {published}</time>
@@ -45,8 +47,14 @@ export function VideoLayout({ meta, children }: VideoLayoutProps) {
       />
 
       {children ? (
-        <section className="mt-10 border-t border-border pt-10" aria-labelledby="video-summary-heading">
-          <h2 id="video-summary-heading" className="mb-6 text-2xl font-semibold tracking-tight text-foreground">
+        <section
+          className="mt-10 border-t border-border pt-10"
+          aria-labelledby="video-summary-heading"
+        >
+          <h2
+            id="video-summary-heading"
+            className="mb-6 text-2xl font-semibold tracking-tight text-foreground"
+          >
             Resumen
           </h2>
           <BlogContent>{children}</BlogContent>

@@ -6,7 +6,10 @@ import { UmamiEvents } from "@/lib/umami"
 
 export function Hero() {
   return (
-    <section id="about" className="relative hero-gradient py-10 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section
+      id="about"
+      className="relative hero-gradient py-10 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
       <div className="absolute inset-0 -z-20 overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-accent/15 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-0" />
         <div className="absolute top-1/3 -left-32 w-80 h-80 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000" />
@@ -15,7 +18,6 @@ export function Hero() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-
           <div className="space-y-8">
             <div className="flex justify-center md:justify-start">
               <div className="relative w-32 h-32 md:hidden">
@@ -30,12 +32,12 @@ export function Hero() {
 
             <div className="space-y-4">
               <h1 className="section-title">
-                Andres Coello <br/> software escalables y
+                Andres Coello <br /> software escalables y
                 <span className="text-accent"> mantenibles</span>
               </h1>
               <p className="section-subtitle">
-                Software Engineer, SRE, Mentor y Tutor especializado en crear soluciones web escalables mientras enseño a
-                la próxima generación de desarrolladores.
+                Software Engineer, SRE, Mentor y Tutor especializado en crear soluciones web
+                escalables mientras enseño a la próxima generación de desarrolladores.
               </p>
             </div>
 

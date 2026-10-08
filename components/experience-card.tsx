@@ -75,7 +75,9 @@ export function ExperienceCard({ item, showGallery = true }: ExperienceCardProps
               <h3 className="text-lg font-bold leading-snug text-foreground md:text-xl">{role}</h3>
               <p className="font-medium text-accent">{company}</p>
             </div>
-            <span className="shrink-0 text-sm font-medium text-muted-foreground whitespace-nowrap">{period}</span>
+            <span className="shrink-0 text-sm font-medium text-muted-foreground whitespace-nowrap">
+              {period}
+            </span>
           </div>
 
           <div className="relative mt-3">

@@ -3,6 +3,9 @@ import type { NextRequest } from "next/server"
 import { requestHasApplyUnlock } from "@/lib/apply/auth"
 import { isValidCvKey } from "@/lib/apply/cv"
 import { jobCategorySchema, jobExtractSchema } from "@/lib/apply/types"
+import { tooManyRequests } from "@/lib/http/rate-limit-response"
+import { getClientIp } from "@/lib/security/client-ip"
+import { applyAiLimiter } from "@/lib/security/limiters"
 import { draftFromExtract } from "@/services/apply/draft"
 
 export async function POST(request: NextRequest) {
@@ -11,10 +14,18 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "No autorizado" }, { status: 401 })
     }
 
+    const limited = applyAiLimiter.check(getClientIp(request))
+    if (!limited.ok) {
+      return tooManyRequests(limited)
+    }
+
     const body = await request.json()
     const extractParsed = jobExtractSchema.safeParse(body?.extract)
     if (!extractParsed.success) {
-      return NextResponse.json({ error: "Extract inválido. Analiza la vacante primero." }, { status: 400 })
+      return NextResponse.json(
+        { error: "Extract inválido. Analiza la vacante primero." },
+        { status: 400 },
+      )
     }
 
     const categoryOverride =

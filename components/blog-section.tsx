@@ -22,8 +22,8 @@ export function BlogSection() {
             Últimos artículos
           </h2>
           <p className="section-subtitle mx-auto max-w-2xl">
-            Notas sobre aprendizaje, carrera y desarrollo: lo mismo que lees en el blog, en formato breve para descubrir si te interesa
-            profundizar.
+            Notas sobre aprendizaje, carrera y desarrollo: lo mismo que lees en el blog, en formato
+            breve para descubrir si te interesa profundizar.
           </p>
         </div>
 

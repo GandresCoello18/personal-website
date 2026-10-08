@@ -34,7 +34,19 @@ const projects: Project[] = [
       "/proyectos/meniuz/landing.png",
       "/proyectos/meniuz/meniuz-list-cities.png",
     ],
-    tags: ["Next.js", "TypeScript", "GraphQL", "Express.js", "CI/CD", "Redis", "Kotlin", "Swift", "Stripe", "MySQL", "TailwindCSS"],
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "GraphQL",
+      "Express.js",
+      "CI/CD",
+      "Redis",
+      "Kotlin",
+      "Swift",
+      "Stripe",
+      "MySQL",
+      "TailwindCSS",
+    ],
     link: "https://onelink.to/meniuz",
     github: "",
     isPrivate: true,
@@ -50,11 +62,16 @@ const projects: Project[] = [
     title: "Tayos App",
     description:
       "Tayos es la app B2B de la distribuidora de partes más grande del Ecuador. Accede a más de 30.000 productos, repuestos de las mejores marcas y soluciones para los vehículos más comerciales del país. Diseñada exclusivamente para clientes B2B, Tayos facilita la compra de repuestos automotrices desde una plataforma rápida, práctica, segura y facil de usar. Con nuestra app puedes consultar productos, revisar disponibilidad, acceder a un amplio catálogo de partes",
-    images: [
-      "/proyectos/odoo-app/odoo-app.png",
-      "/proyectos/odoo-app/odoo-app-02.png",
+    images: ["/proyectos/odoo-app/odoo-app.png", "/proyectos/odoo-app/odoo-app-02.png"],
+    tags: [
+      "React Native",
+      "Expo Go",
+      "Android Studio",
+      "IOS - Xcode",
+      "Node.js",
+      "Odoo API",
+      "Whatsapp Messaging",
     ],
-    tags: ["React Native", "Expo Go", "Android Studio", "IOS - Xcode", "Node.js", "Odoo API", "Whatsapp Messaging"],
     link: "https://apps.apple.com/ec/app/tayos/id6776895287",
     isPrivate: true,
     featured: true,
@@ -62,7 +79,8 @@ const projects: Project[] = [
   {
     id: "234",
     title: "Monitor de AI para comunidades",
-    description: "Transformar fuentes de video provenientes de cámaras en información útil para una comunidad, barrio o zona determinada. El sistema está orientado a detectar patrones, identificar eventos relevantes y apoyar la toma de decisiones, sin realizar reconocimiento facial ni vigilancia invasiva.",
+    description:
+      "Transformar fuentes de video provenientes de cámaras en información útil para una comunidad, barrio o zona determinada. El sistema está orientado a detectar patrones, identificar eventos relevantes y apoyar la toma de decisiones, sin realizar reconocimiento facial ni vigilancia invasiva.",
     images: [
       "/proyectos/community-ai-monitor/monitor-park.png",
       "/proyectos/community-ai-monitor/diagram-fluj.png",
@@ -81,7 +99,8 @@ const projects: Project[] = [
   {
     id: "3",
     title: "Image Intelligence Platform",
-    description: "Plataforma de procesamiento de imagenes, permite a los usuarios subir imagenes y procesarlas o extraier informacion de ellas para luego almacenarlas en el sistema para su futura consulta.",
+    description:
+      "Plataforma de procesamiento de imagenes, permite a los usuarios subir imagenes y procesarlas o extraier informacion de ellas para luego almacenarlas en el sistema para su futura consulta.",
     images: [
       "/proyectos/image-intelligence-platform/image-process-inteligent.png",
       "/proyectos/image-intelligence-platform/diagram.png",
@@ -101,9 +120,7 @@ const projects: Project[] = [
     title: "Order Lifecycle Platform",
     description:
       "Plataforma backend de microservicios con arquitectura orientada a eventos usando NestJS, NX Monorepo, Redis + BullMQ y PostgreSQL.",
-    images: [
-      "/proyectos/order-lifecycle-platform/diagram.png",
-    ],
+    images: ["/proyectos/order-lifecycle-platform/diagram.png"],
     tags: ["Nx Workspace", "Redis", "Gateway", "Queue", "TypeScript", "docker", "MongoDB", "Minio"],
     link: "https://chimborazo-near-the-sun.vercel.app",
     github: "https://github.com/GandresCoello18/Chimborazo-near-the-sun",
@@ -120,11 +137,17 @@ const projects: Project[] = [
     title: "Bob's Corn",
     description:
       "API REST desarrollada con TypeScript y Node.js que permite a los clientes realizar compras de maíz. El sistema implementa control de rate limiting para gestionar el tráfico de solicitudes, registra las transacciones exitosas y de rate limit en base de datos y proporciona endpoints para consultar el historial de compras. Incluye validación de datos, manejo centralizado de errores y logging estructurado para facilitar el monitoreo y debugging del sistema.",
-    images: [
-      "/proyectos/bob-s-corn/client.png",
-      "/proyectos/bob-s-corn/diagram.jpeg",
+    images: ["/proyectos/bob-s-corn/client.png", "/proyectos/bob-s-corn/diagram.jpeg"],
+    tags: [
+      "TypeScript",
+      "Node.js",
+      "API",
+      "Rate Limiting",
+      "Database",
+      "Error Handling",
+      "Logging",
+      "Ioredis + Redis Commands",
     ],
-    tags: ["TypeScript", "Node.js", "API", "Rate Limiting", "Database", "Error Handling", "Logging", "Ioredis + Redis Commands"],
     link: "https://github.com/GandresCoello18/Bob-s-Corn-API",
     github: "https://github.com/GandresCoello18/Bob-s-Corn-API",
     isPrivate: false,
@@ -152,7 +175,8 @@ const projects: Project[] = [
   {
     id: "14",
     title: "Expense balancer CLI",
-    description: "Calculadora de gastos compartidos que divide equitativamente los gastos de viaje entre los miembros de un grupo.",
+    description:
+      "Calculadora de gastos compartidos que divide equitativamente los gastos de viaje entre los miembros de un grupo.",
     images: [
       "/proyectos/expense-balancer-cli/result-cli.png",
       "/proyectos/expense-balancer-cli/test-cli.png",
@@ -192,7 +216,8 @@ const projects: Project[] = [
   {
     id: "4",
     title: "Collage Unsplash con Astro",
-    description: "Collage de imagenes de Unsplash con Astro, permite a los usuarios ver las imagenes de Unsplash y agregarlas a un collage para luego descargarlo en el equipo local y almacenarlo en el navegador para su futura consulta.",
+    description:
+      "Collage de imagenes de Unsplash con Astro, permite a los usuarios ver las imagenes de Unsplash y agregarlas a un collage para luego descargarlo en el equipo local y almacenarlo en el navegador para su futura consulta.",
     images: [
       "/proyectos/unsplash-collage-astro/explore-collage-astro.png",
       "/proyectos/unsplash-collage-astro/generate-collage-astro.png",
@@ -226,7 +251,8 @@ const projects: Project[] = [
   {
     id: "6",
     title: "GG Tech panel admin",
-    description: "Panel admin de GG Tech, gestiona los torneos, etapas, grupos, rondas y partidos ademas de los equipos, los jugadores, y mas.",
+    description:
+      "Panel admin de GG Tech, gestiona los torneos, etapas, grupos, rondas y partidos ademas de los equipos, los jugadores, y mas.",
     images: [
       "/proyectos/ggtech-panel-admin/admin-ggtech-02.png",
       "/proyectos/ggtech-panel-admin/admin-ggtech-01.png",
@@ -249,7 +275,17 @@ const projects: Project[] = [
       "/proyectos/padel-track/unnamed (2).webp",
       "/proyectos/padel-track/unnamed (3).webp",
     ],
-    tags: ["React", "Socket.io", "Express.js", "CI/CD", "MongoDB", "Chart.js", "Vimeo", "Monolito", "Arquitectura Modular"],
+    tags: [
+      "React",
+      "Socket.io",
+      "Express.js",
+      "CI/CD",
+      "MongoDB",
+      "Chart.js",
+      "Vimeo",
+      "Monolito",
+      "Arquitectura Modular",
+    ],
     link: "https://admin.padeltrack.app/",
     github: "",
     isPrivate: true,
@@ -273,7 +309,9 @@ export function Projects() {
     setTimeout(() => {
       const projectsSection = document.getElementById("projects")
       if (projectsSection && otherProjects.length) {
-        const additionalProjectsElement = projectsSection.querySelector('[data-additional-projects]')
+        const additionalProjectsElement = projectsSection.querySelector(
+          "[data-additional-projects]",
+        )
         if (additionalProjectsElement) {
           additionalProjectsElement.scrollIntoView({ behavior: "smooth", block: "start" })
         }
@@ -299,10 +337,7 @@ export function Projects() {
 
         {!showAll && otherProjects.length && (
           <div className="text-center mt-16">
-            <button
-              onClick={handleShowAll}
-              className="btn-primary inline-flex items-center gap-2"
-            >
+            <button onClick={handleShowAll} className="btn-primary inline-flex items-center gap-2">
               Ver Todos los Proyectos
               <Code2 size={20} />
             </button>
@@ -312,7 +347,9 @@ export function Projects() {
         {showAll && otherProjects.length && (
           <div data-additional-projects className="mt-16 space-y-8">
             <div className="text-center mb-12">
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Otros Proyectos</h3>
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                Otros Proyectos
+              </h3>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 Más proyectos en los que he trabajado
               </p>
@@ -348,7 +385,7 @@ function ProjectCard({ project, featured }: { project: Project; featured?: boole
 
     const interval = setInterval(() => {
       setIsTransitioning(true)
-      
+
       setTimeout(() => {
         setCurrentImageIndex((prev) => (prev + 1) % images.length)
         setTimeout(() => {
@@ -367,7 +404,7 @@ function ProjectCard({ project, featured }: { project: Project; featured?: boole
           {images.map((image, index) => {
             const isActive = index === currentImageIndex
             const isNext = index === (currentImageIndex + 1) % images.length
-            
+
             return (
               <img
                 key={`${project.id}-${index}`}
@@ -379,11 +416,12 @@ function ProjectCard({ project, featured }: { project: Project; featured?: boole
                       ? "opacity-100 blur-md scale-105"
                       : "opacity-100 blur-0 scale-100"
                     : isNext && isTransitioning
-                    ? "opacity-0 blur-md scale-105"
-                    : "opacity-0 blur-0 scale-100"
+                      ? "opacity-0 blur-md scale-105"
+                      : "opacity-0 blur-0 scale-100"
                 } group-hover:scale-110`}
                 style={{
-                  transition: "opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), filter 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1)",
+                  transition:
+                    "opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), filter 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1)",
                   zIndex: isActive ? 10 : isNext ? 5 : 1,
                 }}
               />
@@ -394,8 +432,12 @@ function ProjectCard({ project, featured }: { project: Project; featured?: boole
       </div>
 
       <div className="p-6 flex-1 flex flex-col">
-        <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground line-clamp-2">{project.title}</h3>
-        <p className="text-muted-foreground text-sm md:text-base mb-4 line-clamp-3 flex-1">{project.description}</p>
+        <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground line-clamp-2">
+          {project.title}
+        </h3>
+        <p className="text-muted-foreground text-sm md:text-base mb-4 line-clamp-3 flex-1">
+          {project.description}
+        </p>
 
         {project.stats && (
           <div className="grid grid-cols-3 gap-2 mb-4 pb-4 border-b border-border">
@@ -410,7 +452,10 @@ function ProjectCard({ project, featured }: { project: Project; featured?: boole
 
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag) => (
-            <span key={tag} className="px-2 py-1 bg-accent/10 text-accent text-xs rounded font-medium">
+            <span
+              key={tag}
+              className="px-2 py-1 bg-accent/10 text-accent text-xs rounded font-medium"
+            >
               {tag}
             </span>
           ))}

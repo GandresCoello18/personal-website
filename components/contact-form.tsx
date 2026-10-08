@@ -12,6 +12,7 @@ export function ContactForm() {
     email: "",
     asunto: "",
     mensaje: "",
+    website: "",
   })
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -45,8 +46,9 @@ export function ContactForm() {
   }
 
   useEffect(() => {
-    // Leer parámetros al montar el componente
-    readUrlParams()
+    const initial = window.setTimeout(() => {
+      readUrlParams()
+    }, 0)
 
     // Escuchar evento personalizado cuando se cambia la URL desde Services
     const handleUrlChanged = (event: Event) => {
@@ -69,12 +71,16 @@ export function ContactForm() {
 
     // También verificar periódicamente si hay parámetros nuevos (fallback)
     const interval = setInterval(() => {
-      if (window.location.search.includes("service=") || window.location.search.includes("description=")) {
+      if (
+        window.location.search.includes("service=") ||
+        window.location.search.includes("description=")
+      ) {
         readUrlParams()
       }
     }, 300)
 
     return () => {
+      window.clearTimeout(initial)
       window.removeEventListener("urlChanged", handleUrlChanged as EventListener)
       window.removeEventListener("popstate", handlePopState)
       clearInterval(interval)
@@ -90,7 +96,12 @@ export function ContactForm() {
     e.preventDefault()
     setError("")
 
-    if (!formData.nombre.trim() || !formData.email.trim() || !formData.asunto.trim() || !formData.mensaje.trim()) {
+    if (
+      !formData.nombre.trim() ||
+      !formData.email.trim() ||
+      !formData.asunto.trim() ||
+      !formData.mensaje.trim()
+    ) {
       setError("Por favor completa todos los campos")
       return
     }
@@ -120,13 +131,17 @@ export function ContactForm() {
       }
 
       trackEvent(UmamiEvents.contactFormSuccess)
-      setFormData({ nombre: "", email: "", asunto: "", mensaje: "" })
+      setFormData({ nombre: "", email: "", asunto: "", mensaje: "", website: "" })
       setSubmitted(true)
 
       setTimeout(() => setSubmitted(false), 5000)
     } catch (err) {
       trackEvent(UmamiEvents.contactFormError)
-      setError(err instanceof Error ? err.message : "Ocurrió un error al enviar el mensaje. Intenta de nuevo.")
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Ocurrió un error al enviar el mensaje. Intenta de nuevo.",
+      )
     } finally {
       setLoading(false)
     }
@@ -151,6 +166,18 @@ export function ContactForm() {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
+        <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+          <label htmlFor="website">Sitio web</label>
+          <input
+            id="website"
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={formData.website}
+            onChange={handleChange}
+          />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <input
             type="text"

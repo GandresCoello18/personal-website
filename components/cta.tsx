@@ -13,8 +13,8 @@ export function CTA() {
         <div className="text-center space-y-6 mb-12">
           <h2 className="section-title">Conversemos Sobre tu Proyecto</h2>
           <p className="section-subtitle">
-            Estoy disponible para nuevos proyectos, colaboraciones y oportunidades de mentoría. Contacta conmigo y
-            empecemos.
+            Estoy disponible para nuevos proyectos, colaboraciones y oportunidades de mentoría.
+            Contacta conmigo y empecemos.
           </p>
         </div>
 

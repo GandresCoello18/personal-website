@@ -70,7 +70,11 @@ export function buildJobTextFromExtract(fields: {
     fields.company ? `Empresa: ${fields.company}` : "",
     fields.position ? `Posición: ${fields.position}` : "",
     fields.location ? `Ubicación: ${fields.location}` : "",
-    fields.remote === true ? "Modalidad: remoto" : fields.remote === false ? "Modalidad: presencial" : "",
+    fields.remote === true
+      ? "Modalidad: remoto"
+      : fields.remote === false
+        ? "Modalidad: presencial"
+        : "",
     fields.summary ? `Resumen: ${fields.summary}` : "",
     fields.requirements.length
       ? `Requisitos:\n${fields.requirements.map((r) => `- ${r}`).join("\n")}`

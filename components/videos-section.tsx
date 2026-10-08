@@ -22,7 +22,8 @@ export function VideosSection() {
             Resúmenes en video
           </h2>
           <p className="section-subtitle mx-auto max-w-2xl">
-            Charlas, tutoriales y aprendizajes en formato video con notas y puntos clave para repasar rápido.
+            Charlas, tutoriales y aprendizajes en formato video con notas y puntos clave para
+            repasar rápido.
           </p>
         </div>
 

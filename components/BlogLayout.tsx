@@ -28,7 +28,9 @@ export function BlogLayout({ meta, headings, children }: BlogLayoutProps) {
             </Badge>
           ))}
         </div>
-        <h1 className="text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{meta.title}</h1>
+        <h1 className="text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          {meta.title}
+        </h1>
         <p className="mt-4 text-pretty text-lg text-muted-foreground">{meta.description}</p>
         <p className="mt-6">
           <time className="text-sm text-muted-foreground" dateTime={meta.date}>
@@ -52,9 +54,7 @@ export function BlogLayout({ meta, headings, children }: BlogLayoutProps) {
 
       <div
         className={
-          showToc
-            ? "grid gap-10 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-start"
-            : undefined
+          showToc ? "grid gap-10 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-start" : undefined
         }
       >
         <BlogContent>{children}</BlogContent>

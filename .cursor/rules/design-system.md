@@ -8,27 +8,28 @@ alwaysApply: true
 > **Alcance:** Cualquier cambio visual, de UX o de componentes en este repositorio debe respetar este documento.
 > **Audiencia objetivo del sitio:** recruiters de software engineering, founders, CTOs, CEOs y empresas que contratan desarrollo o consultoría técnica.
 > **Idioma de la interfaz:** español (`lang="es"`).
+> **Impeccable:** los cambios de UI/UX también deben usar el skill `.cursor/skills/impeccable` (ver `.cursor/rules/ui-impeccable.mdc`). Si Impeccable y este documento chocan, **gana este design system** (tokens teal/azul, Geist, shadcn new-york, español, audiencia de contratación). Impeccable aporta oficio visual; no reemplaza la marca del sitio.
 
 ---
 
 ## Stack detectado (referencia obligatoria)
 
-| Capa | Tecnología | Versión / nota |
-|------|------------|----------------|
-| Framework | Next.js App Router | `^16.0.7` |
-| UI runtime | React | `19.2.0` |
-| Lenguaje | TypeScript | `^5` |
-| Estilos | Tailwind CSS v4 (CSS-first) | `^4.1.9` + `@tailwindcss/postcss` |
-| Animaciones CSS | `tw-animate-css`, `tailwindcss-animate` | `1.3.3`, `^1.0.7` |
-| Componentes base | shadcn/ui **new-york** + Radix UI | ver `components.json` |
-| Iconos | `lucide-react` | `^0.454.0` |
-| Utilidades CSS | `clsx`, `tailwind-merge`, `class-variance-authority` | `cn()` en `lib/utils.ts` |
-| Temas | `next-themes` | `^0.4.6`, `attribute="class"`, `defaultTheme="light"` |
-| Fuentes | Geist + Geist Mono (next/font) | definidas en `app/layout.tsx` y `@theme` en `globals.css` |
-| Formularios | `react-hook-form`, `zod`, `@hookform/resolvers` | contacto y futuros forms |
-| Blog | `next-mdx-remote`, `gray-matter`, `rehype-pretty-code`, `shiki` | rutas `/blog` |
-| Analytics | `@vercel/analytics` | en `app/layout.tsx` |
-| Package manager | Yarn | `yarn@1.22` |
+| Capa             | Tecnología                                                      | Versión / nota                                            |
+| ---------------- | --------------------------------------------------------------- | --------------------------------------------------------- |
+| Framework        | Next.js App Router                                              | `^16.0.7`                                                 |
+| UI runtime       | React                                                           | `19.2.0`                                                  |
+| Lenguaje         | TypeScript                                                      | `^5`                                                      |
+| Estilos          | Tailwind CSS v4 (CSS-first)                                     | `^4.1.9` + `@tailwindcss/postcss`                         |
+| Animaciones CSS  | `tw-animate-css`, `tailwindcss-animate`                         | `1.3.3`, `^1.0.7`                                         |
+| Componentes base | shadcn/ui **new-york** + Radix UI                               | ver `components.json`                                     |
+| Iconos           | `lucide-react`                                                  | `^0.454.0`                                                |
+| Utilidades CSS   | `clsx`, `tailwind-merge`, `class-variance-authority`            | `cn()` en `lib/utils.ts`                                  |
+| Temas            | `next-themes`                                                   | `^0.4.6`, `attribute="class"`, `defaultTheme="light"`     |
+| Fuentes          | Geist + Geist Mono (next/font)                                  | definidas en `app/layout.tsx` y `@theme` en `globals.css` |
+| Formularios      | `react-hook-form`, `zod`, `@hookform/resolvers`                 | contacto y futuros forms                                  |
+| Blog             | `next-mdx-remote`, `gray-matter`, `rehype-pretty-code`, `shiki` | rutas `/blog`                                             |
+| Analytics        | `@vercel/analytics`                                             | en `app/layout.tsx`                                       |
+| Package manager  | pnpm                                                            | `pnpm@10.33.3` (Node ≥ 22.6)                              |
 
 **No hay** `tailwind.config.js`. Los tokens viven en `app/globals.css` (`:root`, `.dark`, `@theme inline`).
 
@@ -70,16 +71,16 @@ alwaysApply: true
 
 ### Paleta (OKLCH en `app/globals.css`)
 
-| Token | Rol | Uso |
-|-------|-----|-----|
-| `background` / `foreground` | Base de página | `bg-background`, `text-foreground` |
-| `card` / `card-foreground` | Superficies elevadas | cards, footer, paneles |
-| `primary` | Azul profundo (CTA principal) | botones primarios, métricas hero |
-| `secondary` | Cyan secundario | acentos alternos, iconografía servicios |
-| `accent` | Teal (marca, highlights) | eyebrows, links hover, bordes activos |
-| `muted` / `muted-foreground` | Fondos suaves y texto secundario | subtítulos, metadata |
-| `border` / `input` / `ring` | Estructura y focus | bordes, inputs, focus visible |
-| `destructive` | Errores | formularios, alertas |
+| Token                        | Rol                              | Uso                                     |
+| ---------------------------- | -------------------------------- | --------------------------------------- |
+| `background` / `foreground`  | Base de página                   | `bg-background`, `text-foreground`      |
+| `card` / `card-foreground`   | Superficies elevadas             | cards, footer, paneles                  |
+| `primary`                    | Azul profundo (CTA principal)    | botones primarios, métricas hero        |
+| `secondary`                  | Cyan secundario                  | acentos alternos, iconografía servicios |
+| `accent`                     | Teal (marca, highlights)         | eyebrows, links hover, bordes activos   |
+| `muted` / `muted-foreground` | Fondos suaves y texto secundario | subtítulos, metadata                    |
+| `border` / `input` / `ring`  | Estructura y focus               | bordes, inputs, focus visible           |
+| `destructive`                | Errores                          | formularios, alertas                    |
 
 **Tema oscuro:** `.dark` redefine todos los tokens. Usar clases semánticas (`text-accent`), no `dark:text-slate-300` salvo migración pendiente.
 
@@ -123,17 +124,17 @@ alwaysApply: true
 
 ### Jerarquía recomendada
 
-| Elemento | Clases / patrón | Ejemplo en proyecto |
-|----------|-----------------|---------------------|
-| Eyebrow / label de sección | `text-xs font-semibold uppercase tracking-[0.2em] text-accent` | `blog-section`, `talks-section`, `testimonials` |
-| Hero H1 | `section-title` + span `text-accent` | `components/hero.tsx` |
-| Título de sección | `section-title` | experiencia, proyectos, servicios |
-| Subtítulo de sección | `section-subtitle max-w-2xl mx-auto` | centrado en headers |
-| Título de card | `text-lg md:text-xl font-bold text-foreground` o `text-xl font-bold` | proyectos, experiencia |
-| Cuerpo | `text-muted-foreground leading-relaxed` | descripciones |
-| Caption / meta | `text-sm text-muted-foreground` o `text-xs` | fechas blog, roles testimonios |
-| Precio servicio | `text-2xl font-bold text-primary` | `services.tsx` |
-| Stats hero | `text-3xl font-bold text-primary` / `text-accent` | métricas 7+, 150+, 30+ |
+| Elemento                   | Clases / patrón                                                      | Ejemplo en proyecto                             |
+| -------------------------- | -------------------------------------------------------------------- | ----------------------------------------------- |
+| Eyebrow / label de sección | `text-xs font-semibold uppercase tracking-[0.2em] text-accent`       | `blog-section`, `talks-section`, `testimonials` |
+| Hero H1                    | `section-title` + span `text-accent`                                 | `components/hero.tsx`                           |
+| Título de sección          | `section-title`                                                      | experiencia, proyectos, servicios               |
+| Subtítulo de sección       | `section-subtitle max-w-2xl mx-auto`                                 | centrado en headers                             |
+| Título de card             | `text-lg md:text-xl font-bold text-foreground` o `text-xl font-bold` | proyectos, experiencia                          |
+| Cuerpo                     | `text-muted-foreground leading-relaxed`                              | descripciones                                   |
+| Caption / meta             | `text-sm text-muted-foreground` o `text-xs`                          | fechas blog, roles testimonios                  |
+| Precio servicio            | `text-2xl font-bold text-primary`                                    | `services.tsx`                                  |
+| Stats hero                 | `text-3xl font-bold text-primary` / `text-accent`                    | métricas 7+, 150+, 30+                          |
 
 ### Reglas
 
@@ -147,11 +148,11 @@ alwaysApply: true
 
 ### Contenedores
 
-| Contexto | Max width | Clase |
-|----------|-----------|-------|
-| Secciones principales | 1152px | `max-w-6xl mx-auto` |
-| Contacto / CTA estrecho | 896px | `max-w-4xl mx-auto` |
-| Blog índice / artículo | 1152px | `max-w-6xl` |
+| Contexto                | Max width | Clase               |
+| ----------------------- | --------- | ------------------- |
+| Secciones principales   | 1152px    | `max-w-6xl mx-auto` |
+| Contacto / CTA estrecho | 896px     | `max-w-4xl mx-auto` |
+| Blog índice / artículo  | 1152px    | `max-w-6xl`         |
 
 ### Grids habituales
 
@@ -203,21 +204,21 @@ Nuevas secciones deben insertarse sin romper este arco (credibilidad antes de co
 
 ### Buttons
 
-| Tipo | Cuándo usar | Implementación |
-|------|-------------|----------------|
-| CTA marketing | Secciones públicas, header | `.btn-primary` / `.btn-secondary` en `globals.css` |
-| UI interactiva | Forms, dialogs, toggles | `@/components/ui/button` + CVA variants |
-| Enlace con icono | Cards, blog | `Link` + `btn-primary inline-flex items-center gap-2` |
+| Tipo             | Cuándo usar                | Implementación                                        |
+| ---------------- | -------------------------- | ----------------------------------------------------- |
+| CTA marketing    | Secciones públicas, header | `.btn-primary` / `.btn-secondary` en `globals.css`    |
+| UI interactiva   | Forms, dialogs, toggles    | `@/components/ui/button` + CVA variants               |
+| Enlace con icono | Cards, blog                | `Link` + `btn-primary inline-flex items-center gap-2` |
 
 Estados: `hover:bg-primary/90`, `transition-colors`, focus ring en shadcn (`focus-visible:ring-ring/50`).
 
 ### Cards
 
-| Variante | Uso |
-|----------|-----|
-| `.card-elevated` | Marketing: proyectos, experiencia, servicios, CTA |
-| `@/components/ui/card` | Blog (`BlogCard`), layouts editoriales |
-| Charlas / testimonios | `card-elevated` o `border border-border bg-card` con variaciones documentadas en su archivo |
+| Variante               | Uso                                                                                         |
+| ---------------------- | ------------------------------------------------------------------------------------------- |
+| `.card-elevated`       | Marketing: proyectos, experiencia, servicios, CTA                                           |
+| `@/components/ui/card` | Blog (`BlogCard`), layouts editoriales                                                      |
+| Charlas / testimonios  | `card-elevated` o `border border-border bg-card` con variaciones documentadas en su archivo |
 
 ### Navigation (`components/header.tsx`)
 
@@ -311,15 +312,15 @@ Estados: `hover:bg-primary/90`, `transition-colors`, focus ring en shadcn (`focu
 
 ### Animaciones permitidas
 
-| Animación | Ubicación | Notas |
-|-----------|-----------|-------|
-| `animate-blob` | Hero background | Lento, 7s, decorativo aceptable |
-| Carrusel imágenes | `projects.tsx`, `talks-section.tsx` | Crossfade ~600ms, auto-rotate |
-| `testimonial-marquee` | `testimonials.tsx` | 50s linear, pausa en hover |
-| `transition-colors` / `transition-all` | Cards, links | 300ms estándar |
-| `group-hover:translate-x-1` | Flecha CTA hero | microinteracción |
-| `group-hover:scale-[1.02]` | Cards charlas | sutil |
-| Blog image scale | `BlogCard` | `duration-300 ease-out` |
+| Animación                              | Ubicación                           | Notas                           |
+| -------------------------------------- | ----------------------------------- | ------------------------------- |
+| `animate-blob`                         | Hero background                     | Lento, 7s, decorativo aceptable |
+| Carrusel imágenes                      | `projects.tsx`, `talks-section.tsx` | Crossfade ~600ms, auto-rotate   |
+| `testimonial-marquee`                  | `testimonials.tsx`                  | 50s linear, pausa en hover      |
+| `transition-colors` / `transition-all` | Cards, links                        | 300ms estándar                  |
+| `group-hover:translate-x-1`            | Flecha CTA hero                     | microinteracción                |
+| `group-hover:scale-[1.02]`             | Cards charlas                       | sutil                           |
+| Blog image scale                       | `BlogCard`                          | `duration-300 ease-out`         |
 
 ### Evitar
 
@@ -419,7 +420,7 @@ public/        → assets estáticos
 
 ### Calidad de build
 
-- `typescript.ignoreBuildErrors: true` está activo — no empeorar deuda; tipar componentes nuevos correctamente
+- `pnpm typecheck` (`tsc --noEmit`) y `next build` deben pasar. No reactivar `typescript.ignoreBuildErrors`.
 
 ---
 
@@ -427,14 +428,15 @@ public/        → assets estáticos
 
 Antes de generar UI nueva:
 
-1. **Buscar componente similar** — ej. nueva sección tipo charlas → leer `talks-section.tsx`; blog → `BlogCard.tsx`
-2. **Reutilizar** — `section-title`, `card-elevated`, `btn-primary`, `Header`/`Footer`
-3. **Respetar tema** — solo tokens semánticos; probar mentalmente light + dark
-4. **No añadir librerías** (Motion, Chakra, MUI, etc.) sin justificación explícita
-5. **Server vs Client** — default Server; client solo si necesario
-6. **Scripts terceros** — patrón `next/script` como `calendly-badge.tsx`
-7. **Contenido** — español, tono profesional, orientado a contratación
-8. **Íconos** — solo `lucide-react`, tamaños `size-4` / `size-5` / `size={24}` según contexto
+1. **Leer el skill Impeccable** (`.cursor/skills/impeccable/SKILL.md`) y este design system. Marca y tokens: este documento. Oficio visual: Impeccable.
+2. **Buscar componente similar** — ej. nueva sección tipo charlas → leer `talks-section.tsx`; blog → `BlogCard.tsx`
+3. **Reutilizar** — `section-title`, `card-elevated`, `btn-primary`, `Header`/`Footer`
+4. **Respetar tema** — solo tokens semánticos; probar mentalmente light + dark
+5. **No añadir librerías** (Motion, Chakra, MUI, etc.) sin justificación explícita
+6. **Server vs Client** — default Server; client solo si necesario
+7. **Scripts terceros** — patrón `next/script` como `calendly-badge.tsx`
+8. **Contenido** — español, tono profesional, orientado a contratación
+9. **Íconos** — solo `lucide-react`, tamaños `size-4` / `size-5` / `size={24}` según contexto
 
 ### Checklist pre-merge visual
 
@@ -475,4 +477,4 @@ Sección a migrar al sistema: `classgap-section.tsx` (colores slate/blue fuera d
 
 ---
 
-*Última sincronización con el codebase: Next.js 16, React 19, Tailwind 4, shadcn new-york, tema claro/oscuro vía next-themes.*
+_Última sincronización con el codebase: Next.js 16, React 19, Tailwind 4, shadcn new-york, tema claro/oscuro vía next-themes._

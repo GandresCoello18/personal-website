@@ -38,7 +38,11 @@ function MdxLink({ href, children, ...rest }: ComponentPropsWithoutRef<"a">) {
   const h = href ?? ""
   if (h.startsWith("/") && !h.startsWith("//")) {
     return (
-      <Link href={h} className="text-primary underline underline-offset-4 hover:text-primary/80" {...rest}>
+      <Link
+        href={h}
+        className="text-primary underline underline-offset-4 hover:text-primary/80"
+        {...rest}
+      >
         {children}
       </Link>
     )

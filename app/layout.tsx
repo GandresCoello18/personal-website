@@ -64,8 +64,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Andres Coello - Software Developer, Mentor & Tutor",
-    description:
-      "Mentorías, tutorías y desarrollo de software a medida con Andres Coello.",
+    description: "Mentorías, tutorías y desarrollo de software a medida con Andres Coello.",
     creator: "@acoellogoyes",
     images: ["/1764558900283.png"],
   },

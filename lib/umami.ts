@@ -35,10 +35,7 @@ export const UmamiEvents = {
 } as const
 
 /** Fire a custom Umami event (no-op until the script is ready). */
-export function trackEvent(
-  event: string,
-  data?: Record<string, string | number | boolean>,
-) {
+export function trackEvent(event: string, data?: Record<string, string | number | boolean>) {
   if (typeof window === "undefined") return
   window.umami?.track(event, data)
 }

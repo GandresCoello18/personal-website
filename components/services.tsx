@@ -44,7 +44,8 @@ const services: Service[] = [
   {
     icon: <Zap className="w-8 h-8" />,
     title: "Consultoría Técnica",
-    description: "Análisis y optimización de proyectos, arquitectura de software y estrategia técnica.",
+    description:
+      "Análisis y optimización de proyectos, arquitectura de software y estrategia técnica.",
     features: [
       "Auditoría de código",
       "Diseño de arquitectura",
@@ -65,7 +66,8 @@ const services: Service[] = [
   {
     icon: <Globe className="w-8 h-8" />,
     title: "Desarrollo Web",
-    description: "Aplicaciones web modernas y escalables. Proyectos a largo plazo o freelance con acompañamiento completo.",
+    description:
+      "Aplicaciones web modernas y escalables. Proyectos a largo plazo o freelance con acompañamiento completo.",
     features: [
       "Aplicaciones web full-stack",
       "Arquitectura escalable",
@@ -78,7 +80,8 @@ const services: Service[] = [
   {
     icon: <Monitor className="w-8 h-8" />,
     title: "Desarrollo Móvil Multiplataforma",
-    description: "Aplicaciones móviles multiplataforma para iOS y Android. Una sola base de código, múltiples plataformas.",
+    description:
+      "Aplicaciones móviles multiplataforma para iOS y Android. Una sola base de código, múltiples plataformas.",
     features: [
       "React Native / Flutter",
       "iOS y Android simultáneamente",
@@ -137,7 +140,9 @@ export function Services() {
     window.history.pushState({}, "", newUrl)
 
     window.dispatchEvent(
-      new CustomEvent("urlChanged", { detail: { service: serviceTitle, description: serviceDescription } }),
+      new CustomEvent("urlChanged", {
+        detail: { service: serviceTitle, description: serviceDescription },
+      }),
     )
 
     const contactSection = document.getElementById("contact")
@@ -147,7 +152,10 @@ export function Services() {
   }
 
   return (
-    <section id="services" className="py-10 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-muted/20">
+    <section
+      id="services"
+      className="py-10 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-muted/20"
+    >
       <div className="max-w-6xl mx-auto">
         <div className="text-center space-y-4 mb-16">
           <div className="inline-block px-4 py-2 bg-secondary/10 text-secondary rounded-full text-sm font-medium">
@@ -155,7 +163,8 @@ export function Services() {
           </div>
           <h2 className="section-title">Impulsemos tu Carrera y Proyectos</h2>
           <p className="section-subtitle max-w-3xl mx-auto">
-            Acceso a mentoría, cursos, consultoría y desarrollo de software. Diseñado para acelerar tu crecimiento profesional y llevar tus ideas al siguiente nivel.
+            Acceso a mentoría, cursos, consultoría y desarrollo de software. Diseñado para acelerar
+            tu crecimiento profesional y llevar tus ideas al siguiente nivel.
           </p>
         </div>
 
@@ -202,11 +211,15 @@ export function Services() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h4 className="font-bold mb-2 text-foreground">¿Dónde son las sesiones?</h4>
-              <p className="text-muted-foreground">100% online por Google Meet o via Zoom. Puedes ser desde cualquier parte del mundo.</p>
+              <p className="text-muted-foreground">
+                100% online por Google Meet o via Zoom. Puedes ser desde cualquier parte del mundo.
+              </p>
             </div>
             <div>
               <h4 className="font-bold mb-2 text-foreground">¿Hay período de prueba?</h4>
-              <p className="text-muted-foreground">Sí, primera sesión de consulta gratis para conocernos.</p>
+              <p className="text-muted-foreground">
+                Sí, primera sesión de consulta gratis para conocernos.
+              </p>
             </div>
             <div>
               <h4 className="font-bold mb-2 text-foreground">¿Nivel requerido?</h4>
@@ -216,7 +229,10 @@ export function Services() {
             </div>
             <div>
               <h4 className="font-bold mb-2 text-foreground">¿Seguimiento posterior?</h4>
-              <p className="text-muted-foreground">Sí, recibes soporte técnico y mentoría posterior a la finalización del curso. También puedes contactarme para cualquier consulta o problema que tengas.</p>
+              <p className="text-muted-foreground">
+                Sí, recibes soporte técnico y mentoría posterior a la finalización del curso.
+                También puedes contactarme para cualquier consulta o problema que tengas.
+              </p>
             </div>
           </div>
         </div>

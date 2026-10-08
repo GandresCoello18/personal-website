@@ -46,7 +46,9 @@ export function BlogCard({ post }: BlogCardProps) {
           <time className="text-xs text-muted-foreground" dateTime={post.date}>
             {dateLabel}
           </time>
-          <CardTitle className="text-xl transition-colors group-hover:text-primary">{post.title}</CardTitle>
+          <CardTitle className="text-xl transition-colors group-hover:text-primary">
+            {post.title}
+          </CardTitle>
           <CardDescription className="line-clamp-3 text-base">{post.description}</CardDescription>
         </CardHeader>
       </Card>

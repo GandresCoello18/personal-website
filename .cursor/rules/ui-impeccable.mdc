@@ -1,0 +1,29 @@
+---
+description: Todo cambio de UI/UX debe usar Impeccable y el design system del sitio.
+globs:
+  - app/**/*.tsx
+  - app/**/*.css
+  - components/**/*.tsx
+  - components/**/*.css
+  - styles/**/*.css
+  - hooks/use-*.ts
+alwaysApply: false
+---
+
+# UI/UX — Impeccable + design system
+
+Cualquier cambio que toque UI o UX (layout, estilos, componentes, copy visible, estados vacíos/error, responsive, dark mode, animación) debe:
+
+1. **Usar el skill Impeccable** en `.cursor/skills/impeccable/SKILL.md` (Paul Bakaus, [impeccable.style](https://impeccable.style), Apache 2.0). Leer `reference/craft-floor.md` antes de editar UI. Comandos útiles: `/impeccable audit`, `polish`, `critique`, `harden`.
+2. **Seguir** `.cursor/rules/design-system.md` (tokens, tipografía Geist, shadcn new-york, español, audiencia recruiter/CTO).
+
+## Si hay conflicto
+
+| Tema | Fuente que gana |
+|------|-----------------|
+| Color, radio, spacing, componentes existentes, idioma, copy de marca | `design-system.md` |
+| Oficio visual, jerarquía, anti-patrones genéricos, a11y de pulido, ritmo | Impeccable |
+
+No sustituir teal/azul, Geist ni `card-elevated` / `btn-primary` por paletas o fuentes genéricas de Impeccable. No añadir librerías de animación o UI.
+
+No cambia el copy del sitio salvo que la tarea lo pida.

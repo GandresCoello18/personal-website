@@ -28,10 +28,7 @@ export function getCvTextAbsolutePath(cvKey: CvKey): string {
   return path.join(process.cwd(), "content", "cv", CV_TEXT_FILES[cvKey])
 }
 
-export function resolveCvFilename(
-  category: JobCategory,
-  manualCv?: CvKey | null,
-): string | null {
+export function resolveCvFilename(category: JobCategory, manualCv?: CvKey | null): string | null {
   if (category === "unknown") {
     return manualCv ? CV_FILES[manualCv] : null
   }

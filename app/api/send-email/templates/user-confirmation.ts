@@ -1,9 +1,12 @@
+import { escapeHtml, escapeHtmlWithBreaks } from "../../../../lib/security/html.ts"
 import { absoluteUrl } from "@/lib/site"
 
 export function getUserConfirmationTemplate(nombre: string, asunto: string, mensaje: string) {
-  const formattedMessage = mensaje.replace(/\n/g, "<br />")
+  const safeName = escapeHtml(nombre)
+  const safeSubject = escapeHtml(asunto)
+  const formattedMessage = escapeHtmlWithBreaks(mensaje)
   const profileImageUrl = absoluteUrl("/me.jpg")
-  
+
   return `
 <!DOCTYPE html>
 <html lang="es">
@@ -40,7 +43,7 @@ export function getUserConfirmationTemplate(nombre: string, asunto: string, mens
           <!-- Content -->
           <tr>
             <td style="padding: 40px 30px;">
-              <h2 style="margin: 0 0 20px 0; color: #1c4e5a; font-size: 24px; font-weight: 600;">¡Hola ${nombre}!</h2>
+              <h2 style="margin: 0 0 20px 0; color: #1c4e5a; font-size: 24px; font-weight: 600;">¡Hola ${safeName}!</h2>
               
               <p style="margin: 0 0 20px 0; color: #333333; font-size: 16px; line-height: 1.6;">
                 Gracias por contactarme. He recibido tu mensaje y te responderé lo antes posible.
@@ -48,7 +51,7 @@ export function getUserConfirmationTemplate(nombre: string, asunto: string, mens
 
               <div style="background-color: #f8f9fa; border-left: 4px solid #1c4e5a; padding: 20px; margin: 30px 0; border-radius: 4px;">
                 <p style="margin: 0 0 12px 0; color: #666666; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Asunto:</p>
-                <p style="margin: 0; color: #1c4e5a; font-size: 16px; font-weight: 500;">${asunto}</p>
+                <p style="margin: 0; color: #1c4e5a; font-size: 16px; font-weight: 500;">${safeSubject}</p>
               </div>
 
               <div style="background-color: #f8f9fa; border-left: 4px solid #1c4e5a; padding: 20px; margin: 30px 0; border-radius: 4px;">
@@ -106,4 +109,3 @@ export function getUserConfirmationTemplate(nombre: string, asunto: string, mens
 </html>
   `.trim()
 }
-

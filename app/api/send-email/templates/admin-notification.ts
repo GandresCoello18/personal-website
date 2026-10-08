@@ -1,6 +1,17 @@
-export function getAdminNotificationTemplate(nombre: string, email: string, asunto: string, mensaje: string) {
-  const formattedMessage = mensaje.replace(/\n/g, "<br />")
-  
+import { escapeHtml, escapeHtmlWithBreaks } from "../../../../lib/security/html.ts"
+
+export function getAdminNotificationTemplate(
+  nombre: string,
+  email: string,
+  asunto: string,
+  mensaje: string,
+) {
+  const safeName = escapeHtml(nombre)
+  const safeEmail = escapeHtml(email)
+  const safeSubject = escapeHtml(asunto)
+  const formattedMessage = escapeHtmlWithBreaks(mensaje)
+  const replyHref = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(`Re: ${asunto}`)}`
+
   return `
 <!DOCTYPE html>
 <html lang="es">
@@ -51,7 +62,7 @@ export function getAdminNotificationTemplate(nombre: string, email: string, asun
                 <tr>
                   <td style="padding: 15px; background-color: #f8f9fa; border-radius: 6px; margin-bottom: 10px;">
                     <p style="margin: 0 0 5px 0; color: #6b7280; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Nombre</p>
-                    <p style="margin: 0; color: #1f2937; font-size: 16px; font-weight: 500;">${nombre}</p>
+                    <p style="margin: 0; color: #1f2937; font-size: 16px; font-weight: 500;">${safeName}</p>
                   </td>
                 </tr>
                 <tr>
@@ -61,7 +72,7 @@ export function getAdminNotificationTemplate(nombre: string, email: string, asun
                   <td style="padding: 15px; background-color: #f8f9fa; border-radius: 6px; margin-bottom: 10px;">
                     <p style="margin: 0 0 5px 0; color: #6b7280; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Email</p>
                     <p style="margin: 0; color: #1f2937; font-size: 16px;">
-                      <a href="mailto:${email}" style="color: #2563eb; text-decoration: none;">${email}</a>
+                      <a href="${replyHref}" style="color: #2563eb; text-decoration: none;">${safeEmail}</a>
                     </p>
                   </td>
                 </tr>
@@ -70,7 +81,7 @@ export function getAdminNotificationTemplate(nombre: string, email: string, asun
               <!-- Subject -->
               <div style="background-color: #eff6ff; border-left: 4px solid #2563eb; padding: 20px; margin: 25px 0; border-radius: 4px;">
                 <p style="margin: 0 0 8px 0; color: #1e40af; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Asunto</p>
-                <p style="margin: 0; color: #1e3a8a; font-size: 16px; font-weight: 500;">${asunto}</p>
+                <p style="margin: 0; color: #1e3a8a; font-size: 16px; font-weight: 500;">${safeSubject}</p>
               </div>
 
               <!-- Message -->
@@ -86,7 +97,7 @@ export function getAdminNotificationTemplate(nombre: string, email: string, asun
                     <table role="presentation" cellspacing="0" cellpadding="0" border="0">
                       <tr>
                         <td style="background-color: #2563eb; border-radius: 6px; padding: 12px 24px;">
-                          <a href="mailto:${email}?subject=Re: ${asunto}" style="color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 500; display: inline-block;">
+                          <a href="${replyHref}" style="color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 500; display: inline-block;">
                             📧 Responder por Email
                           </a>
                         </td>
@@ -115,4 +126,3 @@ export function getAdminNotificationTemplate(nombre: string, email: string, asun
 </html>
   `.trim()
 }
-

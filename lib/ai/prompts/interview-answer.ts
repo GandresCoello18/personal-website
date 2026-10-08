@@ -34,10 +34,7 @@ Reglas comunes:
 14. Node vs TypeScript: cifras distintas si aplica; dominio + evidencia breve.
 15. Sin saludos ni firmas. Solo texto para pegar en el formulario.`
 
-export function buildInterviewAnswerUserPrompt(
-  questionsText: string,
-  context: string,
-): string {
+export function buildInterviewAnswerUserPrompt(questionsText: string, context: string): string {
   return `CONTEXTO (única fuente de verdad):
 """
 ${context}

@@ -43,10 +43,12 @@ export function AccessGate({
           onChange={(e) => onSecretChange(e.target.value)}
           className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
         />
-        {error ? (
-          <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
-        ) : null}
-        <button type="submit" disabled={unlocking || !secret} className="btn-primary w-full disabled:opacity-50">
+        {error ? <p className="text-sm text-red-600 dark:text-red-400">{error}</p> : null}
+        <button
+          type="submit"
+          disabled={unlocking || !secret}
+          className="btn-primary w-full disabled:opacity-50"
+        >
           {unlocking ? (
             <span className="inline-flex items-center gap-2">
               <Loader2 className="size-4 animate-spin" />

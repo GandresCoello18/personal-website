@@ -55,7 +55,9 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   const { meta, headings, content } = post
   const postUrl = `${siteUrl}/blog/${meta.slug}`
-  const coverImage = meta.coverImage ? absoluteUrl(meta.coverImage) : absoluteUrl("/1764558900283.png")
+  const coverImage = meta.coverImage
+    ? absoluteUrl(meta.coverImage)
+    : absoluteUrl("/1764558900283.png")
 
   const articleJsonLd = {
     "@context": "https://schema.org",
@@ -91,8 +93,14 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <main className="py-12 sm:py-16">
         <BlogLayout meta={meta} headings={headings}>
           {content}

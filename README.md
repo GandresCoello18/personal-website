@@ -15,12 +15,14 @@ Este sitio web sirve como:
 ## Servicios Ofrecidos
 
 ### Mentoría y Educación
+
 - Mentoría 1-on-1 personalizada
 - Cursos intensivos y bootcamps
 - Consultoría técnica
 - Workshops grupales
 
 ### Desarrollo de Software
+
 - Aplicaciones web full-stack
 - Desarrollo móvil multiplataforma (React Native/Flutter)
 - Desarrollo móvil nativo (iOS/Android)
@@ -31,6 +33,44 @@ Este sitio web sirve como:
 - **UI**: React 19, Tailwind CSS
 - **TypeScript**: Para type safety
 - **Deployment**: Vercel
+- **Gestor de paquetes**: pnpm (Node ≥ 22.6)
+
+## Variables de entorno
+
+Copia `.env.example` a `.env.local`. En Vercel (Production y Preview) hay que definir al menos:
+
+| Variable               | Obligatoria        | Cómo generarla / de dónde sale                                                             |
+| ---------------------- | ------------------ | ------------------------------------------------------------------------------------------ |
+| `APPLY_ACCESS_SECRET`  | Sí                 | Clave que escribes en `/apply`. `openssl rand -base64 32`                                  |
+| `APPLY_SESSION_SECRET` | Sí (nueva)         | Firma HMAC de la cookie de sesión. **Distinta** de la de acceso. `openssl rand -base64 32` |
+| `GMAIL_USER`           | Sí                 | Cuenta Gmail que envía                                                                     |
+| `GMAIL_APP_PASSWORD`   | Sí                 | App Password de Google                                                                     |
+| `GMAIL_RECIPIENT`      | Sí                 | Buzón que recibe el formulario de contacto                                                 |
+| `GEMINI_API_KEY`       | Sí (para `/apply`) | Google AI Studio                                                                           |
+| `NEXT_PUBLIC_SITE_URL` | Recomendada        | `https://andrescoellog.com`                                                                |
+
+Sin `APPLY_SESSION_SECRET` el desbloqueo de `/apply` falla cerrado. Tras rotar ese secreto hay que volver a entrar con la clave de acceso (la cookie anterior deja de valer).
+
+El rate limit de contacto y de unlock es en memoria (best-effort en cada isolate de Vercel) hasta que exista Upstash Redis.
+
+## Calidad
+
+```bash
+pnpm install
+pnpm lint
+pnpm format:check
+pnpm typecheck
+pnpm test
+pnpm build
+```
+
+Requiere Node ≥ 22.6 (ver `.nvmrc`). El build no necesita secretos reales.
+
+## Cursor (skills y reglas)
+
+- **Impeccable** (Paul Bakaus, Apache 2.0): `.cursor/skills/impeccable` — oficio de UI/UX. Cualquier cambio visual debe usarlo junto con `.cursor/rules/design-system.md` (si chocan, gana el design system del sitio).
+- **Vercel React Best Practices** (MIT): `.cursor/skills/vercel-react-best-practices` — rendimiento de React/Next.js.
+- Reglas: `.cursor/rules/ui-impeccable.mdc` (UI) y `.cursor/rules/quality-gate.mdc` (lint/format/typecheck/test).
 
 ## 👨‍💻 Autores ✒️
 
