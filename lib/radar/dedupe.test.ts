@@ -290,6 +290,9 @@ describe("registerExternalApply", () => {
       input: payload(),
     })
     assert.equal(result.ok, false)
-    if (!result.ok) assert.equal(result.code, "history_unavailable")
+    if (!result.ok) {
+      assert.equal(result.code, "history_unavailable")
+      assert.match(result.message, /No se puede registrar/)
+    }
   })
 })

@@ -37,6 +37,8 @@ export type DedupeResult = DedupeSuccess | DedupeFailure
 const IN_PROGRESS_MESSAGE = "Hay otro envío en curso. Espera un momento e inténtalo de nuevo."
 const HISTORY_UNAVAILABLE_MESSAGE =
   "El historial no está disponible. Confirma si quieres enviar de todos modos."
+const HISTORY_UNAVAILABLE_REGISTER =
+  "El historial no está disponible. No se puede registrar la vacante ahora."
 const IDENTITY_MISSING_MESSAGE =
   "Indica la URL de la vacante o la empresa y el cargo para registrarla."
 
@@ -224,7 +226,7 @@ export async function registerExternalApply(options: {
   }
 
   if (!options.store) {
-    return { ok: false, code: "history_unavailable", message: HISTORY_UNAVAILABLE_MESSAGE }
+    return { ok: false, code: "history_unavailable", message: HISTORY_UNAVAILABLE_REGISTER }
   }
 
   return sendWithDedupe({
