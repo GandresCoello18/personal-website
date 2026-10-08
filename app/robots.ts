@@ -9,7 +9,16 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/apply", "/api/apply", "/interview", "/api/interview"],
+      disallow: [
+        "/apply",
+        "/api/apply",
+        "/interview",
+        "/api/interview",
+        "/api/telegram",
+        "/radar",
+        "/api/radar",
+        "/api/cron",
+      ],
     },
     sitemap: `${siteUrl}/sitemap.xml`,
   }

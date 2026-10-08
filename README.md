@@ -51,6 +51,9 @@ Copia `.env.example` a `.env.local`. En Vercel (Production y Preview) hay que de
 | `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | Sí (historial)     | Redis de Upstash creado a mano. Sin ellas `/apply` avisa «historial no disponible» y pide confirmación antes de enviar |
 | `KV_REST_API_URL` / `KV_REST_API_TOKEN`               | Respaldo           | Solo si Vercel Marketplace las inyecta. El código mira **UPSTASH primero**                                             |
 | `RADAR_TIMEZONE`                                      | Opcional           | Por defecto `America/Guayaquil`                                                                                        |
+| `TELEGRAM_BOT_TOKEN`                                  | Fase 2             | @BotFather                                                                                                             |
+| `TELEGRAM_CHAT_ID`                                    | Fase 2             | `getUpdates` **antes** de registrar el webhook                                                                         |
+| `TELEGRAM_WEBHOOK_SECRET`                             | Fase 2             | `openssl rand -hex 32`. Sin esto el webhook responde 503                                                               |
 
 Sin `APPLY_SESSION_SECRET` el desbloqueo de `/apply` falla cerrado. Tras rotar ese secreto hay que volver a entrar con la clave de acceso (la cookie anterior deja de valer).
 

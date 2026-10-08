@@ -1,6 +1,6 @@
 # Radar de LinkedIn + historial de postulaciones: documento de diseño
 
-> **Estado:** diseño y documentación. Fase 0 mergeada. Fase 1 (historial/dedupe en `/apply`) en implementación. **El radar local, la puntuación, los crons y `/radar` aún no existen.**
+> **Estado:** diseño y documentación. Fase 0 mergeada. Fases 1–2 (historial en `/apply` + Telegram) en implementación. **El radar local, la puntuación, los crons y `/radar` aún no existen.**
 > **Fecha:** 4 de octubre de 2026 (hora de Ecuador, UTC-5).
 > **Repositorio analizado:** [`GandresCoello18/personal-website`](https://github.com/GandresCoello18/personal-website), commit `c5df5b8` (10 sep 2026), en producción en `https://andrescoellog.com` (`andres-coello-goyes.vercel.app` redirige ahí con un 308).
 > **Relación con documentos existentes:** este diseño **reemplaza en parte** a `docs/linkedin-job-monitor-plan.md` (ver [§2.8](#28-documentación-existente-y-el-plan-previo)). Sigue el estilo de `UI-AUDIT.md` (en español, tablas por hallazgo, prioridades) y respeta `.cursor/rules/design-system.md` para cualquier UI nueva.
@@ -845,7 +845,7 @@ Dependencias nuevas: `@upstash/redis` (runtime). `playwright` y `tsx` (dev, solo
 | `KV_REST_API_URL`, `KV_REST_API_TOKEN` | ✅ respaldo | Las inyecta la integración de Vercel Marketplace (`Redis.fromEnv()`). Solo se usan si faltan las `UPSTASH_*` | Redis (respaldo) |
 | `TELEGRAM_BOT_TOKEN` | ✅ | BotFather | Enviar mensajes |
 | `TELEGRAM_CHAT_ID` | ✅ | `getUpdates` (§5.3) | Destino y lista de chats permitidos |
-| `TELEGRAM_WEBHOOK_SECRET` | ✅ | Lo generas tú (`openssl rand -hex 32`) | Verificar el webhook |
+| `TELEGRAM_WEBHOOK_SECRET` | ✅ | Lo generas tú: `openssl rand -hex 32`. **Obligatorio:** sin esta variable el webhook responde 503 (falla cerrado) | Verificar `X-Telegram-Bot-Api-Secret-Token` |
 | `RADAR_INGEST_SECRET` | ✅ | Lo generas tú | Auth del script → sitio |
 | `CRON_SECRET` | ✅ | Lo generas tú | Auth de Vercel Cron |
 | `APPLY_SESSION_SECRET` | ✅ | Lo generas tú | Firmar la cookie de `/apply` (Fase 0) |
@@ -856,7 +856,7 @@ Dependencias nuevas: `@upstash/redis` (runtime). `playwright` y `tsx` (dev, solo
 
 **En tu PC** (`scripts/radar/.env.local`, nunca en git): `RADAR_SITE_URL=https://andrescoellog.com`, `RADAR_INGEST_SECRET=<el mismo de Vercel>`, `RADAR_PROFILE_DIR=C:\Users\<tú>\AppData\Local\radar-linkedin\profile`, `RADAR_HEADED=1` y `RADAR_DRY_RUN=0`.
 
-Se añadirá un `.env.example` con todas las variables (sin valores).
+Hay un `.env.example` en la raíz con los nombres (sin valores). El código de Redis acepta `UPSTASH_*` primero y `KV_*` como respaldo.
 
 ### 5.3 Crear el bot de Telegram y obtener el `chat_id`
 
@@ -874,6 +874,11 @@ Se añadirá un `.env.example` con todas las variables (sin valores).
      -d 'allowed_updates=["message","callback_query"]'
    ```
    y compruébalo con `https://api.telegram.org/bot<TOKEN>/getWebhookInfo`.
+   El `secret_token` del `setWebhook` **tiene que ser el mismo** valor que `TELEGRAM_WEBHOOK_SECRET` en Vercel. Si falta la variable, el endpoint no acepta nada (503). Genera el secreto **antes** del redeploy:
+
+   ```bash
+   openssl rand -hex 32
+   ```
 
 ### 5.4 Instalar Upstash Redis desde Vercel
 
