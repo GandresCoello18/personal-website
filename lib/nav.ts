@@ -10,34 +10,32 @@ export type NavItem = {
 export const PRIMARY_NAV_ITEMS: readonly NavItem[] = [
   { name: "Experiencia", href: "/#experience", sectionId: "experience" },
   { name: "Proyectos", href: "/#projects", sectionId: "projects" },
-  { name: "Servicios", href: "/#services", sectionId: "services" },
+  { name: "Escritos", href: "/#escritos", sectionId: "escritos" },
+  { name: "Contacto", href: "/#contact", sectionId: "contact" },
 ] as const
 
-export const SECONDARY_NAV_ITEMS: readonly NavItem[] = [
-  { name: "Charlas", href: "/#talks", sectionId: "talks" },
-  { name: "Blog", href: "/blog" },
-  { name: "Videos", href: "/videos" },
-] as const
+export const CONTACT_NAV_ITEM: NavItem = PRIMARY_NAV_ITEMS[3]!
 
-export const CONTACT_NAV_ITEM: NavItem = {
-  name: "Contactar",
-  href: "/#contact",
-  sectionId: "contact",
-}
-
-export const SECONDARY_NAV_LABEL = "Más"
 export const SKIP_TO_CONTENT_LABEL = "Saltar al contenido"
 export const MAIN_CONTENT_ID = "contenido-principal"
+
+/** Old home hashes that now live elsewhere. */
+export const LEGACY_HASH_REDIRECTS: Record<string, string> = {
+  services: "/mentoria",
+  classgap: "/mentoria#classgap",
+}
+
+export function resolveLegacyHash(hash: string): string | null {
+  const key = hash.startsWith("#") ? hash.slice(1) : hash
+  if (!key) return null
+  return LEGACY_HASH_REDIRECTS[key] ?? null
+}
 
 export function getMobileMenuLabel(isOpen: boolean): string {
   return isOpen ? "Cerrar menú" : "Abrir menú"
 }
 
-export const ALL_NAV_ITEMS: readonly NavItem[] = [
-  ...PRIMARY_NAV_ITEMS,
-  ...SECONDARY_NAV_ITEMS,
-  CONTACT_NAV_ITEM,
-]
+export const ALL_NAV_ITEMS: readonly NavItem[] = PRIMARY_NAV_ITEMS
 
 export const HOME_SECTION_IDS = ALL_NAV_ITEMS.map((item) => item.sectionId).filter(
   (id): id is string => Boolean(id),
@@ -58,16 +56,16 @@ export function isNavItemActive(
     return true
   }
 
+  if (item.sectionId === "escritos" && (pathname === "/blog" || pathname.startsWith("/blog/"))) {
+    return true
+  }
+
   const isHome = pathname === "/" || pathname === ""
   if (!isHome || !item.sectionId) {
     return false
   }
 
   return activeSectionId === item.sectionId
-}
-
-export function isSecondaryGroupActive(pathname: string, activeSectionId?: string | null): boolean {
-  return SECONDARY_NAV_ITEMS.some((item) => isNavItemActive(item, pathname, activeSectionId))
 }
 
 export function resolveHomeSectionId(

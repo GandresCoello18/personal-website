@@ -3,27 +3,26 @@ import { describe, it } from "node:test"
 import {
   CONTACT_NAV_ITEM,
   PRIMARY_NAV_ITEMS,
-  SECONDARY_NAV_ITEMS,
   getMobileMenuLabel,
   isNavItemActive,
-  isSecondaryGroupActive,
   pathnameMatchesNavHref,
   resolveHomeSectionId,
+  resolveLegacyHash,
 } from "./nav.ts"
 
 describe("nav information architecture", () => {
-  it("keeps the primary menu to three destinations", () => {
-    assert.equal(PRIMARY_NAV_ITEMS.length, 3)
+  it("keeps the primary menu to four destinations", () => {
+    assert.equal(PRIMARY_NAV_ITEMS.length, 4)
     assert.deepEqual(
       PRIMARY_NAV_ITEMS.map((item) => item.name),
-      ["Experiencia", "Proyectos", "Servicios"],
+      ["Experiencia", "Proyectos", "Escritos", "Contacto"],
     )
   })
 
-  it("moves talks, blog and videos behind the secondary group", () => {
-    assert.deepEqual(
-      SECONDARY_NAV_ITEMS.map((item) => item.name),
-      ["Charlas", "Blog", "Videos"],
+  it("does not put mentoría in the primary menu", () => {
+    assert.equal(
+      PRIMARY_NAV_ITEMS.some((item) => /mentor|servicio/i.test(item.name + item.href)),
+      false,
     )
   })
 })
@@ -41,11 +40,11 @@ describe("pathnameMatchesNavHref", () => {
 })
 
 describe("isNavItemActive", () => {
-  it("activates blog on article routes", () => {
-    const blog = SECONDARY_NAV_ITEMS.find((item) => item.name === "Blog")
-    assert.ok(blog)
-    assert.equal(isNavItemActive(blog, "/blog/mi-post"), true)
-    assert.equal(isNavItemActive(blog, "/videos"), false)
+  it("activates escritos on article routes", () => {
+    const escritos = PRIMARY_NAV_ITEMS.find((item) => item.name === "Escritos")
+    assert.ok(escritos)
+    assert.equal(isNavItemActive(escritos, "/blog/mi-post"), true)
+    assert.equal(isNavItemActive(escritos, "/videos"), false)
   })
 
   it("activates home sections from the observed section id", () => {
@@ -56,17 +55,17 @@ describe("isNavItemActive", () => {
     assert.equal(isNavItemActive(projects, "/blog", "projects"), false)
   })
 
-  it("does not mark Contactar as a primary/secondary active sibling", () => {
+  it("activates Contacto on the home contact section", () => {
     assert.equal(isNavItemActive(CONTACT_NAV_ITEM, "/", "contact"), true)
-    assert.equal(isSecondaryGroupActive("/", "contact"), false)
+    assert.equal(isNavItemActive(CONTACT_NAV_ITEM, "/", "projects"), false)
   })
 })
 
-describe("isSecondaryGroupActive", () => {
-  it("lights the overflow trigger on blog or talks", () => {
-    assert.equal(isSecondaryGroupActive("/blog"), true)
-    assert.equal(isSecondaryGroupActive("/", "talks"), true)
-    assert.equal(isSecondaryGroupActive("/", "projects"), false)
+describe("resolveLegacyHash", () => {
+  it("sends old service and classgap hashes to /mentoria", () => {
+    assert.equal(resolveLegacyHash("#services"), "/mentoria")
+    assert.equal(resolveLegacyHash("classgap"), "/mentoria#classgap")
+    assert.equal(resolveLegacyHash("#experience"), null)
   })
 })
 
@@ -80,11 +79,11 @@ describe("getMobileMenuLabel", () => {
 describe("resolveHomeSectionId", () => {
   it("picks the most visible section near the top of the viewport", () => {
     const id = resolveHomeSectionId(
-      ["experience", "projects", "services"],
+      ["experience", "projects", "escritos"],
       [
         { id: "experience", ratio: 0.2, top: -40 },
         { id: "projects", ratio: 0.55, top: 80 },
-        { id: "services", ratio: 0.1, top: 640 },
+        { id: "escritos", ratio: 0.1, top: 640 },
       ],
     )
     assert.equal(id, "projects")

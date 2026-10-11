@@ -1,9 +1,9 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, type ReactNode } from "react"
 import { ExternalLink, MapPin, Mic2, Users } from "lucide-react"
 
-import { TrackedAnchor } from "@/components/tracked-link"
+import { TrackedAnchor, TrackedLink } from "@/components/tracked-link"
 import { trackEvent, UmamiEvents } from "@/lib/umami"
 import { cn } from "@/lib/utils"
 
@@ -290,7 +290,7 @@ function TalkCard({ talk }: { talk: Talk }) {
   )
 }
 
-export function TalksSection() {
+export function TalksSection({ videoPreview }: { videoPreview?: ReactNode }) {
   const [showAll, setShowAll] = useState(false)
   const initialTalks = talks.slice(0, INITIAL_TALKS_COUNT)
   const remainingTalks = talks.slice(INITIAL_TALKS_COUNT)
@@ -318,8 +318,8 @@ export function TalksSection() {
             Conferencias
           </h2>
           <p className="section-subtitle mx-auto max-w-2xl">
-            Charlas en conferencias y meetups centradas en desarrollo de Software, apps móviles, IA,
-            herramientas modernas y en llevar productos sólidos a producción.
+            Speaker en GDG Ecuador, DevFest y TsáchiTalks. Charlas sobre backend, IA aplicada y cómo
+            llevar productos a producción.
           </p>
           <p className="text-sm font-medium text-accent">{talks.length} charlas destacadas</p>
         </div>
@@ -358,6 +358,20 @@ export function TalksSection() {
             </div>
           </div>
         ) : null}
+
+        {videoPreview}
+
+        <p className="mt-12 text-center text-sm text-muted-foreground">
+          También doy clases y mentoría.{" "}
+          <TrackedLink
+            href="/mentoria"
+            event={UmamiEvents.navServices}
+            eventData={{ source: "talks" }}
+            className="font-medium text-accent underline-offset-4 hover:underline"
+          >
+            Ver mentoría y clases
+          </TrackedLink>
+        </p>
       </div>
     </section>
   )

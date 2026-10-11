@@ -5,20 +5,26 @@ import { getAllVideos } from "@/lib/videos"
 import { UmamiEvents } from "@/lib/umami"
 
 /** Home preview: latest 2 video summaries (same cards as `/videos`). */
-export function VideosSection() {
+export function VideosSection({ compact = false }: { compact?: boolean }) {
   const videos = getAllVideos().slice(0, 2)
   if (videos.length === 0) return null
+
+  const headingClass = compact ? "text-2xl font-bold text-foreground md:text-3xl" : "section-title"
 
   return (
     <section
       id="videos"
-      className="border-y border-border bg-muted/30 py-20 md:py-32 px-4 sm:px-6 lg:px-8"
+      className={
+        compact
+          ? "border-t border-border pt-16"
+          : "border-y border-border bg-muted/30 py-20 md:py-32 px-4 sm:px-6 lg:px-8"
+      }
       aria-labelledby="videos-heading"
     >
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-14 space-y-4 text-center">
+      <div className={compact ? undefined : "mx-auto max-w-6xl"}>
+        <div className={compact ? "mb-10 space-y-3 text-center" : "mb-14 space-y-4 text-center"}>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">YouTube</p>
-          <h2 id="videos-heading" className="section-title">
+          <h2 id="videos-heading" className={headingClass}>
             Resúmenes en video
           </h2>
           <p className="section-subtitle mx-auto max-w-2xl">

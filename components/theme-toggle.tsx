@@ -16,7 +16,7 @@ export function ThemeToggle() {
         type="button"
         variant="ghost"
         size="icon"
-        className="size-9 shrink-0 rounded-lg"
+        className="size-11 shrink-0 rounded-lg"
         disabled
         aria-hidden
       >
@@ -36,7 +36,7 @@ export function ThemeToggle() {
       type="button"
       variant="ghost"
       size="icon"
-      className="shrink-0 rounded-lg text-muted-foreground hover:text-foreground"
+      className="size-11 shrink-0 rounded-lg text-muted-foreground hover:text-foreground"
       onClick={toggleTheme}
       aria-label={isDark ? "Cambiar a tema claro" : "Cambiar a tema oscuro"}
       title={isDark ? "Tema claro" : "Tema oscuro"}

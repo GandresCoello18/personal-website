@@ -11,14 +11,15 @@ export function BlogSection() {
 
   return (
     <section
-      id="blog"
+      id="escritos"
       className="border-y border-border bg-background py-20 md:py-32 px-4 sm:px-6 lg:px-8"
-      aria-labelledby="blog-heading"
+      aria-labelledby="escritos-heading"
     >
+      <div id="blog" className="sr-only" />
       <div className="mx-auto max-w-6xl">
         <div className="mb-14 space-y-4 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Blog</p>
-          <h2 id="blog-heading" className="section-title">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Escritos</p>
+          <h2 id="escritos-heading" className="section-title">
             Últimos artículos
           </h2>
           <p className="section-subtitle mx-auto max-w-2xl">

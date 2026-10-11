@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { ExperienceCard, type ExperienceItem } from "@/components/experience-card"
 
 const experiences: ExperienceItem[] = [
@@ -222,18 +223,39 @@ export function Experience() {
           ))}
         </div>
 
-        <div className="my-16 space-y-4 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Docencia</p>
-          <h2 className="text-2xl font-bold text-foreground md:text-3xl">Enseñanza</h2>
-          <p className="section-subtitle mx-auto max-w-2xl">
-            Bootcamps, clases particulares y grupos. Fuera de los roles de producto.
+        <div className="my-16 border-t border-border pt-12">
+          <div className="mb-8 space-y-3 text-center">
+            <h3 className="text-2xl font-bold text-foreground md:text-3xl">Docencia</h3>
+            <p className="section-subtitle mx-auto max-w-2xl">
+              Bootcamps, clases particulares y grupos. Fuera de los roles de producto.
+            </p>
+          </div>
+          <ul className="mx-auto max-w-3xl space-y-4">
+            {teaching.map((item) => (
+              <li
+                key={item.id}
+                className="flex flex-col gap-1 border-b border-border pb-4 last:border-b-0 sm:flex-row sm:items-baseline sm:justify-between"
+              >
+                <div className="min-w-0">
+                  <p className="font-semibold text-foreground">
+                    {item.company}
+                    <span className="font-normal text-muted-foreground"> · {item.role}</span>
+                  </p>
+                </div>
+                <p className="shrink-0 text-sm text-muted-foreground">{item.period}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-center text-sm text-muted-foreground">
+            Precios, testimonios y pagos están en{" "}
+            <Link
+              href="/mentoria"
+              className="font-medium text-accent underline-offset-4 hover:underline"
+            >
+              mentoría y clases
+            </Link>
+            .
           </p>
-        </div>
-
-        <div className="grid grid-cols-1 items-start gap-6 md:gap-8 lg:grid-cols-2">
-          {teaching.map((exp) => (
-            <ExperienceCard key={exp.id} item={exp} />
-          ))}
         </div>
 
         <div className="my-16 space-y-4 text-center">

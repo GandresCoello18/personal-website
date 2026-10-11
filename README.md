@@ -12,20 +12,9 @@ Este sitio web sirve como:
 - **Plataforma de servicios**: consultoría, desarrollo y docencia
 - **Punto de contacto**: para empresas, reclutadores y estudiantes
 
-## Servicios Ofrecidos
+## Mentoría
 
-### Mentoría y Educación
-
-- Mentoría 1-on-1 personalizada
-- Cursos intensivos y bootcamps
-- Consultoría técnica
-- Workshops grupales
-
-### Desarrollo de Software
-
-- Aplicaciones web full-stack
-- Desarrollo móvil multiplataforma (React Native/Flutter)
-- Desarrollo móvil nativo (iOS/Android)
+La página `/mentoria` (fuera del menú principal) reúne clases, precios, testimonios y pagos. El menú principal es Experiencia · Proyectos · Escritos · Contacto.
 
 ## Tecnologías
 

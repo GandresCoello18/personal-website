@@ -16,7 +16,7 @@ export function Footer() {
     recursos: [
       { label: "Blog", href: "/blog" },
       { label: "Videos", href: "/videos" },
-      { label: "Servicios", href: "/#services" },
+      { label: "Mentoría", href: "/mentoria" },
     ],
   }
 
