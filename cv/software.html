@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Andrés Coello Goyes — Backend Software Engineer</title>
+    <style>
+      @font-face {
+        font-family: "LibSans";
+        src: url("file:///usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf")
+          format("truetype");
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "LibSans";
+        src: url("file:///usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf")
+          format("truetype");
+        font-weight: 700;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "LibSans";
+        src: url("file:///usr/share/fonts/truetype/liberation/LiberationSans-Italic.ttf")
+          format("truetype");
+        font-weight: 400;
+        font-style: italic;
+      }
+
+      @page {
+        size: A4;
+        margin: 11mm 13mm 11mm 13mm;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        color: #111;
+        font-family: LibSans, Helvetica, Arial, sans-serif;
+        font-size: 9.6pt;
+        line-height: 1.28;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 6px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 17pt;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        line-height: 1.15;
+      }
+
+      .tagline {
+        margin: 2px 0 0;
+        font-size: 10.5pt;
+        font-weight: 700;
+      }
+
+      .contact {
+        margin: 3px 0 0;
+        font-size: 8.3pt;
+        line-height: 1.35;
+      }
+
+      h2 {
+        margin: 7px 0 3px;
+        padding-bottom: 1px;
+        border-bottom: 1px solid #111;
+        font-size: 10pt;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        break-after: avoid;
+        page-break-after: avoid;
+      }
+
+      p {
+        margin: 0 0 3px;
+      }
+
+      .job {
+        margin: 0 0 5px;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .job-head,
+      .edu-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+      }
+
+      .role,
+      .school {
+        font-weight: 700;
+      }
+
+      .dates {
+        flex-shrink: 0;
+        font-size: 9pt;
+      }
+
+      .meta {
+        font-style: italic;
+        margin-bottom: 1px;
+      }
+
+      .lead {
+        margin: 0 0 1px;
+      }
+
+      ul {
+        margin: 0 0 1px;
+        padding-left: 1.15em;
+      }
+
+      li {
+        margin: 0;
+        padding: 0;
+      }
+
+      .stack {
+        margin: 1px 0 0;
+        font-size: 8.6pt;
+      }
+
+      .skills p,
+      .langs p,
+      .certs p {
+        margin: 0 0 1px;
+      }
+
+      .label {
+        font-weight: 700;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-color: #888;
+        text-underline-offset: 1.5px;
+        text-decoration-thickness: 0.45px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Andrés Coello Goyes</h1>
+      <p class="tagline">Backend Software Engineer</p>
+      <p class="contact">
+        Remoto · +593993698358 ·
+        <a href="mailto:goyeselcoca@gmail.com">goyeselcoca@gmail.com</a> ·
+        <a href="https://www.linkedin.com/in/andrescoellogoyes"
+          >linkedin.com/in/andrescoellogoyes</a
+        >
+        · <a href="https://github.com/GandresCoello18">github.com/GandresCoello18</a> ·
+        <a href="https://andrescoellog.com">andrescoellog.com</a>
+      </p>
+    </header>
+
+    <h2>Resumen</h2>
+    <p>
+      Backend engineer con 8+ años en Node.js/TypeScript y AWS. Pongo en producción SaaS
+      multi-tenant y sistemas LLM/RAG: Meniuz opera 500+ restaurantes con deploys 60&nbsp;% más
+      rápidos; en Novacomp la plataforma de gamificación y recompensas subió la retención bancaria
+      hasta un 30&nbsp;%. Lidero equipos (4 devs, SDK comercial en NPM) y diseño APIs orientadas a
+      eventos que aguantan carga real.
+    </p>
+
+    <h2>Experiencia</h2>
+
+    <section class="job">
+      <div class="job-head">
+        <span class="role">Backend Engineer (AI &amp; Odoo Integrations)</span>
+        <span class="dates">mar. 2026 – actualidad</span>
+      </div>
+      <p class="meta"><a href="https://devlokos.com/">DevLokos</a> · Remoto · Quito, Ecuador</p>
+      <p class="lead">
+        Asistente LLM (Gemini) + RAG que resuelve compatibilidad de autopartes en lenguaje natural,
+        donde una búsqueda por catálogo no llega.
+      </p>
+      <ul>
+        <li>
+          Integré Odoo como fuente de verdad detrás de una API REST en Fastify y un BFF para la app
+          (React Native/Expo) y la web (Next.js).
+        </li>
+        <li>
+          Publiqué la app en App Store y Google Play. Despliegues en Railway, Render y DigitalOcean.
+        </li>
+        <li>Automatizé procesos que el cliente hacía a mano en Odoo, sin migrar datos.</li>
+      </ul>
+      <p class="stack">
+        <span class="label">Stack:</span> TypeScript, Fastify, Prisma, MongoDB, Redis, Odoo, Gemini,
+        RAG, Next.js, React Native
+      </p>
+    </section>
+
+    <section class="job">
+      <div class="job-head">
+        <span class="role">Backend &amp; DevOps Lead</span>
+        <span class="dates">abr. 2022 – actualidad · part-time</span>
+      </div>
+      <p class="meta"><a href="https://meniuz.com/">Meniuz</a> · Remoto · Quito, Ecuador</p>
+      <p class="lead">
+        Llevé una web de menús a un SaaS multi-tenant con 500+ establecimientos activos en Ecuador.
+      </p>
+      <ul>
+        <li>
+          Bajé un 60&nbsp;% los tiempos de despliegue (CI/CD, Docker, GitHub) y un 25&nbsp;% los
+          costos de infraestructura.
+        </li>
+        <li>
+          Pasé de REST a GraphQL y de Railway a AWS (EC2), sobre un monolito modular multi-tenant.
+        </li>
+        <li>
+          Puse en producción RAG (Qdrant, Gemini) y OCR para digitalizar menús y recomendar en
+          lenguaje natural.
+        </li>
+      </ul>
+      <p class="stack">
+        <span class="label">Stack:</span> TypeScript, Express, GraphQL, MySQL, Redis, Docker, AWS,
+        Qdrant, Gemini, Next.js
+      </p>
+    </section>
+
+    <section class="job">
+      <div class="job-head">
+        <span class="role">Software Engineer II (Backend)</span>
+        <span class="dates">ene. 2026 – abr. 2026</span>
+      </div>
+      <p class="meta"><a href="https://crnova.com/">Novacomp</a> · Remoto · San José, Costa Rica</p>
+      <p class="lead">
+        Hasta un 30&nbsp;% más de retención en usuarios bancarios con gamificación y recompensas
+        personalizadas (cashback y fidelización).
+      </p>
+      <ul>
+        <li>
+          Rediseñé el motor de segmentación en tiempo real: SQL dinámico sobre un Data Lake en
+          Amazon Athena, reglas complejas sin latencia.
+        </li>
+        <li>
+          Monté microservicios en NestJS con AWS Lambda y EventBridge; cron jobs y CloudWatch.
+        </li>
+        <li>Implementé autenticación y RBAC con Amazon Cognito y JWT.</li>
+      </ul>
+      <p class="stack">
+        <span class="label">Stack:</span> TypeScript, NestJS, AWS (Athena, Lambda, EventBridge,
+        Cognito, CloudWatch), Prisma
+      </p>
+    </section>
+
+    <section class="job">
+      <div class="job-head">
+        <span class="role">Backend Engineer</span>
+        <span class="dates">sept. 2025 – nov. 2025</span>
+      </div>
+      <p class="meta"><a href="https://mimstechcorp.com/">MIMS Tech</a> · Remoto · Miami, USA</p>
+      <p class="lead">
+        Asumí el liderazgo técnico de 4 developers y publiqué un SDK comercial en NPM para
+        notarización online en EE.&nbsp;UU.
+      </p>
+      <ul>
+        <li>
+          Diseñé multi-tenant con Row-Level Security en PostgreSQL para aislar datos por cliente.
+        </li>
+        <li>Migré a microservicios en monorepo NX (NATS) sin frenar entregas.</li>
+        <li>Integré Stripe y desplegué en AWS (API Gateway, Lambda, EC2, S3) con Docker.</li>
+      </ul>
+      <p class="stack">
+        <span class="label">Stack:</span> TypeScript, NestJS, Prisma, PostgreSQL, NATS, Docker, AWS,
+        Stripe
+      </p>
+    </section>
+
+    <section class="job">
+      <div class="job-head">
+        <span class="role">Full Stack Engineer</span>
+        <span class="dates">abr. 2022 – mar. 2025</span>
+      </div>
+      <p class="meta">
+        <a href="https://ggtech.gg/">GGTECH Entertainment</a> · Remoto · Madrid, España
+      </p>
+      <p class="lead">
+        Plataforma de esports en América, Europa y Asia: +30&nbsp;% de participación.
+      </p>
+      <ul>
+        <li>Construí motores de ranking y cuatro formatos de competición (suizo y round robin).</li>
+        <li>
+          Bajé más de un 25&nbsp;% las incidencias en torneos masivos: consultas MongoDB,
+          migraciones y WebSockets en tiempo real.
+        </li>
+        <li>
+          Endurecí el acceso con MFA, rate limiting y TTL; pruebas de integración con Supertest.
+        </li>
+      </ul>
+      <p class="stack">
+        <span class="label">Stack:</span> Meteor.js, Node.js, MongoDB, Redis, WebSockets, AWS
+      </p>
+    </section>
+
+    <section class="job">
+      <div class="job-head">
+        <span class="role">Full Stack Developer</span>
+        <span class="dates">may. 2021 – abr. 2022</span>
+      </div>
+      <p class="meta"><a href="https://ativar.com.mx/">ATIVAR</a> · Remoto · Mérida, México</p>
+      <p class="lead">
+        −25&nbsp;% de cambios posteriores al cerrar alcance con el cliente en el levantamiento de
+        requisitos.
+      </p>
+      <ul>
+        <li>Publiqué apps en Google Play, App Store y AppGallery (React Native).</li>
+        <li>APIs con JWT y refresh tokens, documentadas en Swagger; e2e con Cypress.</li>
+      </ul>
+      <p class="stack">
+        <span class="label">Stack:</span> TypeScript, Meteor.js, Next.js, MongoDB, React Native
+      </p>
+    </section>
+
+    <section class="job">
+      <div class="job-head">
+        <span class="role">Mobile Application Developer</span>
+        <span class="dates">oct. 2020 – mar. 2021</span>
+      </div>
+      <p class="meta">COOPROCLEM · Híbrido · Los Ríos, Ecuador</p>
+      <p>
+        App móvil que envía datos de dispositivos de campo a servidores administrativos; red e
+        integración multiplataforma.
+      </p>
+    </section>
+
+    <section class="job">
+      <div class="job-head">
+        <span class="role">Desarrollador freelance</span>
+        <span class="dates">2018 – 2020</span>
+      </div>
+      <p class="meta">Independiente</p>
+      <p>Proyectos web independientes, antes de los roles formales.</p>
+    </section>
+
+    <h2>Proyectos destacados</h2>
+    <section class="job">
+      <p>
+        <a href="https://andrescoellog.com/proyectos/meniuz">Meniuz</a>
+        · SaaS multi-tenant como monolito modular: API GraphQL en AWS (EC2) y Qdrant en el mismo
+        host para RAG.
+        <span class="stack"
+          ><span class="label">Stack:</span> TypeScript, Express, GraphQL, AWS, Qdrant</span
+        >
+      </p>
+    </section>
+    <section class="job">
+      <p>
+        <a href="https://andrescoellog.com/proyectos/tayos">Tayos</a>
+        · Asistente LLM+RAG sobre Odoo como fuente de verdad: API Fastify, BFF y webhooks de ventas,
+        cotizaciones y devoluciones.
+        <span class="stack"><span class="label">Stack:</span> Fastify, Odoo, Gemini, RAG</span>
+      </p>
+    </section>
+    <section class="job">
+      <p>
+        <a href="https://github.com/GandresCoello18/order-lifecycle-platform"
+          >Order Lifecycle Platform</a
+        >
+        · Microservicios orientados a eventos: solo el gateway expone puertos; colas BullMQ y
+        contratos de eventos entre servicios.
+        <span class="stack"><span class="label">Stack:</span> NestJS, NX, BullMQ, PostgreSQL</span>
+      </p>
+    </section>
+
+    <h2>Docencia</h2>
+    <p>
+      160+ clases particulares en Classgap. Bootcamps en Crack The Code (IA y producto) y Codings
+      Academy (40+ estudiantes). Charlas en GDG, DevFest e IEEE ESPOL: embeddings, TypeScript y
+      desarrollo web.
+    </p>
+
+    <h2>Educación</h2>
+    <section class="job">
+      <div class="edu-head">
+        <span class="school">Código Facilito</span>
+        <span class="dates">mar. 2025 – actualidad</span>
+      </div>
+      <p>Ingeniería de software · DevOps</p>
+    </section>
+    <section class="job">
+      <div class="edu-head">
+        <span class="school">Platzi</span>
+        <span class="dates">ene. 2019 – dic. 2025</span>
+      </div>
+      <p>Programación e ingeniería</p>
+    </section>
+    <section class="job">
+      <div class="edu-head">
+        <span class="school">Tecnológico Superior Babahoyo</span>
+        <span class="dates">mar. 2017 – nov. 2020</span>
+      </div>
+      <p>Tecnólogo en desarrollo de software</p>
+    </section>
+
+    <h2>Certificaciones</h2>
+    <div class="certs">
+      <p class="edu-head">
+        <span>Pensamiento Crítico para IA</span>
+        <span class="dates">Platzi 2026</span>
+      </p>
+      <p class="edu-head">
+        <span>Prompt Engineering</span>
+        <span class="dates">Platzi 2026</span>
+      </p>
+      <p class="edu-head">
+        <span>TypeScript Avanzado</span>
+        <span class="dates">Platzi 2022</span>
+      </p>
+      <p class="edu-head">
+        <span>Curso de Gemini</span>
+        <span class="dates">Platzi 2026</span>
+      </p>
+    </div>
+
+    <h2>Habilidades</h2>
+    <div class="skills">
+      <p>
+        <span class="label">Backend:</span> Node.js, TypeScript, NestJS, Express, Fastify, REST,
+        GraphQL, Prisma, WebSockets, NATS
+      </p>
+      <p><span class="label">Datos:</span> PostgreSQL (RLS), MySQL, MongoDB, Redis</p>
+      <p>
+        <span class="label">Cloud/DevOps:</span> AWS (Lambda, EC2, S3, EventBridge, CloudWatch,
+        Cognito, Athena, API Gateway), Docker, CI/CD
+      </p>
+      <p><span class="label">IA:</span> LLM, RAG, embeddings, Qdrant, Gemini, OCR</p>
+      <p><span class="label">Frontend/Móvil:</span> React, Next.js, React Native</p>
+      <p>
+        <span class="label">También:</span> liderazgo técnico, mentoría, comunicación con
+        stakeholders
+      </p>
+    </div>
+
+    <h2>Idiomas</h2>
+    <p class="langs">Español (nativo), Inglés A2.</p>
+  </body>
+</html>
