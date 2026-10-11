@@ -23,7 +23,7 @@ export function VideosSection({ compact = false }: { compact?: boolean }) {
     >
       <div className={compact ? undefined : "mx-auto max-w-6xl"}>
         <div className={compact ? "mb-10 space-y-3 text-center" : "mb-14 space-y-4 text-center"}>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">YouTube</p>
+          <p className="section-kicker">YouTube</p>
           <h2 id="videos-heading" className={headingClass}>
             Resúmenes en video
           </h2>

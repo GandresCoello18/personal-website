@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, type ReactNode } from "react"
+import { useState, type ReactNode } from "react"
 import { ExternalLink, MapPin, Mic2, Users } from "lucide-react"
 
 import { TrackedAnchor, TrackedLink } from "@/components/tracked-link"
@@ -141,31 +141,11 @@ const talks: Talk[] = [
 ]
 
 function TalkCard({ talk }: { talk: Talk }) {
-  const [index, setIndex] = useState(0)
-  const [transition, setTransition] = useState(false)
-  const slides = talk.images.length
-    ? talk.images
-    : ["/experiencia/crack-the-code/crack-the-code-001.png"]
-
-  useEffect(() => {
-    if (slides.length <= 1) return
-    slides.forEach((src) => {
-      const img = new Image()
-      img.src = src
-    })
-    const t = setInterval(() => {
-      setTransition(true)
-      setTimeout(() => {
-        setIndex((i) => (i + 1) % slides.length)
-        setTimeout(() => setTransition(false), 50)
-      }, 400)
-    }, 4000)
-    return () => clearInterval(t)
-  }, [slides.length])
+  const cover = talk.images[0] ?? "/experiencia/crack-the-code/crack-the-code-001.png"
 
   const cardClass = cn(
-    "card-elevated relative flex h-full flex-col overflow-hidden text-left transition-all duration-300",
-    talk.url && "cursor-pointer hover:scale-[1.02] hover:shadow-xl hover:border-accent/50 group",
+    "card-elevated relative flex h-full flex-col overflow-hidden text-left",
+    talk.url && "group cursor-pointer",
   )
 
   return (
@@ -188,69 +168,24 @@ function TalkCard({ talk }: { talk: Talk }) {
           talk.url && "pointer-events-none",
         )}
       >
-        <div className="relative aspect-[16/10] overflow-hidden bg-muted">
+        <div className="relative aspect-[16/10] overflow-hidden border-b border-border bg-muted">
           <div className="absolute left-3 top-3 z-10 flex flex-wrap gap-1.5">
             {talk.badges.map((b) => (
               <span
                 key={b}
-                className="rounded-full bg-background/90 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-foreground shadow-sm backdrop-blur-sm"
+                className="border border-border bg-background px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-foreground"
               >
                 {b}
               </span>
             ))}
           </div>
           {talk.url ? (
-            <span className="absolute right-3 top-3 z-10 rounded-full bg-background/90 p-1.5 text-muted-foreground shadow-sm backdrop-blur-sm transition-colors group-hover:text-accent">
+            <span className="absolute right-3 top-3 z-10 border border-border bg-background p-1.5 text-muted-foreground">
               <ExternalLink className="size-3.5" aria-hidden />
             </span>
           ) : null}
 
-          <div className="relative size-full">
-            {slides.map((src, i) => {
-              const active = i === index
-              const next = i === (index + 1) % slides.length
-              return (
-                <img
-                  key={`${talk.id}-${i}`}
-                  src={src}
-                  alt=""
-                  className={cn(
-                    "absolute inset-0 size-full object-cover transition-all duration-500",
-                    active
-                      ? transition
-                        ? "opacity-100 blur-sm scale-105"
-                        : "opacity-100 blur-0 scale-100"
-                      : next && transition
-                        ? "opacity-0 blur-sm scale-105"
-                        : "opacity-0 scale-100",
-                  )}
-                  style={{ zIndex: active ? 10 : next ? 5 : 1 }}
-                />
-              )
-            })}
-          </div>
-
-          {slides.length > 1 ? (
-            <div
-              className={cn(
-                "absolute bottom-2 left-0 right-0 z-20 flex justify-center gap-1.5",
-                talk.url && "pointer-events-auto",
-              )}
-            >
-              {slides.map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => setIndex(i)}
-                  className={cn(
-                    "size-1.5 rounded-full shadow-sm transition-all",
-                    i === index ? "w-4 bg-white" : "bg-white/55 hover:bg-white/85",
-                  )}
-                  aria-label={`Ver imagen ${i + 1} de ${slides.length}`}
-                />
-              ))}
-            </div>
-          ) : null}
+          <img src={cover} alt="" className="size-full object-cover object-center" />
         </div>
 
         <div className="flex flex-1 flex-col gap-3 p-5">
@@ -261,7 +196,7 @@ function TalkCard({ talk }: { talk: Talk }) {
             >
               {talk.title}
             </h3>
-            <p className="mt-1 text-sm font-medium text-accent">{talk.subtitle}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{talk.subtitle}</p>
           </div>
 
           <div className="flex flex-col gap-2 text-sm text-muted-foreground">
@@ -312,16 +247,18 @@ export function TalksSection({ videoPreview }: { videoPreview?: ReactNode }) {
       aria-labelledby="talks-heading"
     >
       <div className="mx-auto max-w-6xl">
-        <div className="mb-14 space-y-4 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Charlas</p>
+        <div className="mb-14 space-y-4">
+          <p className="section-kicker">Charlas</p>
           <h2 id="talks-heading" className="section-title">
             Conferencias
           </h2>
-          <p className="section-subtitle mx-auto max-w-2xl">
+          <p className="section-subtitle max-w-2xl">
             Speaker en GDG Ecuador, DevFest y TsáchiTalks. Charlas sobre backend, IA aplicada y cómo
             llevar productos a producción.
           </p>
-          <p className="text-sm font-medium text-accent">{talks.length} charlas destacadas</p>
+          <p className="font-mono text-sm text-muted-foreground">
+            {talks.length} charlas destacadas
+          </p>
         </div>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -367,7 +304,7 @@ export function TalksSection({ videoPreview }: { videoPreview?: ReactNode }) {
             href="/mentoria"
             event={UmamiEvents.navServices}
             eventData={{ source: "talks" }}
-            className="font-medium text-accent underline-offset-4 hover:underline"
+            className="font-medium text-foreground underline decoration-accent underline-offset-4"
           >
             Ver mentoría y clases
           </TrackedLink>

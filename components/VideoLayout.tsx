@@ -43,7 +43,7 @@ export function VideoLayout({ meta, children }: VideoLayoutProps) {
         id={meta.youtubeId}
         title={meta.title}
         start={meta.youtubeStart}
-        className="my-0 rounded-2xl shadow-md"
+        className="my-0"
       />
 
       {children ? (

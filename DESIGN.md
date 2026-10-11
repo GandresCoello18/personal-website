@@ -28,7 +28,7 @@ typography:
 
 Dial: ENERGY 1 / RHYTHM 2 / MOTION 1
 
-Dirección visual normativa del sitio. El CSS vigente todavía implementa teal + Geist; esta paleta y estas fuentes se aplican en la fase de estilo, no antes. Hasta entonces no cambies `globals.css` ni componentes para “parecerse” a este archivo.
+Dirección visual normativa del sitio. El CSS vigente implementa esta paleta y IBM Plex. No sustituyas navy/crema ni el diagrama de firma.
 
 Referencia de marca: banner de LinkedIn F (navy, diagrama isométrico Queue → Gateway → Services → Postgres, wordmark “Backend Engineer”).
 

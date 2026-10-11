@@ -33,7 +33,7 @@ export function InterviewApp() {
       <header className="space-y-3">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Privado</p>
+            <p className="section-kicker">Privado</p>
             <h1 className="section-title">Respuestas a entrevistas</h1>
             <p className="section-subtitle">
               Pega las preguntas del reclutador. Respuestas cortas y profesionales basadas en tus
@@ -41,24 +41,17 @@ export function InterviewApp() {
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <Link
-              href="/apply"
-              className="rounded-lg border border-border px-3 py-2 text-sm text-foreground hover:bg-muted"
-            >
+            <Link href="/apply" className="btn-secondary px-3 text-sm">
               Aplicar
             </Link>
-            <button
-              type="button"
-              onClick={flow.clear}
-              className="rounded-lg border border-border px-3 py-2 text-sm text-foreground hover:bg-muted"
-            >
+            <button type="button" onClick={flow.clear} className="btn-secondary px-3 text-sm">
               Limpiar
             </button>
           </div>
         </div>
       </header>
 
-      <section className="space-y-4 rounded-xl border border-border bg-card p-6 md:p-8">
+      <section className="space-y-4 rounded-none border border-border bg-card p-6 md:p-8">
         <label className="block space-y-2 text-sm">
           <span className="font-medium text-foreground">Preguntas</span>
           <textarea
@@ -66,11 +59,11 @@ export function InterviewApp() {
             value={flow.questions}
             onChange={(e) => flow.setQuestions(e.target.value)}
             placeholder={`1. ¿Cuántos años de experiencia tenés trabajando como Backend Developer?\n2. ¿Cuántos años con Node.js y TypeScript? Indicá tu nivel de dominio.\n3. ¿Qué experiencia tenés utilizando NestJS?`}
-            className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+            className="w-full rounded-none border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </label>
 
-        {flow.error ? <p className="text-sm text-red-600 dark:text-red-400">{flow.error}</p> : null}
+        {flow.error ? <p className="text-sm text-destructive">{flow.error}</p> : null}
 
         <div className="flex flex-wrap gap-3">
           <button
@@ -88,25 +81,17 @@ export function InterviewApp() {
               "Responder"
             )}
           </button>
-          <button
-            type="button"
-            onClick={flow.clear}
-            className="rounded-lg border border-border px-4 py-2 text-sm hover:bg-muted"
-          >
+          <button type="button" onClick={flow.clear} className="btn-secondary px-4 text-sm">
             Limpiar
           </button>
         </div>
       </section>
 
       {flow.answers.length > 0 ? (
-        <section className="space-y-4 rounded-xl border border-border bg-card p-6 md:p-8">
+        <section className="space-y-4 rounded-none border border-border bg-card p-6 md:p-8">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <h2 className="text-lg font-bold text-foreground">Respuestas</h2>
-            <button
-              type="button"
-              onClick={flow.copyAll}
-              className="inline-flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted"
-            >
+            <button type="button" onClick={flow.copyAll} className="btn-secondary px-3 text-sm">
               <Copy className="size-4" />
               Copiar todas
             </button>
@@ -125,7 +110,7 @@ export function InterviewApp() {
                   rows={3}
                   value={item.answer}
                   onChange={(e) => flow.updateAnswer(index, e.target.value)}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+                  className="min-h-11 w-full rounded-none border border-border bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 />
                 <button
                   type="button"

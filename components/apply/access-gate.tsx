@@ -18,9 +18,9 @@ export function AccessGate({
   error,
 }: AccessGateProps) {
   return (
-    <div className="mx-auto max-w-md rounded-xl border border-border bg-card p-8 shadow-sm">
+    <div className="card-elevated mx-auto max-w-md p-8">
       <div className="mb-6 flex items-center gap-3">
-        <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+        <div className="flex size-11 items-center justify-center border border-border text-foreground">
           <Lock className="size-5" />
         </div>
         <div>
@@ -41,9 +41,9 @@ export function AccessGate({
           placeholder="Clave de acceso"
           value={secret}
           onChange={(e) => onSecretChange(e.target.value)}
-          className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
+          className="min-h-11 w-full rounded-none border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
-        {error ? <p className="text-sm text-red-600 dark:text-red-400">{error}</p> : null}
+        {error ? <p className="text-sm text-destructive">{error}</p> : null}
         <button
           type="submit"
           disabled={unlocking || !secret}

@@ -1,7 +1,3 @@
-"use client"
-
-import { useState } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
 
 const classesData = [
@@ -97,90 +93,38 @@ const classesData = [
 ]
 
 export function ClassesGallery() {
-  const [current, setCurrent] = useState(0)
-  const slide = classesData[current]
-
-  const next = () => {
-    setCurrent((prev) => (prev + 1) % classesData.length)
-  }
-
-  const prev = () => {
-    setCurrent((prev) => (prev - 1 + classesData.length) % classesData.length)
-  }
-
-  const goToSlide = (index: number) => {
-    setCurrent(index)
-  }
-
   return (
-    <section className="bg-gradient-to-b from-background to-card/30 py-20" id="clases">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="mb-16 text-center">
-          <h2 className="section-title mb-4">Mis Clases en Acción</h2>
-          <p className="section-subtitle mx-auto max-w-2xl">
+    <section className="bg-background py-20" id="clases">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="mb-16 space-y-4">
+          <h2 className="section-title">Mis Clases en Acción</h2>
+          <p className="section-subtitle max-w-2xl">
             Más de 5 años enseñando. Aquí puedes ver el tipo de contenido y metodología que utilizo
             en mis sesiones educativas
           </p>
         </div>
 
-        <div className="relative">
-          <div className="mx-auto w-full lg:w-[70%]">
-            <div className="card-elevated overflow-hidden">
-              <div className="relative aspect-[4/3] w-full bg-muted/40 sm:aspect-video">
+        <ul className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {classesData.map((item) => (
+            <li key={item.id} className="card-elevated overflow-hidden">
+              <div className="relative aspect-[16/10] w-full border-b border-border bg-muted">
                 <Image
-                  src={slide.image || "/placeholder.svg"}
-                  alt={slide.title}
+                  src={item.image || "/placeholder.svg"}
+                  alt={item.title}
                   fill
-                  className="object-contain p-2 sm:p-3"
-                  sizes="(max-width: 1024px) 100vw, 70vw"
-                  priority
+                  className="object-contain p-3"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
-
-              <div className="border-t border-border p-5 md:p-6">
-                <h3 className="text-xl font-bold text-foreground md:text-2xl">{slide.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground md:text-base">
-                  {slide.description}
-                </p>
+              <div className="p-5">
+                <h3 className="text-lg font-medium tracking-[-0.02em] text-foreground">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
               </div>
-            </div>
-
-            <div className="mt-6 flex items-center justify-between px-2">
-              <button
-                type="button"
-                onClick={prev}
-                className="rounded-full bg-primary p-2 text-primary-foreground shadow-lg transition-colors hover:bg-primary/90"
-                aria-label="Anterior"
-              >
-                <ChevronLeft size={24} />
-              </button>
-
-              <div className="flex gap-2">
-                {classesData.map((item, index) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => goToSlide(index)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      index === current ? "w-8 bg-primary" : "w-2 bg-muted"
-                    }`}
-                    aria-label={`Ir a diapositiva ${index + 1}`}
-                    aria-current={index === current ? "true" : undefined}
-                  />
-                ))}
-              </div>
-
-              <button
-                type="button"
-                onClick={next}
-                className="rounded-full bg-primary p-2 text-primary-foreground shadow-lg transition-colors hover:bg-primary/90"
-                aria-label="Siguiente"
-              >
-                <ChevronRight size={24} />
-              </button>
-            </div>
-          </div>
-        </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )

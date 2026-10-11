@@ -71,15 +71,10 @@ export function Services() {
   }
 
   return (
-    <section
-      id="services"
-      className="py-10 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-muted/20"
-    >
+    <section id="services" className="bg-background px-4 py-16 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <div className="text-center space-y-4 mb-16">
-          <div className="inline-block px-4 py-2 bg-secondary/10 text-secondary rounded-full text-sm font-medium">
-            Servicios Profesionales
-          </div>
+          <p className="section-kicker">Servicios profesionales</p>
           <h2 className="section-title">Mentoría y clases de programación</h2>
           <p className="section-subtitle max-w-3xl mx-auto">
             Acompañamiento 1-on-1 para aprender backend y web, con proyectos reales.
@@ -88,11 +83,8 @@ export function Services() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {services.map((service, idx) => (
-            <div
-              key={idx}
-              className="card-elevated p-6 md:p-5 flex flex-col h-full hover:border-accent/50 transition-colors group"
-            >
-              <div className="w-16 h-16 rounded-lg bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:bg-accent/20 transition-colors">
+            <div key={idx} className="card-elevated flex h-full flex-col p-6">
+              <div className="mb-6 flex size-12 items-center justify-center border border-border text-foreground">
                 {service.icon}
               </div>
 
@@ -102,7 +94,7 @@ export function Services() {
               <ul className="space-y-2 mb-6">
                 {service.features.map((feature, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
+                    <div className="mt-2 size-1.5 shrink-0 bg-foreground" />
                     <span className="text-sm text-muted-foreground">{feature}</span>
                   </li>
                 ))}
@@ -124,7 +116,7 @@ export function Services() {
           ))}
         </div>
 
-        <div className="bg-card border border-border rounded-xl p-8 md:p-12">
+        <div className="card-elevated p-8 md:p-12">
           <h3 className="text-2xl font-bold mb-8 text-foreground">Preguntas Frecuentes</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>

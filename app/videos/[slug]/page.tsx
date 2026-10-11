@@ -71,7 +71,7 @@ export default async function VideoDetailPage({ params }: PageProps) {
     url: videoUrl,
     author: {
       "@type": "Person",
-      name: "Andres Coello",
+      name: "Andrés Coello",
       url: siteUrl,
     },
   }

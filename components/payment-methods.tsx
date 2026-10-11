@@ -57,10 +57,7 @@ export function PaymentMethods() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {paymentMethods.map((method, idx) => (
-            <div
-              key={idx}
-              className="card-elevated p-6 text-center hover:shadow-lg transition-shadow duration-300"
-            >
+            <div key={idx} className="card-elevated p-6 text-center">
               <div className="text-5xl mb-4 flex justify-center">{method.icon}</div>
               <h3 className="font-bold text-foreground mb-2 text-lg">{method.name}</h3>
               <p className="text-sm text-muted-foreground">{method.description}</p>
@@ -71,7 +68,7 @@ export function PaymentMethods() {
         <div className="mt-12 p-6 md:p-8 bg-muted/50 rounded-lg border border-border text-center">
           <p className="text-muted-foreground">
             Contacta conmigo para coordinar los detalles de pago según el método que prefieras.{" "}
-            <span className="font-semibold text-accent">Sin comisiones ocultas.</span>
+            <span className="font-medium text-foreground">Sin comisiones ocultas.</span>
           </p>
         </div>
       </div>

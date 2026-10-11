@@ -48,14 +48,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center text-primary-foreground font-bold">
+              <div className="flex size-10 items-center justify-center border border-border">
                 <img
                   src="/1764558900283.png"
-                  alt="Andres Coello"
-                  className="w-full h-full rounded-full object-cover"
+                  alt="Andrés Coello"
+                  className="size-full object-cover"
                 />
               </div>
-              <span className="font-bold text-foreground">Andres Coello</span>
+              <span className="font-bold text-foreground">Andrés Coello</span>
             </Link>
             <p className="text-sm text-muted-foreground mb-6">
               Backend Engineer. APIs y plataformas SaaS en Node.js, TypeScript, NestJS y AWS.
@@ -71,8 +71,9 @@ export function Footer() {
                     href={item.href}
                     event={event}
                     eventData={{ network: item.network, source: "footer" }}
-                    className="w-10 h-10 rounded-lg border border-border hover:border-accent hover:bg-accent/10 flex items-center justify-center text-muted-foreground hover:text-accent transition-colors"
+                    className="inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-accent hover:text-foreground"
                     title={item.label}
+                    aria-label={item.label}
                   >
                     <Icon size={18} />
                   </TrackedAnchor>
@@ -90,7 +91,7 @@ export function Footer() {
                     href={link.href}
                     event={UmamiEvents.socialClick}
                     eventData={{ network: link.label, source: "footer" }}
-                    className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-center gap-2 group"
+                    className="inline-flex min-h-11 items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground group"
                   >
                     {link.label}
                     {link.href.startsWith("http") && (
@@ -120,7 +121,7 @@ export function Footer() {
                           : UmamiEvents.navServices
                     }
                     eventData={{ source: "footer" }}
-                    className="text-sm text-muted-foreground hover:text-accent transition-colors"
+                    className="inline-flex min-h-11 items-center text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {link.label}
                   </TrackedLink>
@@ -132,11 +133,9 @@ export function Footer() {
 
         <div className="border-t border-border pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground">© {currentYear} Andres Coello.</p>
+            <p className="text-sm text-muted-foreground">© {currentYear} Andrés Coello.</p>
             <p className="text-sm text-muted-foreground">
-              Diseñado y desarrollado con
-              <span className="text-accent mx-1">❤️</span>
-              por Andres Coello
+              Diseñado y desarrollado por Andrés Coello
             </p>
           </div>
         </div>

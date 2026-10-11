@@ -18,7 +18,7 @@ export function BlogSection() {
       <div id="blog" className="sr-only" />
       <div className="mx-auto max-w-6xl">
         <div className="mb-14 space-y-4 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Escritos</p>
+          <p className="section-kicker">Escritos</p>
           <h2 id="escritos-heading" className="section-title">
             Últimos artículos
           </h2>

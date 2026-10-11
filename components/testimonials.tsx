@@ -1,5 +1,3 @@
-import { Quote } from "lucide-react"
-
 interface Testimonial {
   name: string
   role: string
@@ -72,17 +70,14 @@ const stats = [
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
     <article
-      className="flex h-full w-[min(100vw-2rem,22rem)] shrink-0 flex-col rounded-xl border border-border bg-card p-6 shadow-md sm:w-[24rem] sm:p-8 md:w-[26rem]"
+      className="card-elevated flex h-full flex-col p-6"
       aria-label={`Testimonio de ${testimonial.name}`}
     >
-      <Quote className="mb-4 size-9 text-foreground/90 sm:size-10" strokeWidth={1.25} aria-hidden />
-
-      <blockquote className="mb-6 flex-1 text-base italic leading-relaxed text-foreground sm:text-lg">
+      <blockquote className="mb-6 flex-1 text-base leading-relaxed text-foreground">
         &ldquo;{testimonial.text}&rdquo;
       </blockquote>
-
       <footer className="flex items-center gap-3 border-t border-border pt-5">
-        <div className="size-11 shrink-0 overflow-hidden rounded-full ring-2 ring-border/80">
+        <div className="size-11 shrink-0 overflow-hidden border border-border">
           <img
             src={testimonial.image || "/me.svg"}
             alt=""
@@ -92,7 +87,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
           />
         </div>
         <div className="min-w-0">
-          <p className="truncate font-bold text-foreground">{testimonial.name}</p>
+          <p className="truncate font-medium text-foreground">{testimonial.name}</p>
           <p className="text-sm text-muted-foreground">
             {testimonial.role} · {testimonial.company}
           </p>
@@ -103,36 +98,30 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 }
 
 export function Testimonials() {
-  const loop = [...testimonials, ...testimonials]
-
   return (
-    <section className="bg-muted/30 py-20 md:py-32">
+    <section className="border-y border-border bg-background py-20 md:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mb-14 grid grid-cols-2 gap-6 md:mb-16 md:grid-cols-4">
-          {stats.map((stat, idx) => (
-            <div key={idx} className="text-center">
-              <p className="mb-2 text-3xl font-bold text-accent md:text-4xl">{stat.value}</p>
+          {stats.map((stat) => (
+            <div key={stat.label}>
+              <p className="mb-2 font-mono text-2xl text-foreground md:text-3xl">{stat.value}</p>
               <p className="text-sm text-muted-foreground">{stat.label}</p>
             </div>
           ))}
         </div>
 
-        <div className="mb-12 space-y-3 text-center md:mb-14">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-            Testimonios
-          </p>
+        <div className="mb-12 space-y-3 md:mb-14">
+          <p className="section-kicker">Testimonios</p>
           <h2 className="section-title">Qué dicen</h2>
-          <p className="section-subtitle mx-auto max-w-2xl">
+          <p className="section-subtitle max-w-2xl">
             Historias de desarrolladores que transformaron su carrera gracias a mentoría y educación
             de calidad
           </p>
         </div>
-      </div>
 
-      <div className="testimonial-marquee-mask relative w-full overflow-hidden py-2">
-        <div className="testimonial-marquee-track">
-          {loop.map((testimonial, idx) => (
-            <TestimonialCard key={`${testimonial.name}-${idx}`} testimonial={testimonial} />
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {testimonials.map((testimonial) => (
+            <TestimonialCard key={testimonial.name} testimonial={testimonial} />
           ))}
         </div>
       </div>

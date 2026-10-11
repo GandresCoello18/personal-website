@@ -322,9 +322,9 @@ export function Projects() {
   return (
     <section id="projects" className="bg-background px-4 py-20 sm:px-6 md:py-32 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-16 space-y-4 text-center">
+        <div className="mb-16 space-y-4">
           <h2 className="section-title">Proyectos Destacados</h2>
-          <p className="section-subtitle mx-auto max-w-2xl">
+          <p className="section-subtitle max-w-2xl">
             Selección de proyectos en los que implementé soluciones innovadoras
           </p>
         </div>
@@ -383,20 +383,19 @@ function ProjectCard({
   featured?: boolean
   projectIndex: number
 }) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const images = project.images.length > 0 ? project.images : ["/placeholder.svg"]
-  const currentSrc = images[currentImageIndex] ?? images[0]
+  const currentSrc = images[0]
   const fit = getProjectImageFit(currentSrc)
   const position = getProjectImagePosition(currentSrc)
   const { shown, extra } = visibleProjectTags(project.tags)
-  const eager = shouldEagerLoadProjectImage(projectIndex, currentImageIndex)
+  const eager = shouldEagerLoadProjectImage(projectIndex, 0)
 
   return (
-    <article className="card-elevated flex h-full flex-col overflow-hidden motion-safe:transition-shadow">
-      <div className="relative aspect-[16/10] overflow-hidden bg-muted">
+    <article className="card-elevated flex h-full flex-col overflow-hidden">
+      <div className="relative aspect-[16/10] overflow-hidden border-b border-border bg-muted">
         <img
           src={currentSrc}
-          alt={getProjectImageAlt(project.title, currentSrc, currentImageIndex)}
+          alt={getProjectImageAlt(project.title, currentSrc, 0)}
           width={1600}
           height={1000}
           sizes={getProjectImageSizes(featured)}
@@ -409,26 +408,6 @@ function ProjectCard({
             position === "top" ? "object-top" : "object-center",
           )}
         />
-
-        {images.length > 1 ? (
-          <div className="absolute inset-x-0 bottom-3 z-10 flex justify-center gap-1.5">
-            {images.map((image, index) => (
-              <button
-                key={`${project.id}-dot-${image}`}
-                type="button"
-                aria-label={`Ver captura ${index + 1} de ${project.title}`}
-                aria-current={index === currentImageIndex}
-                onClick={() => setCurrentImageIndex(index)}
-                className={cn(
-                  "size-3 rounded-full border border-background/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                  index === currentImageIndex
-                    ? "bg-primary"
-                    : "bg-background/70 hover:bg-background",
-                )}
-              />
-            ))}
-          </div>
-        ) : null}
       </div>
 
       <div className="flex flex-1 flex-col p-6 md:p-8">
@@ -454,7 +433,7 @@ function ProjectCard({
           {shown.map((tag) => (
             <span
               key={tag}
-              className="rounded bg-accent/10 px-2 py-1 text-xs font-medium text-accent"
+              className="border border-border px-2 py-1 font-mono text-xs text-muted-foreground"
             >
               {tag}
             </span>
@@ -473,7 +452,7 @@ function ProjectCard({
             rel="noopener noreferrer"
             event={UmamiEvents.projectDemo}
             eventData={{ project: project.title }}
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="btn-primary px-4 text-sm"
           >
             Ver proyecto
             <ExternalLink size={16} aria-hidden />
@@ -485,7 +464,7 @@ function ProjectCard({
               rel="noopener noreferrer"
               event={UmamiEvents.projectGithub}
               eventData={{ project: project.title }}
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-border px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="btn-secondary px-4 text-sm"
             >
               Código
               <Github size={16} aria-hidden />

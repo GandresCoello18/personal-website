@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
 import { UmamiAnalytics } from "@/components/umami-analytics"
@@ -8,15 +8,26 @@ import { getPersonJsonLd } from "@/lib/json-ld"
 import { getSiteUrl, getSiteUrlObject } from "@/lib/site"
 import "./globals.css"
 
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const plexSans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-sans",
+  display: "swap",
+})
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-plex-mono",
+  display: "swap",
+})
 
 const siteUrl = getSiteUrl()
 const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
 
 export const viewport: Viewport = {
-  themeColor: "#1c4e5a",
-  colorScheme: "light dark",
+  themeColor: "#0d1d40",
+  colorScheme: "dark light",
 }
 
 export const metadata: Metadata = {
@@ -37,11 +48,11 @@ export const metadata: Metadata = {
     "LLM",
     "RAG",
   ],
-  applicationName: "Andres Coello Portfolio",
+  applicationName: "Andrés Coello Portfolio",
   category: "technology",
-  creator: "Andres Coello",
-  authors: [{ name: "Andres Coello", url: siteUrl }],
-  publisher: "Andres Coello",
+  creator: "Andrés Coello",
+  authors: [{ name: "Andrés Coello", url: siteUrl }],
+  publisher: "Andrés Coello",
   alternates: {
     canonical: "/",
   },
@@ -93,7 +104,7 @@ export default function RootLayout({
   const personJsonLd = getPersonJsonLd()
 
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es" className="dark" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -104,10 +115,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-sans antialiased">
+      <body className={`${plexSans.variable} ${plexMono.variable} font-sans antialiased`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="dark"
           enableSystem={false}
           storageKey="andres-coello-theme"
           disableTransitionOnChange

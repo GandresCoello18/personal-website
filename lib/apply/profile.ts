@@ -1,5 +1,5 @@
 export const applyProfile = {
-  name: "Andres Coello",
+  name: "Andrés Coello",
   phone: "",
   email: "goyeselcoca@gmail.com",
   linkedin: "https://www.linkedin.com/in/andrescoellogoyes/",

@@ -8,86 +8,70 @@ export function ClassgapSection() {
   return (
     <section
       id="classgap"
-      className="py-16 md:py-24 px-4 md:px-6 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800"
+      className="border-y border-border bg-background px-4 py-16 sm:px-6 md:py-24"
     >
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12 md:mb-16">
-          <div className="inline-block mb-4 px-4 py-2 bg-blue-100 dark:bg-blue-900/30 rounded-full">
-            <span className="text-sm font-semibold text-blue-700 dark:text-blue-300">
-              Classgap Verified Tutor
-            </span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 text-balance">
-            Clases particulares en Classgap
-          </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-12 space-y-4 md:mb-16">
+          <p className="section-kicker">Classgap Verified Tutor</p>
+          <h2 className="section-title">Clases particulares en Classgap</h2>
+          <p className="section-subtitle max-w-2xl">
             Profesor verificado en Classgap, abr. 2023 – ago. 2026. Más de 160 clases de desarrollo
             web y móvil, con planes según el objetivo de cada persona.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-          <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                <Clock className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              </div>
-              <span className="text-sm font-medium text-slate-500 dark:text-slate-400">
+        <div className="mb-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="card-elevated p-6">
+            <div className="mb-3 flex items-center gap-3">
+              <Clock className="size-5 text-foreground" aria-hidden />
+              <span className="font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground">
                 Experiencia
               </span>
             </div>
-            <p className="text-3xl font-bold text-slate-900 dark:text-white">3+</p>
-            <p className="text-sm text-slate-600 dark:text-slate-400">
-              Años · abr. 2023 – ago. 2026
-            </p>
+            <p className="font-mono text-3xl text-foreground">3+</p>
+            <p className="text-sm text-muted-foreground">Años · abr. 2023 – ago. 2026</p>
           </div>
 
-          <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                <Star className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-              </div>
-              <span className="text-sm font-medium text-slate-500 dark:text-slate-400">
+          <div className="card-elevated p-6">
+            <div className="mb-3 flex items-center gap-3">
+              <Star className="size-5 text-foreground" aria-hidden />
+              <span className="font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground">
                 Reseñas
               </span>
             </div>
-            <p className="text-3xl font-bold text-slate-900 dark:text-white">17+</p>
-            <p className="text-sm text-slate-600 dark:text-slate-400">Calificaciones 5 estrellas</p>
+            <p className="font-mono text-3xl text-foreground">17+</p>
+            <p className="text-sm text-muted-foreground">Calificaciones 5 estrellas</p>
           </div>
 
-          <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-lg bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center">
-                <Users className="w-5 h-5 text-teal-600 dark:text-teal-400" />
-              </div>
-              <span className="text-sm font-medium text-slate-500 dark:text-slate-400">
+          <div className="card-elevated p-6">
+            <div className="mb-3 flex items-center gap-3">
+              <Users className="size-5 text-foreground" aria-hidden />
+              <span className="font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground">
                 Estudiantes
               </span>
             </div>
-            <p className="text-3xl font-bold text-slate-900 dark:text-white">160+</p>
-            <p className="text-sm text-slate-600 dark:text-slate-400">Clases particulares</p>
+            <p className="font-mono text-3xl text-foreground">160+</p>
+            <p className="text-sm text-muted-foreground">Clases particulares</p>
           </div>
 
-          <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                <Award className="w-5 h-5 text-green-600 dark:text-green-400" />
-              </div>
-              <span className="text-sm font-medium text-slate-500 dark:text-slate-400">
+          <div className="card-elevated p-6">
+            <div className="mb-3 flex items-center gap-3">
+              <Award className="size-5 text-foreground" aria-hidden />
+              <span className="font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground">
                 Calificación
               </span>
             </div>
-            <p className="text-3xl font-bold text-slate-900 dark:text-white">4.9/5</p>
-            <p className="text-sm text-slate-600 dark:text-slate-400">Rating promedio</p>
+            <p className="font-mono text-3xl text-foreground">4.9/5</p>
+            <p className="text-sm text-muted-foreground">Rating promedio</p>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-8 items-center">
+        <div className="mb-8 grid items-start gap-8 md:grid-cols-2">
           <div>
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            <h3 className="mb-4 text-2xl font-medium tracking-[-0.02em] text-foreground">
               Profesor verificado en Classgap
             </h3>
-            <div className="space-y-4 text-slate-600 dark:text-slate-300">
+            <div className="space-y-4 text-muted-foreground">
               <p>
                 Entre abr. 2023 y ago. 2026 impartí más de 160 clases particulares de desarrollo web
                 y móvil. Diseñé planes según el objetivo de cada persona: proyectos reales,
@@ -98,18 +82,16 @@ export function ClassgapSection() {
                 clara, adaptarme a diferentes estilos de aprendizaje y proporcionar feedback
                 constructivo que impulsa el crecimiento profesional.
               </p>
-              <p className="text-sm bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+              <p className="border border-border p-4 text-sm">
                 Las 17+ reseñas positivas reflejan mi compromiso con la excelencia educativa y la
                 satisfacción del estudiante.
               </p>
             </div>
           </div>
 
-          <div className="bg-white dark:bg-slate-800 rounded-lg p-8 border border-slate-200 dark:border-slate-700 shadow-sm">
-            <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-4">
-              Áreas de Especialización
-            </h4>
-            <ul className="space-y-3 mb-6">
+          <div className="card-elevated p-8">
+            <h4 className="mb-4 text-lg font-medium text-foreground">Áreas de Especialización</h4>
+            <ul className="mb-6 space-y-3">
               {[
                 "Desarrollo Web Full Stack",
                 "React y Modern JavaScript",
@@ -119,8 +101,10 @@ export function ClassgapSection() {
                 "Consultoría Técnica",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <span className="text-teal-500 dark:text-teal-400 font-bold mt-1">✓</span>
-                  <span className="text-slate-700 dark:text-slate-300">{item}</span>
+                  <span className="mt-1 font-mono text-foreground" aria-hidden>
+                    +
+                  </span>
+                  <span className="text-muted-foreground">{item}</span>
                 </li>
               ))}
             </ul>
@@ -129,9 +113,9 @@ export function ClassgapSection() {
               target="_blank"
               rel="noopener noreferrer"
               event={UmamiEvents.classgapProfile}
-              className="w-full inline-block text-center px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-lg transition-colors"
+              className="btn-primary w-full"
             >
-              Ver Perfil en Classgap →
+              Ver Perfil en Classgap
             </TrackedLink>
           </div>
         </div>

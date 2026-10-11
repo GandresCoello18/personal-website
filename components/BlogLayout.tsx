@@ -33,12 +33,12 @@ export function BlogLayout({ meta, headings, children }: BlogLayoutProps) {
         </h1>
         <p className="mt-4 text-pretty text-lg text-muted-foreground">{meta.description}</p>
         <p className="mt-6">
-          <time className="text-sm text-muted-foreground" dateTime={meta.date}>
+          <time className="font-mono text-sm text-muted-foreground" dateTime={meta.date}>
             Publicado el {published}
           </time>
         </p>
         {meta.coverImage ? (
-          <div className="blog-post-cover mt-8 w-full overflow-hidden rounded-2xl border border-border bg-muted/30 shadow-sm">
+          <div className="blog-post-cover mt-8 w-full overflow-hidden border border-border bg-muted">
             <Image
               src={meta.coverImage}
               alt={meta.title}

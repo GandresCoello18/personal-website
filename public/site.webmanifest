@@ -5,8 +5,8 @@
   "short_name": "Andrés Coello",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#1c4e5a",
+  "background_color": "#0d1d40",
+  "theme_color": "#0d1d40",
   "description": "Andrés Coello, Backend Engineer. APIs y plataformas SaaS en Node.js, TypeScript, NestJS, PostgreSQL, AWS y LLM/RAG.",
   "lang": "es",
   "icons": [

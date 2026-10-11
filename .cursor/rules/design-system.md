@@ -10,7 +10,7 @@ alwaysApply: true
 
 > **Dirección visual:** `DESIGN.md` (plano técnico: navy `#0d1d40`, crema `#efe9dc`, acento `#5b7fd6`, IBM Plex Sans + Plex Mono, un diagrama de firma). Si este archivo y `DESIGN.md` chocan en color, tipo o motivo de marca, **gana `DESIGN.md`**.
 > **Este archivo:** stack, clases vigentes, inventario de componentes, idioma y audiencia. No reescribe la identidad.
-> **Implementación:** el CSS de `app/globals.css` todavía mapea tokens teal/azul y Geist. No remapees paleta ni fuentes salvo que la tarea pida la fase de estilo.
+> **Implementación:** `app/globals.css` mapea navy/crema e IBM Plex. Tema oscuro por defecto (`html.dark`). No reintroduzcas teal ni Geist.
 > **Audiencia:** recruiters de software engineering y empresas que contratan backend.
 > **Idioma:** español (`lang="es"`).
 > **Impeccable + anti-slop:** toda tarea de UI/UX usa `.cursor/skills/impeccable` y `.cursor/skills/antislop` (reglas `ui-impeccable.mdc` y `ui-antislop.mdc`). Impeccable aporta oficio; anti-slop filtra slop; ninguno reemplaza `DESIGN.md`.
@@ -19,22 +19,22 @@ alwaysApply: true
 
 ## Stack detectado (referencia obligatoria)
 
-| Capa             | Tecnología                                                      | Versión / nota                                         |
-| ---------------- | --------------------------------------------------------------- | ------------------------------------------------------ |
-| Framework        | Next.js App Router                                              | `^16.0.7`                                              |
-| UI runtime       | React                                                           | `19.2.0`                                               |
-| Lenguaje         | TypeScript                                                      | `^5`                                                   |
-| Estilos          | Tailwind CSS v4 (CSS-first)                                     | `^4.1.9` + `@tailwindcss/postcss`                      |
-| Animaciones CSS  | `tw-animate-css`, `tailwindcss-animate`                         | `1.3.3`, `^1.0.7`                                      |
-| Componentes base | shadcn/ui **new-york** + Radix UI                               | ver `components.json`                                  |
-| Iconos           | `lucide-react`                                                  | `^0.454.0`                                             |
-| Utilidades CSS   | `clsx`, `tailwind-merge`, `class-variance-authority`            | `cn()` en `lib/utils.ts`                               |
-| Temas            | `next-themes`                                                   | `^0.4.6`, `attribute="class"`, `defaultTheme="light"`  |
-| Fuentes          | Vigente: Geist + Geist Mono. Destino: IBM Plex Sans + Plex Mono | destino en `DESIGN.md`; recablear en la fase de estilo |
-| Formularios      | `react-hook-form`, `zod`, `@hookform/resolvers`                 | contacto y futuros forms                               |
-| Blog             | `next-mdx-remote`, `gray-matter`, `rehype-pretty-code`, `shiki` | rutas `/blog`                                          |
-| Analytics        | `@vercel/analytics`                                             | en `app/layout.tsx`                                    |
-| Package manager  | pnpm                                                            | `pnpm@10.33.3` (Node ≥ 22.6)                           |
+| Capa             | Tecnología                                                      | Versión / nota                                       |
+| ---------------- | --------------------------------------------------------------- | ---------------------------------------------------- |
+| Framework        | Next.js App Router                                              | `^16.0.7`                                            |
+| UI runtime       | React                                                           | `19.2.0`                                             |
+| Lenguaje         | TypeScript                                                      | `^5`                                                 |
+| Estilos          | Tailwind CSS v4 (CSS-first)                                     | `^4.1.9` + `@tailwindcss/postcss`                    |
+| Animaciones CSS  | `tw-animate-css`, `tailwindcss-animate`                         | `1.3.3`, `^1.0.7`                                    |
+| Componentes base | shadcn/ui **new-york** + Radix UI                               | ver `components.json`                                |
+| Iconos           | `lucide-react`                                                  | `^0.454.0`                                           |
+| Utilidades CSS   | `clsx`, `tailwind-merge`, `class-variance-authority`            | `cn()` en `lib/utils.ts`                             |
+| Temas            | `next-themes`                                                   | `^0.4.6`, `attribute="class"`, `defaultTheme="dark"` |
+| Fuentes          | IBM Plex Sans + IBM Plex Mono vía `next/font`                   | `--font-plex-sans` / `--font-plex-mono`              |
+| Formularios      | `react-hook-form`, `zod`, `@hookform/resolvers`                 | contacto y futuros forms                             |
+| Blog             | `next-mdx-remote`, `gray-matter`, `rehype-pretty-code`, `shiki` | rutas `/blog`                                        |
+| Analytics        | `@vercel/analytics`                                             | en `app/layout.tsx`                                  |
+| Package manager  | pnpm                                                            | `pnpm@10.33.3` (Node ≥ 22.6)                         |
 
 **No hay** `tailwind.config.js`. Los tokens viven en `app/globals.css` (`:root`, `.dark`, `@theme inline`).
 
@@ -87,9 +87,9 @@ La cuadrícula / diagrama de plano técnico es identidad de marca, no slop.
 
 ### Tokens vigentes en CSS (hasta la fase de estilo)
 
-Los nombres semánticos de `app/globals.css` (`background`, `foreground`, `card`, `primary`, `accent`, …) siguen mapeados a teal/azul OKLCH. Usar las clases semánticas (`bg-background`, `text-accent`). No introduzcas hex del plano técnico en componentes hasta que esos tokens se remapeen.
+Los nombres semánticos de `app/globals.css` (`background`, `foreground`, `card`, `primary`, `accent`, …) mapean la paleta de `DESIGN.md`. Usar clases semánticas (`bg-background`, `text-foreground`). El acento oscuro `#5b7fd6` no llega a AA en texto pequeño: solo trazos.
 
-**Tema oscuro vigente:** `.dark` redefine los tokens actuales. **Meta theme color vigente:** `#1c4e5a` (legacy teal; el destino es navy `#0d1d40`).
+**Tema oscuro vigente:** `html` arranca con `class="dark"`. **Meta theme color:** `#0d1d40`.
 
 ### Uso correcto de color
 
@@ -115,7 +115,7 @@ Los nombres semánticos de `app/globals.css` (`background`, `foreground`, `card`
 ### Fuentes
 
 - **Destino:** IBM Plex Sans + IBM Plex Mono (`DESIGN.md`).
-- **Vigente:** Geist + Geist Mono en `app/layout.tsx` y `@theme`. No cambies `next/font` hasta la fase de estilo.
+- **Vigente:** IBM Plex Sans + IBM Plex Mono en `app/layout.tsx` y `@theme`.
 
 ### Clases globales (usar en lugar de tamaños arbitrarios)
 
@@ -141,7 +141,7 @@ Los nombres semánticos de `app/globals.css` (`background`, `foreground`, `card`
 ### Reglas
 
 - Priorizar **lectura rápida**: párrafos cortos, `text-balance` en títulos.
-- No introducir familias fuera de IBM Plex (destino) o Geist (vigente hasta el recableado).
+- No introducir familias fuera de IBM Plex Sans / IBM Plex Mono.
 - Blog: títulos de índice `text-3xl sm:text-4xl font-bold tracking-tight` (`app/blog/page.tsx`).
 
 ---
@@ -478,4 +478,4 @@ Sección a migrar al sistema: `classgap-section.tsx` (colores slate/blue fuera d
 
 ---
 
-_Última sincronización: Next.js 16, React 19, Tailwind 4, shadcn new-york. Dirección visual en `DESIGN.md` (plano técnico). CSS vigente aún teal/Geist._
+_Última sincronización: Next.js 16, React 19, Tailwind 4, shadcn new-york. Dirección visual en `DESIGN.md` (plano técnico). CSS vigente: navy/crema + IBM Plex._

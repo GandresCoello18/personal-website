@@ -23,30 +23,27 @@ export function BlogCard({ post }: BlogCardProps) {
       eventData={{ slug: post.slug }}
       className="group block h-full"
     >
-      <Card className="flex h-full flex-col gap-0 overflow-hidden p-0 transition-shadow hover:shadow-md">
-        <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-muted">
+      <Card className="flex h-full flex-col gap-0 overflow-hidden rounded-none border-border p-0 shadow-none">
+        <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden border-b border-border bg-muted">
           {post.coverImage ? (
             <Image
               src={post.coverImage}
               alt={`Portada: ${post.title}`}
               fill
-              className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+              className="object-cover"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 560px"
             />
           ) : (
-            <div
-              className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/10 via-muted to-muted/80"
-              aria-hidden
-            >
-              <FileText className="size-14 text-muted-foreground/40" strokeWidth={1.25} />
+            <div className="flex h-full w-full items-center justify-center bg-muted" aria-hidden>
+              <FileText className="size-14 text-muted-foreground" strokeWidth={1.25} />
             </div>
           )}
         </div>
-        <CardHeader className="flex-1 gap-2 border-t border-border/60 px-5 pb-5 pt-4 sm:px-6">
-          <time className="text-xs text-muted-foreground" dateTime={post.date}>
+        <CardHeader className="flex-1 gap-2 border-t border-border px-5 pb-5 pt-4 sm:px-6">
+          <time className="font-mono text-xs text-muted-foreground" dateTime={post.date}>
             {dateLabel}
           </time>
-          <CardTitle className="text-xl transition-colors group-hover:text-primary">
+          <CardTitle className="text-xl font-medium tracking-[-0.02em] text-foreground">
             {post.title}
           </CardTitle>
           <CardDescription className="line-clamp-3 text-base">{post.description}</CardDescription>

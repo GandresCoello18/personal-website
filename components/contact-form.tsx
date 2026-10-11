@@ -148,7 +148,7 @@ export function ContactForm() {
   }
 
   return (
-    <div className="card-elevated p-8 md:p-12 border-2 border-accent/20">
+    <div className="card-elevated p-8 md:p-12">
       <h3 className="text-2xl font-bold mb-6 text-foreground">Déjame un Mensaje</h3>
 
       {submitted && (

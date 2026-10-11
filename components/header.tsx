@@ -80,7 +80,7 @@ export function Header() {
   }, [pathname, router])
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-border bg-background">
       <a
         href={`#${MAIN_CONTENT_ID}`}
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground"
@@ -97,17 +97,17 @@ export function Header() {
         >
           <img
             src="/1764558900283.png"
-            alt="Andres Coello"
+            alt="Andrés Coello"
             width={40}
             height={40}
-            className="size-10 shrink-0 rounded-full object-cover object-center"
+            className="size-10 shrink-0 border border-border object-cover object-center"
           />
           <span className="truncate text-base font-bold text-foreground sm:text-lg">
-            Andres Coello
+            Andrés Coello
           </span>
         </Link>
 
-        <div className="hidden min-w-0 items-center gap-1 md:flex">
+        <div className="hidden min-w-0 items-center gap-1 lg:flex">
           {PRIMARY_NAV_ITEMS.filter((item) => item.sectionId !== "contact").map((item) => (
             <NavLink
               key={item.href}
@@ -118,10 +118,18 @@ export function Header() {
           ))}
 
           <TrackedAnchor
+            href="https://calendly.com/goyeselcoca/30min"
+            event={UmamiEvents.contactCalendly}
+            eventData={{ source: "header-desktop" }}
+            className="btn-secondary ml-1"
+          >
+            Agendar
+          </TrackedAnchor>
+          <TrackedAnchor
             href={CONTACT_NAV_ITEM.href}
             event={UmamiEvents.contactNav}
             eventData={{ source: "header-desktop" }}
-            className="btn-primary ml-2 min-h-11"
+            className="btn-primary ml-1"
           >
             {CONTACT_NAV_ITEM.name}
           </TrackedAnchor>
@@ -133,7 +141,7 @@ export function Header() {
             <SheetTrigger asChild>
               <button
                 type="button"
-                className="inline-flex size-11 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:hidden"
+                className="inline-flex size-11 items-center justify-center rounded-none text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden"
                 aria-expanded={isOpen}
                 aria-controls="mobile-nav"
                 aria-label={getMobileMenuLabel(isOpen)}
@@ -173,6 +181,15 @@ export function Header() {
                       className="w-full justify-start px-3"
                     />
                   ))}
+                  <TrackedAnchor
+                    href="https://calendly.com/goyeselcoca/30min"
+                    event={UmamiEvents.contactCalendly}
+                    eventData={{ source: "header-mobile" }}
+                    onClick={() => setIsOpen(false)}
+                    className="btn-secondary mt-4 w-full"
+                  >
+                    Agendar llamada
+                  </TrackedAnchor>
                 </div>
               </div>
             </SheetContent>

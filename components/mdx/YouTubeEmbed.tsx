@@ -15,7 +15,7 @@ export function YouTubeEmbed({ id, title = "YouTube video", className, start }: 
   const query = params.toString()
   return (
     <div
-      className={`aspect-video w-full overflow-hidden border border-border bg-muted/30 ${className ?? "my-8 rounded-xl shadow-sm"}`}
+      className={`aspect-video w-full overflow-hidden border border-border bg-muted/30 ${className ?? "my-8"}`}
     >
       <iframe
         className="h-full w-full"

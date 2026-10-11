@@ -15,7 +15,7 @@ type MatchPanelProps = {
 
 export function MatchPanel({ match }: MatchPanelProps) {
   return (
-    <section className="space-y-4 rounded-xl border border-border bg-card p-6 md:p-8">
+    <section className="space-y-4 rounded-none border border-border bg-card p-6 md:p-8">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h2 className="text-lg font-bold text-foreground">Compatibilidad con tu perfil</h2>
@@ -27,7 +27,7 @@ export function MatchPanel({ match }: MatchPanelProps) {
           <p className="text-3xl font-bold tabular-nums text-foreground">
             {Math.round(match.score)}%
           </p>
-          <p className="text-sm font-medium text-accent">
+          <p className="font-mono text-sm font-medium text-foreground">
             {RECOMMENDATION_LABEL[match.recommendation]}
           </p>
         </div>

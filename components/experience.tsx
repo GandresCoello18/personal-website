@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ExperienceCard, type ExperienceItem } from "@/components/experience-card"
+import type { ExperienceItem } from "@/components/experience-card"
 
 const experiences: ExperienceItem[] = [
   {
@@ -176,81 +176,81 @@ const educations: ExperienceItem[] = [
 const skillGroups = [
   {
     title: "Backend",
-    tone: "primary" as const,
     skills: ["Node.js", "TypeScript", "NestJS", "Express", "Fastify", "REST", "GraphQL", "Prisma"],
   },
   {
     title: "Datos",
-    tone: "accent" as const,
     skills: ["PostgreSQL", "MySQL", "MongoDB", "Redis"],
   },
   {
     title: "Cloud e IA",
-    tone: "secondary" as const,
     skills: ["AWS", "Docker", "CI/CD", "LLM", "RAG", "React", "Next.js", "React Native"],
   },
 ]
 
-const toneClass = {
-  primary: "bg-primary/10 text-primary",
-  accent: "bg-accent/10 text-accent",
-  secondary: "bg-secondary/10 text-secondary",
-}
-
-const headingClass = {
-  primary: "text-primary",
-  accent: "text-accent",
-  secondary: "text-secondary",
+function ExperienceRow({ item }: { item: ExperienceItem }) {
+  return (
+    <li className="grid grid-cols-1 gap-3 border-b border-border py-8 first:pt-0 last:border-b-0 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-8">
+      <p className="font-mono text-sm text-muted-foreground sm:pt-1">{item.period}</p>
+      <div className="min-w-0 space-y-2">
+        <h3 className="text-lg font-medium tracking-[-0.02em] text-foreground">{item.role}</h3>
+        <p className="text-sm text-muted-foreground">{item.company}</p>
+        <p className="max-w-prose text-sm leading-relaxed text-muted-foreground">
+          {item.description}
+        </p>
+      </div>
+    </li>
+  )
 }
 
 export function Experience() {
   return (
-    <section id="experience" className="bg-muted/30 px-4 py-20 sm:px-6 md:py-32 lg:px-8">
+    <section id="experience" className="bg-background px-4 py-20 sm:px-6 md:py-32 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-16 space-y-4 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-            Trayectoria
-          </p>
+        <div className="mb-14 space-y-4">
+          <p className="section-kicker">Trayectoria</p>
           <h2 className="section-title">Experiencia</h2>
-          <p className="section-subtitle mx-auto max-w-2xl">
+          <p className="section-subtitle max-w-2xl">
             Roles, fechas y resultados alineados con LinkedIn
           </p>
         </div>
 
-        <div className="grid grid-cols-1 items-start gap-6 md:gap-8 lg:grid-cols-2">
+        <ol className="list-none">
           {experiences.map((exp) => (
-            <ExperienceCard key={exp.id} item={exp} />
+            <ExperienceRow key={exp.id} item={exp} />
           ))}
-        </div>
+        </ol>
 
         <div className="my-16 border-t border-border pt-12">
-          <div className="mb-8 space-y-3 text-center">
-            <h3 className="text-2xl font-bold text-foreground md:text-3xl">Docencia</h3>
-            <p className="section-subtitle mx-auto max-w-2xl">
+          <div className="mb-8 space-y-3">
+            <h3 className="text-2xl font-medium tracking-[-0.02em] text-foreground md:text-3xl">
+              Docencia
+            </h3>
+            <p className="section-subtitle max-w-2xl">
               Bootcamps, clases particulares y grupos. Fuera de los roles de producto.
             </p>
           </div>
-          <ul className="mx-auto max-w-3xl space-y-4">
+          <ul className="max-w-3xl">
             {teaching.map((item) => (
               <li
                 key={item.id}
-                className="flex flex-col gap-1 border-b border-border pb-4 last:border-b-0 sm:flex-row sm:items-baseline sm:justify-between"
+                className="flex flex-col gap-1 border-b border-border py-4 first:pt-0 last:border-b-0 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
               >
                 <div className="min-w-0">
-                  <p className="font-semibold text-foreground">
+                  <p className="font-medium text-foreground">
                     {item.company}
                     <span className="font-normal text-muted-foreground"> · {item.role}</span>
                   </p>
                 </div>
-                <p className="shrink-0 text-sm text-muted-foreground">{item.period}</p>
+                <p className="shrink-0 font-mono text-sm text-muted-foreground">{item.period}</p>
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-center text-sm text-muted-foreground">
+          <p className="mt-6 text-sm text-muted-foreground">
             Precios, testimonios y pagos están en{" "}
             <Link
               href="/mentoria"
-              className="font-medium text-accent underline-offset-4 hover:underline"
+              className="font-medium text-foreground underline decoration-accent underline-offset-4 hover:text-foreground"
             >
               mentoría y clases
             </Link>
@@ -258,31 +258,35 @@ export function Experience() {
           </p>
         </div>
 
-        <div className="my-16 space-y-4 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Formación</p>
-          <h2 className="text-2xl font-bold text-foreground md:text-3xl">Educación</h2>
-          <p className="section-subtitle mx-auto max-w-2xl">Recorrido en línea y presencial</p>
+        <div className="my-16 space-y-4">
+          <p className="section-kicker">Formación</p>
+          <h2 className="text-2xl font-medium tracking-[-0.02em] text-foreground md:text-3xl">
+            Educación
+          </h2>
+          <p className="section-subtitle max-w-2xl">Recorrido en línea y presencial</p>
         </div>
 
-        <div className="grid grid-cols-1 items-start gap-6 md:gap-8 lg:grid-cols-2">
+        <ol className="list-none">
           {educations.map((exp) => (
-            <ExperienceCard key={exp.id} item={exp} showGallery={false} />
+            <ExperienceRow key={exp.id} item={exp} />
           ))}
-        </div>
+        </ol>
 
         <div className="mt-16 border-t border-border pt-16">
-          <h3 className="mb-8 text-2xl font-bold text-foreground">Habilidades Técnicas</h3>
+          <h3 className="mb-8 text-2xl font-medium tracking-[-0.02em] text-foreground">
+            Habilidades Técnicas
+          </h3>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {skillGroups.map((group) => (
               <div key={group.title} className="card-elevated p-6">
-                <h4 className={`mb-4 text-lg font-bold ${headingClass[group.tone]}`}>
+                <h4 className="mb-4 font-mono text-sm uppercase tracking-[0.12em] text-muted-foreground">
                   {group.title}
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {group.skills.map((skill) => (
                     <span
                       key={skill}
-                      className={`rounded-full px-3 py-1 text-sm ${toneClass[group.tone]}`}
+                      className="border border-border px-2.5 py-1 font-mono text-xs text-foreground"
                     >
                       {skill}
                     </span>

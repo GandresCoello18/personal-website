@@ -17,7 +17,7 @@ function MdxImage({ src, alt, width, height }: ImgProps) {
   const intrinsicH = typeof height === "number" ? height : Number(height) || 630
   return (
     <span className="blog-mdx-image mx-auto my-8 block w-full max-w-3xl">
-      <span className="block overflow-hidden rounded-xl border border-border bg-muted/30">
+      <span className="block overflow-hidden border border-border bg-muted/30">
         <Image
           src={src}
           alt={alt ?? ""}
@@ -68,7 +68,7 @@ function MdxPre({ children, className, ...props }: ComponentPropsWithoutRef<"pre
   return (
     <pre
       className={cn(
-        "my-8 overflow-x-auto rounded-xl border border-border bg-[var(--blog-code-bg)] p-5 text-[13px] leading-6 shadow-sm",
+        "my-8 overflow-x-auto rounded-none border border-border bg-[var(--blog-code-bg)] p-5 text-[13px] leading-6",
         "[&_code]:font-mono [&_code]:text-[13px]",
         className,
       )}
@@ -83,7 +83,7 @@ function MdxFigure({ children, className, ...props }: ComponentPropsWithoutRef<"
   return (
     <figure
       className={cn(
-        "blog-code-figure my-8 overflow-hidden rounded-xl border border-border shadow-md",
+        "blog-code-figure my-8 overflow-hidden rounded-none border border-border",
         /* Bloque claro legible también sobre fondo oscuro (estilo Medium / documentación). */
         "bg-[var(--blog-code-figure-bg)]",
         className,

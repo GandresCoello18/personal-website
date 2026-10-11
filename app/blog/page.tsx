@@ -1,6 +1,4 @@
 import type { Metadata } from "next"
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
 import { BlogCard } from "@/components/BlogCard"
 import { getAllPosts } from "@/lib/mdx"
 import { getSiteUrl } from "@/lib/site"
@@ -14,7 +12,7 @@ export const metadata: Metadata = {
     canonical: "/blog",
   },
   openGraph: {
-    title: "Blog | Andres Coello",
+    title: "Blog | Andrés Coello",
     description: "Artículos sobre desarrollo web, Next.js, APIs y buenas prácticas de software.",
     url: `${siteUrl}/blog`,
     type: "website",

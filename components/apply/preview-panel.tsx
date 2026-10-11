@@ -49,7 +49,7 @@ export function PreviewPanel({
   const hasDraft = Boolean(preview.subject.trim() && preview.body.trim())
 
   return (
-    <section className="space-y-6 rounded-xl border border-border bg-card p-6 md:p-8">
+    <section className="space-y-6 rounded-none border border-border bg-card p-6 md:p-8">
       <div>
         <h2 className="text-lg font-bold text-foreground">2. Vista previa</h2>
         <p className="text-sm text-muted-foreground">

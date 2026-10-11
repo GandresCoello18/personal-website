@@ -60,7 +60,7 @@ export function SourceForm({
   onRegister,
 }: SourceFormProps) {
   return (
-    <section className="space-y-6 rounded-xl border border-border bg-card p-6 md:p-8">
+    <section className="space-y-6 rounded-none border border-border bg-card p-6 md:p-8">
       <div>
         <h2 className="text-lg font-bold text-foreground">1. Fuente</h2>
         <p className="text-sm text-muted-foreground">

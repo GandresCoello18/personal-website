@@ -70,12 +70,12 @@ export default async function BlogPostPage({ params }: PageProps) {
     keywords: meta.tags.join(", "),
     author: {
       "@type": "Person",
-      name: "Andres Coello",
+      name: "Andrés Coello",
       url: siteUrl,
     },
     publisher: {
       "@type": "Person",
-      name: "Andres Coello",
+      name: "Andrés Coello",
       "@id": `${siteUrl}/#person`,
     },
     mainEntityOfPage: {
