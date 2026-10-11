@@ -1,0 +1,60 @@
+---
+title: Order Lifecycle
+description: Plataforma backend de microservicios orientada a eventos. NestJS, NX, Redis + BullMQ y PostgreSQL. Solo el API Gateway expone puertos.
+summary: Microservicios orientados a eventos para el ciclo de vida de una orden.
+role: Software Engineer
+period: Repositorio público
+stack:
+  - NestJS
+  - TypeScript
+  - NX
+  - Redis
+  - BullMQ
+  - PostgreSQL
+  - Docker
+coverImage: /proyectos/order-lifecycle-platform/diagram.png
+github: https://github.com/GandresCoello18/order-lifecycle-platform
+featured: true
+---
+
+## Contexto
+
+[Order Lifecycle Platform](https://github.com/GandresCoello18/order-lifecycle-platform) es un backend de microservicios en un monorepo NX. El objetivo del repo es mostrar un ciclo de vida de orden con arquitectura orientada a eventos: NestJS, Redis + BullMQ y PostgreSQL.
+
+## Problema
+
+Hace falta un punto de entrada único autenticado y servicios que reaccionen a una orden sin acoplarse por HTTP: inventario y pago deben procesar el mismo evento, y la orden solo se confirma si ambos responden bien.
+
+## Decisiones
+
+Lo que el README y el código documentan como elegido:
+
+- Un API Gateway como único puerto al exterior. Valida JWT y reenvía a auth-service y order-service.
+- Comunicación interna por eventos en colas BullMQ (`order`, `inventory`, `payment`, `notification`) sobre Redis compartido.
+- Contratos de eventos en la librería `event-contracts` (`OrderCreated`, `InventoryReserved` / `InventoryReservationFailed`, `PaymentCompleted` / `PaymentFailed`, `OrderConfirmed` / `OrderCancelled`).
+- PostgreSQL por servicio: `auth_db` (usuarios) y `order_db` (órdenes).
+- Autenticación email + password con JWT firmado. El README anota que no hay OAuth ni refresh tokens por ahora.
+
+<DraftSection question="¿Qué se descartó frente a un monolito, llamadas HTTP síncronas entre servicios, Kafka u otra cola, y por qué? El README documenta lo elegido, no lo descartado." />
+
+## Arquitectura
+
+<OrderLifecycleArchitecture />
+
+Flujo documentado:
+
+1. El usuario crea una orden con `POST /orders` y JWT.
+2. `order-service` guarda la orden en estado `PENDING` y emite `OrderCreated`.
+3. `inventory-service` y `payment-service` escuchan `OrderCreated` y emiten reserva/pago ok o fallo.
+4. `order-service` decide: ambos ok → `OrderConfirmed`; alguno falla → `OrderCancelled`.
+5. `notification-service` escucha confirmación o cancelación.
+
+También existen `POST /auth/register`, `POST /auth/login`, `GET /orders/:id` y `POST /orders/:id/cancel` (no se puede cancelar una orden ya confirmada). El stack es Node.js, TypeScript, NestJS, NX, Redis + BullMQ, PostgreSQL y Docker Compose.
+
+## Resultados
+
+<DraftSection question="¿Hay un resultado medible o una lección de uso real de esta plataforma, o debe quedar como laboratorio / muestra de arquitectura?" />
+
+## Qué haría distinto
+
+<DraftSection question="¿Qué cambiarías (refresh tokens, base de datos por cada servicio, sagas, outbox, etc.) si lo volvieras a diseñar?" />

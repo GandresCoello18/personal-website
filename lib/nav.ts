@@ -60,6 +60,13 @@ export function isNavItemActive(
     return true
   }
 
+  if (
+    item.sectionId === "projects" &&
+    (pathname === "/proyectos" || pathname.startsWith("/proyectos/"))
+  ) {
+    return true
+  }
+
   const isHome = pathname === "/" || pathname === ""
   if (!isHome || !item.sectionId) {
     return false

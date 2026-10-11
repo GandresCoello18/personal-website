@@ -1,0 +1,53 @@
+---
+title: Meniuz
+description: SaaS multi-tenant para restaurantes en Ecuador. Iniciativa de Kevin Morales; Andrés se sumó y lideró la evolución técnica del MVP a producción.
+summary: SaaS multi-tenant para restaurantes en Ecuador, con 500+ establecimientos.
+role: Backend & DevOps Lead
+period: abr. 2022 – actualidad
+stack:
+  - TypeScript
+  - Node.js
+  - Express
+  - GraphQL
+  - MySQL
+  - Redis
+  - Docker
+  - AWS
+  - Next.js
+coverImage: /proyectos/meniuz/landing.png
+external: https://onelink.to/meniuz
+featured: true
+---
+
+## Contexto
+
+Meniuz es un SaaS para la industria gastronómica en Ecuador. Es una iniciativa de Kevin Morales. Andrés se sumó en la etapa inicial, en paralelo a su trabajo principal, y lideró la evolución técnica: de una web de menús a un SaaS con más de 500 establecimientos activos. Su rol es Backend & DevOps Lead: backend, infraestructura, monitoreo, observabilidad y redes.
+
+## Problema
+
+Había que pasar de una web inicial a un ecosistema web y móvil (iOS y Android) que sostuviera muchos restaurantes, menús, campañas y soporte, sin convertir el crecimiento en una carga de despliegue e infraestructura.
+
+## Decisiones
+
+Se eligió una arquitectura multi-tenant sobre un monolito modular, preparado para evolucionar a microservicios. El alta de restaurantes se automatizó con web scraping integrado con Google Maps. El backoffice usa control de acceso por roles (RBAC) para menús, campañas y soporte.
+
+<DraftSection question="¿Qué alternativas se descartaron (por ejemplo microservicios desde el día uno frente al monolito modular, GraphQL frente a REST, o mover ya la infraestructura de Railway a AWS) y por qué?" />
+
+## Arquitectura
+
+<MeniuzArchitecture />
+
+El stack confirmado incluye TypeScript, Node.js, Express, GraphQL, MySQL, Redis, Docker, AWS (EC2, S3, Lambda, EventBridge, CloudWatch), Sentry, Qdrant, Gemini y Next.js/React. Hay un motor de búsqueda semántica con RAG (Gemini, Qdrant, embeddings) y OCR con Google Cloud Vision para digitalizar menús físicos. El monitoreo usa Sentry y AWS CloudWatch. La migración de Railway a AWS se planificó para ganar escalabilidad; no está descrita aquí como un hecho ya cerrado.
+
+<DraftSection question="¿Cuál es el despliegue actual (Railway, AWS u otro) y cómo se conectan hoy web, móvil, backoffice, RAG/OCR y datos? Confirma o corrige el diagrama de componentes." />
+
+## Resultados
+
+- Más de 500 establecimientos activos.
+- Tiempos de despliegue reducidos un 60 % con pipelines de CI/CD (Docker, GitHub).
+- Costos de infraestructura optimizados un 25 %.
+- Sistema de fidelización gamificado (cartillas digitales, retos y recompensas escaneables) que aumentó la retención y el consumo recurrente en los locales.
+
+## Qué haría distinto
+
+<DraftSection question="¿Qué cambiarías hoy en Meniuz si empezaras de nuevo?" />

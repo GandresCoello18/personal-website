@@ -1,0 +1,49 @@
+---
+title: Tayos
+description: Asistente LLM (Gemini) + RAG para compatibilidad y recomendación de autopartes. Trabajo de DevLokos. Odoo permanece como fuente de verdad.
+summary: Asistente LLM + RAG de compatibilidad de autopartes, con Odoo como fuente de verdad.
+role: Backend Engineer (AI & Odoo Integrations)
+period: mar. 2026 – actualidad
+stack:
+  - TypeScript
+  - Node.js
+  - Fastify
+  - Odoo
+  - Gemini
+  - RAG
+  - Next.js
+  - React Native
+coverImage: /proyectos/odoo-app/odoo-app.png
+external: https://apps.apple.com/ec/app/tayos/id6776895287
+featured: true
+---
+
+## Contexto
+
+Tayos es un trabajo de DevLokos para el cliente Tayos (repuestos automotrices). El encargo: un asistente con LLM (Gemini) y RAG sobre manuales, precios, marcas y catálogos, que responde en lenguaje natural consultas de compatibilidad y recomendaciones de repuestos.
+
+## Problema
+
+Una búsqueda tradicional no resolvía compatibilidad ni recomendaciones. El cliente hacía a mano en Odoo procesos que pedían una aplicación a la medida, sin migrar datos ni abandonar Odoo como sistema de registro.
+
+## Decisiones
+
+Se mantuvo Odoo como fuente única de verdad. Delante hay una API REST en Fastify y un BFF que sirve a la app móvil (React Native/Expo) y a la web (Next.js). El BFF adapta solo lo que cada cliente necesita, de modo que se agregan funciones sin reescribir los cimientos ni mover el catálogo fuera de Odoo. La app está publicada en App Store y Google Play. Los despliegues cubren Railway, Render y DigitalOcean.
+
+<DraftSection question="¿Qué se descartó (por ejemplo hablar con Odoo desde la app, otro modelo distinto de Gemini, o no usar BFF) y por qué?" />
+
+## Arquitectura
+
+<TayosArchitecture />
+
+Stack confirmado: TypeScript, Node.js, Fastify, Prisma, TypeORM, MongoDB, Redis, Odoo, Gemini, RAG, Next.js y React Native.
+
+<DraftSection question="¿Hay más servicios o colas entre Odoo, Fastify, el BFF y Gemini de los que ya constan en este diagrama?" />
+
+## Resultados
+
+Todavía no hay usuarios públicos reales; no hay métricas de uso. El resultado es cualitativo: una aplicación a la medida, pensada para escalar y agregar funciones sin dolor, que reemplaza muchos procesos manuales en Odoo y deja Odoo como fuente de verdad porque el BFF adapta solo lo que se necesita.
+
+## Qué haría distinto
+
+<DraftSection question="¿Qué cambiarías en Tayos si lo rediseñaras ahora?" />

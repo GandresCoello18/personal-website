@@ -38,6 +38,27 @@ const SOCIAL = [
   },
 ] as const
 
+function ProfileLockup() {
+  return (
+    <div className="flex items-center gap-4 sm:gap-5">
+      <BlueprintFrame className="size-[4.5rem] shrink-0 overflow-hidden sm:size-24">
+        <Image
+          src="/profile.jpeg"
+          alt="Andrés Coello — Backend Engineer"
+          width={192}
+          height={192}
+          className="aspect-square size-full object-cover object-top"
+          priority
+        />
+      </BlueprintFrame>
+      <h1 className="section-title min-w-0">
+        Andrés Coello
+        <span className="mt-1 block font-medium text-foreground">Backend Engineer</span>
+      </h1>
+    </div>
+  )
+}
+
 export function Hero() {
   return (
     <section
@@ -47,23 +68,9 @@ export function Hero() {
       <div className="relative z-10 mx-auto max-w-6xl">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="space-y-8">
-            <BlueprintFrame className="mx-auto w-28 overflow-hidden bg-card md:hidden">
-              <Image
-                src="/profile.jpeg"
-                alt="Andrés Coello — Backend Engineer"
-                width={224}
-                height={224}
-                className="aspect-square size-full object-cover object-top"
-                priority
-              />
-            </BlueprintFrame>
+            <ProfileLockup />
 
             <div className="space-y-4">
-              <h1 className="section-title">
-                Andrés Coello
-                <br />
-                <span className="font-medium text-foreground">Backend Engineer</span>
-              </h1>
               <p className="section-subtitle max-w-xl">
                 Ingeniero de software backend con 8+ años construyendo APIs y plataformas SaaS en
                 Node.js/TypeScript sobre AWS. Diseño sistemas que escalan sin volverse una carga
@@ -113,19 +120,9 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="hidden min-w-0 flex-col gap-6 lg:flex">
+          <div className="hidden min-w-0 lg:block">
             <BlueprintFrame className="bg-background/40 p-5 text-accent">
               <SignatureDiagram className="h-auto w-full" />
-            </BlueprintFrame>
-            <BlueprintFrame className="mx-auto w-44 overflow-hidden">
-              <Image
-                src="/profile.jpeg"
-                alt="Andrés Coello — Backend Engineer"
-                width={176}
-                height={176}
-                className="aspect-square size-full object-cover object-top"
-                priority
-              />
             </BlueprintFrame>
           </div>
         </div>

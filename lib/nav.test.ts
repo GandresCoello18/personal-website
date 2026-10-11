@@ -53,6 +53,7 @@ describe("isNavItemActive", () => {
     assert.equal(isNavItemActive(projects, "/", "projects"), true)
     assert.equal(isNavItemActive(projects, "/", "experience"), false)
     assert.equal(isNavItemActive(projects, "/blog", "projects"), false)
+    assert.equal(isNavItemActive(projects, "/proyectos/meniuz"), true)
   })
 
   it("activates Contacto on the home contact section", () => {
