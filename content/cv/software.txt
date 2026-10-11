@@ -1,59 +1,65 @@
 ANDRES ROBERTO COELLO GOYES
-Full Stack - Software Engineer
+Backend Engineer
 goyeselcoca@gmail.com • +593993698358 • Ecuador • https://www.linkedin.com/in/andrescoellogoyes/ • https://github.com/GandresCoello18
 
 RESUMEN
-Ingeniero de software con +8 años de experiencia creando aplicaciones web y móviles de alto rendimiento, con arquitecturas escalables, mantenibles y seguras en el tiempo, aplicando buenas prácticas de SOLID. Optimización de rendimiento en cloud y diseño de APIs GraphQL, WebSockets, microservicios, monolitos, webhooks, arquitectura de eventos, workers, escalamiento horizontal y colas de trabajo asíncrono. Experiencia liderando proyectos y pequeños grupos de desarrolladores, creando SDKs e involucrándome en todas las fases del ciclo de vida del software. Docente y mentor de software.
+Ingeniero de software backend con 8+ años construyendo APIs y plataformas SaaS en Node.js/TypeScript sobre AWS. Diseño sistemas que escalan sin volverse una carga técnica para el equipo: multi-tenant, orientados a eventos y listos para producción. Stack: Node.js · TypeScript · NestJS · PostgreSQL · AWS · LLM/RAG. Freelance independiente 2018–2020, antes de los roles formales.
 
 EXPERIENCIA
 
-Full Stack Software Engineer | Marzo 2025 - Actualidad
-DevLokos · Producto Tayos · Independent · Remoto · Quito, Ecuador
-Construir Tayos, plataforma automotriz (repuestos) con arquitectura Backend for Frontend (BFF): API REST (Fastify) que conecta Odoo —única fuente de verdad del negocio— con una app móvil React Native + Expo y una web Next.js. Extender capacidades que Odoo no cubre de forma nativa usando MongoDB (características, flujos y datos auxiliares) sin romper la integridad de la información en Odoo. Evolucionar la integración más allá del pull por API REST: configurar **webhooks en Odoo** para que notifiquen a nuestra API qué cambió y cuándo (p.ej. órdenes de venta), ejecutar la lógica de negocio correspondiente y notificar a clientes en web y móviles en tiempo casi real. Esta aproximación event-driven evita el **polling** constante a Odoo (poco óptimo, poco escalable y difícil de mantener) y refuerza el BFF como capa de orquestación confiable entre ERP y canales de cliente. Diseñar e implementar asistentes de IA con Gemini (LLM de pago, modelo compacto orientado a razonamiento) para responder dudas técnicas y de uso de productos según manuales automotrices: compatibilidad, medidas, recomendaciones y características específicas de repuestos. Arquitectura RAG de punta a punta: carga de documentos (Markdown, PDF, Word, Excel), procesamiento asíncrono con workers, indexación en Qdrant seccionando el contenido por fragmentos, y enriquecimiento de imágenes/diagramas vía LLM (describir y razonar el contenido visual; no almacenar la imagen como respuesta, sino el conocimiento técnico que aporta). El chat consulta solo el corpus indexado (no inventa ni busca en internet); ejemplo de consulta: medida de rosca de un filtro de aceite para un Aveo Family 2015. Industria: aftermarket / repuestos automotrices + LLM/RAG en producto + integración ERP event-driven.
+Backend Engineer (AI & Odoo Integrations) | Marzo 2026 - Actualidad
+DevLokos · Remoto · Quito, Ecuador
+Clientes: Tayos (repuestos automotrices) y La Casa del Turbo. Diseñé un asistente con LLM (Gemini) y RAG sobre manuales, precios, marcas y catálogos, que responde en lenguaje natural consultas de compatibilidad que una búsqueda tradicional no resolvía. Integré Odoo como fuente única de verdad detrás de una API REST en Fastify y un BFF para la app móvil (React Native/Expo) y la web (Next.js). Publiqué la app en App Store y Google Play, con despliegues en Railway, Render y DigitalOcean.
 
-Full Stack Software Engineer | 2026 - Actualidad
-TechLocos · Remoto · Ecuador
-Proyectos de producto y sistemas a medida para comercios:
+Backend & DevOps Lead | Abril 2022 - Actualidad · part-time
+Meniuz · Remoto · Quito, Ecuador
+SaaS para la industria gastronómica en Ecuador, iniciativa de Kevin Morales. Me sumé en la etapa inicial, en paralelo a mi trabajo principal, y lideré la evolución técnica de una web de menús a un SaaS con más de 500 establecimientos activos. Reduje un 60 % los tiempos de despliegue con CI/CD (Docker, GitHub) y un 25 % los costos de infraestructura. Diseñé búsqueda semántica con RAG (Gemini, Qdrant) y OCR de menús, un sistema de fidelización y un backoffice con RBAC.
 
-• E-commerce modular (MVP): arquitectura hexagonal y monolito modular en NestJS (TypeScript), pensado para validar producto y migrar después a una nube más potente sin reescribir el dominio. Backend en Railway con mensajería de correo. Back office SPA React (dueños/empleados: categorías, subcategorías, productos e imágenes) y storefront público Next.js (SEO/renderizado). Imágenes en Cloudflare. Pagos con Payphone. Construcción Spec-Driven con IA (Cursor): PRD, specs, tests, reglas, contexto y agentes.
-
-• La Casa del Turbo (desplegado): sistema a medida para un comercio que vende turbos según marca/motor del vehículo. Sustituyó el proceso en Excel/hojas de cálculo por un sistema modular y sistemático: identificación de módulos reutilizables, buenas prácticas, importación de datos existentes desde Excel (sin empezar de cero), usuarios, roles, cálculos de negocio y facturación electrónica ante el SRI vía proveedor externo. Integración de la API del proveedor (documentada en Swagger) con la API propia para factura, comprobante y nota de crédito. Enfoque: dar a pequeños negocios un sistema real, ni más ni menos de lo que necesitan, en lugar de operar solo en Excel.
-
-Full Stack Software Engineer Semi-senior | Enero 2026 - Abril 2026
+Software Engineer II (Backend) | Enero 2026 - Abril 2026
 Novacomp · Remoto · San José, Costa Rica
-Incrementar la retención de usuarios bancarios hasta en un 30% mediante el desarrollo de una plataforma de gamificación y recompensas personalizadas (cashback y otros premios por fidelización). Resolver problemas críticos de rendimiento e infraestructura mediante el rediseño del motor avanzado de segmentación en tiempo real, optimizando consultas SQL dinámicas hacia un Data Lake en Amazon Athena para procesar reglas de audiencia altamente complejas sin latencia. Desarrollar interfaces intuitivas (UI/UX) para la configuración de campañas promocionales y respaldar su operación con arquitecturas robustas en NestJS, escalables y basadas en microservicios, API REST y AWS Lambda. Stack: TypeScript, React (SPA), React Query con estrategias de caché, Tailwind CSS, Prisma, Amazon EventBridge, Amazon CloudWatch, Amazon Cognito con JWT y RBAC, GitHub Copilot, Git, variables de entorno y cron jobs.
+Plataforma de fidelización y recompensas para usuarios bancarios. Rediseñé el motor de segmentación de audiencias en tiempo real sobre un Data Lake en Amazon Athena. Contribuí a aumentar hasta un 30 % la retención con gamificación y recompensas personalizadas. Microservicios en NestJS con API REST, AWS Lambda y EventBridge; autenticación por roles con Amazon Cognito y JWT.
 
-Principal Backend Semi-senior | Agosto 2025 - Noviembre 2025
-MIMS TECH · Remoto · Miami, USA
-Liderar un equipo de cuatro desarrolladores en la creación de un SDK comercial publicado en NPM para una plataforma de notarización online. Diseñar una arquitectura multi-tenant altamente segura, implementando Row-Level Security (RLS) en PostgreSQL para garantizar el aislamiento granular de datos. Impulsar la estabilidad y escalabilidad del proyecto mediante un refactor progresivo y la migración a microservicios y monorepo con NX, sin interrumpir la entrega de nuevas funcionalidades. Stack: NestJS, React, TypeScript, Prisma, PostgreSQL, NATS, Docker, Docker Compose, AWS API Gateway, AWS Lambda, Amazon EC2, Amazon S3, Stripe, NPM, Cursor y GitHub Copilot.
+Backend Engineer | Septiembre 2025 - Noviembre 2025
+MIMS Tech · Remoto · Miami, USA
+Plataforma de notarización online en Estados Unidos. Entré como Backend Engineer y guié a un equipo de 4 developers en un SDK comercial publicado en NPM. Arquitectura multi-tenant con Row-Level Security en PostgreSQL, migración progresiva a microservicios en un monorepo NX con NATS, pagos con Stripe y servicios en AWS.
 
-Full Stack Developer | Abril 2022 - Marzo 2025
-GGTech Entertainment · Remoto · Madrid, España
-Impulsar la escalabilidad global de una plataforma de esports con usuarios en América, Europa y Asia, incrementando la participación en un 30%. Desarrollar motores de ranking dinámicos y cuatro formatos complejos de competición, incluyendo sistemas Suizo y Round Robin, utilizando Meteor.js en frontend y backend. Optimizar el rendimiento de torneos masivos mediante la mejora de consultas a bases de datos, scripts de migración seguros y sincronización en tiempo real con WebSockets, reduciendo las incidencias operativas en más del 25% y garantizando baja latencia. Stack: Meteor.js, MongoDB, Redis, WebSockets, Blaze, Figma, DevTools, stores persistentes, MFA, rate limiting, TTL, Supertest, AWS y monitoreo.
-
-Senior Backend Engineer | Febrero 2022 - Autónomo
-Meniuz · Evolución interna: Frontend Developer → Full Stack Developer / Senior Backend Engineer · Remoto · Quito, Ecuador
-Dirigir, como Co-founder, la evolución tecnológica de un MVP hacia un SaaS para la industria gastronómica que procesa las operaciones de más de 1000 establecimientos activos. Diseñar una arquitectura multi-tenant basada en un monolito modular preparado para evolucionar a microservicios, optimizando escalabilidad, mantenibilidad y velocidad de entrega. Implementar funcionalidades y servicios para ventas, comandas digitales, pagos, inventario y un motor de inteligencia artificial para recomendaciones gastronómicas, reduciendo los tiempos de despliegue en un 60% y los costos de infraestructura en un 25%. Stack: TypeScript, Next.js (SSR), React, Express, GraphQL, Sequelize/MySQL, Redis, Docker, WebSockets, JWT, AWS (EC2, S3, SES, Lambda, EventBridge, CloudWatch), Firebase (Auth, Analytics, Storage, Remote Config), Sentry, CI/CD, Playwright, Jest, Supertest, Qdrant, Gemini AI (embeddings y respuestas), Google Cloud Vision OCR, workers asíncronos, rate limiting y scraping para carga de datos.
+Full Stack Engineer | Abril 2022 - Marzo 2025
+GGTECH Entertainment · Remoto · Madrid, España
+Plataforma global de competiciones de esports con usuarios en América, Europa y Asia. Desarrollé motores de ranking y cuatro formatos de competición (entre ellos sistema suizo y round robin), lo que ayudó a aumentar un 30 % la participación. Optimicé torneos masivos en MongoDB y WebSockets, y reduje más de un 25 % las incidencias operativas.
 
 Full Stack Developer | Mayo 2021 - Abril 2022
 ATIVAR · Remoto · Mérida, México
-Interactué directamente con clientes para recopilar requerimientos funcionales y técnicos, participando en levantamiento, análisis y definición de alcance, lo que redujo en un 25% los cambios posteriores durante el desarrollo. Desarrollé y mantuve aplicaciones web y móviles con JavaScript, TypeScript, Meteor.js, Next.js, Apollo y MongoDB, implementando autenticación con JWT y refresh tokens, documentación con Swagger y buenas prácticas de integración. Optimicé aplicaciones para SEO, gestioné versiones con Git/GitHub, realicé pruebas end-to-end con Cypress y desarrollé, compilé y publiqué apps móviles con React Native, Xcode y Android Studio en Google Play Store, Apple App Store y Huawei AppGallery.
+Consultoría en aplicaciones web y móviles multiplataforma: levantamiento de requerimientos con clientes y publicación en Play Store, App Store y AppGallery.
+
+Mobile Application Developer | Octubre 2020 - Marzo 2021
+COOPROCLEM · Híbrido · Los Ríos, Ecuador
+Desarrollo móvil multiplataforma: infraestructura de red y envío de datos desde dispositivos hacia servidores administrativos.
+
+Desarrollador freelance | 2018 - 2020
+Independiente
+Dos años de proyectos web independientes, antes de los roles formales.
 
 EDUCACIÓN
-Platzi | Enero 2018 - Presente
-Software Engineer · Remoto
-+ de 500 cursos y 4 escuelas de software completados con certificaciones.
+Código Facilito | Marzo 2025 - Actualidad
+Ingeniería de software · DevOps
 
-Tecnológico Superior Babahoyo | Marzo 2017 - Diciembre 2020
-Tecnólogo en desarrollo de Software · Babahoyo, Ecuador
+Platzi | Enero 2019 - Diciembre 2025
+Programación e ingeniería · certificaciones en AWS, DevOps e IA
+
+Tecnológico Superior Babahoyo | Marzo 2017 - Noviembre 2020
+Tecnólogo en desarrollo de software
 
 HABILIDADES
-Técnicas: TypeScript, Node.js, React, Next.js, NestJS, React Native, Expo, Meteor.js, Blaze, i18n, Bash, Redux, scraping, Git, Firebase, Supabase, Vue, PostgreSQL (RLS), multi-tenant, Google Auth, MongoDB, ORM, Redis, Docker Compose, AWS, Lambda, Prisma, GraphQL, Fastify, BFF, Odoo, webhooks, arquitectura event-driven, arquitectura hexagonal, monolito modular, Railway, Cloudflare, Payphone, facturación electrónica SRI (Ecuador), Swagger/OpenAPI, migración Excel → sistema, RBAC/roles, Spec-Driven Development (PRD/specs/tests/agentes), microservicios, Socket.io, Python, Flask, Jest, Playwright, e2e, Cypress, CI/CD, GitHub Actions, embeddings, OCR, Athena, GPT, Ollama, Gemini AI, Qdrant, RAG, workers asíncronos, indexación de documentos (PDF, Markdown, Word, Excel).
+Backend: Node.js, TypeScript, NestJS, Express, Fastify, REST, GraphQL, Prisma, WebSockets
+Datos: PostgreSQL (RLS), MySQL, MongoDB, Redis
+Cloud/IA: AWS (Lambda, EC2, S3, EventBridge, CloudWatch, Cognito, Athena), Docker, CI/CD, LLM, RAG, embeddings, Qdrant, Gemini
+También: React, Next.js, React Native
 Idiomas: Español (nativo), Inglés B2.
-Adicionales: Liderazgo técnico y mentoría, pensamiento orientado al producto, comunicación efectiva con equipos y stakeholders, resolución de problemas y pensamiento analítico, gestión del tiempo y priorización, trabajo en equipo multidisciplinario, adaptabilidad y aprendizaje continuo, proactividad y ownership, empatía e inteligencia emocional, orientación a resultados y mejora continua.
 
-CERTIFICACIONES
-• Pensamiento Crítico para IA — Platzi 2026
-• Prompt Engineer — Platzi 2026
-• TypeScript Avanzado — Platzi 2022
-• Curso de Gemini — Platzi 2026
+CERTIFICACIONES (Platzi)
+• Curso de Introducción a los Patrones de Diseño de Software — oct. 2026
+• Curso Profesional de DevOps — sept. 2026
+• Curso de Spec Driven Development — sept. 2026
+• Curso de Cursor — ago. 2026
+• Curso Práctico de AWS: Roles y Seguridad con IAM — jun. 2026
+• Curso de Pensamiento Crítico para usar Inteligencia Artificial — may. 2026

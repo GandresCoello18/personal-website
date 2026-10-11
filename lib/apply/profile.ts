@@ -5,5 +5,5 @@ export const applyProfile = {
   linkedin: "https://www.linkedin.com/in/andrescoellogoyes/",
   github: "https://github.com/GandresCoello18",
   portfolio: "https://andrescoellog.com",
-  title: "Software Developer & Mentor",
+  title: "Backend Engineer",
 } as const

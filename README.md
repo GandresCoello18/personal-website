@@ -1,6 +1,6 @@
 # Portafolio Personal - Andres Coello
 
-Portafolio web personal que presenta mis servicios como **Software Engineer, SRE, Mentor y Tutor**, especializado en desarrollo full-stack y enseñanza de programación.
+Portafolio de **Andrés Coello — Backend Engineer**. APIs y plataformas SaaS en Node.js, TypeScript, NestJS, PostgreSQL, AWS y LLM/RAG.
 
 <img width="1005" height="483" alt="image" src="https://github.com/user-attachments/assets/61131f8e-cf87-44bd-b92a-4e7a324bba9f" />
 
@@ -8,9 +8,9 @@ Portafolio web personal que presenta mis servicios como **Software Engineer, SRE
 
 Este sitio web sirve como:
 
-- **Portafolio profesional**: Muestra mi experiencia, proyectos y habilidades técnicas
-- **Plataforma de servicios**: Ofrece mentoría personalizada, cursos, consultoría técnica y desarrollo de software
-- **Punto de contacto**: Facilita la comunicación con estudiantes, clientes y colaboradores
+- **Portafolio profesional**: experiencia, proyectos y stack backend
+- **Plataforma de servicios**: consultoría, desarrollo y docencia
+- **Punto de contacto**: para empresas, reclutadores y estudiantes
 
 ## Servicios Ofrecidos
 

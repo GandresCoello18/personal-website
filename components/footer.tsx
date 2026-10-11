@@ -58,7 +58,7 @@ export function Footer() {
               <span className="font-bold text-foreground">Andres Coello</span>
             </Link>
             <p className="text-sm text-muted-foreground mb-6">
-              Developer, Mentor y Creador. Ayudando a desarrolladores a crecer profesionalmente.
+              Backend Engineer. APIs y plataformas SaaS en Node.js, TypeScript, NestJS y AWS.
             </p>
             <div className="flex gap-3">
               {social.map((item) => {

@@ -1,54 +1,48 @@
-DOCENTE & MENTOR - SOFTWARE ENGINEER
-Andrés Coello Goyes | LinkedIn
+DOCENTE — BACKEND ENGINEER
+Andrés Coello Goyes
 (+593) 993698358 · goyeselcoca@gmail.com · Ambato, Ecuador
-Portafolio en GitHub · Web personal
+https://www.linkedin.com/in/andrescoellogoyes/ · https://andrescoellog.com
 
 RESUMEN
-Ingeniero de software con más de 8 años de experiencia en desarrollo de aplicaciones web y móviles de alto rendimiento, con enfoque en arquitecturas escalables, diseño de APIs y optimización de sistemas. Experiencia liderando proyectos, creando SDKs y aplicando buenas prácticas de desarrollo. Docente y mentor de programación para niños y adolescentes (8 a 18 años) y adultos jóvenes (20 a 35 años), en clases individuales y grupales, adaptando la enseñanza según el nivel del estudiante.
+Ingeniero de software backend con 8+ años en APIs y plataformas SaaS (Node.js, TypeScript, NestJS, PostgreSQL, AWS, LLM/RAG). Docente de programación en bootcamps, clases particulares y grupos. 160+ clases en Classgap, además de Crack The Code y Codings Academy.
 
-HABILIDADES TÉCNICAS
-Uso de herramientas dinámicas para captar mejor el problema a resolver; ayuda visual con diagramas animados. Diseño de software: construcción de sistemas bien estructurados, escalables y fáciles de mantener, siguiendo buenas prácticas de arquitectura. Seguridad en aplicaciones: implementación de autenticación, control de accesos y manejo seguro de información en aplicaciones web y móviles.
+DOCENCIA
 
-HABILIDADES BLANDAS
-Pensamiento abstracto y división de problemas grandes para resolverlos; aplicar soluciones en la vida real. Liderazgo y mentoría: guiar equipos y estudiantes combinando enfoque técnico con acompañamiento humano y motivacional. Comunicación y enseñanza: experiencia como speaker en eventos tecnológicos y mentor de estudiantes a nivel local e internacional.
+Docente de IA y programación web | Febrero 2026 - Octubre 2026 · parcial
+Crack The Code · Remoto
+Enseño IA aplicada y el ciclo completo de desarrollo de software: cada grupo elige un emprendimiento local y lo convierte en un producto digital. Acompaño planificación, diseño, construcción, pruebas, despliegue y mejora continua. Prompt engineering y bitácoras de proyecto.
 
-EXPERIENCIA LABORAL
+Profesor de clases particulares / Programación | Abril 2023 - Agosto 2026
+Classgap · Remoto
+Impartí más de 160 clases particulares de desarrollo web y móvil a estudiantes y desarrolladores de distintos países. Planes de aprendizaje según el objetivo de cada persona: proyectos reales, portafolio y presencia profesional. Depuración de APIs en NestJS, rutas en Node.js y apps en Flutter.
 
-Codings Academy · Remoto (Quito, Ecuador)
-Maestro de Frontend Developer / Bootcamp | 06/2025 - 08/2025
-Me desempeño como docente y mentor de Front-end, impartiendo clases grupales a más de 40 estudiantes y guiándolos desde los fundamentos de JavaScript hasta el desarrollo avanzado con React. Implemento una metodología 100% práctica enfocada en la construcción de portafolios, la resolución de problemas en vivo y el uso de herramientas de IA para potenciar la productividad. Formo a los estudiantes en HTML, CSS, JavaScript moderno (ES6+), asincronía, algoritmos, Virtual DOM, consumo e integración de API REST, optimización de rendimiento, estrategias de carga de scripts, buenas prácticas de maquetación y uso de librerías de componentes. Además, introduzco conceptos de desarrollo backend con Python y Flask, diseño y documentación de API REST con Swagger, autenticación, control de versiones con Git y despliegue en Vercel. Como proyecto final, acompaño el desarrollo y despliegue de un e-commerce funcional construido con React y conectado a una API REST desarrollada en Flask.
-
-Crack The Code · Remoto (Perú - Colombia)
-Docente IA & Programación Web | 01/2026 - 07/2026
-Guío y enseño sobre IA junto con el ciclo de vida del desarrollo de software en la práctica: escoger un emprendimiento local y transformarlo en un producto digital de alto impacto, pasando por la planeación, diseño, construcción, pruebas, despliegue y mejoras continuas con base en feedback real de usuarios o posibles clientes. Llevo de la mano a cada grupo y uso ejemplos interactivos de cómo lo hacen empresas reconocidas. Me enfoco en que entiendan una de las partes más importantes de crear un producto digital con impacto: la buena planeación y planificación; esas bases bien definidas permiten tener claro el camino a recorrer y documentar todos los avances. Dedico tiempo a participar en charlas y talleres técnicos de ingeniería de software + AI y a mostrar con el ejemplo conceptos como: embeddings, context window, Cursor, agentes, LLM, RAG, prompts, bases de datos vectoriales con Qdrant y más.
-
-Google Developer Groups · Presencial (Quito, Ecuador)
-Charla / Mentor / Software Engineer | 11/2023 - Autónomo
-Participación continua como speaker y mentor en la comunidad GDG, compartiendo conocimiento técnico y acompañando a desarrolladores.
-
-ClassGap · Remoto (Madrid, España)
-Docente / Mentor / Software developer | 04/2023 - Actualidad
-Como consultor técnico y mentor, he capacitado a desarrolladores a nivel internacional, guiándolos en la construcción de productos web y móviles reales. Mi enfoque va más allá de escribir código: formo a los profesionales para que piensen como ingenieros de software senior y resuelvan problemas complejos de forma escalable. Guío a estudiantes en la implementación de proyectos reales, fomentando buenas prácticas de programación, optimización de código y resolución de problemas con enfoque práctico.
+Maestro de Frontend / React / Bootcamp | Junio 2025 - Octubre 2025 · parcial
+Codings Academy · Remoto
+Enseñé a más de 40 estudiantes en clases grupales, de JavaScript a React, con metodología práctica orientada a portafolio. Introduje backend con Python y Flask, Swagger, autenticación, Git y despliegue en Vercel. Proyecto final: e-commerce en React conectado a una API en Flask.
 
 EDUCACIÓN
-Instituto Tecnológico Superior Babahoyo - ISTB · Los Ríos, Ecuador
-Tecnólogo en desarrollo de Software | 03/2017 - 12/2020
+Código Facilito | Marzo 2025 - Actualidad
+Ingeniería de software · DevOps
 
-Platzi - Escuela de tecnología de Latinoamérica
-Cursos y carreras en Ingeniería de Software | 01/2019 - 12/2024
+Platzi | Enero 2019 - Diciembre 2025
+Programación e ingeniería
 
-CERTIFICACIONES
-• Curso de Gemini — Platzi 2026
-• Full Stack Developer con JavaScript — Platzi
-• TypeScript Avanzado — Platzi 2024
-• Pensamiento Crítico para IA — Platzi 2026
-• Prompt Engineer — Platzi 2026
+Tecnológico Superior Babahoyo | Marzo 2017 - Noviembre 2020
+Tecnólogo en desarrollo de software
 
-VOLUNTARIADO / SPEAKING
-• TsáchiTalk #21 — GDG Santo Domingo de los Tsáchilas (2026, online ~1 h): Embeddings, LLMs y Qdrant → RAG; representación vectorial; búsqueda tradicional vs semántica (complementarias); asistente automotriz grounded. Video: https://www.youtube.com/watch?v=-ma95I0r7XI
-• Platzi Live — ¿Cómo trabajar de Full Stack Developer en videojuegos?
-• Orador en DevFest (Google Developer Groups) — ¡DevTools es más que solo consola! / Crecer y adaptarse; taller con Meteor.js
-• Taller & charla en Build With AI — ¿Cómo entienden la IA lo que preguntas? Uso de embeddings y bases de datos vectoriales
+CERTIFICACIONES (Platzi)
+• Curso de Introducción a los Patrones de Diseño de Software — oct. 2026
+• Curso Profesional de DevOps — sept. 2026
+• Curso de Spec Driven Development — sept. 2026
+• Curso de Pensamiento Crítico para usar Inteligencia Artificial — may. 2026
 
-TECH STACK PRINCIPAL
-Python, Flask, TypeScript, Node.js, React, Next.js, NestJS, React Native, Meteor.js, Blaze, i18n, Bash, Redux, scraping, Git, Firebase, Supabase, Vue, PostgreSQL (RLS), multi-tenant, Google Auth, MongoDB, ORM, Redis, Docker, AWS, Lambda, Prisma, GraphQL, microservicios, Socket.io, Jest, e2e, Cypress, CI/CD, GitHub Actions, embeddings, OCR, Athena, Gemini AI, RAG.
+VOLUNTARIADO / CHARLAS
+• TsáchiTalk #21 — GDG Tsáchilas (2026, online): Embeddings, LLMs y Qdrant. Video: https://www.youtube.com/watch?v=-ma95I0r7XI
+• Speaker — Universidad Estatal de Milagro: tecnología y gastronomía
+• Charla virtual — IEEE ESPOL: introducción al desarrollo web
+• DevFest GDG: Meteor.js (2025) y DevTools (2023)
+• Orador invitado — Codings Academy: webinar de React
+• Platzi Live — trabajar en plataformas de esports
+
+TECH STACK
+Node.js, TypeScript, NestJS, Express, Fastify, PostgreSQL, MySQL, MongoDB, Redis, AWS, Docker, CI/CD, LLM, RAG, React, Next.js, React Native, Python, Flask.

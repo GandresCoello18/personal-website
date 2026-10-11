@@ -1,4 +1,6 @@
-# Career facts — Andres Coello (fuente de verdad para años)
+# Career facts — Andrés Coello (fuente de verdad para años)
+
+Título público: **Backend Engineer**. No inventar cargos de origen de empresa ni títulos que no estén en este archivo.
 
 Usar ESTE archivo para preguntas de “¿cuántos años…?”. Si el CV muestra fechas posteriores (~2020+ en roles formales), **sigue priorizando este timeline** para experiencia total como desarrollador.
 
@@ -9,10 +11,17 @@ Usar ESTE archivo para preguntas de “¿cuántos años…?”. Si el CV muestra
 | Inicio como desarrollador freelance / autónomo (práctica y proyectos reales) | **2018** |
 | Roles formales y proyectos listados en CV (empresas / productos) | Ver `content/cv/*.txt` (aprox. desde ~2020–2021 en adelante según el CV) |
 | Docencia / mentoría (Classgap y similares) | Ver CV education + experiencia docente en CV |
-| Tayos (DevLokos): BFF + Odoo + RAG automotriz | **Marzo 2025 – actualidad** |
-| TechLocos: e-commerce NestJS + La Casa del Turbo (SRI) | **2026 – actualidad** |
+| DevLokos: Backend Engineer (AI & Odoo Integrations). Clientes Tayos y La Casa del Turbo | **mar. 2026 – actualidad** |
+| Meniuz: Backend & DevOps Lead · part-time · 500+ restaurantes | **abr. 2022 – actualidad** |
+| Novacomp: Software Engineer II (Backend) | **ene. 2026 – abr. 2026** |
+| MIMS Tech: Backend Engineer · equipo de 4 developers | **sept. 2025 – nov. 2025** |
+| GGTECH: Full Stack Engineer · −25 % incidencias | **abr. 2022 – mar. 2025** |
+| ATIVAR: Full Stack Developer | **may. 2021 – abr. 2022** |
+| COOPROCLEM: Mobile Application Developer | **oct. 2020 – mar. 2021** |
+| Freelance independiente | **2018 – 2020** |
+| Docencia: Crack (feb.–oct. 2026), Classgap (abr. 2023 – ago. 2026, 160+ clases), Codings (jun.–oct. 2025) | Ver `content/cv/education.txt` |
 
-- **Experiencia total como developer:** desde **2018** hasta la fecha actual (calcular años completos o redondear con sentido común, p.ej. “+7 años” / “8 años” según el año en curso).
+- **Experiencia total como developer:** desde **2018** hasta la fecha actual: **8+ años**.
 - **Experiencia backend / full stack profesional listada en CV:** alinear con roles del CV (NestJS, Express, Meteor, APIs, microservicios, etc.) pero no negar el recorrido desde 2018.
 
 ## Industrias con evidencia real (para match / correos / entrevistas)
@@ -24,7 +33,7 @@ Solo afirmar industria si el CV o `projects-and-speaking.md` lo respaldan. Cada 
 | Automotriz / aftermarket (repuestos) | Tayos / DevLokos | Odoo, BFF, webhooks, Expo, RAG sobre manuales técnicos |
 | Automotriz / turbos (comercio) | La Casa del Turbo / TechLocos | Sistema a medida, Excel→app, SRI, roles |
 | E-commerce / retail digital | E-commerce modular / TechLocos | NestJS hexagonal, Next.js SEO, React admin, Payphone, Cloudflare, Railway |
-| Gastronomía / foodtech | Meniuz | Multi-tenant, recomendaciones IA, operaciones de locales |
+| Gastronomía / foodtech | Meniuz | Multi-tenant, 500+ restaurantes, recomendaciones IA |
 | eSports / gaming platforms | GGTech Entertainment | Torneos en tiempo real, rankings, Meteor, MongoDB |
 | Banca / fidelización / gamificación | Novacomp | Segmentación, Athena, microservicios NestJS |
 | Legaltech / notarización online | MIMS TECH | SDK NPM, multi-tenant, RLS PostgreSQL |

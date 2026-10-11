@@ -40,7 +40,6 @@ const talks: Talk[] = [
     subtitle:
       "Como emprendedor puedes tomar control de tus alimentos con tecnología, usando la inteligencia artificial para analizar tus alimentos y tomar decisiones informadas.",
     location: "UNEMI · Milagro, Ecuador",
-    attendees: "150+ asistentes",
     images: ["/charlas/tomando-control-alimentos-tecnologia/unemi-milagro-alimentos.jpg"],
     tags: ["Alimentos", "Emprendimiento", "Tecnología", "IA"],
     badges: ["Charla", "Alimentos", "Emprendimiento", "Tecnología"],
@@ -52,7 +51,6 @@ const talks: Talk[] = [
     subtitle:
       "Taller para entender como funciona la IA usando Qdrant y embeddings. Entender la multi dimensión para las coincidencias.",
     location: "Universidad de San Francisco de Quito · Cumbaya",
-    attendees: "80+ asistentes",
     images: ["/charlas/como-entiende-la-ia/build-with-ia-2026.jpeg"],
     tags: ["IA", "Qdrant", "Embeddings"],
     badges: ["Taller", "Qdrant", "Embeddings"],
@@ -76,7 +74,6 @@ const talks: Talk[] = [
     subtitle:
       "Meteor js es un framework para desarrollar aplicaciones web y móviles, es un framework full stack que permite desarrollar aplicaciones web y móviles de manera rapida y sencilla.",
     location: "Quito Cumbayá · DevFest 2025 Ecuador",
-    attendees: "55+ asistentes",
     images: ["/charlas/meteor-js-devfest-2025/1764597973595.jpg"],
     tags: ["Meteor js", "Framework", "Full Stack", "Web"],
     badges: ["Charla", "Ecuador", "DevFest 2025"],
@@ -88,7 +85,6 @@ const talks: Talk[] = [
     subtitle:
       "Herramientas para depurar y perfilar en el navegador con sentido, deja de usar console.logp para todo y haz debugger como un profesional.",
     location: "Quito Cumbayá · DevFest 2023 Ecuador",
-    attendees: "60 asistentes",
     images: ["/charlas/devtools-devfest-2023/conf-quito-cumbaya.jpg"],
     tags: ["Chrome", "DevTools", "Web"],
     badges: ["Workshop", "Ecuador", "DevFest 2023"],

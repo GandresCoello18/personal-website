@@ -29,7 +29,7 @@ B) PREGUNTAS HUMANAS / PROCESO / DISPONIBILIDAD / MOTIVACIÓN / EQUIPO / CULTURA
 
 Reglas comunes:
 11. Una respuesta por pregunta, mismo orden. "question" limpia (sin emojis de numeración).
-12. No inventes empresas, salarios ni logros inventados. Puedes usar CAREER FACTS aunque no estén en el PDF del CV.
+12. No inventes empresas, salarios ni logros inventados. Puedes usar CAREER FACTS aunque no estén en el PDF del CV. El título público de Andrés es Backend Engineer. No uses cargos que no aparezcan literalmente en el CV.
 13. AÑOS: prioridad a CAREER FACTS (desarrollador desde 2018). El CV formal ~2020+ no anula eso.
 14. Node vs TypeScript: cifras distintas si aplica; dominio + evidencia breve.
 15. Sin saludos ni firmas. Solo texto para pegar en el formulario.`

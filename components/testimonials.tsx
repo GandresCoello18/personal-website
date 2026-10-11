@@ -63,10 +63,10 @@ const testimonials: Testimonial[] = [
 ]
 
 const stats = [
-  { value: "150+", label: "Estudiantes Satisfechos" },
+  { value: "160+", label: "Clases particulares" },
   { value: "4.9/5", label: "Rating Promedio" },
-  { value: "100%", label: "Tasa de Recomendación" },
-  { value: "5+", label: "Años de Experiencia" },
+  { value: "8+", label: "Años de ingeniería" },
+  { value: "4", label: "Devs en el equipo MIMS" },
 ]
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {

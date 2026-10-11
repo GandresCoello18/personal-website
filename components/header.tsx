@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ChevronDown, Menu, X } from "lucide-react"
@@ -72,13 +72,14 @@ function NavLink({
 export function Header() {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
+  const [menuPathname, setMenuPathname] = useState(pathname)
+  if (menuPathname !== pathname) {
+    setMenuPathname(pathname)
+    setIsOpen(false)
+  }
   const isHome = pathname === "/"
   const activeSectionId = useActiveSection(HOME_SECTION_IDS, isHome)
   const secondaryActive = isSecondaryGroupActive(pathname, activeSectionId)
-
-  useEffect(() => {
-    setIsOpen(false)
-  }, [pathname])
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">

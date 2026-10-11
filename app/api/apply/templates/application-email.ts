@@ -21,7 +21,7 @@ export function getApplicationEmailTemplate({
   linkedin,
   github,
   portfolio,
-  title = "Software Developer & Mentor",
+  title = "Backend Engineer",
 }: ApplicationEmailParams) {
   const formattedBody = formatBody(body)
   const phoneLine = phone

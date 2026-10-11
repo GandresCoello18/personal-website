@@ -33,7 +33,7 @@ export function getUserConfirmationTemplate(nombre: string, asunto: string, mens
                       style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255,255,255,0.3); margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;"
                     />
                     <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">Andres Coello</h1>
-                    <p style="margin: 8px 0 0 0; color: rgba(255,255,255,0.9); font-size: 14px;">Software Developer & Mentor</p>
+                    <p style="margin: 8px 0 0 0; color: rgba(255,255,255,0.9); font-size: 14px;">Backend Engineer</p>
                   </td>
                 </tr>
               </table>
@@ -76,7 +76,7 @@ export function getUserConfirmationTemplate(nombre: string, asunto: string, mens
           <tr>
             <td style="background-color: #f8f9fa; padding: 30px; text-align: center; border-radius: 0 0 8px 8px; border-top: 1px solid #e0e0e0;">
               <p style="margin: 0 0 10px 0; color: #1c4e5a; font-size: 16px; font-weight: 600;">Andres Coello</p>
-              <p style="margin: 0 0 20px 0; color: #666666; font-size: 14px;">Software Developer & Mentor</p>
+              <p style="margin: 0 0 20px 0; color: #666666; font-size: 14px;">Backend Engineer</p>
               
               <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: 20px auto;">
                 <tr>

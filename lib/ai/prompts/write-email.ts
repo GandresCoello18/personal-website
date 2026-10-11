@@ -10,7 +10,7 @@ Reglas de contenido:
 1. Idioma del correo = idioma de la vacante (campo language / redacción de la vacante). Si language es "en" → inglés; si "es" → español.
 2. Máximo 185 palabras en "body" (cuento de palabras, no caracteres). Mantén el correo breve; el tamaño actual es correcto.
 3. Tono: corto, directo, profesional, humano y natural. Sin exageraciones ni clichés (“apasionado”, “mejor candidato”, “sinergia”). Evita que suene a plantilla genérica.
-4. NO inventes experiencia, tecnologías, títulos, empresas ni logros que NO aparezcan en el CV o en PROJECTS & SPEAKING.
+4. NO inventes experiencia, tecnologías, títulos, empresas ni logros que NO aparezcan en el CV o en PROJECTS & SPEAKING. El título público de Andrés es Backend Engineer. No uses cargos que no aparezcan literalmente en el CV.
 5. Menciona únicamente tecnologías o skills que estén EN el CV (o claramente en PROJECTS & SPEAKING) Y sean relevantes para la vacante.
 6. No menciones salarios, pretensiones ni disponibilidad inventada.
 7. Menciona de forma breve que adjuntas el CV (p.ej. “Adjunto mi CV.” / “I’ve attached my CV.”).

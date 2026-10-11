@@ -18,11 +18,11 @@ export function ClassgapSection() {
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 text-balance">
-            5+ Años de Experiencia Comprobada
+            Clases particulares en Classgap
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            Tutor y mentor verificado en Classgap con una trayectoria sólida ayudando a cientos de
-            estudiantes a alcanzar sus objetivos en desarrollo web y programación.
+            Profesor verificado en Classgap, abr. 2023 – ago. 2026. Más de 160 clases de desarrollo
+            web y móvil, con planes según el objetivo de cada persona.
           </p>
         </div>
 
@@ -36,8 +36,10 @@ export function ClassgapSection() {
                 Experiencia
               </span>
             </div>
-            <p className="text-3xl font-bold text-slate-900 dark:text-white">5+</p>
-            <p className="text-sm text-slate-600 dark:text-slate-400">Años en la plataforma</p>
+            <p className="text-3xl font-bold text-slate-900 dark:text-white">3+</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              Años · abr. 2023 – ago. 2026
+            </p>
           </div>
 
           <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
@@ -62,8 +64,8 @@ export function ClassgapSection() {
                 Estudiantes
               </span>
             </div>
-            <p className="text-3xl font-bold text-slate-900 dark:text-white">150+</p>
-            <p className="text-sm text-slate-600 dark:text-slate-400">Alumnos mentorados</p>
+            <p className="text-3xl font-bold text-slate-900 dark:text-white">160+</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Clases particulares</p>
           </div>
 
           <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow">
@@ -83,13 +85,13 @@ export function ClassgapSection() {
         <div className="grid md:grid-cols-2 gap-8 mb-8 items-center">
           <div>
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-              Tutor y mentor Experimentado Certificado
+              Profesor verificado en Classgap
             </h3>
             <div className="space-y-4 text-slate-600 dark:text-slate-300">
               <p>
-                Con más de 5 años activo en Classgap, he establecido una reputación sólida como
-                mentor confiable y efectivo. Mi experiencia abarca desde tutorías intensivas hasta
-                mentoría estratégica a largo plazo.
+                Entre abr. 2023 y ago. 2026 impartí más de 160 clases particulares de desarrollo web
+                y móvil. Diseñé planes según el objetivo de cada persona: proyectos reales,
+                portafolio y presencia profesional.
               </p>
               <p>
                 Mis estudiantes valoran mi capacidad para explicar conceptos complejos de forma

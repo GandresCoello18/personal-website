@@ -60,11 +60,7 @@ const projects: Project[] = [
     github: "",
     isPrivate: true,
     featured: true,
-    stats: [
-      { label: "Usuarios", value: "5K+" },
-      { label: "Ciudades", value: "20+" },
-      { label: "Categorias", value: "4+" },
-    ],
+    stats: [{ label: "Restaurantes", value: "500+" }],
   },
   {
     id: "75",
@@ -131,15 +127,10 @@ const projects: Project[] = [
       "Plataforma backend de microservicios con arquitectura orientada a eventos usando NestJS, NX Monorepo, Redis + BullMQ y PostgreSQL.",
     images: ["/proyectos/order-lifecycle-platform/diagram.png"],
     tags: ["Nx Workspace", "Redis", "Gateway", "Queue", "TypeScript", "docker", "MongoDB", "Minio"],
-    link: "https://chimborazo-near-the-sun.vercel.app",
-    github: "https://github.com/GandresCoello18/Chimborazo-near-the-sun",
+    link: "https://github.com/GandresCoello18/order-lifecycle-platform",
+    github: "https://github.com/GandresCoello18/order-lifecycle-platform",
     isPrivate: false,
     featured: true,
-    stats: [
-      { label: "Volcan", value: "1" },
-      { label: "Imagenes", value: "6" },
-      { label: "Videos", value: "6" },
-    ],
   },
   {
     id: "222",

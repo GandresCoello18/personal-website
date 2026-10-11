@@ -15,7 +15,7 @@ export interface ExperienceItem {
   company: string
   period: string
   description: string
-  logo: string
+  logo?: string
   images?: string[]
   featured?: boolean
 }
@@ -54,13 +54,19 @@ export function ExperienceCard({ item, showGallery = true }: ExperienceCardProps
       <div className="flex gap-4">
         <div className="shrink-0">
           <div className="flex size-12 items-center justify-center overflow-hidden rounded-full bg-accent/10 ring-1 ring-border">
-            <Image
-              src={logo}
-              alt={`Logo ${company}`}
-              width={48}
-              height={48}
-              className="size-full object-cover"
-            />
+            {logo ? (
+              <Image
+                src={logo}
+                alt={`Logo ${company}`}
+                width={48}
+                height={48}
+                className="size-full object-cover"
+              />
+            ) : (
+              <span aria-hidden className="text-sm font-semibold text-accent">
+                {company.slice(0, 1)}
+              </span>
+            )}
           </div>
         </div>
 

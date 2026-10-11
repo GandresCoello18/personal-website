@@ -1,13 +1,13 @@
 {
   "id": "/",
   "scope": "/",
-  "name": "Andres Coello - Software Developer & Mentor",
-  "short_name": "Coello Dev",
+  "name": "Andrés Coello — Backend Engineer",
+  "short_name": "Andrés Coello",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#1c4e5a",
-  "description": "Portafolio y servicios de mentoría y tutoría de Andres Coello, Software Developer especializado en soluciones digitales.",
+  "description": "Andrés Coello, Backend Engineer. APIs y plataformas SaaS en Node.js, TypeScript, NestJS, PostgreSQL, AWS y LLM/RAG.",
   "lang": "es",
   "icons": [
     {

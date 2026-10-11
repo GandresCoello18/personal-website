@@ -55,7 +55,7 @@ Cada proyecto implica **industria + aprendizajes técnicos** reutilizables al re
 - Ayuda en la toma de decisiones gastronómicas en ciudades de Ecuador.
 - Recopila una gran base de datos de menús de restaurantes, cafeterías, heladerías y licorerías reconocidas en distintas ciudades.
 - Analiza puntos destacados de cada establecimiento y recomienda lugares mediante lenguaje natural interpretado con IA.
-- SaaS multi-tenant que procesa operaciones de más de 1000 establecimientos activos (evolución de MVP a producto).
+- SaaS multi-tenant que procesa operaciones de más de 500 establecimientos activos (evolución de web de menús a producto).
 - Forma parte de las startups que necesitan impulso: mentorías personalizadas para hacerse más conocidas, conseguir primeros clientes, y crecer con sostenibilidad tecnológica.
 - **Aprendizajes / señales de industria:** foodtech, multi-tenant, recomendaciones con IA, operaciones de restaurantes, OCR, embeddings.
 
@@ -111,10 +111,9 @@ Cada proyecto implica **industria + aprendizajes técnicos** reutilizables al re
 
 ### Orador invitado — Platzi Live
 - “Cómo trabajar de full stack developer en la industria de videojuegos”.
-- Audiencia de +300 personas.
-- Día a día como desarrollador de plataformas de videojuegos sport en Madrid, España.
+- Día a día como desarrollador de plataformas de esports en Madrid, España.
 
 ### Docencia reciente (ver también CV education)
 - **Crack The Code** (2026): IA + ciclo de vida de software; embeddings, context window, Cursor, agentes, LLM, RAG, prompts, Qdrant.
-- **ClassGap** (desde 2023): mentoría internacional; formar pensamiento de ingeniero senior.
+- **Classgap** (abr. 2023 – ago. 2026): 160+ clases particulares de desarrollo web y móvil.
 - **Codings Academy** (2025): bootcamp Front-end práctico.

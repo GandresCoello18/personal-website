@@ -24,7 +24,7 @@ export function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/30 to-primary/30 rounded-full blur-2xl" />
                 <img
                   src="/profile.jpeg"
-                  alt="Andres Coello - Full Stack Developer"
+                  alt="Andrés Coello — Backend Engineer"
                   className="relative w-full h-full rounded-full object-cover border-4 border-accent shadow-2xl"
                 />
               </div>
@@ -32,28 +32,18 @@ export function Hero() {
 
             <div className="space-y-4">
               <h1 className="section-title">
-                Andres Coello <br /> software escalables y
-                <span className="text-accent"> mantenibles</span>
+                Andrés Coello
+                <br />
+                <span className="text-accent">Backend Engineer</span>
               </h1>
               <p className="section-subtitle">
-                Software Engineer, SRE, Mentor y Tutor especializado en crear soluciones web
-                escalables mientras enseño a la próxima generación de desarrolladores.
+                Ingeniero de software backend con 8+ años construyendo APIs y plataformas SaaS en
+                Node.js/TypeScript sobre AWS. Diseño sistemas que escalan sin volverse una carga
+                técnica para el equipo: multi-tenant, orientados a eventos y listos para producción.
               </p>
-            </div>
-
-            <div className="grid grid-cols-3 gap-4">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary">8+</div>
-                <p className="text-sm text-muted-foreground">Años Experiencia</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-accent">150+</div>
-                <p className="text-sm text-muted-foreground">Estudiantes</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary">30+</div>
-                <p className="text-sm text-muted-foreground">Proyectos</p>
-              </div>
+              <p className="text-sm font-medium text-muted-foreground">
+                Node.js · TypeScript · NestJS · PostgreSQL · AWS · LLM/RAG
+              </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -125,14 +115,14 @@ export function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full" />
                 <img
                   src="/profile.jpeg"
-                  alt="Andres Coello - Full Stack Developer"
+                  alt="Andrés Coello — Backend Engineer"
                   className="relative w-full h-full rounded-full object-cover border-4 border-accent shadow-2xl"
                 />
               </div>
             </div>
 
             <div className="bg-white/90 dark:bg-slate-950/90 backdrop-blur rounded-full px-6 py-3 shadow-lg">
-              <p className="text-sm font-semibold text-foreground">Software Engineer · Mentor</p>
+              <p className="text-sm font-semibold text-foreground">Backend Engineer</p>
             </div>
           </div>
         </div>

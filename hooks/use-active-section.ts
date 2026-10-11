@@ -7,9 +7,12 @@ export function useActiveSection(sectionIds: readonly string[], enabled: boolean
   const [activeId, setActiveId] = useState<string | null>(null)
   const metricsRef = useRef(new Map<string, { ratio: number; top: number }>())
 
+  if (!enabled && activeId !== null) {
+    setActiveId(null)
+  }
+
   useEffect(() => {
     if (!enabled) {
-      setActiveId(null)
       return
     }
 
