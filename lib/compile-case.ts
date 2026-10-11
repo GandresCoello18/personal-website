@@ -6,6 +6,7 @@ import { getCaseMdxComponents } from "@/components/cases/mdx-components"
 import { extractTocHeadings, type TocHeading } from "@/lib/mdx"
 import { rehypePrettyBlogPlugin } from "@/lib/rehype-pretty-blog"
 import { readCaseFile, type CaseMeta } from "./cases.ts"
+import { caseBodyForEnv } from "./draft.ts"
 
 export type CompiledCase = {
   meta: CaseMeta
@@ -17,9 +18,10 @@ export async function getCaseBySlug(slug: string): Promise<CompiledCase | null> 
   const file = readCaseFile(slug)
   if (!file) return null
 
-  const headings = extractTocHeadings(file.body)
+  const body = caseBodyForEnv(file.body)
+  const headings = extractTocHeadings(body)
   const { content } = await compileMDX({
-    source: file.body,
+    source: body,
     components: getCaseMdxComponents(),
     options: {
       blockJS: false,
