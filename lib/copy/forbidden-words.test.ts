@@ -13,7 +13,6 @@ const EXCLUDE_DIR_NAMES = new Set(["node_modules", ".next", ".git", "pdf"])
 
 function isExcludedFile(rel: string): boolean {
   if (rel === "lib/copy/forbidden-words.test.ts") return true
-  if (rel === "content/blog/developer-and-cto.mdx") return true
   if (rel.startsWith("docs/") || rel === "docs") return true
   if (rel.startsWith(".cursor/") || rel === ".cursor") return true
   if (rel === "UI-AUDIT.md" || rel === "DESIGN.md") return true
