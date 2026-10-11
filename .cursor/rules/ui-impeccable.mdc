@@ -6,8 +6,9 @@ description: >
   recortes, object-fit, CLS, accesibilidad visual, contraste, foco, teclado,
   dark mode, tema, tipografía, spacing, hover, polish, audit, rediseño o
   Impeccable — aunque no haya archivos abiertos y aunque solo se planee o
-  audite sin editar todavía. Toda tarea de UI/UX empieza leyendo
-  .cursor/skills/impeccable/SKILL.md y .cursor/rules/design-system.md.
+  audite sin editar todavía. Toda tarea de UI/UX usa Impeccable + anti-slop:
+  lee .cursor/skills/impeccable/SKILL.md, .cursor/skills/antislop/SKILL.md,
+  .cursor/rules/design-system.md y DESIGN.md.
 globs:
   - app/**/*.tsx
   - app/**/*.css
@@ -30,7 +31,7 @@ alwaysApply: false
 Cualquier cambio, plan o auditoría que toque UI o UX (layout, estilos, componentes, copy visible, estados vacíos/error, responsive, dark mode, animación, navegación, tarjetas, imágenes, accesibilidad visual) debe:
 
 1. **Usar el skill Impeccable** en `.cursor/skills/impeccable/SKILL.md` (Paul Bakaus, [impeccable.style](https://impeccable.style), Apache 2.0). Leer `reference/craft-floor.md` antes de editar UI. Comandos útiles: `/impeccable audit`, `polish`, `critique`, `harden`.
-2. **Seguir** `.cursor/rules/design-system.md` (tokens, tipografía Geist, shadcn new-york, español, audiencia recruiter/CTO).
+2. **Seguir** `DESIGN.md` (dirección visual plano técnico) y `.cursor/rules/design-system.md` (stack, shadcn new-york, español, audiencia recruiter).
 
 No uses `alwaysApply: true` en esta regla: el agente la pide por la `description` o por los globs. Así no se carga en tareas de API, servidor o lógica que no son de UI.
 
@@ -38,9 +39,10 @@ No uses `alwaysApply: true` en esta regla: el agente la pide por la `description
 
 | Tema | Fuente que gana |
 |------|-----------------|
-| Color, radio, spacing, componentes existentes, idioma, copy de marca | `design-system.md` |
+| Color, tipografía, motivo de marca, prohibiciones visuales | `DESIGN.md` |
+| Stack, clases vigentes, componentes existentes, idioma, copy de marca | `design-system.md` |
 | Oficio visual, jerarquía, anti-patrones genéricos, a11y de pulido, ritmo | Impeccable |
 
-No sustituir teal/azul, Geist ni `card-elevated` / `btn-primary` por paletas o fuentes genéricas de Impeccable. No añadir librerías de animación o UI.
+No sustituir navy/crema, IBM Plex ni el diagrama de firma por paletas o fuentes genéricas de Impeccable. No añadir librerías de animación o UI. Hasta la fase de estilo, no remapees CSS “para parecerte” a `DESIGN.md` si la tarea no lo pide.
 
 No cambia el copy del sitio salvo que la tarea lo pida.

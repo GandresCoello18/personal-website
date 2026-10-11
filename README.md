@@ -74,9 +74,11 @@ Requiere Node ≥ 22.6 (ver `.nvmrc`). El build no necesita secretos reales.
 
 ## Cursor (skills y reglas)
 
-- **Impeccable** (Paul Bakaus, Apache 2.0): `.cursor/skills/impeccable` — oficio de UI/UX. Cualquier cambio visual debe usarlo junto con `.cursor/rules/design-system.md` (si chocan, gana el design system del sitio).
+- **Impeccable** (Paul Bakaus, Apache 2.0): `.cursor/skills/impeccable` — oficio de UI/UX.
+- **anti-slop** (Miqdad Badjuber, MIT, `antislop-ai@3.2.20`): `.cursor/skills/antislop*` — filtro de slop. Toda tarea de UI/UX usa Impeccable + anti-slop.
+- Dirección visual: `DESIGN.md` (plano técnico). Stack y componentes vigentes: `.cursor/rules/design-system.md`.
 - **Vercel React Best Practices** (MIT): `.cursor/skills/vercel-react-best-practices` — rendimiento de React/Next.js.
-- Reglas: `.cursor/rules/ui-impeccable.mdc` (UI) y `.cursor/rules/quality-gate.mdc` (lint/format/typecheck/test).
+- Reglas: `.cursor/rules/ui-impeccable.mdc`, `.cursor/rules/ui-antislop.mdc` (UI/contenido) y `.cursor/rules/quality-gate.mdc` (lint/format/typecheck/test).
 
 ## 👨‍💻 Autores ✒️
 

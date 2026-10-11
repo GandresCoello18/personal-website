@@ -1,35 +1,40 @@
 ---
-description: Design system y reglas de UI/UX para el sitio personal de Andres Coello. Fuente de verdad para cambios visuales.
+description: >
+  Design system del sitio personal de Andres Coello. Stack, componentes y
+  patrones vigentes. La dirección visual normativa está en DESIGN.md (plano
+  técnico). Cargar en cualquier tarea de UI/UX, estilos o contenido visible.
 alwaysApply: true
 ---
 
 # Design System — Andres Coello Personal Website
 
-> **Alcance:** Cualquier cambio visual, de UX o de componentes en este repositorio debe respetar este documento.
-> **Audiencia objetivo del sitio:** recruiters de software engineering, founders, CTOs, CEOs y empresas que contratan desarrollo o consultoría técnica.
-> **Idioma de la interfaz:** español (`lang="es"`).
-> **Impeccable:** los cambios de UI/UX también deben usar el skill `.cursor/skills/impeccable` (ver `.cursor/rules/ui-impeccable.mdc`). Si Impeccable y este documento chocan, **gana este design system** (tokens teal/azul, Geist, shadcn new-york, español, audiencia de contratación). Impeccable aporta oficio visual; no reemplaza la marca del sitio.
+> **Dirección visual:** `DESIGN.md` (plano técnico: navy `#0d1d40`, crema `#efe9dc`, acento `#5b7fd6`, IBM Plex Sans + Plex Mono, un diagrama de firma). Si este archivo y `DESIGN.md` chocan en color, tipo o motivo de marca, **gana `DESIGN.md`**.
+> **Este archivo:** stack, clases vigentes, inventario de componentes, idioma y audiencia. No reescribe la identidad.
+> **Implementación:** el CSS de `app/globals.css` todavía mapea tokens teal/azul y Geist. No remapees paleta ni fuentes salvo que la tarea pida la fase de estilo.
+> **Audiencia:** recruiters de software engineering y empresas que contratan backend.
+> **Idioma:** español (`lang="es"`).
+> **Impeccable + anti-slop:** toda tarea de UI/UX usa `.cursor/skills/impeccable` y `.cursor/skills/antislop` (reglas `ui-impeccable.mdc` y `ui-antislop.mdc`). Impeccable aporta oficio; anti-slop filtra slop; ninguno reemplaza `DESIGN.md`.
 
 ---
 
 ## Stack detectado (referencia obligatoria)
 
-| Capa             | Tecnología                                                      | Versión / nota                                            |
-| ---------------- | --------------------------------------------------------------- | --------------------------------------------------------- |
-| Framework        | Next.js App Router                                              | `^16.0.7`                                                 |
-| UI runtime       | React                                                           | `19.2.0`                                                  |
-| Lenguaje         | TypeScript                                                      | `^5`                                                      |
-| Estilos          | Tailwind CSS v4 (CSS-first)                                     | `^4.1.9` + `@tailwindcss/postcss`                         |
-| Animaciones CSS  | `tw-animate-css`, `tailwindcss-animate`                         | `1.3.3`, `^1.0.7`                                         |
-| Componentes base | shadcn/ui **new-york** + Radix UI                               | ver `components.json`                                     |
-| Iconos           | `lucide-react`                                                  | `^0.454.0`                                                |
-| Utilidades CSS   | `clsx`, `tailwind-merge`, `class-variance-authority`            | `cn()` en `lib/utils.ts`                                  |
-| Temas            | `next-themes`                                                   | `^0.4.6`, `attribute="class"`, `defaultTheme="light"`     |
-| Fuentes          | Geist + Geist Mono (next/font)                                  | definidas en `app/layout.tsx` y `@theme` en `globals.css` |
-| Formularios      | `react-hook-form`, `zod`, `@hookform/resolvers`                 | contacto y futuros forms                                  |
-| Blog             | `next-mdx-remote`, `gray-matter`, `rehype-pretty-code`, `shiki` | rutas `/blog`                                             |
-| Analytics        | `@vercel/analytics`                                             | en `app/layout.tsx`                                       |
-| Package manager  | pnpm                                                            | `pnpm@10.33.3` (Node ≥ 22.6)                              |
+| Capa             | Tecnología                                                      | Versión / nota                                         |
+| ---------------- | --------------------------------------------------------------- | ------------------------------------------------------ |
+| Framework        | Next.js App Router                                              | `^16.0.7`                                              |
+| UI runtime       | React                                                           | `19.2.0`                                               |
+| Lenguaje         | TypeScript                                                      | `^5`                                                   |
+| Estilos          | Tailwind CSS v4 (CSS-first)                                     | `^4.1.9` + `@tailwindcss/postcss`                      |
+| Animaciones CSS  | `tw-animate-css`, `tailwindcss-animate`                         | `1.3.3`, `^1.0.7`                                      |
+| Componentes base | shadcn/ui **new-york** + Radix UI                               | ver `components.json`                                  |
+| Iconos           | `lucide-react`                                                  | `^0.454.0`                                             |
+| Utilidades CSS   | `clsx`, `tailwind-merge`, `class-variance-authority`            | `cn()` en `lib/utils.ts`                               |
+| Temas            | `next-themes`                                                   | `^0.4.6`, `attribute="class"`, `defaultTheme="light"`  |
+| Fuentes          | Vigente: Geist + Geist Mono. Destino: IBM Plex Sans + Plex Mono | destino en `DESIGN.md`; recablear en la fase de estilo |
+| Formularios      | `react-hook-form`, `zod`, `@hookform/resolvers`                 | contacto y futuros forms                               |
+| Blog             | `next-mdx-remote`, `gray-matter`, `rehype-pretty-code`, `shiki` | rutas `/blog`                                          |
+| Analytics        | `@vercel/analytics`                                             | en `app/layout.tsx`                                    |
+| Package manager  | pnpm                                                            | `pnpm@10.33.3` (Node ≥ 22.6)                           |
 
 **No hay** `tailwind.config.js`. Los tokens viven en `app/globals.css` (`:root`, `.dark`, `@theme inline`).
 
@@ -41,64 +46,61 @@ alwaysApply: true
 
 ### Principios visuales
 
-1. **Confianza técnica senior** — La UI debe leerse como producto SaaS profesional, no como portfolio genérico de plantilla.
+1. **Plano técnico** — La UI se lee como un dibujo de infraestructura, no como landing SaaS ni portfolio de plantilla. Ver `DESIGN.md`.
 2. **Claridad sobre decoración** — Cada bloque responde: quién soy, qué resuelvo, qué he construido, cómo contactarme.
-3. **Consistencia por tokens** — Colores, radios y espaciados salen de variables CSS (`background`, `foreground`, `primary`, `accent`, etc.), no de paletas ad hoc.
-4. **Dual tema real** — Claro y oscuro deben funcionar por igual. El toggle está en `components/theme-toggle.tsx`; la clase `.dark` en `<html>` activa tokens en `globals.css`.
-5. **Conversión sin fricción** — CTAs visibles (`Contactar`, Calendly, formulario), rutas claras y secciones escaneables.
+3. **Un solo elemento de firma** — El diagrama isométrico/lineal (y su cuadrícula) es la identidad. El resto de la página está en silencio.
+4. **Consistencia por tokens** — Colores, radios y espaciados salen de variables CSS, no de paletas ad hoc. El destino de esos tokens está en `DESIGN.md`.
+5. **Tema navy por defecto** — El claro es opcional (`#f2efe8` / `#13264d` / `#2f5bd3`). El toggle vigente sigue en `components/theme-toggle.tsx`.
 
 ### Sensación esperada
 
-- Premium, moderna, sobria, con acentos teal/azul.
-- Pensamiento de producto e ingeniería, no solo lista de herramientas.
-- Ritmo visual calmado: mucho aire, jerarquía tipográfica fuerte, cards con bordes sutiles.
+- Preciso, quieto, con líneas finas y marcas “+”.
+- Pensamiento de ingeniería de backend, no lista de herramientas.
+- Ritmo calmado: mucho aire, tipografía IBM Plex, cards sin sombra.
 
 ### Evitar
 
-- Estética “developer hobby” (gradientes neón, glassmorphism excesivo, fuentes display).
+- Degradados, brillos, sombras pesadas, blobs, carruseles y marquees (`DESIGN.md`).
 - Saturación de badges, iconos o animaciones.
-- Colores hardcodeados (`slate-*`, `blue-*`, `bg-white`) cuando existen tokens semánticos.
+- Colores hardcodeados (`slate-*`, `teal-*`, `bg-white`) cuando existen tokens semánticos.
 - Nuevas librerías UI/animación sin justificación y sin alinearse con shadcn/Radix.
-- Copiar bloques de v0 sin adaptarlos al sistema existente (`section-title`, `card-elevated`, etc.).
+- Tratar la cuadrícula del plano técnico como slop (excepción R-07 documentada en `DESIGN.md`).
 
 ### Pregunta guía (aplicar siempre)
 
-> **¿Esto aumenta la confianza de un potencial contratante (recruiter, founder, CTO)?**
+> **¿Esto aumenta la confianza de un recruiter que contrata backend?**
 
 ---
 
 ## 2. Visual Language
 
-### Paleta (OKLCH en `app/globals.css`)
+### Destino (normativo — `DESIGN.md`)
 
-| Token                        | Rol                              | Uso                                     |
-| ---------------------------- | -------------------------------- | --------------------------------------- |
-| `background` / `foreground`  | Base de página                   | `bg-background`, `text-foreground`      |
-| `card` / `card-foreground`   | Superficies elevadas             | cards, footer, paneles                  |
-| `primary`                    | Azul profundo (CTA principal)    | botones primarios, métricas hero        |
-| `secondary`                  | Cyan secundario                  | acentos alternos, iconografía servicios |
-| `accent`                     | Teal (marca, highlights)         | eyebrows, links hover, bordes activos   |
-| `muted` / `muted-foreground` | Fondos suaves y texto secundario | subtítulos, metadata                    |
-| `border` / `input` / `ring`  | Estructura y focus               | bordes, inputs, focus visible           |
-| `destructive`                | Errores                          | formularios, alertas                    |
+| Rol        | Oscuro                | Claro         | Uso                                                             |
+| ---------- | --------------------- | ------------- | --------------------------------------------------------------- |
+| Fondo      | `#0d1d40`             | `#f2efe8`     | Canvas del plano                                                |
+| Superficie | `#0f2147` / `#122754` | papel + borde | Secciones y cards                                               |
+| Texto      | `#efe9dc`             | `#13264d`     | Lectura                                                         |
+| Acento     | `#5b7fd6`             | `#2f5bd3`     | Un solo azul; si no llega a 4.5:1 en texto pequeño, solo trazos |
 
-**Tema oscuro:** `.dark` redefine todos los tokens. Usar clases semánticas (`text-accent`), no `dark:text-slate-300` salvo migración pendiente.
+La cuadrícula / diagrama de plano técnico es identidad de marca, no slop.
 
-**Meta theme color:** `#1c4e5a` (alineado con marca teal/azul).
+### Tokens vigentes en CSS (hasta la fase de estilo)
+
+Los nombres semánticos de `app/globals.css` (`background`, `foreground`, `card`, `primary`, `accent`, …) siguen mapeados a teal/azul OKLCH. Usar las clases semánticas (`bg-background`, `text-accent`). No introduzcas hex del plano técnico en componentes hasta que esos tokens se remapeen.
+
+**Tema oscuro vigente:** `.dark` redefine los tokens actuales. **Meta theme color vigente:** `#1c4e5a` (legacy teal; el destino es navy `#0d1d40`).
 
 ### Uso correcto de color
 
-- **Un acento por bloque:** `accent` para énfasis; `primary` para acción principal; `secondary` para variación en grids de servicios.
-- **Fondos de sección alternados:** `bg-background`, `bg-muted/30`, `border-y border-border`, `hero-gradient` — ya usados en home.
-- **Iconos en contenedores:** `bg-{token}/10` + `text-{token}` + `group-hover:bg-{token}/20` (ver `components/cta.tsx`, `services.tsx`).
-- **Tags de tecnología:** `px-2 py-1 bg-accent/10 text-accent text-xs rounded font-medium` (proyectos) o `rounded-full` con `primary`/`accent`/`secondary` (experiencia).
+- **Un acento:** el azul de `DESIGN.md`. No hay cian/teal de marca.
+- **Fondos de sección:** `bg-background` y bordes finos. `hero-gradient` y blobs son deuda a retirar en la fase de estilo.
+- **Tags de tecnología:** chips pequeños; en destino, Plex Mono.
 
 ### Bordes, sombras, radios
 
-- **Radio base:** `--radius: 0.75rem` → `rounded-lg` en marketing; shadcn `Card` usa `rounded-xl`.
-- **Cards marketing:** clase global `.card-elevated` — `rounded-lg bg-card border border-border shadow-lg hover:shadow-xl hover:border-accent/50`.
-- **Acento lateral (timeline):** `border-l-4 border-l-accent` en experiencia.
-- **Sombras:** preferir `shadow-lg` / `shadow-md` en hover; evitar sombras de color.
+- **Destino:** radio mínimo o nulo, borde 1px, sin sombra. Ver `DESIGN.md` (Elevation & Depth, Shapes).
+- **Vigente:** `--radius: 0.75rem`; `.card-elevated` aún usa `shadow-lg hover:shadow-xl`. No extiendas sombras ni radios en trabajo nuevo si la tarea es de estilo; si no lo es, no toques CSS.
 
 ### Espaciado
 
@@ -112,8 +114,8 @@ alwaysApply: true
 
 ### Fuentes
 
-- **Sans:** Geist — `font-sans` en `body` (`app/layout.tsx`)
-- **Mono:** Geist Mono — bloques de código blog (`--font-mono` en `@theme`)
+- **Destino:** IBM Plex Sans + IBM Plex Mono (`DESIGN.md`).
+- **Vigente:** Geist + Geist Mono en `app/layout.tsx` y `@theme`. No cambies `next/font` hasta la fase de estilo.
 
 ### Clases globales (usar en lugar de tamaños arbitrarios)
 
@@ -139,7 +141,7 @@ alwaysApply: true
 ### Reglas
 
 - Priorizar **lectura rápida**: párrafos cortos, `text-balance` en títulos.
-- No introducir nuevas familias tipográficas.
+- No introducir familias fuera de IBM Plex (destino) o Geist (vigente hasta el recableado).
 - Blog: títulos de índice `text-3xl sm:text-4xl font-bold tracking-tight` (`app/blog/page.tsx`).
 
 ---
@@ -230,15 +232,15 @@ Estados: `hover:bg-primary/90`, `transition-colors`, focus ring en shadcn (`focu
 
 ### Hero (`components/hero.tsx`)
 
-- Clase `hero-gradient` + blobs `animate-blob` (fondo decorativo permitido aquí)
+- Vigente: clase `hero-gradient` + blobs `animate-blob` (deuda; se retiran en la fase de estilo)
+- Destino: un diagrama isométrico/lineal de firma, sin blobs ni halo
 - Grid 2 cols desktop; foto circular `border-4 border-accent`
-- Métricas en grid 3 columnas
-- CTAs: primario + accent (`bg-accent text-accent-foreground`)
+- CTAs: primario + secundario de borde
 
 ### Project showcases (`components/projects.tsx`)
 
 - Datos en array tipado en el mismo archivo (o extraer a `lib/` si crece)
-- `ProjectCard`: carrusel de imágenes con crossfade, tags, stats opcionales, links externos
+- `ProjectCard`: hoy carrusel de imágenes con crossfade (deuda; `DESIGN.md` prohíbe carruseles). Tags, stats opcionales, links externos
 - Featured vs resto con `showAll` + scroll suave
 - Comunicar **problema → solución → stack → resultado** en `description` (ver sección 8)
 
@@ -250,7 +252,7 @@ Estados: `hover:bg-primary/90`, `transition-colors`, focus ring en shadcn (`focu
 
 ### Contact (`components/cta.tsx` + `contact-form.tsx`)
 
-- `id="contact"` + `hero-gradient`
+- `id="contact"` + `hero-gradient` (deuda de degradado; retirar en la fase de estilo)
 - Grid 3 vías: email, Calendly, LinkedIn
 - `ContactForm` client: estados loading/success/error; integración con query `?service=` desde servicios
 - `CalendlyBadge` client: script vía `next/script`, colores según tema
@@ -273,7 +275,7 @@ Estados: `hover:bg-primary/90`, `transition-colors`, focus ring en shadcn (`focu
 - `aria-label` en botones icono
 - `aria-labelledby` en secciones con eyebrow
 - `alt` descriptivo en imágenes de perfil/proyecto
-- Respetar `prefers-reduced-motion` (ver testimonial marquee en `globals.css`)
+- Respetar `prefers-reduced-motion`. El marquee de testimonios es deuda: `DESIGN.md` lo prohíbe.
 
 ---
 
@@ -281,7 +283,7 @@ Estados: `hover:bg-primary/90`, `transition-colors`, focus ring en shadcn (`focu
 
 ### Los 5 mensajes en < 30 segundos
 
-1. **Quién soy** — Hero: Software Engineer, SRE, mentor
+1. **Quién soy** — Hero: Backend Engineer (ver `DESIGN.md` y sync de contenido)
 2. **Qué problemas resuelvo** — Servicios + experiencia (producto, escala, mentoría)
 3. **Experiencia** — Timeline + charlas + blog/videos
 4. **Prueba** — Proyectos con métricas, testimonios, Classgap
@@ -312,25 +314,24 @@ Estados: `hover:bg-primary/90`, `transition-colors`, focus ring en shadcn (`focu
 
 ### Animaciones permitidas
 
-| Animación                              | Ubicación                           | Notas                           |
-| -------------------------------------- | ----------------------------------- | ------------------------------- |
-| `animate-blob`                         | Hero background                     | Lento, 7s, decorativo aceptable |
-| Carrusel imágenes                      | `projects.tsx`, `talks-section.tsx` | Crossfade ~600ms, auto-rotate   |
-| `testimonial-marquee`                  | `testimonials.tsx`                  | 50s linear, pausa en hover      |
-| `transition-colors` / `transition-all` | Cards, links                        | 300ms estándar                  |
-| `group-hover:translate-x-1`            | Flecha CTA hero                     | microinteracción                |
-| `group-hover:scale-[1.02]`             | Cards charlas                       | sutil                           |
-| Blog image scale                       | `BlogCard`                          | `duration-300 ease-out`         |
+| Animación                              | Ubicación                           | Notas                                  |
+| -------------------------------------- | ----------------------------------- | -------------------------------------- |
+| `animate-blob`                         | Hero background                     | Legado; retirar en la fase de estilo   |
+| Carrusel imágenes                      | `projects.tsx`, `talks-section.tsx` | Legado; `DESIGN.md` prohíbe carruseles |
+| `testimonial-marquee`                  | `testimonials.tsx`                  | Legado; `DESIGN.md` prohíbe marquees   |
+| `transition-colors` / `transition-all` | Cards, links                        | 300ms estándar                         |
+| `group-hover:translate-x-1`            | Flecha CTA hero                     | microinteracción                       |
+| `group-hover:scale-[1.02]`             | Cards charlas                       | sutil                                  |
+| Blog image scale                       | `BlogCard`                          | `duration-300 ease-out`                |
 
 ### Evitar
 
 - Parallax, scroll-jacking, animaciones de entrada en cada elemento
+- Degradados, brillos, sombras pesadas, carruseles y marquees (`DESIGN.md`)
 - Más de una animación llamativa por sección
-- Ignorar `prefers-reduced-motion` en nuevos carruseles
+- Añadir carruseles o marquees nuevos
 
-### Plantilla reduced-motion
-
-Al crear marquee o auto-scroll, seguir patrón de `.testimonial-marquee-track` en `globals.css`.
+`animate-blob`, el carrusel de proyectos/charlas y `testimonial-marquee` son legado. No los copies. `MOTION 1` en `DESIGN.md`.
 
 ---
 
@@ -347,7 +348,7 @@ Cada proyecto debe comunicar (en copy o estructura futura):
 
 **Evitar** descripciones que solo listen tecnologías.
 
-**Preferir** narrativa como en experiencia Meniuz (CTO, escala, AWS, CI/CD) o MIMS (RLS, multi-tenant, LegalTech).
+**Preferir** narrativa de decisiones e impacto verificable (LinkedIn u otra fuente citada). No cargos ni cifras que el sync de contenido haya retirado.
 
 ### Tags de tecnología
 
@@ -428,7 +429,7 @@ public/        → assets estáticos
 
 Antes de generar UI nueva:
 
-1. **Leer el skill Impeccable** (`.cursor/skills/impeccable/SKILL.md`) y este design system. Marca y tokens: este documento. Oficio visual: Impeccable.
+1. **Leer Impeccable + anti-slop + `DESIGN.md`**. Marca y tokens destino: `DESIGN.md`. Stack y clases vigentes: este documento. Oficio: Impeccable. Filtro: anti-slop (modo during).
 2. **Buscar componente similar** — ej. nueva sección tipo charlas → leer `talks-section.tsx`; blog → `BlogCard.tsx`
 3. **Reutilizar** — `section-title`, `card-elevated`, `btn-primary`, `Header`/`Footer`
 4. **Respetar tema** — solo tokens semánticos; probar mentalmente light + dark
@@ -453,9 +454,9 @@ Antes de generar UI nueva:
 
 Alinear con:
 
-- Landings SaaS B2B modernas (claras, aireadas, confianza)
-- Portfolios senior de ingeniería (impacto > stack)
-- Componentes shadcn/new-york (limpio, accesible)
+- `DESIGN.md` y el banner de LinkedIn F (plano técnico)
+- Portfolios senior de ingeniería (impacto > stack; un solo elemento de firma)
+- Componentes shadcn/new-york como base, remapeados a navy/Plex en la fase de estilo
 
 Referencias internas de mayor calidad visual en este repo:
 
@@ -477,4 +478,4 @@ Sección a migrar al sistema: `classgap-section.tsx` (colores slate/blue fuera d
 
 ---
 
-_Última sincronización con el codebase: Next.js 16, React 19, Tailwind 4, shadcn new-york, tema claro/oscuro vía next-themes._
+_Última sincronización: Next.js 16, React 19, Tailwind 4, shadcn new-york. Dirección visual en `DESIGN.md` (plano técnico). CSS vigente aún teal/Geist._

@@ -1,0 +1,64 @@
+---
+description: >
+  Pedir y aplicar esta regla en cualquier conversación sobre UI, UX, diseño,
+  interfaz, layout, navegación, menú, header, footer, responsive, móvil,
+  tablet, escritorio, breakpoints, tarjetas, cards, proyectos, imágenes,
+  recortes, object-fit, CLS, accesibilidad visual, contraste, foco, teclado,
+  dark mode, tema, tipografía, spacing, hover, polish, audit, rediseño,
+  estilos, textos visibles, copy, contenido, markdown, MDX, blog o anti-slop
+  — aunque no haya archivos abiertos y aunque solo se planee o audite sin
+  editar todavía. Toda tarea de UI/UX, estilos, textos visibles o contenido
+  usa Impeccable + anti-slop: lee .cursor/skills/impeccable/SKILL.md,
+  .cursor/skills/antislop/SKILL.md, .cursor/rules/design-system.md y DESIGN.md.
+globs:
+  - app/**/*.tsx
+  - app/**/*.css
+  - components/**/*.{ts,tsx,css}
+  - styles/**/*.{css,scss}
+  - hooks/use-*.{ts,tsx}
+  - tailwind.config.*
+  - postcss.config.*
+  - components.json
+  - public/**/*.{png,jpg,jpeg,webp,svg,gif,avif,ico}
+  - content/**/*.{png,jpg,jpeg,webp,svg,gif,avif}
+  - content/**/*.{md,mdx}
+  - lib/**/ui*.{ts,tsx}
+  - lib/nav.ts
+  - lib/project-media.ts
+alwaysApply: false
+---
+
+# UI/UX — anti-slop + Impeccable
+
+Cualquier cambio, plan o auditoría que toque UI, UX, estilos, textos visibles o contenido (layout, componentes, copy, MDX, estados vacíos/error, responsive, dark mode, animación, navegación, tarjetas, imágenes, accesibilidad visual) debe:
+
+1. **Usar el skill anti-slop** (Miqdad Badjuber, [anti-slop](https://github.com/miqdadbadjuber/anti-slop), `antislop-ai@3.2.20`, MIT). Leer el núcleo y la skill del tema:
+   - Núcleo: `.cursor/skills/antislop/SKILL.md`
+   - UI / visual: `.cursor/skills/antislop-ui/SKILL.md`
+   - Copy y textos: `.cursor/skills/antislop-copywriting/SKILL.md`
+   - Accesibilidad: `.cursor/skills/antislop-human/SKILL.md`
+   - Responsive: `.cursor/skills/antislop-layoutmobile/SKILL.md`
+   - Comentarios: `.cursor/skills/antislop-code/SKILL.md`
+2. **Usar Impeccable** (`.cursor/skills/impeccable/SKILL.md`) en paralelo. Anti-slop filtra; Impeccable aporta oficio; `DESIGN.md` da la dirección.
+3. **Seguir** `DESIGN.md` (identidad plano técnico) y `.cursor/rules/design-system.md` (stack y componentes vigentes).
+
+## Modo: during (sin preguntar)
+
+En este repositorio el modo de anti-slop es **during**. Aplica las reglas mientras construyes. No preguntes during/after. Anuncia una vez `antislop active: during (project preference).` y sigue.
+
+No uses `alwaysApply: true` en esta regla: el agente la pide por la `description` o por los globs. Así no se carga en tareas de API, servidor o lógica que no son de UI ni de contenido visible.
+
+## Si hay conflicto
+
+| Tema | Fuente que gana |
+| --- | --- |
+| Color, tipografía, motivo de marca, qué está prohibido visualmente | `DESIGN.md` |
+| Stack, clases vigentes, componentes existentes, idioma, audiencia | `design-system.md` |
+| Oficio visual, jerarquía, pulido | Impeccable |
+| Slop (copy inflada, cifras inventadas, plantillas AI, decoración sin propósito) | anti-slop |
+
+**Excepción documentada (R-07 / Background Grid):** la cuadrícula y el diagrama de plano técnico son la identidad de marca. No se consideran slop. Ver `DESIGN.md`.
+
+No sustituir la paleta navy/crema, IBM Plex ni el diagrama de firma por defaults de Impeccable o de anti-slop. No añadir librerías de animación o UI.
+
+No cambia el copy del sitio salvo que la tarea lo pida.
