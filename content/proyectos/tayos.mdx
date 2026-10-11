@@ -28,9 +28,9 @@ Una búsqueda tradicional no resolvía compatibilidad ni recomendaciones. El cli
 
 ## Decisiones
 
-Se mantuvo Odoo como fuente única de verdad. Delante hay una API REST en Fastify y un BFF que sirve a la app móvil (React Native/Expo) y a la web (Next.js). El BFF adapta solo lo que cada cliente necesita, de modo que se agregan funciones sin reescribir los cimientos ni mover el catálogo fuera de Odoo. La app está publicada en App Store y Google Play. Los despliegues cubren Railway, Render y DigitalOcean.
+Se descartó crear una base de datos propia y migrar los datos: gran parte de la historia de la empresa ya estaba en Odoo. En su lugar hay un BFF que conecta lo que ya existía en Odoo, aplicando buenas prácticas.
 
-<DraftSection question="¿Qué se descartó (por ejemplo hablar con Odoo desde la app, otro modelo distinto de Gemini, o no usar BFF) y por qué?" />
+Odoo sigue como fuente de verdad. Delante, una API REST en Fastify y el BFF sirven a la app (React Native/Expo) y a la web (Next.js). El sistema escucha los cambios de Odoo con webhooks: ventas, cotizaciones, notas de crédito y devoluciones. El BFF adapta solo lo que cada cliente necesita. La app está en App Store y Google Play. Los despliegues cubren Railway, Render y DigitalOcean.
 
 ## Arquitectura
 

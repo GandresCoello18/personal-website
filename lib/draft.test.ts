@@ -58,9 +58,20 @@ describe("case draft visibility", () => {
     assert.ok(order)
 
     const meniuzProd = caseBodyForEnv(meniuz.body, { NODE_ENV: "production" })
+    const tayos = readCaseFile("tayos")
+    assert.ok(tayos)
+    const tayosProd = caseBodyForEnv(tayos.body, { NODE_ENV: "production" })
     const orderProd = caseBodyForEnv(order.body, { NODE_ENV: "production" })
 
     assert.deepEqual(headingTexts(meniuzProd), [
+      "Contexto",
+      "Problema",
+      "Decisiones",
+      "Arquitectura",
+      "Resultados",
+      "Qué haría distinto",
+    ])
+    assert.deepEqual(headingTexts(tayosProd), [
       "Contexto",
       "Problema",
       "Decisiones",
@@ -74,7 +85,7 @@ describe("case draft visibility", () => {
       "Arquitectura",
     ])
     assert.ok(
-      headingTexts(caseBodyForEnv(meniuz.body, { NODE_ENV: "development" })).includes(
+      headingTexts(caseBodyForEnv(tayos.body, { NODE_ENV: "development" })).includes(
         "Qué haría distinto",
       ),
     )

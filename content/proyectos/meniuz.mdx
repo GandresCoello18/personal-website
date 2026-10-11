@@ -29,17 +29,19 @@ Había que pasar de una web inicial a un ecosistema web y móvil (iOS y Android)
 
 ## Decisiones
 
-Se eligió una arquitectura multi-tenant sobre un monolito modular, preparado para evolucionar a microservicios. El alta de restaurantes se automatizó con web scraping integrado con Google Maps. El backoffice usa control de acceso por roles (RBAC) para menús, campañas y soporte.
+Las primeras versiones usaban REST. Al crecer los servicios hacían falta más campos, y la web y la app móvil tenían que hacer varias peticiones en algunas pantallas: la aplicación se volvía lenta. Se migró a GraphQL como capa de comunicación. El cliente elige qué campos trae, y la app móvil dejó de romperse por valores faltantes o por cambios inesperados en la API.
 
-<DraftSection question="¿Qué alternativas se descartaron (por ejemplo microservicios desde el día uno frente al monolito modular, GraphQL frente a REST, o mover ya la infraestructura de Railway a AWS) y por qué?" />
+Los microservicios se descartaron por ahora: no eran necesarios en esta etapa. Es un monolito modular, pensado para poder partirse en servicios más adelante.
+
+El alta de restaurantes se automatizó con web scraping integrado con Google Maps. El backoffice usa control de acceso por roles (RBAC) para menús, campañas y soporte.
 
 ## Arquitectura
 
 <MeniuzArchitecture />
 
-El stack confirmado incluye TypeScript, Node.js, Express, GraphQL, MySQL, Redis, Docker, AWS (EC2, S3, Lambda, EventBridge, CloudWatch), Sentry, Qdrant, Gemini y Next.js/React. Hay un motor de búsqueda semántica con RAG (Gemini, Qdrant, embeddings) y OCR con Google Cloud Vision para digitalizar menús físicos. El monitoreo usa Sentry y AWS CloudWatch. La migración de Railway a AWS se planificó para ganar escalabilidad; no está descrita aquí como un hecho ya cerrado.
+El MVP estuvo en Railway. Con un producto más maduro y usuarios reales, el backend corre en AWS (EC2), con más capacidad de cómputo. El backoffice y el frontend web (Next.js) están en Vercel.
 
-<DraftSection question="¿Cuál es el despliegue actual (Railway, AWS u otro) y cómo se conectan hoy web, móvil, backoffice, RAG/OCR y datos? Confirma o corrige el diagrama de componentes." />
+La API es GraphQL sobre Express: un monolito modular en EC2. En la misma instancia corren MySQL, Redis y Qdrant (Docker) para datos, caché y RAG + OCR. La web, el backoffice y la app móvil hablan con esa API.
 
 ## Resultados
 
@@ -50,4 +52,4 @@ El stack confirmado incluye TypeScript, Node.js, Express, GraphQL, MySQL, Redis,
 
 ## Qué haría distinto
 
-<DraftSection question="¿Qué cambiarías hoy en Meniuz si empezaras de nuevo?" />
+De momento no cambiaría muchas cosas. El monolito modular está listo para partirse en servicios cuando la escala lo pida.
