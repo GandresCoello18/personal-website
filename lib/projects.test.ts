@@ -69,20 +69,37 @@ const HISTORICAL_IMAGES: Record<string, string[]> = {
 }
 
 describe("site projects catalog", () => {
-  it("keeps continuous work first, then Monitor AI as the third featured card", () => {
+  it("pins featured order to Importadora Sacón, Tayos and Meniuz", () => {
     assert.deepEqual(
       getFeaturedProjects().map((item) => item.id),
-      ["tayos", "meniuz", "community-ai-monitor"],
+      ["importadora-sacon", "tayos", "meniuz"],
     )
   })
 
   it("moves Order Lifecycle into the compact list ahead of other recent work", () => {
     const compact = getCompactProjects()
     assert.equal(compact[0]?.id, "order-lifecycle")
+    assert.equal(compact[1]?.id, "community-ai-monitor")
     assert.equal(
       compact.some((item) => item.featured),
       false,
     )
+  })
+
+  it("links Importadora Sacón to the public web and Google Play", () => {
+    const sacon = SITE_PROJECTS.find((item) => item.id === "importadora-sacon")
+    assert.ok(sacon)
+    assert.deepEqual(
+      getProjectNavLinks(sacon).map((link) => [link.kind, link.href]),
+      [
+        ["site", "https://www.importadorasacon.com/"],
+        ["play", "https://play.google.com/store/apps/details?id=com.devlokos.importadorasacon"],
+      ],
+    )
+    for (const src of sacon.images) {
+      const abs = path.join(process.cwd(), "public", src.replace(/^\//, ""))
+      assert.equal(existsSync(abs), true, src)
+    }
   })
 
   it("restores every historical image path and keeps the files on disk", () => {

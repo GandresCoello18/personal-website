@@ -26,6 +26,8 @@ describe("getProjectImageFit", () => {
 
   it("contains tall phone mockups instead of cropping the device", () => {
     assert.equal(getProjectImageFit("/proyectos/odoo-app/odoo-app.png"), "contain")
+    assert.equal(getProjectImageFit("/proyectos/importadora-sacon/play-01.jpg"), "contain")
+    assert.equal(getProjectImageFit("/proyectos/importadora-sacon/web-mobile.png"), "contain")
   })
 
   it("covers product screenshots from the top chrome", () => {

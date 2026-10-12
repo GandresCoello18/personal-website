@@ -10,7 +10,11 @@ export type SiteProject = {
   caseSlug?: string
   href?: string
   github?: string
+  playStore?: string
 }
+
+/** Orden fijo de las tres cards destacadas en home. */
+export const HOME_FEATURED_IDS = ["importadora-sacon", "tayos", "meniuz"] as const
 
 /**
  * Catálogo de la home. Las imágenes son las que cada ficha tenía antes del
@@ -18,6 +22,26 @@ export type SiteProject = {
  * `public/proyectos`.
  */
 export const SITE_PROJECTS: SiteProject[] = [
+  {
+    id: "importadora-sacon",
+    title: "Importadora Sacón",
+    summary:
+      "Cadena ecuatoriana de importación y retail, con sucursales en varias ciudades, de electrodomésticos y tecnología. App y web: cuenta, búsqueda, carrito y pago con Payphone o transferencia bancaria verificada a mano. Roles: cliente, empleado, despacho, administrador y superadministrador. En web y Google Play; fase de pruebas con tipos reales de cliente.",
+    stack: ["React Native", "Expo", "Next.js", "TypeScript"],
+    images: [
+      "/proyectos/importadora-sacon/web-desktop.png",
+      "/proyectos/importadora-sacon/web-mobile.png",
+      "/proyectos/importadora-sacon/play-01.jpg",
+      "/proyectos/importadora-sacon/play-02.jpg",
+      "/proyectos/importadora-sacon/play-03.jpg",
+      "/proyectos/importadora-sacon/play-04.jpg",
+    ],
+    featured: true,
+    continuous: true,
+    sortYear: 2026,
+    href: "https://www.importadorasacon.com/",
+    playStore: "https://play.google.com/store/apps/details?id=com.devlokos.importadorasacon",
+  },
   {
     id: "tayos",
     title: "Tayos",
@@ -50,22 +74,6 @@ export const SITE_PROJECTS: SiteProject[] = [
     href: "https://onelink.to/meniuz",
   },
   {
-    id: "community-ai-monitor",
-    title: "Monitor de AI para comunidades",
-    summary:
-      "Convierte video de cámaras en información útil para una comunidad, sin reconocimiento facial.",
-    stack: ["Python", "FastAPI", "PostgreSQL", "Yolo", "Docker"],
-    images: [
-      "/proyectos/community-ai-monitor/monitor-park.png",
-      "/proyectos/community-ai-monitor/diagram-fluj.png",
-    ],
-    featured: true,
-    continuous: false,
-    sortYear: 2026,
-    href: "https://github.com/GandresCoello18/community-ai-monitor/tree/master",
-    github: "https://github.com/GandresCoello18/community-ai-monitor/tree/master",
-  },
-  {
     id: "order-lifecycle",
     title: "Order Lifecycle Platform",
     summary: "Microservicios orientados a eventos para el ciclo de vida de una orden.",
@@ -76,6 +84,22 @@ export const SITE_PROJECTS: SiteProject[] = [
     sortYear: 2026,
     caseSlug: "order-lifecycle",
     github: "https://github.com/GandresCoello18/order-lifecycle-platform",
+  },
+  {
+    id: "community-ai-monitor",
+    title: "Monitor de AI para comunidades",
+    summary:
+      "Convierte video de cámaras en información útil para una comunidad, sin reconocimiento facial.",
+    stack: ["Python", "FastAPI", "PostgreSQL", "Yolo", "Docker"],
+    images: [
+      "/proyectos/community-ai-monitor/monitor-park.png",
+      "/proyectos/community-ai-monitor/diagram-fluj.png",
+    ],
+    featured: false,
+    continuous: false,
+    sortYear: 2026,
+    href: "https://github.com/GandresCoello18/community-ai-monitor/tree/master",
+    github: "https://github.com/GandresCoello18/community-ai-monitor/tree/master",
   },
   {
     id: "padel-track",
@@ -225,7 +249,11 @@ function compareProjects(a: SiteProject, b: SiteProject): number {
 }
 
 export function getFeaturedProjects(): SiteProject[] {
-  return SITE_PROJECTS.filter((item) => item.featured).toSorted(compareProjects)
+  const byId = new Map(SITE_PROJECTS.filter((item) => item.featured).map((item) => [item.id, item]))
+  return HOME_FEATURED_IDS.flatMap((id) => {
+    const item = byId.get(id)
+    return item ? [item] : []
+  })
 }
 
 export function getCompactProjects(): SiteProject[] {
@@ -233,7 +261,7 @@ export function getCompactProjects(): SiteProject[] {
 }
 
 export type ProjectNavLink = {
-  kind: "case" | "github" | "site"
+  kind: "case" | "github" | "site" | "play"
   href: string
   label: string
   external: boolean
@@ -262,6 +290,14 @@ export function getProjectNavLinks(project: SiteProject): ProjectNavLink[] {
       kind: "site",
       href: project.href,
       label: "Sitio",
+      external: true,
+    })
+  }
+  if (project.playStore) {
+    links.push({
+      kind: "play",
+      href: project.playStore,
+      label: "Play Store",
       external: true,
     })
   }

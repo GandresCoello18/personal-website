@@ -1,6 +1,6 @@
 const DIAGRAM_HINT = /diagram|fluj|architecture|aws/i
 const CLI_HINT = /cli|result-cli|test-cli/i
-const CONTAIN_HINT = /odoo-app|unnamed/i
+const CONTAIN_HINT = /odoo-app|unnamed|play-\d|web-mobile/i
 
 export type ProjectImageFit = "cover" | "contain"
 export type ProjectImagePosition = "top" | "center"
