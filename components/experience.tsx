@@ -243,7 +243,7 @@ export function Experience() {
           ))}
         </ol>
 
-        <div className="mt-16 border-t border-border pt-16">
+        <div id="habilidades" className="mt-16 scroll-mt-24 border-t border-border pt-16">
           <h3 className="mb-8 text-2xl font-medium tracking-[-0.02em] text-foreground">
             Habilidades Técnicas
           </h3>
