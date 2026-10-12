@@ -110,6 +110,8 @@ describe("site projects catalog", () => {
         ["play", "https://play.google.com/store/apps/details?id=com.devlokos.importadorasacon"],
       ],
     )
+    assert.equal(sacon.images[1], "/proyectos/importadora-sacon/backoffice.png")
+    assert.equal(sacon.images.filter((src) => src.includes("backoffice")).length, 1)
     for (const src of sacon.images) {
       const abs = path.join(process.cwd(), "public", src.replace(/^\//, ""))
       assert.equal(existsSync(abs), true, src)

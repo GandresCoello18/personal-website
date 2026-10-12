@@ -15,7 +15,15 @@ export function getProjectImagePosition(src: string): ProjectImagePosition {
   return "top"
 }
 
+const PROJECT_IMAGE_ALTS: Record<string, string> = {
+  "/proyectos/importadora-sacon/backoffice.png":
+    "Panel administrativo de Importadora Sacon: resumen operativo y pedidos recientes",
+}
+
 export function getProjectImageAlt(title: string, src: string, index: number): string {
+  const custom = PROJECT_IMAGE_ALTS[src]
+  if (custom) return custom
+
   const file =
     src
       .split("/")

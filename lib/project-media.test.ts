@@ -33,6 +33,7 @@ describe("getProjectImageFit", () => {
   it("covers product screenshots from the top chrome", () => {
     assert.equal(getProjectImageFit("/proyectos/meniuz/landing.png"), "cover")
     assert.equal(getProjectImagePosition("/proyectos/meniuz/landing.png"), "top")
+    assert.equal(getProjectImageFit("/proyectos/importadora-sacon/backoffice.png"), "cover")
   })
 })
 
@@ -52,6 +53,13 @@ describe("getProjectImageAlt", () => {
     assert.equal(
       getProjectImageAlt("Tayos App", "/proyectos/odoo-app/odoo-app.png", 0),
       "Tayos App: odoo app",
+    )
+  })
+
+  it("uses the supplied alt for the Importadora Sacón backoffice", () => {
+    assert.equal(
+      getProjectImageAlt("Importadora Sacón", "/proyectos/importadora-sacon/backoffice.png", 1),
+      "Panel administrativo de Importadora Sacon: resumen operativo y pedidos recientes",
     )
   })
 })
