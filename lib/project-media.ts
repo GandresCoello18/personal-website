@@ -44,6 +44,33 @@ export function shouldEagerLoadProjectImage(projectIndex: number, imageIndex: nu
   return projectIndex === 0 && imageIndex === 0
 }
 
+export function projectImageSrc(src: string): string {
+  return src
+    .split("/")
+    .map((segment) => encodeURIComponent(segment))
+    .join("/")
+}
+
+export const PROJECT_CAROUSEL_MS = 4500
+
+export function nextProjectImageIndex(current: number, length: number): number {
+  if (length <= 0) return 0
+  return (current + 1) % length
+}
+
+export function prevProjectImageIndex(current: number, length: number): number {
+  if (length <= 0) return 0
+  return (current - 1 + length) % length
+}
+
+export function shouldAutoAdvanceProjectCarousel(
+  imageCount: number,
+  prefersReducedMotion: boolean,
+  paused: boolean,
+): boolean {
+  return imageCount > 1 && !prefersReducedMotion && !paused
+}
+
 export function getProjectImageSizes(featured: boolean): string {
   return featured
     ? "(max-width: 768px) 100vw, (max-width: 1152px) 50vw, 560px"

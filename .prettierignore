@@ -9,5 +9,6 @@ content
 .cursor/skills
 .cursor/agents
 .cursor/hooks.json
+.impeccable
 docs/radar-linkedin.md
 next-env.d.ts

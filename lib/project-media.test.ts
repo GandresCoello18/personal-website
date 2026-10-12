@@ -5,6 +5,10 @@ import {
   getProjectImageFit,
   getProjectImagePosition,
   getProjectImageSizes,
+  nextProjectImageIndex,
+  prevProjectImageIndex,
+  projectImageSrc,
+  shouldAutoAdvanceProjectCarousel,
   shouldEagerLoadProjectImage,
   visibleProjectTags,
 } from "./project-media.ts"
@@ -72,5 +76,23 @@ describe("visibleProjectTags", () => {
 describe("getProjectImageSizes", () => {
   it("emits a two-column sizes hint for the projects grid", () => {
     assert.match(getProjectImageSizes(true), /50vw/)
+  })
+})
+
+describe("project carousel helpers", () => {
+  it("encodes spaces and parentheses in public paths", () => {
+    assert.equal(
+      projectImageSrc("/proyectos/padel-track/unnamed (1).webp"),
+      "/proyectos/padel-track/unnamed%20(1).webp",
+    )
+  })
+
+  it("wraps image indexes and stays put when motion is reduced or paused", () => {
+    assert.equal(nextProjectImageIndex(1, 2), 0)
+    assert.equal(prevProjectImageIndex(0, 2), 1)
+    assert.equal(shouldAutoAdvanceProjectCarousel(2, false, false), true)
+    assert.equal(shouldAutoAdvanceProjectCarousel(2, true, false), false)
+    assert.equal(shouldAutoAdvanceProjectCarousel(1, false, false), false)
+    assert.equal(shouldAutoAdvanceProjectCarousel(2, false, true), false)
   })
 })

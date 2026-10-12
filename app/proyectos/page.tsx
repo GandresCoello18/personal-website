@@ -7,11 +7,11 @@ const siteUrl = getSiteUrl()
 
 export const metadata: Metadata = {
   title: "Proyectos",
-  description: "Casos de estudio: Meniuz, Tayos y Order Lifecycle.",
+  description: "Casos de estudio: Tayos, Meniuz y Order Lifecycle.",
   alternates: { canonical: "/proyectos" },
   openGraph: {
     title: "Proyectos | Andrés Coello",
-    description: "Casos de estudio: Meniuz, Tayos y Order Lifecycle.",
+    description: "Casos de estudio: Tayos, Meniuz y Order Lifecycle.",
     url: `${siteUrl}/proyectos`,
     type: "website",
   },
@@ -28,7 +28,7 @@ export default function ProyectosIndexPage() {
       <header className="mb-12 max-w-2xl">
         <h1 className="section-title">Proyectos</h1>
         <p className="section-subtitle mt-4">
-          Tres casos con contexto, decisiones y arquitectura. El resto está en la home, en lista
+          Casos con contexto, decisiones y arquitectura. El resto está en la home, en lista
           compacta.
         </p>
       </header>

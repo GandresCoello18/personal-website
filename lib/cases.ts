@@ -3,7 +3,7 @@ import path from "node:path"
 import matter from "gray-matter"
 
 const CASES_DIR = path.join(process.cwd(), "content", "proyectos")
-const FEATURED_ORDER = ["meniuz", "tayos", "order-lifecycle"]
+const FEATURED_ORDER = ["tayos", "meniuz", "order-lifecycle"]
 
 export type CaseFrontmatter = {
   title: string

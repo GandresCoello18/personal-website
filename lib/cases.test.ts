@@ -3,9 +3,12 @@ import { describe, it } from "node:test"
 import { getAllCaseSlugs, getAllCases, getFeaturedCases, readCaseFile } from "./cases.ts"
 
 describe("case studies", () => {
-  it("publishes the three confirmed cases in order", () => {
-    assert.deepEqual(getAllCaseSlugs(), ["meniuz", "tayos", "order-lifecycle"])
-    assert.equal(getFeaturedCases().length, 3)
+  it("publishes the three confirmed cases with Order Lifecycle off the home featured set", () => {
+    assert.deepEqual(getAllCaseSlugs(), ["tayos", "meniuz", "order-lifecycle"])
+    assert.deepEqual(
+      getFeaturedCases().map((item) => item.slug),
+      ["tayos", "meniuz"],
+    )
   })
 
   it("keeps the Meniuz role as Backend & DevOps Lead", () => {
