@@ -60,7 +60,7 @@ describe("checkApply", () => {
         fp: backend.fp,
         urlKey: "li:job:999",
         position: "Backend Developer",
-        appliedAt: "2026-09-12T15:00:00.000Z",
+        appliedAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
         channel: "apply_manual",
       }),
     )
