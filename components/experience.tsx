@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import type { ExperienceItem } from "@/components/experience-card"
+import { SKILL_GROUPS } from "@/lib/skills"
 
 const experiences: ExperienceItem[] = [
   {
@@ -167,21 +168,6 @@ const educations: ExperienceItem[] = [
   },
 ]
 
-const skillGroups = [
-  {
-    title: "Backend",
-    skills: ["Node.js", "TypeScript", "NestJS", "Express", "Fastify", "REST", "GraphQL", "Prisma"],
-  },
-  {
-    title: "Datos",
-    skills: ["PostgreSQL", "MySQL", "MongoDB", "Redis"],
-  },
-  {
-    title: "Cloud e IA",
-    skills: ["AWS", "Docker", "CI/CD", "LLM", "RAG", "React", "Next.js", "React Native"],
-  },
-]
-
 function ExperienceRow({ item }: { item: ExperienceItem }) {
   return (
     <li className="grid grid-cols-1 gap-3 border-b border-border py-8 first:pt-0 last:border-b-0 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-8">
@@ -261,8 +247,8 @@ export function Experience() {
           <h3 className="mb-8 text-2xl font-medium tracking-[-0.02em] text-foreground">
             Habilidades Técnicas
           </h3>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {skillGroups.map((group) => (
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {SKILL_GROUPS.map((group) => (
               <div key={group.title} className="card-elevated p-6">
                 <h4 className="mb-4 font-mono text-sm uppercase tracking-[0.12em] text-muted-foreground">
                   {group.title}
