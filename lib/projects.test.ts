@@ -89,6 +89,20 @@ describe("site projects catalog", () => {
   it("links Importadora Sacón to the public web and Google Play", () => {
     const sacon = SITE_PROJECTS.find((item) => item.id === "importadora-sacon")
     assert.ok(sacon)
+    assert.deepEqual(sacon.stack, [
+      "NestJS",
+      "Node.js",
+      "PostgreSQL",
+      "Prisma",
+      "Next.js",
+      "Flutter",
+      "React",
+      "Railway",
+    ])
+    assert.match(sacon.summary, /Payphone/)
+    assert.match(sacon.summary, /Railway/)
+    assert.match(sacon.summary, /Cursor/)
+    assert.doesNotMatch(sacon.summary, /React Native|Expo/)
     assert.deepEqual(
       getProjectNavLinks(sacon).map((link) => [link.kind, link.href]),
       [

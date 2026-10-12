@@ -26,8 +26,10 @@ export const SITE_PROJECTS: SiteProject[] = [
     id: "importadora-sacon",
     title: "Importadora Sacón",
     summary:
-      "Cadena ecuatoriana de importación y retail, con sucursales en varias ciudades, de electrodomésticos y tecnología. App y web: cuenta, búsqueda, carrito y pago con Payphone o transferencia bancaria verificada a mano. Roles: cliente, empleado, despacho, administrador y superadministrador. En web y Google Play; fase de pruebas con tipos reales de cliente.",
-    stack: ["React Native", "Expo", "Next.js", "TypeScript"],
+      "Cadena ecuatoriana de importación y retail, con sucursales en varias ciudades, de electrodomésticos y tecnología. App y web: cuenta, búsqueda, carrito y pago con Payphone o transferencia bancaria verificada a mano. Roles: cliente, empleado, despacho, administrador y superadministrador. MVP en Railway; en pruebas con tipos reales de cliente. Hecho con Cursor, con buenas prácticas.",
+    stack: ["NestJS", "Node.js", "PostgreSQL", "Prisma", "Next.js", "Flutter", "React", "Railway"],
+    // Slot: capturas del backoffice React. Andrés las enviará; añadir
+    // /proyectos/importadora-sacon/backoffice-01.png (y siguientes) aquí.
     images: [
       "/proyectos/importadora-sacon/web-desktop.png",
       "/proyectos/importadora-sacon/web-mobile.png",
