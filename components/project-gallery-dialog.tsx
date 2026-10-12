@@ -62,9 +62,9 @@ export function ProjectGalleryDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         showCloseButton={false}
-        className="max-w-[min(100vw-1.5rem,52rem)] gap-0 overflow-hidden rounded-sm border-border p-0 shadow-none sm:max-w-3xl"
+        className="flex max-h-[90dvh] w-[min(100vw-1.5rem,48rem)] max-w-3xl flex-col gap-0 overflow-hidden rounded-sm border-border bg-card p-0 shadow-none"
       >
-        <div className="relative aspect-[16/10] w-full bg-muted">
+        <div className="relative h-[min(42dvh,22rem)] w-full shrink-0 bg-muted">
           <Image
             key={current}
             src={projectImageSrc(current)}
@@ -110,7 +110,7 @@ export function ProjectGalleryDialog({
           ) : null}
         </div>
 
-        <div className="space-y-3 border-t border-border bg-card p-5">
+        <div className="min-h-0 space-y-3 overflow-y-auto border-t border-border bg-card p-5">
           <DialogTitle className="text-lg font-medium tracking-[-0.02em] text-foreground">
             {project.title}
           </DialogTitle>

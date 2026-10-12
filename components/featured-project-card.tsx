@@ -67,14 +67,12 @@ export function FeaturedProjectCard({ project, index }: FeaturedProjectCardProps
           />
         </div>
       </div>
-      {galleryOpen ? (
-        <ProjectGalleryDialog
-          project={project}
-          open={galleryOpen}
-          onOpenChange={setGalleryOpen}
-          source="home-featured-gallery"
-        />
-      ) : null}
+      <ProjectGalleryDialog
+        project={project}
+        open={galleryOpen}
+        onOpenChange={setGalleryOpen}
+        source="home-featured-gallery"
+      />
     </article>
   )
 }

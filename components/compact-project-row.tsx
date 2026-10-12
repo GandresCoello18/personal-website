@@ -56,14 +56,12 @@ export function CompactProjectRow({ project }: CompactProjectRowProps) {
         </span>
       </button>
       <ProjectNavLinks project={project} source="home-compact" />
-      {galleryOpen ? (
-        <ProjectGalleryDialog
-          project={project}
-          open={galleryOpen}
-          onOpenChange={setGalleryOpen}
-          source="home-compact-gallery"
-        />
-      ) : null}
+      <ProjectGalleryDialog
+        project={project}
+        open={galleryOpen}
+        onOpenChange={setGalleryOpen}
+        source="home-compact-gallery"
+      />
     </li>
   )
 }

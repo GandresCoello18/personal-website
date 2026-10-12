@@ -245,6 +245,15 @@
     z-index: 60;
   }
 
+  [data-slot="dialog-overlay"] {
+    z-index: 70;
+    background: color-mix(in srgb, var(--background) 72%, #000);
+  }
+
+  [data-slot="dialog-content"] {
+    z-index: 71;
+  }
+
   [data-rehype-pretty-code-title] {
     @apply border-b border-border px-4 py-2.5 text-left font-mono text-xs tracking-wide text-muted-foreground;
   }
