@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import type { ExperienceItem } from "@/components/experience-card"
 
@@ -92,58 +93,51 @@ const experiences: ExperienceItem[] = [
   },
 ]
 
-const teaching: ExperienceItem[] = [
+const teaching: Array<{
+  id: string
+  company: string
+  line: string
+  image: string
+}> = [
   {
     id: "crack-the-code",
-    logo: "/experiencia/crack-the-code/crack_the_code_per_logo.jpg",
-    role: "Docente de IA y programación web",
     company: "Crack The Code",
-    period: "feb. 2026 – oct. 2026 · parcial",
-    description:
-      "Enseño IA aplicada y el ciclo completo de desarrollo de software: cada grupo elige un emprendimiento local y lo convierte en un producto digital. Acompaño planificación, diseño, construcción, pruebas, despliegue y mejora continua. Prompt engineering y bitácoras de proyecto.",
-    images: [
-      "/experiencia/crack-the-code/crack-the-code-002.png",
-      "/experiencia/crack-the-code/crack-the-code-003.png",
-    ],
+    line: "IA y programación web",
+    image: "/experiencia/crack-the-code/crack-the-code-002.png",
   },
   {
     id: "classgap",
-    logo: "/experiencia/classgap/classgap_logo.jpg",
-    role: "Profesor de clases particulares / Programación",
     company: "Classgap",
-    period: "abr. 2023 – ago. 2026",
-    description:
-      "Impartí más de 160 clases particulares de desarrollo web y móvil a estudiantes y desarrolladores de distintos países. Planes de aprendizaje según el objetivo de cada persona: proyectos reales, portafolio y presencia profesional. Depuración de APIs en NestJS, rutas en Node.js y apps en Flutter.",
-    images: [
-      "/experiencia/classgap/mentoria-react-js-espana.png",
-      "/experiencia/classgap/mentoria-react-native-firebase-rd.png",
-      "/experiencia/classgap/1743796086423.jpg",
-      "/experiencia/classgap/1747074307592.jpg",
-      "/experiencia/classgap/1750623706368.jpg",
-      "/experiencia/classgap/1756346816810.jpg",
-      "/experiencia/classgap/1759533960547.jpg",
-    ],
+    line: "160+ clases particulares",
+    image: "/experiencia/classgap/mentoria-react-js-espana.png",
   },
   {
     id: "codings",
-    logo: "/experiencia/codings-academy/codingsweb_logo.jpg",
-    role: "Maestro de Frontend / React / Bootcamp",
     company: "Codings Academy",
-    period: "jun. 2025 – oct. 2025 · parcial",
-    description:
-      "Enseñé a más de 40 estudiantes en clases grupales, de JavaScript a React, con metodología práctica orientada a portafolio. Introduje backend con Python y Flask, Swagger, autenticación, Git y despliegue en Vercel. Proyecto final: e-commerce en React conectado a una API en Flask.",
-    images: [
-      "/experiencia/codings-academy/clases-nocturnas-api-debug.png",
-      "/experiencia/codings-academy/clases-nocturnas-react-debug.png",
-      "/experiencia/codings-academy/1750369336004.jpg",
-      "/experiencia/codings-academy/1750477519988.jpg",
-      "/experiencia/codings-academy/1752774909609.jpg",
-      "/experiencia/codings-academy/1753638148472.jpg",
-      "/experiencia/codings-academy/1754780006264.jpg",
-      "/experiencia/codings-academy/1754780080756.jpg",
-    ],
+    line: "Frontend / React / bootcamp",
+    image: "/experiencia/codings-academy/clases-nocturnas-api-debug.png",
   },
 ]
+
+function TeachingCard({ item }: { item: (typeof teaching)[number] }) {
+  return (
+    <article className="card-elevated overflow-hidden">
+      <div className="relative aspect-[16/10] bg-muted">
+        <Image
+          src={item.image}
+          alt={`${item.company}: ${item.line}`}
+          fill
+          className="object-cover object-top"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
+      </div>
+      <p className="border-t border-border px-4 py-3 text-sm text-foreground">
+        <span className="font-medium">{item.company}</span>
+        <span className="text-muted-foreground"> · {item.line}</span>
+      </p>
+    </article>
+  )
+}
 
 const educations: ExperienceItem[] = [
   {
@@ -221,28 +215,19 @@ export function Experience() {
           ))}
         </ol>
 
-        <div className="my-16 border-t border-border pt-12">
+        <div id="docencia" className="my-16 border-t border-border pt-12">
           <div className="mb-8 space-y-3">
             <h3 className="text-2xl font-medium tracking-[-0.02em] text-foreground md:text-3xl">
               Docencia
             </h3>
             <p className="section-subtitle max-w-2xl">
-              Bootcamps, clases particulares y grupos. Fuera de los roles de producto.
+              Bootcamps y clases, fuera de los roles de producto.
             </p>
           </div>
-          <ul className="max-w-3xl">
+          <ul className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
             {teaching.map((item) => (
-              <li
-                key={item.id}
-                className="flex flex-col gap-1 border-b border-border py-4 first:pt-0 last:border-b-0 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
-              >
-                <div className="min-w-0">
-                  <p className="font-medium text-foreground">
-                    {item.company}
-                    <span className="font-normal text-muted-foreground"> · {item.role}</span>
-                  </p>
-                </div>
-                <p className="shrink-0 font-mono text-sm text-muted-foreground">{item.period}</p>
+              <li key={item.id}>
+                <TeachingCard item={item} />
               </li>
             ))}
           </ul>
