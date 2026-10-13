@@ -11,7 +11,7 @@ Usar ESTE archivo para preguntas de “¿cuántos años…?”. Si el CV muestra
 | Inicio como desarrollador freelance / autónomo (práctica y proyectos reales) | **2018** |
 | Roles formales y proyectos listados en CV (empresas / productos) | Ver `content/cv/*.txt` (aprox. desde ~2020–2021 en adelante según el CV) |
 | Docencia / mentoría (Classgap y similares) | Ver CV education + experiencia docente en CV |
-| DevLokos: Backend Engineer (AI & Odoo Integrations). Clientes Tayos y La Casa del Turbo | **mar. 2026 – actualidad** |
+| DevLokos: Backend Engineer. Clientes Tayos, Importadora Sacón y La Casa del Turbo | **mar. 2026 – actualidad** |
 | Meniuz: Backend & DevOps Lead · part-time · 500+ restaurantes | **abr. 2022 – actualidad** |
 | Novacomp: Software Engineer II (Backend) | **ene. 2026 – abr. 2026** |
 | MIMS Tech: Backend Engineer · equipo de 4 developers | **sept. 2025 – nov. 2025** |

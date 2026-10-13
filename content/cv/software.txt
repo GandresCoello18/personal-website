@@ -7,9 +7,9 @@ Ingeniero de software backend con 8+ años construyendo APIs y plataformas SaaS 
 
 EXPERIENCIA
 
-Backend Engineer (AI & Odoo Integrations) | Marzo 2026 - Actualidad
+Backend Engineer | Marzo 2026 - Actualidad
 DevLokos · Remoto · Quito, Ecuador
-Clientes: Tayos (repuestos automotrices) y La Casa del Turbo. Diseñé un asistente con LLM (Gemini) y RAG sobre manuales, precios, marcas y catálogos, que responde en lenguaje natural consultas de compatibilidad que una búsqueda tradicional no resolvía. Integré Odoo como fuente única de verdad detrás de una API REST en Fastify y un BFF para la app móvil (React Native/Expo) y la web (Next.js). Publiqué la app en App Store y Google Play, con despliegues en Railway, Render y DigitalOcean.
+Clientes: Tayos (repuestos automotrices), Importadora Sacón y La Casa del Turbo. Diseñé un asistente con LLM (Gemini) y RAG sobre manuales, precios, marcas y catálogos, que responde en lenguaje natural consultas de compatibilidad que una búsqueda tradicional no resolvía. Integré Odoo como fuente única de verdad detrás de una API REST en Fastify y un BFF para la app móvil (React Native/Expo) y la web (Next.js). Publiqué la app en App Store y Google Play, con despliegues en Railway, Render y DigitalOcean. En Importadora Sacón: app Flutter, storefront Next.js y backoffice React sobre NestJS, Prisma y PostgreSQL en Railway, con pago Payphone. Automaticé procesos que el cliente hacía a mano en Odoo, sin migrar datos.
 
 Backend & DevOps Lead | Abril 2022 - Actualidad · part-time
 Meniuz · Remoto · Quito, Ecuador

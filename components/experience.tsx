@@ -7,11 +7,11 @@ const experiences: ExperienceItem[] = [
   {
     id: "devlokos",
     logo: "/experiencia/devlokos/devlocos_logo.jpg",
-    role: "Backend Engineer (AI & Odoo Integrations)",
+    role: "Backend Engineer",
     company: "DevLokos",
     period: "mar. 2026 – actualidad",
     description:
-      "Clientes: Tayos (repuestos automotrices) y La Casa del Turbo. Diseñé un asistente con LLM (Gemini) y RAG sobre manuales, precios, marcas y catálogos, que responde en lenguaje natural consultas de compatibilidad que una búsqueda tradicional no resolvía. Integré Odoo como fuente única de verdad detrás de una API REST en Fastify y un BFF para la app móvil (React Native/Expo) y la web (Next.js). Publiqué la app en App Store y Google Play, con despliegues en Railway, Render y DigitalOcean.",
+      "Clientes: Tayos (repuestos automotrices), Importadora Sacón y La Casa del Turbo. Diseñé un asistente con LLM (Gemini) y RAG sobre manuales, precios, marcas y catálogos, que responde en lenguaje natural consultas de compatibilidad que una búsqueda tradicional no resolvía. Integré Odoo como fuente única de verdad detrás de una API REST en Fastify y un BFF para la app móvil (React Native/Expo) y la web (Next.js). Publiqué la app en App Store y Google Play, con despliegues en Railway, Render y DigitalOcean. En Importadora Sacón: app Flutter, storefront Next.js y backoffice React sobre NestJS, Prisma y PostgreSQL en Railway, con pago Payphone.",
     images: [
       "/experiencia/devlokos/odoo-app.png",
       "/experiencia/devlokos/botca.jpg",
