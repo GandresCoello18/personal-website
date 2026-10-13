@@ -170,8 +170,10 @@ const educations: ExperienceItem[] = [
 
 function ExperienceRow({ item }: { item: ExperienceItem }) {
   return (
-    <li className="grid grid-cols-1 gap-3 border-b border-border py-8 first:pt-0 last:border-b-0 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-8">
-      <p className="font-mono text-sm text-muted-foreground sm:pt-1">{item.period}</p>
+    <li className="grid grid-cols-1 gap-3 border-b border-border py-8 first:pt-0 last:border-b-0 sm:grid-cols-[max-content_minmax(0,1fr)] sm:items-start sm:gap-8">
+      <p className="font-mono text-sm text-muted-foreground sm:whitespace-nowrap sm:pt-1">
+        {item.period}
+      </p>
       <div className="min-w-0 space-y-2">
         <h3 className="text-lg font-medium tracking-[-0.02em] text-foreground">{item.role}</h3>
         <p className="text-sm text-muted-foreground">{item.company}</p>
