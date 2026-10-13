@@ -27,10 +27,6 @@ export function VideosSection({ compact = false }: { compact?: boolean }) {
           <h2 id="videos-heading" className={headingClass}>
             Resúmenes en video
           </h2>
-          <p className="section-subtitle mx-auto max-w-2xl">
-            Charlas, tutoriales y aprendizajes en formato video con notas y puntos clave para
-            repasar rápido.
-          </p>
         </div>
 
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2">

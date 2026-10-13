@@ -96,12 +96,8 @@ export function ClassesGallery() {
   return (
     <section className="bg-background py-20" id="clases">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="mb-16 space-y-4">
-          <h2 className="section-title">Mis Clases en Acción</h2>
-          <p className="section-subtitle max-w-2xl">
-            Más de 5 años enseñando. Aquí puedes ver el tipo de contenido y metodología que utilizo
-            en mis sesiones educativas
-          </p>
+        <div className="mb-16">
+          <h2 className="section-title">En clase</h2>
         </div>
 
         <ul className="grid grid-cols-1 gap-6 md:grid-cols-2">

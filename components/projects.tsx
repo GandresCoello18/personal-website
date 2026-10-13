@@ -12,8 +12,7 @@ export function Projects() {
         <div className="mb-16 space-y-4">
           <h2 className="section-title">Proyectos</h2>
           <p className="section-subtitle max-w-2xl">
-            Importadora Sacón está en pruebas; Tayos y Meniuz siguen en producción. El resto abre
-            galería en el sitio: miniatura, qué es y stack.
+            Importadora Sacón está en pruebas; Tayos y Meniuz siguen en producción.
           </p>
         </div>
 

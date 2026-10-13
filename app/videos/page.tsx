@@ -27,10 +27,7 @@ export default function VideosIndexPage() {
     >
       <header className="mb-12 max-w-2xl">
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Videos</h1>
-        <p className="mt-4 text-lg text-muted-foreground">
-          Resúmenes de charlas y contenido en YouTube: mira el video y repasa los puntos clave sin
-          perder tiempo.
-        </p>
+        <p className="mt-4 text-lg text-muted-foreground">Charlas y resúmenes en YouTube.</p>
       </header>
 
       {videos.length === 0 ? (

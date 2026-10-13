@@ -113,10 +113,6 @@ export function Testimonials() {
         <div className="mb-12 space-y-3 md:mb-14">
           <p className="section-kicker">Testimonios</p>
           <h2 className="section-title">Qué dicen</h2>
-          <p className="section-subtitle max-w-2xl">
-            Historias de desarrolladores que transformaron su carrera gracias a mentoría y educación
-            de calidad
-          </p>
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">

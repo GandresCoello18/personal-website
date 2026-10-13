@@ -27,10 +27,7 @@ export default function ProyectosIndexPage() {
     >
       <header className="mb-12 max-w-2xl">
         <h1 className="section-title">Proyectos</h1>
-        <p className="section-subtitle mt-4">
-          Casos con contexto, decisiones y arquitectura. El resto está en la home, en lista
-          compacta.
-        </p>
+        <p className="section-subtitle mt-4">Tayos, Meniuz y el ciclo de una orden.</p>
       </header>
       <ul className="divide-y divide-border border-y border-border">
         {cases.map((item) => (

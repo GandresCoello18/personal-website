@@ -12,12 +12,8 @@ export function CTA() {
       className="border-t border-border bg-background px-4 py-20 sm:px-6 lg:px-8"
     >
       <div className="mx-auto max-w-4xl">
-        <div className="mb-12 space-y-4">
-          <h2 className="section-title">Conversemos Sobre tu Proyecto</h2>
-          <p className="section-subtitle">
-            Estoy disponible para nuevos proyectos, colaboraciones y oportunidades de mentoría.
-            Contacta conmigo y empecemos.
-          </p>
+        <div className="mb-12">
+          <h2 className="section-title">Hablemos</h2>
         </div>
 
         <div className="mb-12 grid grid-cols-1 gap-4 md:grid-cols-3">

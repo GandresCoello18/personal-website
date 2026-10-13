@@ -48,11 +48,8 @@ export function PaymentMethods() {
   return (
     <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-background">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="section-title">Métodos de Pago</h2>
-          <p className="section-subtitle max-w-2xl mx-auto">
-            Acepto múltiples opciones de pago para tu comodidad. Elige la que mejor se adapte a ti.
-          </p>
+        <div className="mb-16 text-center">
+          <h2 className="section-title">Métodos de pago</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

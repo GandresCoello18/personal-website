@@ -16,7 +16,7 @@ export function ClassgapSection() {
           <h2 className="section-title">Clases particulares en Classgap</h2>
           <p className="section-subtitle max-w-2xl">
             Profesor verificado en Classgap, abr. 2023 – ago. 2026. Más de 160 clases de desarrollo
-            web y móvil, con planes según el objetivo de cada persona.
+            web y móvil.
           </p>
         </div>
 

@@ -252,10 +252,7 @@ export function TalksSection({ videoPreview }: { videoPreview?: ReactNode }) {
           <h2 id="talks-heading" className="section-title">
             Conferencias
           </h2>
-          <p className="section-subtitle max-w-2xl">
-            Speaker en GDG Ecuador, DevFest y TsáchiTalks. Charlas sobre backend, IA aplicada y cómo
-            llevar productos a producción.
-          </p>
+          <p className="section-subtitle max-w-2xl">GDG Ecuador, DevFest y TsáchiTalks.</p>
           <p className="font-mono text-sm text-muted-foreground">
             {talks.length} charlas destacadas
           </p>

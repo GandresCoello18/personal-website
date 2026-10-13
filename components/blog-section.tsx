@@ -22,10 +22,6 @@ export function BlogSection() {
           <h2 id="escritos-heading" className="section-title">
             Últimos artículos
           </h2>
-          <p className="section-subtitle mx-auto max-w-2xl">
-            Notas sobre aprendizaje, carrera y desarrollo: lo mismo que lees en el blog, en formato
-            breve para descubrir si te interesa profundizar.
-          </p>
         </div>
 
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2">

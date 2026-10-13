@@ -190,9 +190,6 @@ export function Experience() {
         <div className="mb-14 space-y-4">
           <p className="section-kicker">Trayectoria</p>
           <h2 className="section-title">Experiencia</h2>
-          <p className="section-subtitle max-w-2xl">
-            Roles, fechas y resultados alineados con LinkedIn
-          </p>
         </div>
 
         <ol className="list-none">
@@ -202,13 +199,10 @@ export function Experience() {
         </ol>
 
         <div id="docencia" className="my-16 scroll-mt-24 border-t border-border pt-12">
-          <div className="mb-8 space-y-3">
+          <div className="mb-8">
             <h3 className="text-2xl font-medium tracking-[-0.02em] text-foreground md:text-3xl">
               Docencia
             </h3>
-            <p className="section-subtitle max-w-2xl">
-              Bootcamps y clases, fuera de los roles de producto.
-            </p>
           </div>
           <ul className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
             {teaching.map((item) => (
@@ -234,7 +228,6 @@ export function Experience() {
           <h2 className="text-2xl font-medium tracking-[-0.02em] text-foreground md:text-3xl">
             Educación
           </h2>
-          <p className="section-subtitle max-w-2xl">Recorrido en línea y presencial</p>
         </div>
 
         <ol className="list-none">

@@ -73,11 +73,10 @@ export function Services() {
   return (
     <section id="services" className="bg-background px-4 py-16 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center space-y-4 mb-16">
-          <p className="section-kicker">Servicios profesionales</p>
+        <div className="mb-16 space-y-4 text-center">
           <h2 className="section-title">Mentoría y clases de programación</h2>
-          <p className="section-subtitle max-w-3xl mx-auto">
-            Acompañamiento 1-on-1 para aprender backend y web, con proyectos reales.
+          <p className="section-subtitle mx-auto max-w-3xl">
+            Clases y mentoría 1 a 1 de backend y web.
           </p>
         </div>
 

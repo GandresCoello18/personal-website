@@ -29,10 +29,7 @@ export default function BlogIndexPage() {
     >
       <header className="mb-12 max-w-2xl">
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Blog</h1>
-        <p className="mt-4 text-lg text-muted-foreground">
-          Notas técnicas, aprendizajes y recursos que comparto sobre desarrollo y arquitectura de
-          software.
-        </p>
+        <p className="mt-4 text-lg text-muted-foreground">Notas de desarrollo y arquitectura.</p>
       </header>
 
       {posts.length === 0 ? (
