@@ -1,8 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
 import type { ExperienceItem } from "@/components/experience-card"
-import { ExperienceGallery } from "@/components/experience-gallery"
-import { publicExperienceImages } from "@/lib/experience-media"
 import { SKILL_GROUPS } from "@/lib/skills"
 
 const experiences: ExperienceItem[] = [
@@ -14,11 +12,6 @@ const experiences: ExperienceItem[] = [
     period: "mar. 2026 – actualidad",
     description:
       "Clientes: Tayos (repuestos automotrices), Importadora Sacón y La Casa del Turbo. Diseñé un asistente con LLM (Gemini) y RAG sobre manuales, precios, marcas y catálogos, que responde en lenguaje natural consultas de compatibilidad que una búsqueda tradicional no resolvía. Integré Odoo como fuente única de verdad detrás de una API REST en Fastify y un BFF para la app móvil (React Native/Expo) y la web (Next.js). Publiqué la app en App Store y Google Play, con despliegues en Railway, Render y DigitalOcean. En Importadora Sacón: app Flutter, storefront Next.js y backoffice React sobre NestJS, Prisma y PostgreSQL en Railway, con pago Payphone.",
-    images: [
-      "/experiencia/devlokos/odoo-app.png",
-      "/experiencia/devlokos/botca.jpg",
-      "/experiencia/devlokos/padeltrack.jpg",
-    ],
   },
   {
     id: "meniuz",
@@ -28,12 +21,6 @@ const experiences: ExperienceItem[] = [
     period: "abr. 2022 – actualidad · part-time",
     description:
       "SaaS para la industria gastronómica en Ecuador, iniciativa de Kevin Morales. Me sumé en la etapa inicial, en paralelo a mi trabajo principal, y lideré la evolución técnica de una web de menús a un SaaS con más de 500 establecimientos activos. Reduje un 60 % los tiempos de despliegue con CI/CD (Docker, GitHub) y un 25 % los costos de infraestructura. Diseñé búsqueda semántica con RAG (Gemini, Qdrant) y OCR de menús, un sistema de fidelización y un backoffice con RBAC.",
-    images: [
-      "/experiencia/meniuz/meniuz-equipo-almuerzo.png",
-      "/experiencia/meniuz/meniuz-casa-abierta-armadas.png",
-      "/experiencia/meniuz/meniuz-gdg-quito-cumbaya-2025.png",
-      "/experiencia/meniuz/meniuz-emprelatam.png",
-    ],
   },
   {
     id: "novacomp",
@@ -43,7 +30,6 @@ const experiences: ExperienceItem[] = [
     period: "ene. 2026 – abr. 2026",
     description:
       "Plataforma de fidelización y recompensas para usuarios bancarios. Rediseñé el motor de segmentación de audiencias en tiempo real sobre un Data Lake en Amazon Athena. Contribuí a aumentar hasta un 30 % la retención con gamificación y recompensas personalizadas. Microservicios en NestJS con API REST, AWS Lambda y EventBridge; autenticación por roles con Amazon Cognito y JWT.",
-    images: ["/experiencia/novacomp/REFACTOR-lambda.jpg"],
   },
   {
     id: "mims",
@@ -53,7 +39,6 @@ const experiences: ExperienceItem[] = [
     period: "sept. 2025 – nov. 2025",
     description:
       "Plataforma de notarización online en Estados Unidos. Entré como Backend Engineer y guié a un equipo de 4 developers en un SDK comercial publicado en NPM. Arquitectura multi-tenant con Row-Level Security en PostgreSQL, migración progresiva a microservicios en un monorepo NX con NATS, pagos con Stripe y servicios en AWS.",
-    images: [],
   },
   {
     id: "ggtech",
@@ -63,7 +48,6 @@ const experiences: ExperienceItem[] = [
     period: "abr. 2022 – mar. 2025",
     description:
       "Plataforma global de competiciones de esports con usuarios en América, Europa y Asia. Desarrollé motores de ranking y cuatro formatos de competición (entre ellos sistema suizo y round robin), lo que ayudó a aumentar un 30 % la participación. Optimicé torneos masivos en MongoDB y WebSockets, y reduje más de un 25 % las incidencias operativas.",
-    images: ["/experiencia/ggtech/ggtech-equipo-reunion.png"],
   },
   {
     id: "ativar",
@@ -73,7 +57,6 @@ const experiences: ExperienceItem[] = [
     period: "may. 2021 – abr. 2022",
     description:
       "Consultoría en aplicaciones web y móviles multiplataforma: levantamiento de requerimientos con clientes y publicación en Play Store, App Store y AppGallery.",
-    images: ["/experiencia/ativar/meet.jpg", "/experiencia/ativar/app-store.jpg"],
   },
   {
     id: "cooproclem",
@@ -83,7 +66,6 @@ const experiences: ExperienceItem[] = [
     period: "oct. 2020 – mar. 2021",
     description:
       "Desarrollo móvil multiplataforma: infraestructura de red y envío de datos desde dispositivos hacia servidores administrativos.",
-    images: ["/experiencia/cooproclem/dev-app-pd.jpg", "/experiencia/cooproclem/1682013285766.jpg"],
   },
   {
     id: "freelance",
@@ -92,7 +74,6 @@ const experiences: ExperienceItem[] = [
     company: "Independiente",
     period: "2018 – 2020",
     description: "Dos años de proyectos web independientes, antes de los roles formales.",
-    images: [],
   },
 ]
 
@@ -157,7 +138,6 @@ const educations: ExperienceItem[] = [
     company: "Platzi",
     period: "ene. 2019 – dic. 2025",
     description: "Cursos y carreras de programación, con certificaciones en AWS, DevOps e IA.",
-    images: [],
   },
   {
     id: "istb",
@@ -166,13 +146,10 @@ const educations: ExperienceItem[] = [
     company: "Tecnológico Superior Babahoyo",
     period: "mar. 2017 – nov. 2020",
     description: "Título de tercer nivel en desarrollo de software.",
-    images: [],
   },
 ]
 
 function ExperienceRow({ item }: { item: ExperienceItem }) {
-  const images = publicExperienceImages(item.images)
-
   return (
     <li className="border-b border-border py-8 first:pt-0 last:border-b-0">
       <h3 className="text-lg font-medium tracking-[-0.02em] text-foreground">{item.role}</h3>
@@ -183,13 +160,6 @@ function ExperienceRow({ item }: { item: ExperienceItem }) {
       <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground">
         {item.description}
       </p>
-      {images.length > 0 ? (
-        <ExperienceGallery
-          images={images}
-          altPrefix={`${item.company} — ${item.role}`}
-          layout="thumb"
-        />
-      ) : null}
     </li>
   )
 }
