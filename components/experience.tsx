@@ -1,6 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
 import type { ExperienceItem } from "@/components/experience-card"
+import { ExperienceGallery } from "@/components/experience-gallery"
+import { publicExperienceImages } from "@/lib/experience-media"
 import { SKILL_GROUPS } from "@/lib/skills"
 
 const experiences: ExperienceItem[] = [
@@ -169,18 +171,25 @@ const educations: ExperienceItem[] = [
 ]
 
 function ExperienceRow({ item }: { item: ExperienceItem }) {
+  const images = publicExperienceImages(item.images)
+
   return (
-    <li className="grid grid-cols-1 gap-3 border-b border-border py-8 first:pt-0 last:border-b-0 sm:grid-cols-[max-content_minmax(0,1fr)] sm:items-start sm:gap-8">
-      <p className="font-mono text-sm text-muted-foreground sm:whitespace-nowrap sm:pt-1">
-        {item.period}
+    <li className="border-b border-border py-8 first:pt-0 last:border-b-0">
+      <h3 className="text-lg font-medium tracking-[-0.02em] text-foreground">{item.role}</h3>
+      <p className="mt-1 text-sm text-muted-foreground">
+        {item.company}
+        <span className="font-mono"> · {item.period}</span>
       </p>
-      <div className="min-w-0 space-y-2">
-        <h3 className="text-lg font-medium tracking-[-0.02em] text-foreground">{item.role}</h3>
-        <p className="text-sm text-muted-foreground">{item.company}</p>
-        <p className="max-w-prose text-sm leading-relaxed text-muted-foreground">
-          {item.description}
-        </p>
-      </div>
+      <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground">
+        {item.description}
+      </p>
+      {images.length > 0 ? (
+        <ExperienceGallery
+          images={images}
+          altPrefix={`${item.company} — ${item.role}`}
+          layout="thumb"
+        />
+      ) : null}
     </li>
   )
 }

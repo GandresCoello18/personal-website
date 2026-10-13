@@ -9,13 +9,16 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 
 const MAX_VISIBLE = 4
 const THUMB_SIZE = "size-[4.25rem] sm:size-[4.75rem]"
+const ROLE_THUMB_SIZE = "size-14 sm:size-16"
 
 type ExperienceGalleryProps = {
   images: string[]
   altPrefix: string
+  /** One small thumbnail per role (home timeline). Default is the card strip. */
+  layout?: "strip" | "thumb"
 }
 
-export function ExperienceGallery({ images, altPrefix }: ExperienceGalleryProps) {
+export function ExperienceGallery({ images, altPrefix, layout = "strip" }: ExperienceGalleryProps) {
   const [open, setOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
 
@@ -47,48 +50,81 @@ export function ExperienceGallery({ images, altPrefix }: ExperienceGalleryProps)
   const hasOverflow = images.length > MAX_VISIBLE
   const visibleCount = hasOverflow ? MAX_VISIBLE : images.length
   const extraCount = images.length - (MAX_VISIBLE - 1)
+  const cover = images[0]
+  if (!cover) return null
+  const coverFit = /lambda|diagram|refactor/i.test(cover)
+    ? "object-contain p-0.5"
+    : "object-cover object-top"
 
   return (
     <>
-      <div className="mt-4 flex flex-wrap gap-1.5">
-        {Array.from({ length: visibleCount }, (_, i) => {
-          const isOverlayTile = hasOverflow && i === visibleCount - 1
-          const src = images[i]
-          const openIndex = isOverlayTile ? MAX_VISIBLE - 1 : i
+      {layout === "thumb" ? (
+        <div className="pt-3">
+          <button
+            type="button"
+            onClick={() => openAt(0)}
+            aria-haspopup="dialog"
+            aria-label={
+              images.length > 1
+                ? `Abrir galería de ${altPrefix} (${images.length} imágenes)`
+                : `Abrir imagen de ${altPrefix}`
+            }
+            className={cn(
+              ROLE_THUMB_SIZE,
+              "relative shrink-0 overflow-hidden border border-border bg-muted",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+            )}
+          >
+            <Image
+              src={cover}
+              alt={`${altPrefix} — miniatura`}
+              fill
+              className={coverFit}
+              sizes="64px"
+            />
+          </button>
+        </div>
+      ) : (
+        <div className="mt-4 flex flex-wrap gap-1.5">
+          {Array.from({ length: visibleCount }, (_, i) => {
+            const isOverlayTile = hasOverflow && i === visibleCount - 1
+            const src = images[i]
+            const openIndex = isOverlayTile ? MAX_VISIBLE - 1 : i
 
-          return (
-            <button
-              key={`${src}-${i}`}
-              type="button"
-              onClick={() => openAt(openIndex)}
-              className={cn(
-                THUMB_SIZE,
-                "relative shrink-0 overflow-hidden rounded-md bg-muted",
-                "transition-transform duration-200 hover:scale-[1.03]",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-              )}
-              aria-label={
-                isOverlayTile
-                  ? `Ver ${extraCount} imágenes más`
-                  : `Ver imagen ${i + 1} de ${images.length}`
-              }
-            >
-              <Image
-                src={src}
-                alt={`${altPrefix} — miniatura ${i + 1}`}
-                fill
-                className="object-cover"
-                sizes="76px"
-              />
-              {isOverlayTile ? (
-                <span className="absolute inset-0 flex items-center justify-center bg-background/75 text-sm font-semibold text-foreground backdrop-blur-[1px]">
-                  +{extraCount}
-                </span>
-              ) : null}
-            </button>
-          )
-        })}
-      </div>
+            return (
+              <button
+                key={`${src}-${i}`}
+                type="button"
+                onClick={() => openAt(openIndex)}
+                className={cn(
+                  THUMB_SIZE,
+                  "relative shrink-0 overflow-hidden rounded-md bg-muted",
+                  "transition-transform duration-200 hover:scale-[1.03]",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                )}
+                aria-label={
+                  isOverlayTile
+                    ? `Ver ${extraCount} imágenes más`
+                    : `Ver imagen ${i + 1} de ${images.length}`
+                }
+              >
+                <Image
+                  src={src}
+                  alt={`${altPrefix} — miniatura ${i + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="76px"
+                />
+                {isOverlayTile ? (
+                  <span className="absolute inset-0 flex items-center justify-center bg-background/75 text-sm font-semibold text-foreground backdrop-blur-[1px]">
+                    +{extraCount}
+                  </span>
+                ) : null}
+              </button>
+            )
+          })}
+        </div>
+      )}
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent
