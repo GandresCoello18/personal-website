@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Casos de estudio: Tayos, Meniuz y Order Lifecycle.",
   alternates: { canonical: "/proyectos" },
   openGraph: {
-    title: "Proyectos | Andrés Coello",
+    title: "Proyectos | Andrés Coello Goyes",
     description: "Casos de estudio: Tayos, Meniuz y Order Lifecycle.",
     url: `${siteUrl}/proyectos`,
     type: "website",

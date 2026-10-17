@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     canonical: "/blog",
   },
   openGraph: {
-    title: "Blog | Andrés Coello",
+    title: "Blog | Andrés Coello Goyes",
     description: "Artículos sobre desarrollo web, Next.js, APIs y buenas prácticas de software.",
     url: `${siteUrl}/blog`,
     type: "website",

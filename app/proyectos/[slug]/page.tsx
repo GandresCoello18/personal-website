@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import { CaseLayout } from "@/components/cases/case-layout"
 import { getAllCaseSlugs } from "@/lib/cases"
 import { getCaseBySlug } from "@/lib/compile-case"
-import { getBreadcrumbJsonLd } from "@/lib/json-ld"
+import { getBreadcrumbJsonLd, getPersonAuthorJsonLd } from "@/lib/json-ld"
 import { absoluteUrl, getSiteUrl } from "@/lib/site"
 
 type PageProps = {
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     keywords: meta.stack,
     alternates: { canonical: `/proyectos/${meta.slug}` },
     openGraph: {
-      title: `${meta.title} — Andrés Coello`,
+      title: `${meta.title} — Andrés Coello Goyes`,
       description: meta.description,
       type: "article",
       url,
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: "summary_large_image",
-      title: `${meta.title} — Andrés Coello`,
+      title: `${meta.title} — Andrés Coello Goyes`,
       description: meta.description,
       images: [ogImage],
     },
@@ -62,16 +62,8 @@ export default async function CaseStudyPage({ params }: PageProps) {
     "@type": "Article",
     headline: meta.title,
     description: meta.description,
-    author: {
-      "@type": "Person",
-      name: "Andrés Coello",
-      url: siteUrl,
-    },
-    publisher: {
-      "@type": "Person",
-      name: "Andrés Coello",
-      "@id": `${siteUrl}/#person`,
-    },
+    author: getPersonAuthorJsonLd(),
+    publisher: getPersonAuthorJsonLd(),
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": caseUrl,

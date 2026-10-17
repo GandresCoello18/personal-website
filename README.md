@@ -1,6 +1,6 @@
 # Portafolio Personal - Andres Coello
 
-Portafolio de **Andrés Coello — Backend Engineer**. APIs y plataformas SaaS en Node.js, TypeScript, NestJS, PostgreSQL, AWS y LLM/RAG.
+Portafolio de **Andrés Coello Goyes — Backend Engineer**. APIs y plataformas SaaS en Node.js, TypeScript, NestJS, PostgreSQL, AWS y LLM/RAG.
 
 <img width="1005" height="483" alt="image" src="https://github.com/user-attachments/assets/61131f8e-cf87-44bd-b92a-4e7a324bba9f" />
 
@@ -14,7 +14,7 @@ Este sitio web sirve como:
 
 ## Mentoría
 
-La página `/mentoria` (fuera del menú principal) reúne clases, precios, testimonios y pagos. El menú principal es Experiencia · Proyectos · Escritos · Contacto.
+La página `/mentoria` (fuera del menú principal) reúne clases, precios, testimonios y pagos. El menú principal es Sobre mí · Experiencia · Proyectos · Escritos · Contacto. `/sobre-mi` resume hechos de identidad para buscadores y motores de IA.
 
 ## Tecnologías
 
@@ -37,6 +37,8 @@ Copia `.env.example` a `.env.local`. En Vercel (Production y Preview) hay que de
 | `GMAIL_RECIPIENT`                                     | Sí                 | Buzón que recibe el formulario de contacto                                                                             |
 | `GEMINI_API_KEY`                                      | Sí (para `/apply`) | Google AI Studio                                                                                                       |
 | `NEXT_PUBLIC_SITE_URL`                                | Recomendada        | `https://andrescoellog.com`                                                                                            |
+| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`                | Opcional           | Token de Google Search Console (meta `google-site-verification`). Vacío: no se emite la etiqueta                       |
+| `NEXT_PUBLIC_BING_SITE_VERIFICATION`                  | Opcional           | Token de Bing Webmaster Tools (meta `msvalidate.01`). Vacío: no se emite la etiqueta                                   |
 | `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | Sí (historial)     | Redis de Upstash creado a mano. Sin ellas `/apply` avisa «historial no disponible» y pide confirmación antes de enviar |
 | `KV_REST_API_URL` / `KV_REST_API_TOKEN`               | Respaldo           | Solo si Vercel Marketplace las inyecta. El código mira **UPSTASH primero**                                             |
 | `RADAR_TIMEZONE`                                      | Opcional           | Por defecto `America/Guayaquil`                                                                                        |

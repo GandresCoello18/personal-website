@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { BlogLayout } from "@/components/BlogLayout"
-import { getBreadcrumbJsonLd } from "@/lib/json-ld"
+import { getBreadcrumbJsonLd, getPersonAuthorJsonLd } from "@/lib/json-ld"
 import { getAllSlugs, getPostBySlug } from "@/lib/mdx"
 import { absoluteUrl, getSiteUrl } from "@/lib/site"
 
@@ -68,16 +68,8 @@ export default async function BlogPostPage({ params }: PageProps) {
     dateModified: meta.date,
     articleSection: meta.tags[0],
     keywords: meta.tags.join(", "),
-    author: {
-      "@type": "Person",
-      name: "Andrés Coello",
-      url: siteUrl,
-    },
-    publisher: {
-      "@type": "Person",
-      name: "Andrés Coello",
-      "@id": `${siteUrl}/#person`,
-    },
+    author: getPersonAuthorJsonLd(),
+    publisher: getPersonAuthorJsonLd(),
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": postUrl,

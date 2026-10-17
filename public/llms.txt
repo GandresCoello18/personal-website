@@ -1,0 +1,23 @@
+# Andrés Coello Goyes
+
+Andrés Coello Goyes es Backend Software Engineer. Vive en Ambato, Ecuador.
+Construye APIs y plataformas SaaS con Node.js, TypeScript, NestJS, PostgreSQL, AWS y LLM/RAG.
+Trabaja en DevLokos. En paralelo es Backend y DevOps Lead de Meniuz (part-time).
+
+## Páginas
+
+- https://andrescoellog.com/
+- https://andrescoellog.com/sobre-mi
+- https://andrescoellog.com/proyectos
+- https://andrescoellog.com/blog
+- https://andrescoellog.com/videos
+- https://andrescoellog.com/mentoria
+- https://andrescoellog.com/pdf/Andres_Coello_Goyes_full_stack_developer_2026.pdf
+
+## Perfiles
+
+- LinkedIn: https://www.linkedin.com/in/andrescoellogoyes/
+- GitHub: https://github.com/GandresCoello18
+- YouTube: https://www.youtube.com/@andrescoellogoyes
+- Classgap: https://www.classgap.com/me/andres-coello-web-tech
+- X: https://x.com/acoellogoyes

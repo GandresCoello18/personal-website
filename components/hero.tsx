@@ -44,7 +44,7 @@ function ProfileLockup() {
       <BlueprintFrame className="size-[4.5rem] shrink-0 overflow-hidden sm:size-24">
         <Image
           src="/profile.jpeg"
-          alt="Andrés Coello — Backend Engineer"
+          alt="Andrés Coello Goyes, Backend Engineer"
           width={192}
           height={192}
           className="aspect-square size-full object-cover object-top"
@@ -52,7 +52,7 @@ function ProfileLockup() {
         />
       </BlueprintFrame>
       <h1 className="section-title min-w-0">
-        Andrés Coello
+        Andrés Coello Goyes
         <span className="mt-1 block font-medium text-foreground">Backend Engineer</span>
       </h1>
     </div>

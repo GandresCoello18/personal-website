@@ -1,13 +1,13 @@
 {
   "id": "/",
   "scope": "/",
-  "name": "Andrés Coello — Backend Engineer",
-  "short_name": "Andrés Coello",
+  "name": "Andrés Coello Goyes — Backend Engineer",
+  "short_name": "Andrés Coello Goyes",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0d1d40",
   "theme_color": "#0d1d40",
-  "description": "Andrés Coello, Backend Engineer. APIs y plataformas SaaS en Node.js, TypeScript, NestJS, PostgreSQL, AWS y LLM/RAG.",
+  "description": "Andrés Coello Goyes, Backend Software Engineer en Ecuador. APIs y SaaS en Node.js, TypeScript, NestJS, PostgreSQL, AWS y LLM/RAG.",
   "lang": "es",
   "icons": [
     {

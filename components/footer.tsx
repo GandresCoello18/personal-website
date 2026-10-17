@@ -14,6 +14,7 @@ export function Footer() {
       { label: "Sobre Classgap", href: "https://classgap.com/about/" },
     ],
     recursos: [
+      { label: "Sobre mí", href: "/sobre-mi" },
       { label: "Blog", href: "/blog" },
       { label: "Videos", href: "/videos" },
       { label: "Mentoría", href: "/mentoria" },
@@ -118,7 +119,9 @@ export function Footer() {
                         ? UmamiEvents.blogCta
                         : link.href.includes("videos")
                           ? UmamiEvents.videosCta
-                          : UmamiEvents.navServices
+                          : link.href.includes("sobre-mi")
+                            ? UmamiEvents.socialClick
+                            : UmamiEvents.navServices
                     }
                     eventData={{ source: "footer" }}
                     className="inline-flex min-h-11 items-center text-sm text-muted-foreground transition-colors hover:text-foreground"

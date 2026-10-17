@@ -4,8 +4,15 @@ import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
 import { UmamiAnalytics } from "@/components/umami-analytics"
+import {
+  PERSON_NAME,
+  SITE_DESCRIPTION,
+  SITE_TITLE_DEFAULT,
+  SITE_TITLE_TEMPLATE,
+} from "@/lib/identity"
 import { getPersonJsonLd } from "@/lib/json-ld"
 import { getSiteUrl, getSiteUrlObject } from "@/lib/site"
+import { getSiteVerification } from "@/lib/site-verification"
 import "./globals.css"
 
 const plexSans = IBM_Plex_Sans({
@@ -23,7 +30,7 @@ const plexMono = IBM_Plex_Mono({
 })
 
 const siteUrl = getSiteUrl()
-const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+const siteVerification = getSiteVerification()
 
 export const viewport: Viewport = {
   themeColor: "#0d1d40",
@@ -33,11 +40,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: getSiteUrlObject(),
   title: {
-    default: "Andrés Coello — Backend Engineer",
-    template: "%s | Andrés Coello",
+    default: SITE_TITLE_DEFAULT,
+    template: SITE_TITLE_TEMPLATE,
   },
-  description:
-    "Andrés Coello, Backend Engineer. APIs y plataformas SaaS en Node.js, TypeScript, NestJS, PostgreSQL, AWS y LLM/RAG.",
+  description: SITE_DESCRIPTION,
   keywords: [
     "backend engineer",
     "Node.js",
@@ -48,36 +54,35 @@ export const metadata: Metadata = {
     "LLM",
     "RAG",
   ],
-  applicationName: "Andrés Coello Portfolio",
+  applicationName: `${PERSON_NAME} Portfolio`,
   category: "technology",
-  creator: "Andrés Coello",
-  authors: [{ name: "Andrés Coello", url: siteUrl }],
-  publisher: "Andrés Coello",
+  creator: PERSON_NAME,
+  authors: [{ name: PERSON_NAME, url: siteUrl }],
+  publisher: PERSON_NAME,
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
-    locale: "es_ES",
+    locale: "es_EC",
     url: siteUrl,
-    title: "Andrés Coello — Backend Engineer",
-    description:
-      "Backend Engineer. APIs y plataformas SaaS en Node.js, TypeScript, NestJS, PostgreSQL, AWS y LLM/RAG.",
-    siteName: "Andrés Coello",
+    title: SITE_TITLE_DEFAULT,
+    description: SITE_DESCRIPTION,
+    siteName: PERSON_NAME,
     images: [
       {
         url: "/1764558900283.png",
         width: 1200,
         height: 1200,
         type: "image/png",
-        alt: "Andrés Coello — Backend Engineer",
+        alt: SITE_TITLE_DEFAULT,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Andrés Coello — Backend Engineer",
-    description: "Backend Engineer. Node.js, TypeScript, NestJS, PostgreSQL, AWS y LLM/RAG.",
+    title: SITE_TITLE_DEFAULT,
+    description: SITE_DESCRIPTION,
     creator: "@acoellogoyes",
     images: ["/1764558900283.png"],
   },
@@ -92,7 +97,7 @@ export const metadata: Metadata = {
     shortcut: "/1764558900283.png",
   },
   manifest: "/site.webmanifest",
-  ...(googleVerification ? { verification: { google: googleVerification } } : {}),
+  ...(siteVerification ? { verification: siteVerification } : {}),
   referrer: "strict-origin-when-cross-origin",
 }
 

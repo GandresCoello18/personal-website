@@ -11,11 +11,11 @@ import {
 } from "./nav.ts"
 
 describe("nav information architecture", () => {
-  it("keeps the primary menu to four destinations", () => {
-    assert.equal(PRIMARY_NAV_ITEMS.length, 4)
+  it("keeps Sobre mí in the primary menu with the existing destinations", () => {
+    assert.equal(PRIMARY_NAV_ITEMS.length, 5)
     assert.deepEqual(
       PRIMARY_NAV_ITEMS.map((item) => item.name),
-      ["Experiencia", "Proyectos", "Escritos", "Contacto"],
+      ["Sobre mí", "Experiencia", "Proyectos", "Escritos", "Contacto"],
     )
   })
 
@@ -59,6 +59,13 @@ describe("isNavItemActive", () => {
   it("activates Contacto on the home contact section", () => {
     assert.equal(isNavItemActive(CONTACT_NAV_ITEM, "/", "contact"), true)
     assert.equal(isNavItemActive(CONTACT_NAV_ITEM, "/", "projects"), false)
+  })
+
+  it("activates Sobre mí on its own route", () => {
+    const about = PRIMARY_NAV_ITEMS.find((item) => item.href === "/sobre-mi")
+    assert.ok(about)
+    assert.equal(isNavItemActive(about, "/sobre-mi"), true)
+    assert.equal(isNavItemActive(about, "/"), false)
   })
 })
 

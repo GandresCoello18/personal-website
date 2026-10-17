@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { VideoLayout } from "@/components/VideoLayout"
-import { getBreadcrumbJsonLd } from "@/lib/json-ld"
+import { getBreadcrumbJsonLd, getPersonAuthorJsonLd } from "@/lib/json-ld"
 import { absoluteUrl, getSiteUrl } from "@/lib/site"
 import { getAllVideoSlugs, getVideoBySlug } from "@/lib/videos"
 
@@ -69,11 +69,7 @@ export default async function VideoDetailPage({ params }: PageProps) {
       meta.youtubeStart ? `?start=${meta.youtubeStart}` : ""
     }`,
     url: videoUrl,
-    author: {
-      "@type": "Person",
-      name: "Andrés Coello",
-      url: siteUrl,
-    },
+    author: getPersonAuthorJsonLd(),
   }
 
   const breadcrumbJsonLd = getBreadcrumbJsonLd([

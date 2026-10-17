@@ -8,13 +8,16 @@ export type NavItem = {
 }
 
 export const PRIMARY_NAV_ITEMS: readonly NavItem[] = [
+  { name: "Sobre mí", href: "/sobre-mi" },
   { name: "Experiencia", href: "/#experience", sectionId: "experience" },
   { name: "Proyectos", href: "/#projects", sectionId: "projects" },
   { name: "Escritos", href: "/#escritos", sectionId: "escritos" },
   { name: "Contacto", href: "/#contact", sectionId: "contact" },
 ] as const
 
-export const CONTACT_NAV_ITEM: NavItem = PRIMARY_NAV_ITEMS[3]!
+export const CONTACT_NAV_ITEM: NavItem = PRIMARY_NAV_ITEMS.find(
+  (item) => item.sectionId === "contact",
+)!
 
 export const SKIP_TO_CONTENT_LABEL = "Saltar al contenido"
 export const MAIN_CONTENT_ID = "contenido-principal"

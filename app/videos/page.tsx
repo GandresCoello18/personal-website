@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Resúmenes y charlas en video sobre desarrollo web, programación y carrera tech.",
   alternates: { canonical: "/videos" },
   openGraph: {
-    title: "Videos | Andrés Coello",
+    title: "Videos | Andrés Coello Goyes",
     description: "Resúmenes y charlas en video sobre desarrollo web, programación y carrera tech.",
     url: `${siteUrl}/videos`,
     type: "website",
