@@ -258,6 +258,30 @@
     @apply border-b border-border px-4 py-2.5 text-left font-mono text-xs tracking-wide text-muted-foreground;
   }
 
+  /* HTML width/height attrs (1080×1350) must not expand the column.
+     Raw MDX <img> skips the React wrapper, so the cap lives here.
+     max-height 600px → ~480px wide for 4:5 portraits; landscape stays column-wide. */
+  .blog-mdx {
+    min-width: 0;
+  }
+
+  .blog-mdx img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: min(70vh, 600px);
+    margin-inline: auto;
+  }
+
+  .blog-mdx .blog-mdx-image {
+    max-width: min(100%, 48rem);
+  }
+
+  .blog-mdx .blog-mdx-image[data-orientation="portrait"] {
+    max-width: min(100%, 480px);
+  }
+
   .blog-code-figure pre.shiki {
     @apply m-0 overflow-x-auto rounded-none border-0 p-0 text-[13px] leading-6;
   }

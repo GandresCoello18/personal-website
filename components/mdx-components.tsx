@@ -4,27 +4,32 @@ import Link from "next/link"
 import type { ComponentPropsWithoutRef } from "react"
 import { YouTubeEmbed } from "@/components/mdx/YouTubeEmbed"
 import { Callout } from "@/components/mdx/Callout"
+import { blogMdxImageMaxWidthPx, blogMdxImageOrientation } from "@/lib/blog-mdx-image"
 import { cn } from "@/lib/utils"
 
 type ImgProps = ComponentPropsWithoutRef<"img">
-
-/** Ancho máximo del cuerpo (~768px): la portada en `BlogLayout` sigue usando todo `max-w-6xl`. */
-const BODY_IMG_MAX_W_PX = 768
 
 function MdxImage({ src, alt, width, height }: ImgProps) {
   if (!src || typeof src !== "string") return null
   const intrinsicW = typeof width === "number" ? width : Number(width) || 1200
   const intrinsicH = typeof height === "number" ? height : Number(height) || 630
+  const orientation = blogMdxImageOrientation(intrinsicW, intrinsicH)
+  const maxWidthPx = blogMdxImageMaxWidthPx(intrinsicW, intrinsicH)
+
   return (
-    <span className="blog-mdx-image mx-auto my-8 block w-full max-w-3xl">
-      <span className="block overflow-hidden border border-border bg-muted/30">
+    <span
+      className="blog-mdx-image mx-auto my-8 block w-full min-w-0"
+      data-orientation={orientation}
+    >
+      <span className="block max-w-full overflow-hidden border border-border bg-muted/30">
         <Image
           src={src}
           alt={alt ?? ""}
           width={intrinsicW}
           height={intrinsicH}
-          className="h-auto max-h-[min(75vh,680px)] w-full object-contain"
-          sizes={`(max-width: 768px) 100vw, ${BODY_IMG_MAX_W_PX}px`}
+          className="h-auto w-auto max-w-full object-contain"
+          sizes={`(max-width: ${maxWidthPx}px) 100vw, ${maxWidthPx}px`}
+          style={{ maxWidth: "100%", height: "auto" }}
         />
         {alt ? (
           <span className="block px-3 py-2 text-center text-sm text-muted-foreground">{alt}</span>
