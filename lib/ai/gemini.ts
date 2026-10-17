@@ -10,6 +10,8 @@ import {
   INTERVIEW_ANSWER_SYSTEM_PROMPT,
   buildInterviewAnswerUserPrompt,
 } from "@/lib/ai/prompts/interview-answer"
+import { resolveGeminiModelChain } from "@/lib/ai/gemini-models"
+import { isModelUnavailableError, isRetryableError, withInRequestRetries } from "@/lib/ai/retry"
 import {
   emailDraftSchema,
   jobExtractSchema,
@@ -20,18 +22,8 @@ import {
 } from "@/lib/apply/types"
 import { interviewAnswersSchema, type InterviewAnswers } from "@/lib/interview/types"
 
-/** Free-tier friendly default. Override with GEMINI_MODEL. */
-const PRIMARY_MODEL = process.env.GEMINI_MODEL || "gemini-3.1-flash-lite"
-const FALLBACK_MODELS = (process.env.GEMINI_FALLBACK_MODELS || "")
-  .split(",")
-  .map((m) => m.trim())
-  .filter(Boolean)
-
-const MODEL_CHAIN = [PRIMARY_MODEL, ...FALLBACK_MODELS.filter((m) => m !== PRIMARY_MODEL)]
-
-/** Single attempt only — avoids burning free-tier tokens on retries. */
-const MAX_ATTEMPTS = 1
 const REQUEST_TIMEOUT_MS = Number(process.env.GEMINI_TIMEOUT_MS || 55_000)
+const IN_REQUEST_BUDGET_MS = 50_000
 const MAX_JOB_TEXT_CHARS = 8_000
 
 function getClient() {
@@ -47,16 +39,6 @@ function parseJsonPayload(raw: string): unknown {
   const fenced = trimmed.match(/```(?:json)?\s*([\s\S]*?)```/)
   const candidate = fenced ? fenced[1].trim() : trimmed
   return JSON.parse(candidate)
-}
-
-function isRetryableError(error: unknown): boolean {
-  const message = error instanceof Error ? error.message : String(error)
-  return (
-    message.includes("[503") ||
-    message.includes("[429") ||
-    message.includes("high demand") ||
-    message.includes("Resource exhausted")
-  )
 }
 
 async function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
@@ -85,9 +67,11 @@ async function generateJsonText(
   run: GenerateFn,
 ): Promise<string> {
   const client = getClient()
+  const modelChain = resolveGeminiModelChain()
+  const deadlineMs = Date.now() + IN_REQUEST_BUDGET_MS
   let lastError: unknown
 
-  for (const modelId of MODEL_CHAIN) {
+  for (const modelId of modelChain) {
     const model = client.getGenerativeModel({
       model: modelId,
       systemInstruction,
@@ -97,14 +81,19 @@ async function generateJsonText(
       },
     })
 
-    for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
-      try {
-        return await withTimeout(run(model), REQUEST_TIMEOUT_MS)
-      } catch (error) {
-        lastError = error
-        // No sleep / no retry by default (MAX_ATTEMPTS = 1)
-        if (!isRetryableError(error) || attempt >= MAX_ATTEMPTS - 1) break
-      }
+    try {
+      return await withInRequestRetries(
+        async () => {
+          const remaining = deadlineMs - Date.now()
+          const timeoutMs = Math.min(REQUEST_TIMEOUT_MS, Math.max(1_000, remaining))
+          return await withTimeout(run(model), timeoutMs)
+        },
+        { deadlineMs },
+      )
+    } catch (error) {
+      lastError = error
+      if (isModelUnavailableError(error)) continue
+      if (!isRetryableError(error)) throw error
     }
   }
 

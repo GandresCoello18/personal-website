@@ -4,8 +4,41 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import type { AnalyzeResult } from "@/services/apply/result"
 import type { CvKey } from "@/lib/apply/cv"
 import { CV_FILES } from "@/lib/apply/cv"
+import type { ApplyJobPublic, QueuedApplyResponse } from "@/lib/apply/job-types"
 import type { ApplyCheckResult } from "@/lib/radar/types"
 import type { JobCategory, JobExtract, EmailDraft } from "@/lib/apply/types"
+
+const JOB_IDS_STORAGE_KEY = "applyQueuedJobIds:v1"
+
+function readStoredJobIds(): string[] {
+  try {
+    const raw = window.localStorage.getItem(JOB_IDS_STORAGE_KEY)
+    if (!raw) return []
+    const parsed = JSON.parse(raw) as unknown
+    if (!Array.isArray(parsed)) return []
+    return parsed.filter((id): id is string => typeof id === "string" && id.length > 0)
+  } catch {
+    return []
+  }
+}
+
+function storeJobIds(ids: string[]) {
+  try {
+    window.localStorage.setItem(JOB_IDS_STORAGE_KEY, JSON.stringify(ids.slice(0, 20)))
+  } catch {
+    // private mode / quota
+  }
+}
+
+function isQueuedResponse(data: unknown): data is QueuedApplyResponse {
+  if (!data || typeof data !== "object") return false
+  const record = data as { queued?: unknown; jobId?: unknown }
+  return record.queued === true && typeof record.jobId === "string"
+}
+
+function jobIsActive(job: ApplyJobPublic): boolean {
+  return job.status === "pending" || job.status === "running"
+}
 
 export type SourceMode = "text" | "image"
 
@@ -53,6 +86,13 @@ export function useApplyFlow() {
   const [registerSuccess, setRegisterSuccess] = useState(false)
   const sendingLock = useRef(false)
 
+  const [jobs, setJobs] = useState<ApplyJobPublic[]>([])
+  const [jobsLoading, setJobsLoading] = useState(false)
+  const [jobsError, setJobsError] = useState("")
+  const [queueNotice, setQueueNotice] = useState("")
+  const hydratedJobId = useRef<string | null>(null)
+  const watchedJobIds = useRef(new Set<string>())
+
   useEffect(() => {
     let cancelled = false
     ;(async () => {
@@ -87,6 +127,70 @@ export function useApplyFlow() {
     },
     [],
   )
+
+  const applyReadyJob = useCallback(
+    (job: ApplyJobPublic) => {
+      if (job.status !== "ready" || !job.result) return
+      if (hydratedJobId.current === job.id) return
+      hydratedJobId.current = job.id
+      if (job.kind === "analyze") {
+        setResult(job.result)
+        hydratePreview(job.result.extract, null, job.result.cvFilename)
+        if (job.result.extract.category !== "unknown") {
+          setCategoryOverride(job.result.extract.category)
+        }
+        setAnalyzeError("")
+        setQueueNotice("Análisis listo. Revísalo abajo.")
+      } else {
+        setResult((prev) => ({
+          ...job.result!,
+          match: job.result?.match ?? prev?.match ?? null,
+        }))
+        hydratePreview(job.result.extract, job.result.draft, job.result.cvFilename)
+        setDraftError("")
+        setQueueNotice("Borrador listo. Revísalo y envíalo a mano.")
+      }
+    },
+    [hydratePreview],
+  )
+
+  const rememberJobId = useCallback((jobId: string) => {
+    const ids = [jobId, ...readStoredJobIds().filter((id) => id !== jobId)]
+    storeJobIds(ids)
+    watchedJobIds.current.add(jobId)
+  }, [])
+
+  const refreshJobs = useCallback(async () => {
+    setJobsLoading(true)
+    try {
+      const res = await fetch("/api/apply/jobs")
+      const data = await res.json()
+      if (!res.ok) {
+        setJobsError(data.error || "No se pudo leer la cola")
+        return [] as ApplyJobPublic[]
+      }
+      const list = (data.jobs ?? []) as ApplyJobPublic[]
+      setJobs(list)
+      setJobsError("")
+      return list
+    } catch {
+      setJobsError("No se pudo leer la cola")
+      return [] as ApplyJobPublic[]
+    } finally {
+      setJobsLoading(false)
+    }
+  }, [])
+
+  const fetchJob = useCallback(async (id: string): Promise<ApplyJobPublic | null> => {
+    try {
+      const res = await fetch(`/api/apply/jobs/${encodeURIComponent(id)}`)
+      const data = await res.json()
+      if (!res.ok) return null
+      return data.job as ApplyJobPublic
+    } catch {
+      return null
+    }
+  }, [])
 
   const unlock = useCallback(async () => {
     setUnlocking(true)
@@ -138,6 +242,13 @@ export function useApplyFlow() {
 
       const res = await fetch("/api/apply/analyze", { method: "POST", body: form })
       const data = await res.json()
+      if (res.status === 202 && isQueuedResponse(data)) {
+        rememberJobId(data.jobId)
+        setQueueNotice(data.message)
+        setAnalyzeError("")
+        void refreshJobs()
+        return
+      }
       if (!res.ok) {
         setAnalyzeError(data.error || "Error al analizar")
         return
@@ -149,12 +260,22 @@ export function useApplyFlow() {
       if (analyzed.extract.category !== "unknown") {
         setCategoryOverride(analyzed.extract.category)
       }
+      setQueueNotice("")
     } catch {
       setAnalyzeError("Error de red al analizar")
     } finally {
       setAnalyzing(false)
     }
-  }, [mode, text, imageFile, categoryOverride, manualCv, hydratePreview])
+  }, [
+    mode,
+    text,
+    imageFile,
+    categoryOverride,
+    manualCv,
+    hydratePreview,
+    rememberJobId,
+    refreshJobs,
+  ])
 
   const generateDraft = useCallback(async () => {
     if (!result?.extract) {
@@ -200,12 +321,20 @@ export function useApplyFlow() {
         }),
       })
       const data = await res.json()
+      if (res.status === 202 && isQueuedResponse(data)) {
+        rememberJobId(data.jobId)
+        setQueueNotice(data.message)
+        setDraftError("")
+        void refreshJobs()
+        return
+      }
       if (!res.ok) {
         setDraftError(data.error || "Error al generar el correo")
         return
       }
 
       const drafted = data as AnalyzeResult
+      setQueueNotice("")
       setResult({
         ...drafted,
         match: drafted.match ?? result.match,
@@ -216,7 +345,16 @@ export function useApplyFlow() {
     } finally {
       setDrafting(false)
     }
-  }, [result, categoryOverride, manualCv, preview, recruiterProfileText, hydratePreview])
+  }, [
+    result,
+    categoryOverride,
+    manualCv,
+    preview,
+    recruiterProfileText,
+    hydratePreview,
+    rememberJobId,
+    refreshJobs,
+  ])
 
   const canSend = useMemo(() => {
     if (!preview) return false
@@ -294,6 +432,60 @@ export function useApplyFlow() {
     }, 400)
     return () => window.clearTimeout(handle)
   }, [unlocked, checkHistory])
+
+  useEffect(() => {
+    if (!unlocked) return
+    const fromQuery = new URLSearchParams(window.location.search).get("job")
+    const stored = readStoredJobIds()
+    const ids = fromQuery ? [fromQuery, ...stored.filter((id) => id !== fromQuery)] : stored
+    if (fromQuery) storeJobIds(ids)
+
+    const handle = window.setTimeout(() => {
+      void refreshJobs()
+      if (!fromQuery) return
+      void fetchJob(fromQuery).then((job) => {
+        if (job?.status === "ready") applyReadyJob(job)
+        if (job?.status === "failed") {
+          const message = job.lastError || "El trabajo en cola falló"
+          if (job.kind === "draft") setDraftError(message)
+          else setAnalyzeError(message)
+        }
+      })
+    }, 0)
+    return () => window.clearTimeout(handle)
+  }, [unlocked, refreshJobs, fetchJob, applyReadyJob])
+
+  const hasActiveJob = jobs.some(jobIsActive)
+
+  useEffect(() => {
+    for (const job of jobs) {
+      if (jobIsActive(job)) watchedJobIds.current.add(job.id)
+    }
+  }, [jobs])
+
+  useEffect(() => {
+    if (!unlocked || !hasActiveJob) return
+    const handle = window.setInterval(() => {
+      void (async () => {
+        const list = await refreshJobs()
+        for (const job of list) {
+          if (!watchedJobIds.current.has(job.id)) continue
+          if (job.status === "ready") {
+            applyReadyJob(job)
+            watchedJobIds.current.delete(job.id)
+          }
+          if (job.status === "failed") {
+            const message = job.lastError || "El trabajo en cola falló"
+            if (job.kind === "draft") setDraftError(message)
+            else setAnalyzeError(message)
+            setQueueNotice("")
+            watchedJobIds.current.delete(job.id)
+          }
+        }
+      })()
+    }, 4000)
+    return () => window.clearInterval(handle)
+  }, [unlocked, hasActiveJob, refreshJobs, applyReadyJob])
 
   const confirmIfNeeded = useCallback(() => {
     if (history?.historyUnavailable) {
@@ -430,6 +622,8 @@ export function useApplyFlow() {
     setRegistering(false)
     setRegisterError("")
     setRegisterSuccess(false)
+    setQueueNotice("")
+    hydratedJobId.current = null
   }, [text, recruiterProfileText, imageFile, jobUrl, result, preview, sendSuccess, registerSuccess])
 
   return {
@@ -477,5 +671,10 @@ export function useApplyFlow() {
     registerSuccess,
     register,
     clear,
+    jobs,
+    jobsLoading,
+    jobsError,
+    queueNotice,
+    openJob: applyReadyJob,
   }
 }

@@ -1,0 +1,12 @@
+{
+  "functions": {
+    "app/api/queues/apply-jobs/route.ts": {
+      "experimentalTriggers": [
+        {
+          "type": "queue/v2beta",
+          "topic": "apply-jobs"
+        }
+      ]
+    }
+  }
+}

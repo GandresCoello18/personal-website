@@ -2,11 +2,16 @@ import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 import { requestHasApplyUnlock } from "@/lib/apply/auth"
 import { isValidCvKey } from "@/lib/apply/cv"
+import { enqueueAnalyzeJob } from "@/lib/apply/enqueue-job"
+import { respondQueuedOrError } from "@/lib/apply/queue-from-route"
 import { jobCategorySchema } from "@/lib/apply/types"
 import { tooManyRequests } from "@/lib/http/rate-limit-response"
 import { getClientIp } from "@/lib/security/client-ip"
 import { applyAiLimiter } from "@/lib/security/limiters"
 import { analyzeJobPosting } from "@/services/apply/analyze"
+import type { AnalyzeInput } from "@/services/apply/analyze"
+
+export const maxDuration = 60
 
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024
 const ALLOWED_MIME = new Set(["image/png", "image/jpeg", "image/jpg"])
@@ -43,13 +48,18 @@ export async function POST(request: NextRequest) {
         )
       }
 
-      const result = await analyzeJobPosting({
-        mode: "text",
-        text,
-        categoryOverride,
-        manualCv,
-      })
-      return NextResponse.json(result)
+      const input: AnalyzeInput = { mode: "text", text, categoryOverride, manualCv }
+      try {
+        const result = await analyzeJobPosting(input)
+        return NextResponse.json(result)
+      } catch (error) {
+        console.error("[apply/analyze]", error)
+        return respondQueuedOrError(
+          error,
+          () => enqueueAnalyzeJob(input),
+          "No se pudo analizar la vacante.",
+        )
+      }
     }
 
     if (mode === "image") {
@@ -71,27 +81,33 @@ export async function POST(request: NextRequest) {
       }
 
       const buffer = Buffer.from(await file.arrayBuffer())
-      const result = await analyzeJobPosting({
+      const input: AnalyzeInput = {
         mode: "image",
         mimeType: mimeType === "image/jpg" ? "image/jpeg" : mimeType,
         base64: buffer.toString("base64"),
         categoryOverride,
         manualCv,
-      })
-      return NextResponse.json(result)
+      }
+      try {
+        const result = await analyzeJobPosting(input)
+        return NextResponse.json(result)
+      } catch (error) {
+        console.error("[apply/analyze]", error)
+        return respondQueuedOrError(
+          error,
+          () => enqueueAnalyzeJob(input),
+          "No se pudo analizar la vacante.",
+        )
+      }
     }
 
     return NextResponse.json({ error: "mode debe ser text o image" }, { status: 400 })
   } catch (error) {
     console.error("[apply/analyze]", error)
     const message = error instanceof Error ? error.message : "Error al analizar"
-    const userFacing =
-      message.includes("saturado") || message.includes("Timeout")
-        ? message
-        : "No se pudo analizar la vacante."
     return NextResponse.json(
       {
-        error: userFacing,
+        error: "No se pudo analizar la vacante.",
         details: process.env.NODE_ENV === "development" ? message : undefined,
       },
       { status: 500 },

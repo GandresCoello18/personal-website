@@ -52,6 +52,8 @@
     "@radix-ui/react-tooltip": "1.1.6",
     "@upstash/redis": "^1.39.0",
     "@vercel/analytics": "latest",
+    "@vercel/blob": "^2.8.2",
+    "@vercel/queue": "^0.8.0",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

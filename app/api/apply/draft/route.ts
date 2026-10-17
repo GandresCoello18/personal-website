@@ -2,11 +2,15 @@ import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 import { requestHasApplyUnlock } from "@/lib/apply/auth"
 import { isValidCvKey } from "@/lib/apply/cv"
+import { enqueueDraftJob } from "@/lib/apply/enqueue-job"
+import { respondQueuedOrError } from "@/lib/apply/queue-from-route"
 import { jobCategorySchema, jobExtractSchema } from "@/lib/apply/types"
 import { tooManyRequests } from "@/lib/http/rate-limit-response"
 import { getClientIp } from "@/lib/security/client-ip"
 import { applyAiLimiter } from "@/lib/security/limiters"
 import { draftFromExtract } from "@/services/apply/draft"
+
+export const maxDuration = 60
 
 export async function POST(request: NextRequest) {
   try {
@@ -37,28 +41,35 @@ export async function POST(request: NextRequest) {
     const recruiterProfileText =
       typeof body?.recruiterProfileText === "string" ? body.recruiterProfileText : undefined
 
-    const result = await draftFromExtract({
+    const input = {
       extract: extractParsed.data,
       categoryOverride,
       manualCv,
       recruiterProfileText,
-    })
-
-    if (result.error && !result.draft) {
-      return NextResponse.json(result, { status: 400 })
     }
 
-    return NextResponse.json(result)
+    try {
+      const result = await draftFromExtract(input)
+
+      if (result.error && !result.draft) {
+        return NextResponse.json(result, { status: 400 })
+      }
+
+      return NextResponse.json(result)
+    } catch (error) {
+      console.error("[apply/draft]", error)
+      return respondQueuedOrError(
+        error,
+        () => enqueueDraftJob(input),
+        "No se pudo generar el correo.",
+      )
+    }
   } catch (error) {
     console.error("[apply/draft]", error)
     const message = error instanceof Error ? error.message : "Error al generar borrador"
-    const userFacing =
-      message.includes("saturado") || message.includes("Timeout")
-        ? message
-        : "No se pudo generar el correo."
     return NextResponse.json(
       {
-        error: userFacing,
+        error: "No se pudo generar el correo.",
         details: process.env.NODE_ENV === "development" ? message : undefined,
       },
       { status: 500 },

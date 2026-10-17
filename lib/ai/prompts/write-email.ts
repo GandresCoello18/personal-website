@@ -1,6 +1,7 @@
-import type { JobExtract } from "@/lib/apply/types"
-import { canPersonalizeGreeting } from "@/lib/apply/recruiter"
-import { applyProfile } from "@/lib/apply/profile"
+import type { JobExtract } from "../../apply/types.ts"
+import { buildEmailGreeting } from "../../apply/greeting.ts"
+import { canPersonalizeGreeting } from "../../apply/recruiter.ts"
+import { applyProfile } from "../../apply/profile.ts"
 
 export const WRITE_EMAIL_SYSTEM_PROMPT = `Eres un asistente que redacta correos de postulación laboral para Andres Coello.
 Devuelves ÚNICAMENTE un objeto JSON válido: { "subject": string, "body": string }.
@@ -19,8 +20,10 @@ Reglas de contenido:
 10. "body": texto plano con saltos de línea (\\n). No HTML.
 11. No repitas una firma larga con teléfono/GitHub: la plantilla HTML del servidor añade la despedida formal. Sí debes incluir LinkedIn y portafolio en el body como en la regla 8.
 12. Saludo / personalización del destinatario:
-   - Si CONTACTO.usePersonalizedGreeting es true y hay recruiterName → saluda con el nombre de forma natural (“Hola María,” / “Hello María,”). Puedes usar solo el primer nombre.
-   - Si usePersonalizedGreeting es false → saludo genérico breve (“Hola,” / “Hello,”). NUNCA inventes un nombre.
+   - El body DEBE abrir con exactamente CONTACTO.greetingLine (primera línea).
+   - Si hay nombre de contacto: “Hola Juan,” / “Hola María,” / “Hello Juan,”. Usa el primer nombre.
+   - Si no hay nombre: “Hola equipo de {Empresa},” / “Hello {Company} team,”. Si tampoco hay empresa: “Hola equipo,” / “Hello team,”.
+   - NUNCA un saludo pelado “Hola,” o “Hello,”. NUNCA inventes un nombre.
 13. Cuando company y/o position estén disponibles, menciónalos de forma natural (no fuerces ambos en cada frase).
 14. Incluye 1–2 anclajes concretos entre requisitos de la vacante y evidencia del CV (sin copiar la Job Description literalmente).
 15. PROJECTS & SPEAKING (opcional): si aportan evidencia clara y relevante (producto propio, IA, speaker, mentoría, seguridad/perf, gaming, etc.), añade como máximo 1–2 frases cortas extras. Si no aportan, omítelos por completo. No listes todos los proyectos ni conviertas el correo en un portfolio.
@@ -39,6 +42,12 @@ export function buildWriteEmailUserPrompt(
   recruiterProfileText = "",
 ): string {
   const usePersonalizedGreeting = canPersonalizeGreeting(job.recruiterConfidence)
+  const greetingLine = buildEmailGreeting({
+    recruiterName: job.recruiterName,
+    company: job.company,
+    language: job.language,
+    recruiterConfidence: job.recruiterConfidence,
+  })
 
   const vacante = {
     company: job.company,
@@ -55,6 +64,7 @@ export function buildWriteEmailUserPrompt(
     recruiterTitle: job.recruiterTitle || "",
     recruiterConfidence: job.recruiterConfidence,
     usePersonalizedGreeting,
+    greetingLine,
     email: job.email,
   }
 

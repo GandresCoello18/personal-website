@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { AccessGate } from "@/components/apply/access-gate"
+import { JobsPanel } from "@/components/apply/jobs-panel"
 import { MatchPanel } from "@/components/apply/match-panel"
 import { PreviewPanel } from "@/components/apply/preview-panel"
 import { SourceForm } from "@/components/apply/source-form"
@@ -51,6 +52,24 @@ export function ApplyApp() {
           </div>
         </div>
       </header>
+
+      {flow.queueNotice ? (
+        <p
+          role="status"
+          className="border border-border bg-muted/40 px-4 py-3 text-sm text-foreground"
+        >
+          {flow.queueNotice}
+        </p>
+      ) : null}
+
+      {flow.jobs.length > 0 || flow.jobsLoading || flow.jobsError ? (
+        <JobsPanel
+          jobs={flow.jobs}
+          loading={flow.jobsLoading}
+          error={flow.jobsError}
+          onOpen={flow.openJob}
+        />
+      ) : null}
 
       <SourceForm
         mode={flow.mode}

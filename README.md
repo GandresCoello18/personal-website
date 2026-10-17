@@ -36,6 +36,8 @@ Copia `.env.example` a `.env.local`. En Vercel (Production y Preview) hay que de
 | `GMAIL_APP_PASSWORD`                                  | Sí                 | App Password de Google                                                                                                 |
 | `GMAIL_RECIPIENT`                                     | Sí                 | Buzón que recibe el formulario de contacto                                                                             |
 | `GEMINI_API_KEY`                                      | Sí (para `/apply`) | Google AI Studio                                                                                                       |
+| `GEMINI_MODEL` / `GEMINI_FALLBACK_MODELS`             | Opcional           | Solo IDs free-tier (ver abajo). Pro u otros se descartan. Default: `gemini-3.1-flash-lite` → `gemini-3.5-flash-lite`   |
+| `BLOB_READ_WRITE_TOKEN`                               | Opcional           | Blob store de Vercel. Solo hace falta si una captura de vacante supera ~700 KB y hay que encolarla                     |
 | `NEXT_PUBLIC_SITE_URL`                                | Recomendada        | `https://andrescoellog.com`                                                                                            |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`                | Opcional           | Token de Google Search Console (meta `google-site-verification`). Vacío: no se emite la etiqueta                       |
 | `NEXT_PUBLIC_BING_SITE_VERIFICATION`                  | Opcional           | Token de Bing Webmaster Tools (meta `msvalidate.01`). Vacío: no se emite la etiqueta                                   |
@@ -49,7 +51,37 @@ Copia `.env.example` a `.env.local`. En Vercel (Production y Preview) hay que de
 
 Sin `APPLY_SESSION_SECRET` el desbloqueo de `/apply` falla cerrado. Tras rotar ese secreto hay que volver a entrar con la clave de acceso (la cookie anterior deja de valer).
 
-El rate limit de contacto y de unlock sigue en memoria (best-effort por isolate). El historial de postulaciones usa Redis.
+El rate limit de contacto y de unlock sigue en memoria (best-effort por isolate). El historial de postulaciones y la cola de `/apply` usan Redis.
+
+### Gemini (free tier)
+
+`/apply` y `/interview` solo usan modelos de texto con free tier en [AI Studio](https://ai.google.dev/gemini-api/docs/pricing) (consultado 17 Oct 2026). El default sigue siendo `gemini-3.1-flash-lite`. Si `GEMINI_MODEL` o un fallback no está en la lista, se ignora.
+
+| ID                       | Uso                  |
+| ------------------------ | -------------------- |
+| `gemini-3.1-flash-lite`  | Default              |
+| `gemini-3.5-flash-lite`  | Fallback por defecto |
+| `gemini-3.5-flash`       | Fallback opcional    |
+| `gemini-3-flash-preview` | Fallback opcional    |
+| `gemini-2.5-flash-lite`  | Fallback opcional    |
+| `gemini-2.5-flash`       | Fallback opcional    |
+
+Quedan fuera Pro, imagen, TTS, Live y embeddings.
+
+### Cola de `/apply` (Gemini saturado)
+
+Si analyze/draft agota los reintentos in-request (2 retries, ~1 s y ~3 s, con jitter y `Retry-After` tope 8 s) por 429/503/sobrecarga/red, el trabajo se guarda en Redis y se encola en el topic `apply-jobs`. La UI recibe **202** y muestra «En cola, se reintentará». El envío por Gmail sigue siendo manual.
+
+Reintentos en cola: **+10 / +30 / +60 / +90 min** desde que se encoló (4 intentos). Al 4.º fallo o a un 4xx no reintentable: estado `failed` y Telegram. Si el borrador o el análisis termina en cola: Telegram con enlace a `/apply?job=…`.
+
+**Qué tienes que hacer tú (el código no puede activarlo):**
+
+1. **Vercel Queues** (beta pública, vale Hobby): desplegar este commit. El trigger vive en `vercel.json` (`app/api/queues/apply-jobs/route.ts` → topic `apply-jobs`). En el dashboard, Queues / Observability debe listar el topic tras el deploy. No hay env var extra en producción: el SDK usa OIDC de Vercel.
+2. **Local:** `vercel link` y `vercel env pull` para el token OIDC. CLI reciente (`vercel dev` o `next dev` según [quickstart](https://vercel.com/docs/queues/quickstart)). Sin OIDC, `send()` falla: el job queda en Redis y la API responde 503 con el id.
+3. **Telegram** (`TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`): es el canal de aviso de esta cola. Sin ellos, el job igual corre; el mensaje se omite.
+4. **Blob** (`BLOB_READ_WRITE_TOKEN`): solo si vas a encolar capturas grandes. Crear un Blob store en el proyecto y pegar el token. Redis aguanta capturas chicas.
+
+Cómo probar: vacante de texto en `/apply` con Gemini saturado (o `GEMINI_API_KEY` inválida no sirve: eso es 4xx y no se encola). Un 429/503 de verdad, o cortar red a mitad, debe devolver 202, listar el job y, si Queues está vivo, Telegram al terminar. `pnpm test` cubre clasificación de reintentos, backoff, saludo (`Hola Juan,` / `Hola equipo de {Empresa},`) y transiciones pending → running → ready/failed.
 
 ## Calidad
 
