@@ -28,7 +28,7 @@ const talks: Talk[] = [
     subtitle:
       "Cómo Meniuz AI usa RAG con Gemini y Qdrant para recomendar platos reales del menú de cada restaurante, con datos actualizados, fallbacks y humanos en el bucle.",
     location: "DevFest Tsáchilas 2026 · Santo Domingo, Ecuador",
-    images: ["/charlas/devfest-tsachilas-2026/speaker-poster.webp"],
+    images: ["/charlas/devfest-tsachilas-2026/stage-photo.webp"],
     tags: ["IA", "RAG", "Gemini", "Qdrant", "Multi-tenant"],
     badges: ["Charla", "Presencial", "DevFest 2026", "GDG"],
     url: "https://www.instagram.com/p/Df8Q6JMR5OO/",
