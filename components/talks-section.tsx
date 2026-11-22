@@ -23,6 +23,17 @@ export interface Talk {
 
 const talks: Talk[] = [
   {
+    id: "11",
+    title: "RAG multi-tenant con Gemini y Qdrant: quiero algo picante y barato",
+    subtitle:
+      "Cómo Meniuz AI usa RAG con Gemini y Qdrant para recomendar platos reales del menú de cada restaurante, con datos actualizados, fallbacks y humanos en el bucle.",
+    location: "DevFest Tsáchilas 2026 · Santo Domingo, Ecuador",
+    images: ["/charlas/devfest-tsachilas-2026/speaker-poster.webp"],
+    tags: ["IA", "RAG", "Gemini", "Qdrant", "Multi-tenant"],
+    badges: ["Charla", "Presencial", "DevFest 2026", "GDG"],
+    url: "https://www.instagram.com/p/Df8Q6JMR5OO/",
+  },
+  {
     id: "10",
     title: "TsáchiTalk #21: Embeddings y búsqueda semántica con LLMs y Qdrant",
     subtitle:
