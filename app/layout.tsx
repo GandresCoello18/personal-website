@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { IntroLoader } from "@/components/intro-loader"
 import { ThemeProvider } from "@/components/theme-provider"
 import { UmamiAnalytics } from "@/components/umami-analytics"
 import {
@@ -128,6 +129,7 @@ export default function RootLayout({
           storageKey="andres-coello-theme"
           disableTransitionOnChange
         >
+          <IntroLoader />
           {children}
           <UmamiAnalytics />
           <Analytics />
