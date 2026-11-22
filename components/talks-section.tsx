@@ -40,7 +40,7 @@ const talks: Talk[] = [
       "Charla online (~1 h) en GDG Tsáchilas: embeddings, operaciones matemáticas, cercanía semántica, LLMs y Qdrant como base vectorial — cómo las apps entienden la intención de lo que preguntamos.",
     location: "GDG Santo Domingo de los Tsáchilas · Online",
     attendees: "Comunidad",
-    images: ["/charlas/embedding-llm-qdrant-gdg-tsachilas/1788311836308.jpg"],
+    images: ["/charlas/embedding-llm-qdrant-gdg-tsachilas/recording-frame.webp"],
     tags: ["IA", "Embeddings", "Qdrant", "LLM", "RAG"],
     badges: ["Charla", "Online", "TsáchiTalk", "GDG"],
     url: "https://www.youtube.com/watch?v=-ma95I0r7XI",
