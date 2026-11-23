@@ -1,0 +1,108 @@
+---
+title: "Quiero algo picante y barato: RAG multi-tenant en el primer DevFest Tsáchilas"
+description: "El 21 de noviembre de 2026 hablé en el primer DevFest de Santo Domingo de los Tsáchilas sobre cómo armar un RAG multi-tenant con Gemini y Qdrant: platos reales, un solo sistema y sin gastar de más."
+date: "2026-11-22"
+tags: ["ia", "rag", "gemini", "qdrant", "multi-tenant", "charla", "gdg", "devfest"]
+coverImage: "/blog/rag-multi-tenant-gemini-qdrant/devfest-tsachilas-2026-poster.jpg"
+---
+
+El sábado 21 de noviembre de 2026 Santo Domingo de los Tsáchilas tuvo su primer [DevFest](https://gdg.community.dev/events/details/google-gdg-santo-domingo-de-los-tsachilas-presents-devfest-tsachilas-2026-construye-el-futuro-con-ia/). No era un meetup más de la comunidad: era el evento insignia de los Google Developer Groups, y se hacía por primera vez en la provincia.
+
+Lo organizó [GDG Tsáchilas](https://gdg.community.dev/gdg-santo-domingo-de-los-tsachilas/) —oficialmente GDG Santo Domingo de los Tsachilas— en Alaïa 2.0, sobre la avenida La Lorena. En la página oficial se anotaron 363 personas. Al final llegamos casi 200. Hubo quien quiso entrar a última hora, también empresas, y ya no se pudo por el tiempo. Eso, en una ciudad que no suele ser sede de este tipo de conferencias, ya dice bastante.
+
+Ahí di la charla **RAG multi-tenant con Gemini y Qdrant: quiero algo picante y barato**.
+
+![Andrés Coello Goyes en el escenario del DevFest Tsáchilas 2026](/charlas/devfest-tsachilas-2026/stage-photo.webp)
+
+## Una mañana de comunidad en Santo Domingo
+
+Lo que más se sentía no era solo el programa, sino que esto estaba pasando *aquí*. Este tipo de eventos se ve mucho en las ciudades más grandes del Ecuador. Celebrarlo por primera vez en Santo Domingo se sintió como un logro de toda la zona. Se notaba el entusiasmo de la gente, también de quienes viven de cerca la cultura tsáchila.
+
+El equipo de GDG Tsáchilas —Kevin Morales, Jean Roldan y Juan José Morales Ruiz— armó una mañana de 8:30 a 14:00, con entrada libre. Invitaron speakers de GDG Manta y de GDG Quito, y yo llegué desde Ambato. Entre las charlas se habló de agentes y subagentes de IA, de comunidad, de contenido y de networking. El segundo speaker, Byron Agila, trajo *The Vibecoding Show* y, dentro de esa charla, tocó el modelado 3D con IA; no era un tema aparte, pero encajó con lo que estaba mostrando.
+
+También hubo un break, premios de los patrocinadores, regalos para speakers y asistentes, y una dinámica alrededor de la cultura tsáchila. Fue una forma de que el evento no se olvidara de dónde estaba parado.
+
+Si quieres seguir a la comunidad: su [página oficial](https://gdg.community.dev/gdg-santo-domingo-de-los-tsachilas/), el [evento](https://gdg.community.dev/events/details/google-gdg-santo-domingo-de-los-tsachilas-presents-devfest-tsachilas-2026-construye-el-futuro-con-ia/), [Instagram](https://www.instagram.com/gdgtsachilas/) y [LinkedIn](https://www.linkedin.com/company/gdgtsachilas).
+
+## La pregunta con la que empecé
+
+«Quiero algo picante y barato» no es un título pintoresco por pintoresco. Es lo que alguien le escribe a un asistente de comida. Y la IA tiene que contestar con platos que existen de verdad, se pueden pedir ahora y tienen el precio real. No con un menú inventado, dicho con toda la seguridad del mundo.
+
+El caso real de la charla fue [Meniuz AI](https://www.meniuz.com/meniuz-ai/): el asistente de Meniuz, una plataforma de menú digital para restaurantes aquí en Ecuador. Le cuentas tu antojo, tu presupuesto, la ocasión y dónde estás, y te devuelve platos o locales reales, en tarjetas con foto, precio, negocio y distancia.
+
+Abajo voy por las diapositivas de la charla —las pantallas que usé para explicar el flujo— y dejo también [la presentación completa](https://docs.google.com/presentation/d/1zuf6UUiGX4uW3LgDDZfsPJdxQCShzxPoAA34s1rQTKY/edit).
+
+## Primero busca, después responde
+
+![Diapositiva: una pregunta de algo picante y barato se busca solo en el menú del Local A, con los menús de otros locales cerrados con candado](/blog/rag-multi-tenant-gemini-qdrant/slides/01-rag-multi-tenant.webp)
+
+RAG es Retrieval-Augmented Generation, o en cristiano: **buscar y después generar**. El bot no contesta de memoria. Primero mira tus datos reales y recién ahí arma la respuesta con lo que encontró. Es como dar un examen a libro abierto.
+
+En Meniuz AI se ve así: alguien escribe «quiero algo picante y barato». No le pedimos a Gemini que se acuerde de qué restaurantes hay en Santo Domingo, porque no tiene cómo saberlo y lo inventaría. Primero buscamos en los menús que los restaurantes cargaron: platos, descripciones, precios. Antes de mostrar algo, confirmamos en la base real que el plato existe, que se puede pedir y que el local está abierto ahorita. Recién entonces Gemini redacta, con una regla fija: recomendar solo lo encontrado, sin inventar restaurantes, platos, precios ni ingredientes.
+
+Lo otro que está en el título es el **multi-tenant**. Un solo sistema, un solo bot, atendiendo a muchos restaurantes a la vez, y cada menú en su cajón. No hicimos un bot por local ni una base por local. Cuando preguntas por el Local A, lo del Local B ni aparece. Y cuando buscas en toda la ciudad, cada plato sale con su local, su precio y su foto: nunca el precio de uno con el plato de otro.
+
+Los menús son públicos, cualquiera los ve en Meniuz. Lo que sí queda separado es lo de cada usuario: tu conversación, lo que el asistente recuerda de tus gustos y tu cuota de mensajes. El ambiente de pruebas y el de producción tampoco se mezclan.
+
+Mantener un solo sistema es más fácil —y más barato— que mantener cien bots sueltos. Y es cuestión de confianza: un bot que le da a un cliente los datos de otro, o que inventa un precio, te sale caro.
+
+## Cinco pasos por detrás del chat
+
+![Diapositiva con la pantalla de Meniuz AI y los cinco pasos: intención, embedding, búsqueda en Qdrant, filtros y respuesta](/blog/rag-multi-tenant-gemini-qdrant/slides/02-arquitectura-cinco-pasos.webp)
+
+Por fuera el chat se ve sencillo: «¿Qué te apetece hoy?», con atajos como «Rico y económico» o «Para una cita». Por detrás no hay magia. Los LLM no son adivinos: es matemática e ingeniería.
+
+1. **Intención.** Gemini 2.5 Flash lee tu mensaje y llena una comanda en JSON: qué quieres, si buscas plato o lugar, presupuesto, qué evitar, ciudad y zona. Después el código, no la IA, decide qué búsqueda hacer.
+2. **Embedding.** Tu frase se convierte en 768 números con `gemini-embedding-001`. Frases con significado parecido quedan cerca: «algo picante» se acerca a «encebollado con ají», aunque no compartan palabras.
+3. **Búsqueda.** Con esos números buscamos en Qdrant, una base de datos vectorial, lo más parecido.
+4. **Filtros.** Cada plato lleva datos del local y del plato. Filtramos lo visible, lo que se puede pedir, la ciudad y la distancia, y lo confirmamos contra MySQL.
+5. **Respuesta.** Gemini le da la pulida final, usando solo lo que encontramos. De unos 50 candidatos quedan 12 después de ordenar por reglas, y mostramos como máximo 8 tarjetas. Si quieres más, «cargar más» no vuelve a llamar al modelo ni gasta tu cuota.
+
+## Un mapa de sabores, con dos estantes
+
+![Diapositiva del flujo de búsqueda híbrida en Qdrant: vector y palabras clave se mezclan, se filtran y se verifican contra la base real](/blog/rag-multi-tenant-gemini-qdrant/slides/03-busqueda-hibrida-qdrant.webp)
+
+Buscamos de dos formas a la vez. Por significado, el vector de la pregunta contra los vectores de los platos. Y por palabras: etiquetas y categorías, con sinónimos. El significado entiende «algo de mar»; a veces la palabra exacta también importa, como «encebollado». Las dos listas se mezclan con RRF.
+
+Todo vive en Qdrant, en **solo dos colecciones compartidas**: `menu_items` (platos) y `businesses` (locales). Las usan todos los restaurantes. Cada plato lleva pegada la etiqueta de su local —el negocio, la ciudad, la ubicación— y con eso filtramos. Con dos estantes y buenos filtros basta: no hace falta una base por restaurante, y la gente igual puede buscar entre todos los locales de una ciudad.
+
+Lo que sí se aísla de verdad es lo del usuario: su sesión, su memoria y su cuota.
+
+Después viene lo que más evita que el bot «alucine»: verificar contra la base real que el plato existe, que se puede pedir y que el local está abierto *ahora*, con la hora de su ciudad. Recién ahí se ordena —presupuesto, hora de comida, tus señales— y salen las tarjetas.
+
+## Del antojo a la mesa, sin gastar de más
+
+![Diapositiva del viaje de una pregunta en seis pasos, de pedir el antojo hasta recibir tarjetas reales](/blog/rag-multi-tenant-gemini-qdrant/slides/04-viaje-de-una-pregunta.webp)
+
+Si seguimos una pregunta de principio a fin —«algo rico para 2 con $20 cerca»— el viaje es corto. Primero se revisan los límites: máximo 500 caracteres y una cuota diaria. Después se limpia el texto y se detectan intentos de inyección. Si alguien trata de engañar al bot, se frena ahí, en unos 0,1 segundos, **sin gastar el modelo**.
+
+Recién entonces entra Gemini 2.5 Flash, entiende la comanda y un router con reglas fijas elige la búsqueda. Qdrant busca, MySQL verifica, y a la mesa llegan tarjetas con ids reales. En nuestro ambiente de desarrollo, todo el turno tarda alrededor de 1,6 segundos.
+
+Ahí también está lo «barato» de la charla: no es solo el precio del plato que pide el usuario. Es no llamar al modelo si no hace falta, usar un modelo ágil para entender y redactar, y ponerle techo al sistema para que no se desborde.
+
+![Diapositiva: la cocina tiene horario, porciones y tiempo máximo; cuotas, rate limits y timeouts](/blog/rag-multi-tenant-gemini-qdrant/slides/05-cuotas-y-timeouts.webp)
+
+Un restaurante que acepta pedidos infinitos y sin hora termina colapsando. Un bot también. Por eso hay cuotas diarias, un máximo de caracteres por mensaje y tiempos límite: 20 segundos por turno, 4 para Qdrant y 15 para Gemini. Si algo se pasa, la persona recibe un error de servicio y se le devuelve la cuota: no cobras un plato que no llegó.
+
+Y para no cocinar dos veces lo mismo: hay caché de embeddings, caché de respuestas repetidas, y «cargar más» trae más resultados sin volver a llamar al modelo. Hasta la indexación va por lotes, con pausas, para no disparar costos ni tumbar el servicio.
+
+En la charla también mostré el resultado de una auditoría de grounding: 417 recomendaciones citadas por el asistente, comparadas contra la base real. Cero inventadas. Cero con un precio o un nombre distinto. Cero locales cerrados recomendados. No es suerte del modelo. Es buscar primero, verificar después y dejar que el código decida lo que sí se puede hacer.
+
+## Para llevar
+
+![Diapositiva con cuatro ideas para llevar: buscar, un mapa de sabores, cada quien su mesa, y revisar el plato antes de servir](/blog/rag-multi-tenant-gemini-qdrant/slides/06-para-llevar.webp)
+
+Si te llevas algo de esa media hora, que sean estas cuatro ideas:
+
+1. **Busca antes de responder.** El modelo no adivina; primero miramos el menú real y solo después redacta.
+2. **Un mapa de sabores.** Cada plato tiene su dirección de 768 números, y los parecidos viven cerca. Con dos estantes compartidos en Qdrant y buenos filtros, alcanza.
+3. **Cada quien su mesa.** El catálogo es de todos, pero tu sesión, tu memoria y tus cuotas son solo tuyas. Pruebas y producción no se mezclan.
+4. **Revisa el plato antes de servir.** Verifica contra la base real, pon cuotas y tiempos máximos, y ataca tu propio bot antes que lo haga el público.
+
+En una frase: **la IA no adivina el menú, lo lee.**
+
+## Gracias, Santo Domingo
+
+Me vine con la sensación de que valió la pena el viaje. No solo por poder contar cómo se arma un asistente que no inventa el almuerzo, sino por ver una comunidad que está empezando a tener su propia escena, en su propia ciudad, con su propia cultura encima de la mesa.
+
+Gracias a GDG Tsáchilas por la invitación, a quienes se quedaron a las preguntas y a quienes hicieron posible el primer DevFest de Santo Domingo. Si quieres seguir la conversación, escríbeme por [LinkedIn](https://www.linkedin.com/in/andrescoellogoyes/). Y si te da hambre el ejemplo, puedes probar [Meniuz AI](https://www.meniuz.com/meniuz-ai/) y pedirle, claro, algo picante y barato.
