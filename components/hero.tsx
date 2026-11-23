@@ -40,8 +40,8 @@ const SOCIAL = [
 
 function ProfileLockup() {
   return (
-    <div className="flex items-center gap-4 sm:gap-5">
-      <BlueprintFrame className="size-[4.5rem] shrink-0 overflow-hidden sm:size-24">
+    <div className="flex items-start gap-4 sm:gap-5 lg:gap-6">
+      <BlueprintFrame className="size-[4.5rem] shrink-0 overflow-hidden sm:size-24 lg:size-32">
         <Image
           src="/profile.jpeg"
           alt="Andrés Coello Goyes, Backend Engineer"
@@ -51,10 +51,12 @@ function ProfileLockup() {
           priority
         />
       </BlueprintFrame>
-      <h1 className="section-title min-w-0">
-        Andrés Coello Goyes
-        <span className="mt-1 block font-medium text-foreground">Backend Engineer</span>
-      </h1>
+      <div className="min-w-0 pt-1 lg:pt-2">
+        <h1 className="text-balance text-3xl font-medium tracking-[-0.02em] text-foreground md:text-4xl lg:text-[2.75rem] lg:leading-tight">
+          Andrés Coello Goyes
+          <span className="mt-1 block font-medium text-foreground">Backend Engineer</span>
+        </h1>
+      </div>
     </div>
   )
 }
