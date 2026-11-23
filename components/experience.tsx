@@ -6,7 +6,7 @@ import { SKILL_GROUPS } from "@/lib/skills"
 const experiences: ExperienceItem[] = [
   {
     id: "devlokos",
-    logo: "/experiencia/devlokos/devlocos_logo.jpg",
+    logo: "/experience/devlokos.webp",
     role: "Backend Engineer",
     company: "DevLokos",
     period: "mar. 2026 – actualidad",
@@ -15,7 +15,7 @@ const experiences: ExperienceItem[] = [
   },
   {
     id: "meniuz",
-    logo: "/experiencia/meniuz/meniuz.jpeg",
+    logo: "/experience/meniuz.webp",
     role: "Backend & DevOps Lead",
     company: "Meniuz",
     period: "abr. 2022 – actualidad · part-time",
@@ -24,7 +24,7 @@ const experiences: ExperienceItem[] = [
   },
   {
     id: "novacomp",
-    logo: "/experiencia/novacomp/novacomp_logo.png",
+    logo: "/experience/novacomp.webp",
     role: "Software Engineer II (Backend)",
     company: "Novacomp",
     period: "ene. 2026 – abr. 2026",
@@ -33,7 +33,7 @@ const experiences: ExperienceItem[] = [
   },
   {
     id: "mims",
-    logo: "/experiencia/mims/mims_tech_corp_logo.jpg",
+    logo: "/experience/mims.webp",
     role: "Backend Engineer",
     company: "MIMS Tech",
     period: "sept. 2025 – nov. 2025",
@@ -42,7 +42,7 @@ const experiences: ExperienceItem[] = [
   },
   {
     id: "ggtech",
-    logo: "/experiencia/ggtech/ggtech.jpeg",
+    logo: "/experience/ggtech.webp",
     role: "Full Stack Engineer",
     company: "GGTECH Entertainment",
     period: "abr. 2022 – mar. 2025",
@@ -51,7 +51,7 @@ const experiences: ExperienceItem[] = [
   },
   {
     id: "ativar",
-    logo: "/experiencia/ativar/ativar.jpeg",
+    logo: "/experience/ativar.webp",
     role: "Full Stack Developer",
     company: "ATIVAR",
     period: "may. 2021 – abr. 2022",
@@ -60,7 +60,7 @@ const experiences: ExperienceItem[] = [
   },
   {
     id: "cooproclem",
-    logo: "/experiencia/cooproclem/cooploclem.jpeg",
+    logo: "/experience/cooproclem.webp",
     role: "Mobile Application Developer",
     company: "COOPROCLEM",
     period: "oct. 2020 – mar. 2021",
@@ -69,7 +69,7 @@ const experiences: ExperienceItem[] = [
   },
   {
     id: "freelance",
-    logo: "/experiencia/freelancer/me.jpg",
+    logo: "/experience/freelancer.webp",
     role: "Desarrollador freelance",
     company: "Independiente",
     period: "2018 – 2020",
@@ -126,6 +126,7 @@ function TeachingCard({ item }: { item: (typeof teaching)[number] }) {
 const educations: ExperienceItem[] = [
   {
     id: "codigo-facilito",
+    logo: "/experience/codigofacilito.webp",
     role: "Ingeniería de software",
     company: "Código Facilito",
     period: "mar. 2025 – actualidad",
@@ -133,7 +134,7 @@ const educations: ExperienceItem[] = [
   },
   {
     id: "platzi",
-    logo: "/experiencia/educacion/platzi/platzi.jpeg",
+    logo: "/experience/platzi.webp",
     role: "Programación e ingeniería",
     company: "Platzi",
     period: "ene. 2019 – dic. 2025",
@@ -141,7 +142,7 @@ const educations: ExperienceItem[] = [
   },
   {
     id: "istb",
-    logo: "/experiencia/educacion/istb/ISTB-02-3.png",
+    logo: "/experience/istb.webp",
     role: "Tecnólogo en desarrollo de software",
     company: "Tecnológico Superior Babahoyo",
     period: "mar. 2017 – nov. 2020",
@@ -149,17 +150,56 @@ const educations: ExperienceItem[] = [
   },
 ]
 
+function CompanyLogo({ logo, company }: { logo?: string; company: string }) {
+  if (logo) {
+    return (
+      <div className="size-10 shrink-0 overflow-hidden rounded-md bg-white/90 dark:bg-white/10">
+        <Image
+          src={logo}
+          alt={company}
+          width={40}
+          height={40}
+          className="size-full object-cover"
+        />
+      </div>
+    )
+  }
+
+  const initials = company
+    .split(" ")
+    .map((w) => w[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase()
+
+  return (
+    <span
+      aria-label={company}
+      className="flex size-10 shrink-0 items-center justify-center rounded-md bg-muted text-sm font-medium text-muted-foreground"
+    >
+      {initials}
+    </span>
+  )
+}
+
 function ExperienceRow({ item }: { item: ExperienceItem }) {
   return (
     <li className="border-b border-border py-8 first:pt-0 last:border-b-0">
-      <h3 className="text-lg font-medium tracking-[-0.02em] text-foreground">{item.role}</h3>
-      <p className="mt-1 text-sm text-muted-foreground">
-        {item.company}
-        <span className="font-mono"> · {item.period}</span>
-      </p>
-      <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground">
-        {item.description}
-      </p>
+      <div className="flex gap-4">
+        <div className="shrink-0">
+          <CompanyLogo logo={item.logo} company={item.company} />
+        </div>
+        <div className="min-w-0 flex-1">
+          <h3 className="text-lg font-medium tracking-[-0.02em] text-foreground">{item.role}</h3>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {item.company}
+            <span className="font-mono"> · {item.period}</span>
+          </p>
+          <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground">
+            {item.description}
+          </p>
+        </div>
+      </div>
     </li>
   )
 }
